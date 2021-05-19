@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundTable", "RoundTable\RoundTable.csproj", "{7303A661-7307-4D70-9915-228E3A54934F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7303A661-7307-4D70-9915-228E3A54934F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7303A661-7307-4D70-9915-228E3A54934F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7303A661-7307-4D70-9915-228E3A54934F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7303A661-7307-4D70-9915-228E3A54934F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA5501BE-1E75-48C6-9A87-6BB5FBEF2330}
+	EndGlobalSection
+EndGlobal

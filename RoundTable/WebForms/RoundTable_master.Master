@@ -196,7 +196,7 @@
                     </div>
                     <div class="my-0">
                         <!--User Profile-->
-                        <a href="#" class="py-2 h-12 w-12" id="profile">
+                        <a href="../User/UserProfile.aspx" class="py-2 h-12 w-12" id="profile">
                             <svg
                                 class="w-16 h-16"
                                 fill="none"

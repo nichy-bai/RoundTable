@@ -140,7 +140,6 @@
                             type="button"
                             title="Toggle dark mode"
                             id="switchTheme"
-                            onclick="DarkMode()"
                             class="flex flex-col items-center px-8 py-2 h-12 w-12 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300  hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none focus:outline-none transition ease-in-out duration-500">
                             <!--Moon Icon-->
                             <svg
@@ -344,7 +343,8 @@
                     </asp:ContentPlaceHolder>
                 </div>
                 <!--Aside-->
-                <div class="flex flex-col hidden lg:inline">
+                <asp:Panel runat="server" ID="Panel1">
+                    <div class="flex flex-col hidden lg:inline">
                     <!--Featured discussions-->
                     <div
                         class="m-5 ml-0 items-center justify-between bg-white w-96 h-auto px-5 py-4 rounded-lg shadow-md dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
@@ -521,7 +521,7 @@
                     <!--Footer-->
                     <footer class="pb-5 text-sm text-gray-600 dark:text-gray-400">
                         <div class="grid grid-cols-2 gap-x-4 gap-y-1 w-96">
-                            <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">About</a>
+                            <a href="../Support/About.aspx" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">About</a>
                             <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Logo & Media</a>
                             <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Privacy</a>
                             <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Terms of service</a>
@@ -529,10 +529,11 @@
                         </div>
                         <div class="mt-5">
                             <span
-                                class="px-4 font-medium font-title hover:text-indigo-600 dark:hover:text-indigo-500 transition ease-in-out duration-300 cursor-default">&#169; 2021 Round Table</span>
+                                class="px-4 font-medium font-title hover:text-indigo-600 dark:hover:text-indigo-500 transition ease-in-out duration-300 cursor-default">&#169; 2021 RoundTable</span>
                         </div>
                     </footer>
                 </div>
+                </asp:Panel>
             </div>
         </div>
     </form>

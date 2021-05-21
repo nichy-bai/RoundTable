@@ -43,11 +43,13 @@ document.getElementById('switchTheme').addEventListener('click', function () {
     let htmlClasses = document.querySelector('html').classList;
     if (localStorage.theme == 'dark') {
         htmlClasses.remove('dark');
+        document.documentElement.classList.toggle('dark');
         localStorage.removeItem('theme');
         moonIcon.classList.remove('hidden');
         sunIcon.classList.add('hidden');
     } else {
         htmlClasses.add('dark');
+        document.documentElement.classList.toggle('dark');
         localStorage.theme = 'dark';
         moonIcon.classList.add('hidden');
         sunIcon.classList.remove('hidden');

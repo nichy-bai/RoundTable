@@ -73,8 +73,11 @@
     </Content>
     <Content Include="Content\css\style.css" />
     <Content Include="Content\icons\favicon.png" />
+    <Content Include="Content\img\about_illustration_1.svg" />
+    <Content Include="Content\img\about_illustration_2.svg" />
     <Content Include="Content\js\script.js" />
     <Content Include="Web.config" />
+    <Content Include="WebForms\Support\About.aspx" />
     <Content Include="WebForms\User\UserProfile.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +110,13 @@
     <Compile Include="WebForms\RoundTable_master.Master.designer.cs">
       <DependentUpon>RoundTable_master.Master</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Support\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Support\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\User\UserProfile.aspx.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -129,10 +139,8 @@
     <Content Include="WebForms\RoundTable_master.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\img\" />
     <Folder Include="WebForms\Explore\" />
     <Folder Include="WebForms\Search\" />
-    <Folder Include="WebForms\Support\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -32,7 +32,7 @@
             <div class="flex flex-col flex-1">
                 <span class="mb-10">
                     <%--<asp:Label ID="lblName" runat="server" Text="Name" CssClass=""></asp:Label>--%>
-                    <asp:TextBox ID="txtName" BorderStyle="None" BackColor="Transparent" runat="server" Text='Name' Enabled="false" CssClass="text-2xl ml-10 font-bold"></asp:TextBox>
+                    <asp:TextBox ID="txtName" BorderStyle="None" BackColor="Transparent" runat="server" Text='Name' Enabled="false" CssClass="text-3xl ml-10 font-bold"></asp:TextBox>
                 </span>
                 <span class="right-0 absolute mt-10">
                     <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" CssClass="font-bold p-4 border-4 border-black" />
@@ -40,17 +40,17 @@
 
                 <span class="text-xl ml-10 mt-10 font-bold">
                     Gender
-                    <asp:TextBox ID="txtGender" BorderStyle="None" BackColor="Transparent" runat="server" Text='M' Enabled="false" CssClass="text-lg right-0 absolute"></asp:TextBox>
+                    <asp:TextBox ID="txtGender" BorderStyle="None" BackColor="Transparent" runat="server" Text='M' Enabled="false" CssClass="mr-48 text-lg right-0 absolute"></asp:TextBox>
                 </span>
              
                 <span class="text-xl ml-10 font-bold">
                     Date Of Birth
-                    <asp:TextBox ID="txtDOB" BorderStyle="None" BackColor="Transparent" runat="server" Text='' TextMode="Date" Enabled="false" CssClass="text-lg right-0 absolute"></asp:TextBox>
+                    <asp:TextBox ID="txtDOB" BorderStyle="None" BackColor="Transparent" runat="server" Text='' TextMode="Date" Enabled="false" CssClass="mr-48 pr-5 text-lg right-0 absolute"></asp:TextBox>
                 </span>
 
                 <span class="text-xl ml-10 font-bold">
                     Email
-                     <asp:TextBox ID="txtEmail" BorderStyle="None" BackColor="Transparent" runat="server" Text='Email' Enabled="false" CssClass="text-lg right-0 absolute"></asp:TextBox>
+                     <asp:TextBox ID="txtEmail" BorderStyle="None" BackColor="Transparent" runat="server" Text='Email' Enabled="false" CssClass="mr-48 text-lg right-0 absolute"></asp:TextBox>
                 </span>
 
                 <span class="text-xl ml-10 font-bold">

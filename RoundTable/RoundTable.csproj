@@ -85,6 +85,13 @@
     <Compile Include="WebForms\Bookmark\Bookmark.aspx.designer.cs">
       <DependentUpon>Bookmark.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Discussion\CreateDiscussion.aspx.cs">
+      <DependentUpon>CreateDiscussion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Discussion\CreateDiscussion.aspx.designer.cs">
+      <DependentUpon>CreateDiscussion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Discussion\Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -109,6 +116,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="WebForms\Bookmark\Bookmark.aspx" />
+    <Content Include="WebForms\Discussion\CreateDiscussion.aspx" />
     <Content Include="WebForms\Discussion\Homepage.aspx" />
     <Content Include="WebForms\RoundTable_master.Master" />
   </ItemGroup>

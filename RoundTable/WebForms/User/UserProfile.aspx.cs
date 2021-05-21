@@ -11,6 +11,15 @@ namespace RoundTable.WebForms.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //if (!Page.IsPostBack)
+            //{
+            //    DateRangeValidator.MinimumValue = DateTime.Now.AddYears(-100).ToShortDateString();
+            //    DateRangeValidator.MaximumValue = DateTime.Now.Date.ToShortDateString();
+            //}
+        }
+
+        protected void btnEditProfile_Click(object sender, EventArgs e)
+        {
 
         }
     }

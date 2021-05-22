@@ -75,9 +75,12 @@
     <Content Include="Content\icons\favicon.png" />
     <Content Include="Content\img\about_illustration_1.svg" />
     <Content Include="Content\img\about_illustration_2.svg" />
+    <Content Include="Content\img\support_illustration_1.svg" />
+    <Content Include="Content\img\support_illustration_2.svg" />
     <Content Include="Content\js\script.js" />
     <Content Include="Web.config" />
     <Content Include="WebForms\Support\About.aspx" />
+    <Content Include="WebForms\Support\Support.aspx" />
     <Content Include="WebForms\User\UserProfile.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +119,13 @@
     </Compile>
     <Compile Include="WebForms\Support\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Support\Support.aspx.cs">
+      <DependentUpon>Support.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Support\Support.aspx.designer.cs">
+      <DependentUpon>Support.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\User\UserProfile.aspx.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>

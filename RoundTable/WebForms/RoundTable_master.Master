@@ -522,10 +522,10 @@
                     <footer class="pb-5 text-sm text-gray-600 dark:text-gray-400">
                         <div class="grid grid-cols-2 gap-x-4 gap-y-1 w-96">
                             <a href="../Support/About.aspx" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">About</a>
+                            <a href="../Support/Support.aspx" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Support</a>
                             <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Logo & Media</a>
                             <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Privacy</a>
                             <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Terms of service</a>
-                            <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Support</a>
                         </div>
                         <div class="mt-5">
                             <span

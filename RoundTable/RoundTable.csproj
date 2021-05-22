@@ -72,6 +72,7 @@
       <DependentUpon>RoundTableDB.mdf</DependentUpon>
     </Content>
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\UserProfile.css" />
     <Content Include="Content\icons\favicon.png" />
     <Content Include="Content\js\script.js" />
     <Content Include="Web.config" />

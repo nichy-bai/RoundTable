@@ -6,7 +6,7 @@
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
                 <span class="block text-4xl font-bold mb-2 font-title">Bookmark</span>
-                <span class="block opacity-80">Recent discussions from the community</span>
+                <span class="block opacity-80">Access your saved discussion posts</span>
             </div>
         </div>
     </header>

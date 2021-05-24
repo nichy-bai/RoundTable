@@ -158,6 +158,7 @@
     <Content Include="BotResources\user-avatar.png" />
     <Content Include="BotService.aspx" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\UserProfile.css" />
     <Content Include="Content\icons\favicon.png" />
     <Content Include="Content\img\about_illustration_1.svg" />
     <Content Include="Content\img\about_illustration_2.svg" />

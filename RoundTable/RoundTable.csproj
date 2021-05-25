@@ -167,7 +167,10 @@
     <Content Include="Content\js\script.js" />
     <Content Include="Web.config" />
     <Content Include="WebForms\Support\About.aspx" />
+    <Content Include="WebForms\Support\Feedback.aspx" />
+    <Content Include="WebForms\Support\Privacy.aspx" />
     <Content Include="WebForms\Support\Support.aspx" />
+    <Content Include="WebForms\Support\Terms.aspx" />
     <Content Include="WebForms\User\UserProfile.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -215,12 +218,33 @@
     <Compile Include="WebForms\Support\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Support\Feedback.aspx.cs">
+      <DependentUpon>Feedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Support\Feedback.aspx.designer.cs">
+      <DependentUpon>Feedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Support\Privacy.aspx.cs">
+      <DependentUpon>Privacy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Support\Privacy.aspx.designer.cs">
+      <DependentUpon>Privacy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Support\Support.aspx.cs">
       <DependentUpon>Support.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebForms\Support\Support.aspx.designer.cs">
       <DependentUpon>Support.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Support\Terms.aspx.cs">
+      <DependentUpon>Terms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Support\Terms.aspx.designer.cs">
+      <DependentUpon>Terms.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\User\UserProfile.aspx.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>

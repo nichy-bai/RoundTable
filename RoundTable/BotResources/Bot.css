@@ -89,6 +89,13 @@ body {
     }
 }
 
+@media (min-width: 1280px) {
+    #bot-container {
+        width: 30%;
+        height: 85%;
+    }
+}
+
 #bot-title-grid {
     /* align-self: start; */
     display: grid;

@@ -4,9 +4,10 @@
     <div
         class="relative m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="relative px-0 flex flex-row flex-grow">
-            <div class="flex flex-col justify-center items-center w-full">
-                <div class="text-3xl md:text-5xl font-bold mb-2 font-title tracking-wide flex flex-row justify-center items-center py-5 text-gray-800 flex-wrap">
+            <div class="flex flex-col justify-center items-center w-full mt-5">
+                <div class="text-3xl lg:text-5xl font-bold mb-2 font-title tracking-wide flex flex-row justify-center items-center py-5 text-gray-800 flex-wrap">
                     <svg
+                        class="hidden md:block"
                         width="80"
                         height="80"
                         viewBox="0 0 500 500"
@@ -18,9 +19,12 @@
                             d="M500 250.594C500 297.339 487.232 341.094 465 378.547V255.361V239.927L451.202 233.011L261.702 138.03L250.5 132.416L239.298 138.03L49.7979 233.011L36 239.927V255.361V380.217C13.1518 342.397 0 298.035 0 250.594C0 112.195 111.929 0 250 0C388.071 0 500 112.195 500 250.594ZM415 295.856V438.861C376.969 472.377 328.698 494.498 275.5 499.9V365.776L415 295.856ZM225.5 365.776V500C172.372 494.82 124.115 472.971 86 439.738V295.856L225.5 365.776Z"
                             fill="currentColor" />
                     </svg>
-                    <span class="ml-5">RoundTable</span><div class="flex justify-center items-center opacity-50 ml-10 md:ml-4 tracking-normal">support</div>
+                    <div class="flex flex-row">
+                        <div class="ml-5">RoundTable</div>
+                        <div class="flex justify-center items-center opacity-50 tracking-normal">&nbsp;support</div>
+                    </div>
                 </div>
-                <div class="text-xl text-center my-5 w-4/5 lg:w-1/2 opacity-80 font-bold text-2xl">How can we help?</div>
+                <div class="text-xl text-center mb-5 w-4/5 lg:w-1/2 opacity-80 font-bold text-2xl">How can we help?</div>
                 <div class="text-xl font-medium text-center w-4/5 lg:w-1/2 opacity-60">Your go-to guides for understanding RoundTable a little better</div>
             </div>
         </div>
@@ -29,7 +33,7 @@
         </div>
         <div class="flex flex-row justify-center items-center">
             <a
-                href="#"
+                href="SupportDetail.aspx"
                 class="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 dark:bg-dark-300 dark:hover:bg-dark-400 ease-in-out duration-300">
                 <svg class="w-8 h-8"
                     fill="none"

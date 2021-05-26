@@ -170,6 +170,7 @@
     <Content Include="WebForms\Support\Feedback.aspx" />
     <Content Include="WebForms\Support\Privacy.aspx" />
     <Content Include="WebForms\Support\Support.aspx" />
+    <Content Include="WebForms\Support\SupportDetail.aspx" />
     <Content Include="WebForms\Support\Terms.aspx" />
     <Content Include="WebForms\User\UserProfile.aspx" />
   </ItemGroup>
@@ -238,6 +239,13 @@
     </Compile>
     <Compile Include="WebForms\Support\Support.aspx.designer.cs">
       <DependentUpon>Support.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Support\SupportDetail.aspx.cs">
+      <DependentUpon>SupportDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Support\SupportDetail.aspx.designer.cs">
+      <DependentUpon>SupportDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Support\Terms.aspx.cs">
       <DependentUpon>Terms.aspx</DependentUpon>

@@ -7,3 +7,25 @@
     background: #a5b4fc;
     color: #000;
 }
+
+
+
+
+.support-section-nav li.active > a {
+    color: #333;
+    font-weight: 500;
+}
+
+.support-section-nav a {
+    text-decoration: none;
+    display: block;
+    padding: .125rem 0;
+    color: #ccc;
+    transition: all 50ms ease-in-out;
+}
+
+    .support-section-nav a:hover,
+    .support-section-nav a:focus {
+        color: #666;
+    }
+

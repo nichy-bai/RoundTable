@@ -11,7 +11,6 @@ namespace RoundTable.WebForms.Discussion
 {
     public partial class CreateDiscussion : System.Web.UI.Page
     {
-
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         string postID;
 
@@ -94,6 +93,8 @@ namespace RoundTable.WebForms.Discussion
             int postLike = 0;
             int postComment = 0;
             int postView = 1;
+
+            //to be modified
             string userID = "testing";
 
             string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, postLike, postComment, postView, userID, tagID, topicID) VALUES (@postID, @postTitle, @postContent, @postDate, @postLike, @postComment, @postView, @userID, @tagID, @topicID)";
@@ -116,7 +117,6 @@ namespace RoundTable.WebForms.Discussion
             DropDownList2.ClearSelection();
             DropDownList1.Items.Insert(0, "[Select a Topic]");
             DropDownList2.Items.Insert(0, "[Select a Tag]");
-
             TextBox1.Text = "";
             TextBox2.Text = "";
         }

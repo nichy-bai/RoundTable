@@ -4,7 +4,8 @@
     <div
         class="support-body relative m-5 px-10 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="text-3xl lg:text-5xl font-bold mt-5 mb-20 font-title tracking-wide flex flex-row justify-center items-center py-5 text-gray-800 flex-wrap">
-            <svg
+            <a href="Support.aspx">
+                <svg
                 class="hidden md:block"
                 width="80"
                 height="80"
@@ -17,10 +18,13 @@
                     d="M500 250.594C500 297.339 487.232 341.094 465 378.547V255.361V239.927L451.202 233.011L261.702 138.03L250.5 132.416L239.298 138.03L49.7979 233.011L36 239.927V255.361V380.217C13.1518 342.397 0 298.035 0 250.594C0 112.195 111.929 0 250 0C388.071 0 500 112.195 500 250.594ZM415 295.856V438.861C376.969 472.377 328.698 494.498 275.5 499.9V365.776L415 295.856ZM225.5 365.776V500C172.372 494.82 124.115 472.971 86 439.738V295.856L225.5 365.776Z"
                     fill="currentColor" />
             </svg>
-            <div class="flex flex-row">
+            </a>
+            <a href="Support.aspx">
+                <div class="flex flex-row">
                 <div class="ml-5">RoundTable</div>
                 <div class="flex justify-center items-center opacity-50 tracking-normal">&nbsp;support</div>
             </div>
+            </a>
         </div>
         <div class="flex flex-row justify-evenly mb-20">
             <%--Body--%>

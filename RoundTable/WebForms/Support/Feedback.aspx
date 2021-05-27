@@ -31,7 +31,7 @@
     <div
         class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row justify-end shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-300">
         <asp:Button ID="Button1" runat="server" Text="Discard" CssClass="mr-5 h-12 w-24 sm:w-40 px-2 border-2 rounded-lg cursor-pointer bg-white hover:bg-gray-100 transition ease-in-out duration-300" OnClick="Button1_Click" OnClientClick="return confirm('Are you sure to discard the current feedback?')" />
-        <asp:Button ID="Button2" runat="server" Text="Send" CssClass="h-12 w-24 sm:w-40 px-2 border-2 rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-700 text-white transition ease-in-out duration-300" />
+        <asp:Button ID="Button2" runat="server" Text="Send" CssClass="h-12 w-24 sm:w-40 px-2 border-2 rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-700 text-white transition ease-in-out duration-300" OnClick="Button2_Click" />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>

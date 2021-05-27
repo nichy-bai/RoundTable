@@ -107,3 +107,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         });
     });
 });
+
+//Shortcut Key (Ctrl+\)
+document.addEventListener('keydown', function (e) {
+
+    if ((e.keyCode || e.which) == 220 && e.ctrlKey) {
+        document.getElementById("bot-launch-button").click();
+    }
+
+});

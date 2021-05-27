@@ -11,6 +11,7 @@ let botScript = {
         if (botFrame.classList.contains("bot-frame-hidden")) {
             botFrame.classList.remove("bot-frame-hidden");
             launchButton.style.display = "block";
+            document.getElementById("bot-input-box").focus();
         } else {
             botFrame.classList.add("bot-frame-hidden");
         }

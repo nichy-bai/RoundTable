@@ -158,6 +158,7 @@
     <Content Include="BotResources\user-avatar.png" />
     <Content Include="BotService.aspx" />
     <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\UserLoginRegister.css" />
     <Content Include="Content\css\UserProfile.css" />
     <Content Include="Content\icons\favicon.png" />
     <Content Include="Content\img\about_illustration_1.svg" />
@@ -172,6 +173,7 @@
     <Content Include="WebForms\Support\Support.aspx" />
     <Content Include="WebForms\Support\SupportDetail.aspx" />
     <Content Include="WebForms\Support\Terms.aspx" />
+    <Content Include="WebForms\User\UserLogin.aspx" />
     <Content Include="WebForms\User\UserProfile.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +255,13 @@
     </Compile>
     <Compile Include="WebForms\Support\Terms.aspx.designer.cs">
       <DependentUpon>Terms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\User\UserLogin.aspx.cs">
+      <DependentUpon>UserLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\User\UserLogin.aspx.designer.cs">
+      <DependentUpon>UserLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\User\UserProfile.aspx.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>

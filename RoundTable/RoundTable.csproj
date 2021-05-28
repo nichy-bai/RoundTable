@@ -173,8 +173,10 @@
     <Content Include="WebForms\Support\Support.aspx" />
     <Content Include="WebForms\Support\SupportDetail.aspx" />
     <Content Include="WebForms\Support\Terms.aspx" />
+    <Content Include="WebForms\User\ForgotPassword.aspx" />
     <Content Include="WebForms\User\UserLogin.aspx" />
     <Content Include="WebForms\User\UserProfile.aspx" />
+    <Content Include="WebForms\User\UserRegistration.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BotResources\DefaultDialog.cs" />
@@ -256,6 +258,13 @@
     <Compile Include="WebForms\Support\Terms.aspx.designer.cs">
       <DependentUpon>Terms.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\User\ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\User\ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\User\UserLogin.aspx.cs">
       <DependentUpon>UserLogin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -269,6 +278,13 @@
     </Compile>
     <Compile Include="WebForms\User\UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\User\UserRegistration.aspx.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\User\UserRegistration.aspx.designer.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

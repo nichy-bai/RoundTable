@@ -38,7 +38,8 @@
         <div class="h-screen flex flex-row justify-center items-center bg-indigo-400">
             <div class="shadow-xl p-10 bg-white max-w-xl rounded">
                 <div class="flex flex-col justify-center">
-                    <div class="flex justify-center text-4xl font-black mb-8">Login</div>
+                    <div class="flex justify-center text-4xl font-black mb-6">Login</div>
+                    <asp:Label ID="lblLoginStatus" runat="server" Text="" CssClass=" text-red-600 mb-2"></asp:Label>
                     <div class="mb-6 relative">
                         <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtUserID" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Username</label>
@@ -48,7 +49,7 @@
                         <label for="txtPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Password</label>
                     </div>
                     <div class="mb-4 relative">
-                        <asp:LinkButton ID="btnForgotPassword" runat="server" CssClass="underline" OnClick="btnForgotPassword_Click" OnClientClick="if (!confirm('Do you want to reset password?')) return false;" Text="Forgot Password?"></asp:LinkButton>
+                        <asp:LinkButton ID="btnForgotPassword" runat="server" CssClass="underline" OnClick="btnForgotPassword_Click" Text="Forgot Password?"></asp:LinkButton>
                     </div>
                     <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="login-btn font-bold py-3 px-6 rounded" OnClick="btnLogin_Click" />
                     <div class="flex justify-center border-t border-gray-400 mt-8 pt-5">
@@ -57,7 +58,6 @@
                 </div>
             </div>
         </div>
-
     </form>
     <script>
         var toggleInputContainer = function (input) {

@@ -45,7 +45,7 @@
                     class="flex flex-col flex-none flex-shrink-0 items-center justify-center font-medium text-base capitalize"
                     id="navbarItem">
                     <div class="mb-3">
-                        <a href="../Discussion/Homepage.aspx" class="flex flex-col items-center px-8 py-2 h-auto w-24 text-indigo-600 dark:text-indigo-500 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
+                        <a href="../Discussion/Homepage.aspx" class="flex flex-col items-center px-8 py-2 h-auto w-24 text-black dark:text-indigo-500 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
                             <svg
                                 class="w-8 h-8"
                                 fill="none"

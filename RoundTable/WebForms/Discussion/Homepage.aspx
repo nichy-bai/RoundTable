@@ -57,11 +57,11 @@
     </div>
     <%--Discussion Post--%>
     <div
-        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between mb-4 border-b-2 pb-2">
             <%--User detail--%>
             <div>
-                <a href="#" class="flex flex-row hover:underline transition ease-in-out duration-300">
+                <a href="#" class="flex flex-row">
                     <svg
                         class="w-12 h-12"
                         fill="none"
@@ -75,7 +75,7 @@
                             d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
                         </path>
                     </svg>
-                    <div class="flex flex-col px-4 justify-center items-start">
+                    <div class="relative flex flex-col px-4 justify-center items-start">
                         <div class="font-medium">Loremipsum</div>
                         <div class="text-sm opacity-80">29 May 2021</div>
                     </div>
@@ -178,11 +178,11 @@
             </div>
         </div>
     </div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Post]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postLike, Post.postComment, Post.postView, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID"></asp:SqlDataSource>
     <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
         <ItemTemplate>
             <div
-                class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+                class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
                 <div class="flex flex-row justify-between mb-4 border-b-2 pb-2">
                     <%--User detail--%>
                     <div>
@@ -201,9 +201,11 @@
                                 </path>
                             </svg>
                             <div class="flex flex-col px-4 justify-center items-start">
-                                <div class="font-medium">Loremipsum</div>
-                                <div class="text-sm opacity-80">
-                                    <%#DataBinder.Eval(Container.DataItem, "postDate", "{0:d MMMM yyyy}") %>
+                                <div class="font-medium">
+                                    <abbr title="<%#Eval("name") %>" style="text-decoration:none;"><%#Eval("userID") %></abbr>
+                                </div>
+                                <div class="text-sm opacity-80 no-underline">
+                                    <abbr title="<%#DataBinder.Eval(Container.DataItem, "postDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration:none;"><%#DataBinder.Eval(Container.DataItem, "postDate", "{0:d MMMM yyyy}") %></abbr>
                                 </div>
                             </div>
                         </a>
@@ -230,7 +232,7 @@
                 <%--Discussion title--%>
                 <div>
                     <a href="#">
-                        <div class="text-xl font-medium mb-5 py-2 hover:underline transition ease-in-out duration-300">
+                        <div class="text-xl font-medium mb-5 py-2 hover:opacity-80 transition ease-in-out duration-300">
                             <%#Eval("postTitle") %>
                         </div>
                     </a>
@@ -238,10 +240,14 @@
                 <%--Discussion tag--%>
                 <div class="flex flex-row mb-10">
                     <a href="#" class="mr-5">
-                        <div class="border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">#Topic Topic</div>
+                        <div class="border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
+                            #<%#Eval("topicName") %>
+                        </div>
                     </a>
                     <a href="#" class="mr-5">
-                        <div class="border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">#Tag Tag</div>
+                        <div class="border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
+                            #<%#Eval("tagName") %>
+                        </div>
                     </a>
                 </div>
                 <%--Reaction--%>

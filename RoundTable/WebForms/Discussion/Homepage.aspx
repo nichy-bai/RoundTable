@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postLike, Post.postComment, Post.postView, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID ORDER BY Post.postDate DESC"></asp:SqlDataSource>
 
     <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
         <ItemTemplate>
@@ -131,27 +131,25 @@
                 </div>
                 <%--Discussion title--%>
                 <div class="my-5">
-                    <asp:Label ID="postID" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
+                    <asp:Label ID="postID_lbl" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
                     <asp:LinkButton ID="postTitle_btn" runat="server" Text='<%#Eval("postTitle") %>' CssClass="text-xl font-medium py-2 hover:opacity-80 transition ease-in-out duration-300" OnCommand="postTitle_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';"></asp:LinkButton>
                 </div>
                 <%--Discussion tag--%>
                 <div class="flex flex-row mb-10">
                     <a href="#" class="mr-5">
                         <div class="text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
-                            #<%#Eval("topicName") %>
-                        </div>
+                            <abbr title="<%#Eval("topicDesc") %>" style="text-decoration: none;">#<%#Eval("topicName") %></div></abbr>
                     </a>
                     <a href="#" class="mr-5">
                         <div class="text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
-                            #<%#Eval("tagName") %>
-                        </div>
+                            <abbr title="<%#Eval("tagDesc") %>" style="text-decoration: none;">#<%#Eval("tagName") %></div></abbr>
                     </a>
                 </div>
                 <%--Reaction--%>
                 <div class="flex flex-row items-center">
                     <%--Like--%>
                     <div class="mr-5">
-                        <a href="#" class="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300" title="Like">
+                        <asp:LinkButton ID="like_btn" runat="server" ToolTip="Like" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300">
                             <svg
                                 class="w-6 h-6"
                                 fill="none"
@@ -165,8 +163,8 @@
                                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
                                 </path>
                             </svg>
-                            <div class="px-1"><%#Eval("postLike") %></div>
-                        </a>
+                            <div class="px-1"><%#Eval("totalLike") %></div>
+                        </asp:LinkButton>
                     </div>
                     <%--Comment--%>
                     <div class="mr-5">
@@ -184,7 +182,7 @@
                                     d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z">
                                 </path>
                             </svg>
-                            <div class="px-1"><%#Eval("postComment") %></div>
+                            <div class="px-1"><%#Eval("totalComment") %></div>
                         </a>
                     </div>
                     <%--Bookmark--%>

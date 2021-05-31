@@ -236,7 +236,7 @@
                     </div>
                     <!--Logo-->
                     <div class="my-1 mr-28">
-                        <a href="#">
+                        <a href="../Discussion/Homepage.aspx">
                             <svg
                                 width="45"
                                 height="45"
@@ -310,7 +310,7 @@
                         </div>
                         <!--User Profile-->
                         <div class="ml-2">
-                            <a href="#" title="Notifications">
+                            <a href="../User/UserProfile.aspx" title="Notifications">
                                 <svg
                                     class="w-12 h-12"
                                     fill="none"

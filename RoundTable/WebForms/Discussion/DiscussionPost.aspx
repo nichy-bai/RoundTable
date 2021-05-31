@@ -181,16 +181,12 @@
     </div>
 
     <%--View comment--%>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID)"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate ASC"></asp:SqlDataSource>
 
-    <div class="relative flex flex-row justify-center">
-        <div class="text-md text-center text-gray-400 mt-10 absolute">No comment yet</div>
-    </div>
-
-    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
         <ItemTemplate>
             <div
-                class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000 z-10">
+                class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
                 <div class="flex flex-row justify-between border-b-2 pb-2">
                     <%--User detail--%>
                     <div>
@@ -264,5 +260,8 @@
                 </div>
             </div>
         </ItemTemplate>
+        <FooterTemplate>
+            <asp:Label ID="noComment_lbl" runat="server" CssClass="text-gray-400 text-center mt-10 mb-14" Text="No comment yet" Visible="false"></asp:Label>
+        </FooterTemplate>
     </asp:Repeater>
 </asp:Content>

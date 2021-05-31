@@ -43,6 +43,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    z-index: 40;
 }
 
     #bot-launch-button:hover {

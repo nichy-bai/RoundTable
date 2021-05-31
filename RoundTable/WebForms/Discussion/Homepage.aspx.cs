@@ -13,5 +13,11 @@ namespace RoundTable.WebForms.Discussion
         {
 
         }
+
+        protected void postTitle_btn_Command(object sender, CommandEventArgs e)
+        {
+            string postID = e.CommandArgument.ToString();
+            Response.Redirect("DiscussionPost.aspx?postID=" + postID);
+        }
     }
 }

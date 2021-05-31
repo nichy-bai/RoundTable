@@ -116,3 +116,9 @@ document.addEventListener('keydown', function (e) {
     }
 
 });
+
+/*Dropdown content*/
+function postDropdown() {
+    document.getElementById("post-dropdown").classList.toggle('hidden');
+    document.getElementById("threeDot").classList.toggle('text-indigo-600');
+}

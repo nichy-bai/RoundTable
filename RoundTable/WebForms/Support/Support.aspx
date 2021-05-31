@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div
-        class="relative m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center items-center w-full mt-5">
                 <div class="text-3xl lg:text-5xl font-bold mb-2 font-title tracking-wide flex flex-row justify-center items-center py-5 text-gray-800 flex-wrap">

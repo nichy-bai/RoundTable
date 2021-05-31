@@ -167,6 +167,7 @@
     <Content Include="Content\img\support_illustration_2.svg" />
     <Content Include="Content\js\script.js" />
     <Content Include="Web.config" />
+    <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
     <Content Include="WebForms\Support\About.aspx" />
     <Content Include="WebForms\Support\Feedback.aspx" />
     <Content Include="WebForms\Support\Privacy.aspx" />
@@ -201,6 +202,13 @@
     </Compile>
     <Compile Include="WebForms\Discussion\CreateDiscussion.aspx.designer.cs">
       <DependentUpon>CreateDiscussion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Discussion\DiscussionPost.aspx.cs">
+      <DependentUpon>DiscussionPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Discussion\DiscussionPost.aspx.designer.cs">
+      <DependentUpon>DiscussionPost.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Discussion\Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>

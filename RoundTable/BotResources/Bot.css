@@ -74,7 +74,7 @@ body {
     right: 25px;
     bottom: 75px;
     border-radius: 0.5rem;
-    z-index: 10;
+    z-index: 40;
 }
 
     #bot-container.bot-frame-hidden {

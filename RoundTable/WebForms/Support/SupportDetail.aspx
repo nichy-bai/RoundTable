@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div
-        class="support-body relative m-5 px-10 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="support-body relative m-5 mt-0 px-10 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="text-3xl lg:text-5xl font-bold mt-5 mb-20 font-title tracking-wide flex flex-row justify-center items-center py-5 text-gray-800 flex-wrap">
             <a href="Support.aspx">
                 <svg

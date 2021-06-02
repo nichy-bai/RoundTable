@@ -53,11 +53,11 @@
                         <label for="txtConfirmPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Confirm Password</label>
                     </div>
                     <div class="mb-4 relative flex flex-row justify-between items-center space-x-6">
-                        <div >
+                        <div class="w-3/5">
                             <asp:TextBox ID="txtVerificationCode" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                             <label for="txtVerificationCode" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Verification Code</label>
                         </div>
-                        <div class="flex-grow">
+                        <div class="w-2/5">
                             <asp:Button ID="btnGetCode" runat="server" Width="180px" Text="Get Code" CssClass="login-btn font-bold py-3 px-6 rounded" OnClick="btnGetCode_Click" />
                         </div>
                     </div>

@@ -17,7 +17,7 @@ namespace RoundTable.WebForms.User
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnGetCode_Click(object sender, EventArgs e)

@@ -168,6 +168,8 @@
     <Content Include="Content\js\script.js" />
     <Content Include="Web.config" />
     <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
+    <Content Include="WebForms\Explore\Explore.aspx" />
+    <Content Include="WebForms\Search\Search.aspx" />
     <Content Include="WebForms\Support\About.aspx" />
     <Content Include="WebForms\Support\Feedback.aspx" />
     <Content Include="WebForms\Support\Privacy.aspx" />
@@ -217,12 +219,26 @@
     <Compile Include="WebForms\Discussion\Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForms\Explore\Explore.aspx.cs">
+      <DependentUpon>Explore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Explore\Explore.aspx.designer.cs">
+      <DependentUpon>Explore.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\RoundTable_master.Master.cs">
       <DependentUpon>RoundTable_master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebForms\RoundTable_master.Master.designer.cs">
       <DependentUpon>RoundTable_master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Search\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Search\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Support\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -311,10 +327,7 @@
     <Content Include="WebForms\Discussion\Homepage.aspx" />
     <Content Include="WebForms\RoundTable_master.Master" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WebForms\Explore\" />
-    <Folder Include="WebForms\Search\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

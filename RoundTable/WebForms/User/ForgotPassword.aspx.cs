@@ -45,7 +45,7 @@ namespace RoundTable.WebForms.User
                 if (txtUserID.Text != "")
                 {
                     //new MailMessage(From, To)
-                    MailMessage mailMessage = new MailMessage("Gallerion2021@gmail.com", email);
+                    MailMessage mailMessage = new MailMessage("roundtable.cs@gmail.com", email);
 
                     Random rnd = new Random();
                     int code = rnd.Next(1000, 9999);

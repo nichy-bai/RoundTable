@@ -33,13 +33,22 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Label postDate_lbl;
 
         /// <summary>
-        /// dropbtn1 control.
+        /// threedot_dropdown_btn_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton dropbtn1;
+        protected global::System.Web.UI.WebControls.LinkButton threedot_dropdown_btn_1;
+
+        /// <summary>
+        /// threedot_dropdown_btn_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton threedot_dropdown_btn_2;
 
         /// <summary>
         /// postTitle_lbl control.
@@ -60,6 +69,15 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Label postContent_lbl;
 
         /// <summary>
+        /// topic_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton topic_btn;
+
+        /// <summary>
         /// topicName_lbl control.
         /// </summary>
         /// <remarks>
@@ -67,6 +85,15 @@ namespace RoundTable.WebForms.Discussion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label topicName_lbl;
+
+        /// <summary>
+        /// tag_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton tag_btn;
 
         /// <summary>
         /// tagName_lbl control.
@@ -78,6 +105,15 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Label tagName_lbl;
 
         /// <summary>
+        /// react_like_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton react_like_btn;
+
+        /// <summary>
         /// postLike_lbl control.
         /// </summary>
         /// <remarks>
@@ -87,6 +123,15 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Label postLike_lbl;
 
         /// <summary>
+        /// react_comment_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton react_comment_btn;
+
+        /// <summary>
         /// postComment_lbl control.
         /// </summary>
         /// <remarks>
@@ -94,6 +139,15 @@ namespace RoundTable.WebForms.Discussion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label postComment_lbl;
+
+        /// <summary>
+        /// react_bookmark_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton react_bookmark_btn;
 
         /// <summary>
         /// comment_txt control.

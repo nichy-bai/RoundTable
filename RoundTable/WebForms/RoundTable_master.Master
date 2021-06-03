@@ -45,93 +45,103 @@
                     class="flex flex-col flex-none flex-shrink-0 items-center justify-center font-medium text-base capitalize"
                     id="navbarItem">
                     <div class="mb-3">
-                        <a href="../Discussion/Homepage.aspx" class="flex flex-col items-center px-8 py-2 h-auto w-24 text-black dark:text-indigo-500 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
-                            <svg
-                                class="w-8 h-8"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                                </path>
-                            </svg>
-                            <span class="mt-0 tracking-tight">Home</span>
-                        </a>
+                        <asp:Panel ID="nav_home_btn" runat="server">
+                            <a href="../Discussion/Homepage.aspx" class="flex flex-col items-center px-8 py-2 h-auto w-24 dark:text-indigo-500 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
+                                <svg
+                                    class="w-8 h-8"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                    </path>
+                                </svg>
+                                <span class="mt-0 tracking-tight">Home</span>
+                            </a>
+                        </asp:Panel>
                     </div>
                     <div class="mb-3">
-                        <a href="../Bookmark/Bookmark.aspx" class="flex flex-col items-center px-8 py-2 h-auto w-24 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
-                            <svg
-                                class="w-8 h-8"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z">
-                                </path>
-                            </svg>
-                            <span class="mt-0 tracking-tight">Bookmark</span>
-                        </a>
+                        <asp:Panel ID="nav_bookmark_btn" runat="server">
+                            <a href="../Bookmark/Bookmark.aspx" class="flex flex-col items-center px-8 py-2 h-auto w-24 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
+                                <svg
+                                    class="w-8 h-8"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z">
+                                    </path>
+                                </svg>
+                                <span class="mt-0 tracking-tight">Bookmark</span>
+                            </a>
+                        </asp:Panel>
                     </div>
                     <div class="mb-3">
-                        <a href="#" class="flex flex-col items-center px-8 py-2 h-auto w-24 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
-                            <svg
-                                class="w-8 h-8"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                </path>
-                            </svg>
-                            <span class="mt-0 tracking-tight">Explore</span>
-                        </a>
+                        <asp:Panel ID="nav_explore_btn" runat="server">
+                            <a href="#" class="flex flex-col items-center px-8 py-2 h-auto w-24 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
+                                <svg
+                                    class="w-8 h-8"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                    </path>
+                                </svg>
+                                <span class="mt-0 tracking-tight">Explore</span>
+                            </a>
+                        </asp:Panel>
                     </div>
                     <div class="mb-3">
-                        <a href="#" class="flex flex-col items-center px-8 py-2 h-auto w-24 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
-                            <svg
-                                class="w-8 h-8"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14">
-                                </path>
-                            </svg>
-                            <span class="mt-0 tracking-tight">Tags</span>
-                        </a>
+                        <asp:Panel ID="nav_tag_btn" runat="server">
+                            <a href="#" class="flex flex-col items-center px-8 py-2 h-auto w-24  dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
+                                <svg
+                                    class="w-8 h-8"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14">
+                                    </path>
+                                </svg>
+                                <span class="mt-0 tracking-tight">Tags</span>
+                            </a>
+                        </asp:Panel>
                     </div>
                     <div class="mb-3">
-                        <a href="#" class="flex flex-col items-center px-8 py-2 h-auto w-24 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
-                            <svg
-                                class="w-8 h-8"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
-                                </path>
-                            </svg>
-                            <span class="mt-0 tracking-tight">Search</span>
-                        </a>
+                        <asp:Panel ID="nav_search_btn" runat="server">
+                            <a href="#" class="flex flex-col items-center px-8 py-2 h-auto w-24 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
+                                <svg
+                                    class="w-8 h-8"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                                    </path>
+                                </svg>
+                                <span class="mt-0 tracking-tight">Search</span>
+                            </a>
+                        </asp:Panel>
                     </div>
                 </div>
                 <div class="mt-auto mb-6">
@@ -141,7 +151,7 @@
                             type="button"
                             title="Toggle dark mode"
                             id="switchTheme"
-                            class="flex flex-col items-center px-8 py-2 h-12 w-12 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300  hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none focus:outline-none transition ease-in-out duration-500">
+                            class="flex flex-col items-center px-8 py-2 h-12 w-12 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300  hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none focus:outline-none transition ease-in-out duration-500">
                             <!--Moon Icon-->
                             <svg
                                 class="w-8 h-8"
@@ -175,22 +185,24 @@
                         </button>
                     </div>
                     <div class="mb-3" id="notification">
-                        <!--Notification-->
-                        <a href="#" title="Notifications" class="flex flex-col items-center px-8 py-2 h-12 w-12 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300  hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
-                            <svg
-                                class="w-8 h-8"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
-                                </path>
-                            </svg>
-                        </a>
+                        <asp:Panel ID="nav_notification_btn" runat="server">
+                            <!--Notification-->
+                            <a href="#" title="Notifications" class="flex flex-col items-center px-8 py-2 h-12 w-12 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300  hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
+                                <svg
+                                    class="w-8 h-8"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                                    </path>
+                                </svg>
+                            </a>
+                        </asp:Panel>
                     </div>
                     <div class="my-0">
                         <!--User Profile-->
@@ -212,6 +224,7 @@
                     </div>
                 </div>
             </nav>
+
             <!--Mobile Nav Bar-->
             <nav class="md:hidden z-30 h-16 absolute">
                 <div
@@ -334,6 +347,7 @@
                     id="blackBar">
                 </div>
             </nav>
+
             <!--Whole Body-->
             <div
                 class="w-full flex flex-col md:flex-row flex-nowrap overflow-y-auto mt-16 md:mt-0 py-5">
@@ -342,8 +356,9 @@
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
+
                 <!--Aside-->
-                <asp:Panel runat="server" ID="Panel1">
+                <asp:Panel runat="server" ID="master_aside_panel">
                     <div class="flex flex-col hidden lg:inline">
                         <!--Featured discussions-->
                         <div
@@ -571,6 +586,7 @@
                 </div>
             </div>
         </div>
+
         <script type="text/javascript">
             (function () {
                 var scriptElement = document.createElement('script');
@@ -582,6 +598,8 @@
         </script>
         <script src="<%= Page.ResolveClientUrl("~/Content/js/script.js") %>" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     </form>
 </body>
 </html>

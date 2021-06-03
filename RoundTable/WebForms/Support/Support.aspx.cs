@@ -11,8 +11,8 @@ namespace RoundTable.WebForms.Support
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Panel p = (Panel)Master.FindControl("Panel1");
-            p.Style.Add("display", "none");
+            Panel p1 = (Panel)Master.FindControl("master_aside_panel");
+            p1.Style.Add("display", "none");
         }
     }
 }

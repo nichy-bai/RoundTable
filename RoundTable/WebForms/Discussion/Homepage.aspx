@@ -30,6 +30,8 @@
             </a>
         </div>
     </header>
+
+    <%--Create discussion post--%>
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark-theme">
         <div
@@ -58,11 +60,12 @@
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID ORDER BY Post.postDate DESC"></asp:SqlDataSource>
 
+    <%--View discussion post--%>
     <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
         <ItemTemplate>
             <div
                 class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
-                <div class="flex flex-row justify-between border-b-2 pb-2">
+                <div class="flex flex-row justify-start border-b-2 pb-2">
                     <%--User detail--%>
                     <div>
                         <a href="#" class="flex flex-row hover:underline transition ease-in-out duration-300">
@@ -89,45 +92,6 @@
                             </div>
                         </a>
                     </div>
-                    <%--Three dots--%>
-                    <div class="flex flex-row justify-center items-center dropbtn relative">
-                        <a href="#" class="hover:text-indigo-600 transition ease-in-out duration-300" onclick="postDropdown()">
-                            <svg
-                                class="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1.5"
-                                    d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
-                                </path>
-                            </svg>
-                        </a>
-                        <%--Dropdown--%>
-                        <div id="post-dropdown" class="dropdown-content hidden flex flex-col absolute top-10 right-0 w-48 bg-white border-2 rounded-xl">
-                            <div>
-                                <asp:LinkButton runat="server" ID="dropbtn1" Text="Share Bookmark" CssClass="flex flex-row px-4 py-3 text-sm capitalize text-gray-700 hover:bg-indigo-500 hover:text-white rounded-xl transition ease-in-out duration-300">
-                                    <svg
-                                        class="w-6 h-6"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="1.5"
-                                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
-                                        </path>
-                                    </svg>
-                                    <span class="pl-2">Share Bookmark</span>
-                                </asp:LinkButton>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <%--Discussion title--%>
                 <div class="my-5">
@@ -135,21 +99,29 @@
                     <asp:LinkButton ID="postTitle_btn" runat="server" Text='<%#Eval("postTitle") %>' CssClass="text-xl font-medium py-2 hover:opacity-80 transition ease-in-out duration-300" OnCommand="postTitle_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';"></asp:LinkButton>
                 </div>
                 <%--Discussion tag--%>
-                <div class="flex flex-row mb-10">
-                    <a href="#" class="mr-5">
-                        <div class="text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
-                            <abbr title="<%#Eval("topicDesc") %>" style="text-decoration: none;">#<%#Eval("topicName") %></div></abbr>
-                    </a>
-                    <a href="#" class="mr-5">
-                        <div class="text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
-                            <abbr title="<%#Eval("tagDesc") %>" style="text-decoration: none;">#<%#Eval("tagName") %></div></abbr>
-                    </a>
+                <div class="flex flex-row my-2 items-center">
+                    <asp:LinkButton ID="topic_btn" runat="server" ToolTip='<%#Eval("topicDesc") %>' CssClass="mr-5">
+                        <div class="flex flex-row justify-center items-center text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
+                            <div class="mr-1">#</div>
+                            <div>
+                                <%#Eval("topicName") %>
+                            </div>
+                        </div>
+                    </asp:LinkButton>
+                    <asp:LinkButton ID="tag_btn" runat="server" ToolTip='<%#Eval("tagDesc") %>'>
+                        <div class="flex flex-row justify-center items-center text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
+                            <div class="mr-1">#</div>
+                            <div>
+                                <%#Eval("tagName") %>
+                            </div>
+                        </div>
+                    </asp:LinkButton>
                 </div>
                 <%--Reaction--%>
-                <div class="flex flex-row items-center">
+                <div class="flex flex-row items-center flex-wrap">
                     <%--Like--%>
-                    <div class="mr-5">
-                        <asp:LinkButton ID="like_btn" runat="server" ToolTip="Like" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300">
+                    <div class="mr-5 mt-4">
+                        <asp:LinkButton ID="react_like_btn" runat="server" ToolTip="Like" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300" OnCommand="react_like_btn_Command" CommandArgument='<%#Eval("postID") + "," + Eval("totalLike") %>'>
                             <svg
                                 class="w-6 h-6"
                                 fill="none"
@@ -167,8 +139,8 @@
                         </asp:LinkButton>
                     </div>
                     <%--Comment--%>
-                    <div class="mr-5">
-                        <a href="#" class="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300" title="Comment">
+                    <div class="mr-5 mt-4">
+                        <asp:LinkButton ID="react_comment_btn" runat="server" ToolTip="Comment" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300" PostBackUrl='<%# "~/WebForms/Discussion/DiscussionPost.aspx?p=" + Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
                             <svg
                                 class="w-6 h-6"
                                 fill="none"
@@ -183,11 +155,11 @@
                                 </path>
                             </svg>
                             <div class="px-1"><%#Eval("totalComment") %></div>
-                        </a>
+                        </asp:LinkButton>
                     </div>
                     <%--Bookmark--%>
-                    <div class="mr-5">
-                        <a href="#" class="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300" title="Bookmark">
+                    <div class="mr-5 mt-4">
+                        <asp:LinkButton ID="react_bookmark_btn" runat="server" ToolTip="Bookmark" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300">
                             <svg
                                 class="w-6 h-6"
                                 fill="none"
@@ -201,7 +173,7 @@
                                     d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z">
                                 </path>
                             </svg>
-                        </a>
+                        </asp:LinkButton>
                     </div>
                 </div>
             </div>

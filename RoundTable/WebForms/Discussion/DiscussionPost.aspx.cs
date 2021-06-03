@@ -13,6 +13,8 @@ namespace RoundTable.WebForms.Discussion
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         string postID, commentID, likeID;
+        //To be modified
+        string userID = "Shrimp";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,9 +25,10 @@ namespace RoundTable.WebForms.Discussion
             if (!IsPostBack)
             {
                 string topic = null, tag = null;
+                bool likeStatus = false;
 
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT *,(SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment FROM Post INNER JOIN [User] ON Post.userID = [User].userID WHERE postID='" + postID + "'", con);
+                SqlCommand cmd = new SqlCommand("SELECT *,(SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment FROM Post INNER JOIN [User] ON Post.userID = [User].userID WHERE postID='" + postID + "'", con);
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader dr = cmd.ExecuteReader();
 
@@ -51,12 +54,27 @@ namespace RoundTable.WebForms.Discussion
                 SqlCommand cmd3 = new SqlCommand("SELECT topicDesc FROM Topic WHERE topicID='" + topic + "'", con);
                 SqlCommand cmd4 = new SqlCommand("SELECT tagName FROM Tag WHERE tagID='" + tag + "'", con);
                 SqlCommand cmd5 = new SqlCommand("SELECT tagDesc FROM Tag WHERE tagID='" + tag + "'", con);
+                SqlCommand cmd6 = new SqlCommand("SELECT likeStatus FROM DiscussionLike WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
 
                 topicName_lbl.Text = cmd2.ExecuteScalar().ToString();
                 topic_btn.ToolTip = cmd3.ExecuteScalar().ToString();
 
                 tagName_lbl.Text = cmd4.ExecuteScalar().ToString();
                 tag_btn.ToolTip = cmd5.ExecuteScalar().ToString();
+
+                object obj = cmd6.ExecuteScalar();
+
+                if (obj != null && DBNull.Value != obj)
+                {
+                    likeStatus = (bool)cmd6.ExecuteScalar();
+                }
+
+                if (likeStatus)
+                {
+                    string hex = "#7c3aed";
+                    react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+                    react_like_btn.ToolTip = "Unlike";
+                }
                 con.Close();
 
                 SqlDataSource1.SelectParameters.Add("postID", postID.ToString());
@@ -149,28 +167,68 @@ namespace RoundTable.WebForms.Discussion
 
         protected void react_like_btn_Command(object sender, CommandEventArgs e)
         {
-            GenerateLikeID();
+            bool likeInsert, likeStatus;
 
-            int currentLike = Int32.Parse(postLike_lbl.Text);
-            string likeDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-
-            //To be modified
-            bool likeStatus = true;
-            string userID = "Shrimp";
-
-            SqlCommand cmd = new SqlCommand("INSERT INTO DiscussionLike(likeID, likeStatus, likeDate, postID, userID) VALUES (@likeID, @likeStatus, @likeDate, @postID, @userID)", con);
-            cmd.Parameters.AddWithValue("@likeID", likeID);
-            cmd.Parameters.AddWithValue("@likeStatus", likeStatus);
-            cmd.Parameters.AddWithValue("@likeDate", likeDate);
-            cmd.Parameters.AddWithValue("@postID", postID);
-            cmd.Parameters.AddWithValue("@userID", userID);
+            SqlCommand select = new SqlCommand("SELECT likeStatus FROM DiscussionLike WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
             con.Open();
+            object obj = select.ExecuteScalar();
+
+            if (obj != null && DBNull.Value != obj)
+            {
+                likeStatus = (bool)select.ExecuteScalar();
+                likeInsert = false;
+            }
+            else
+            {
+                likeInsert = true;
+                likeStatus = true;
+            }
             con.Close();
 
-            string hex = "#7c3aed";
-            react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+            if (likeInsert)
+            {
+                GenerateLikeID();
 
-            Response.Redirect(Request.Url.AbsoluteUri);
+                int currentLike = Int32.Parse(postLike_lbl.Text);
+                string likeDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+                SqlCommand insert = new SqlCommand("INSERT INTO DiscussionLike(likeID, likeStatus, likeDate, postID, userID) VALUES (@likeID, @likeStatus, @likeDate, @postID, @userID)", con);
+                insert.Parameters.AddWithValue("@likeID", likeID);
+                insert.Parameters.AddWithValue("@likeStatus", likeStatus);
+                insert.Parameters.AddWithValue("@likeDate", likeDate);
+                insert.Parameters.AddWithValue("@postID", postID);
+                insert.Parameters.AddWithValue("@userID", userID);
+                con.Open();
+                insert.ExecuteNonQuery();
+                con.Close();
+
+                string hex = "#7c3aed";
+                react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+
+                //Response.Write("<script>alert('Liked')</script>");
+
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+            else
+            {
+                likeStatus = !likeStatus;
+
+                SqlCommand update = new SqlCommand("UPDATE DiscussionLike SET likeStatus='" + likeStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+                con.Open();
+                update.ExecuteNonQuery();
+                con.Close();
+
+                //if (likeStatus)
+                //{
+                //    Response.Write("<script>alert('Liked')</script>");
+                //}
+                //else
+                //{
+                //    Response.Write("<script>alert('Unliked')</script>");
+                //}
+
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
         }
     }
 }

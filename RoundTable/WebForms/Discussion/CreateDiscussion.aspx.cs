@@ -115,6 +115,8 @@ namespace RoundTable.WebForms.Discussion
             TextBox2.Text = "";
 
             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Successfully posted!')", true);
+
+            //Response.Redirect("../Discussion/Homepage.aspx");
         }
 
     }

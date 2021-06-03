@@ -32,7 +32,6 @@ namespace RoundTable.WebForms.User
 
             if (output == "1")
             {
-
                 Session["UserID"] = txtUserID.Text;
                 Response.Redirect("~/WebForms/Discussion/Homepage.aspx");
             }

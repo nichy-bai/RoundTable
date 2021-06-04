@@ -90,11 +90,12 @@ namespace RoundTable.WebForms.Discussion
             string postTitle = TextBox1.Text;
             string postContent = TextBox2.Text;
             string postDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            bool postStatus = true;
 
             //to be modified
             string userID = "Shrimp";
 
-            string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, userID, tagID, topicID) VALUES (@postID, @postTitle, @postContent, @postDate, @userID, @tagID, @topicID)";
+            string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, userID, tagID, topicID, postStatus) VALUES (@postID, @postTitle, @postContent, @postDate, @userID, @tagID, @topicID, @postStatus)";
             SqlCommand cmd3 = new SqlCommand(insertCmd, con);
             cmd3.Parameters.AddWithValue("@postID", postID);
             cmd3.Parameters.AddWithValue("@postTitle", postTitle);
@@ -103,6 +104,7 @@ namespace RoundTable.WebForms.Discussion
             cmd3.Parameters.AddWithValue("@userID", userID);
             cmd3.Parameters.AddWithValue("@tagID", tagID);
             cmd3.Parameters.AddWithValue("@topicID", topicID);
+            cmd3.Parameters.AddWithValue("@postStatus", postStatus);
             con.Open();
             cmd3.ExecuteNonQuery();
             con.Close();

@@ -12,7 +12,7 @@ namespace RoundTable.WebForms.Discussion
     public partial class DiscussionPost : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string postID, commentID, likeID;
+        string postID, likeID, commentID, bookmarkID;
         //To be modified
         string userID = "Shrimp";
 
@@ -25,10 +25,11 @@ namespace RoundTable.WebForms.Discussion
             if (!IsPostBack)
             {
                 string topic = null, tag = null;
-                bool likeStatus = false;
+                bool likeStatus = false, bookmarkStatus = false;
+                int commentStatus = 0;
 
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT *,(SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment FROM Post INNER JOIN [User] ON Post.userID = [User].userID WHERE postID='" + postID + "'", con);
+                SqlCommand cmd = new SqlCommand("SELECT *,(SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID) AND (commentStatus = 1)) AS totalComment FROM Post INNER JOIN [User] ON Post.userID = [User].userID WHERE postID='" + postID + "'", con);
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader dr = cmd.ExecuteReader();
 
@@ -55,7 +56,9 @@ namespace RoundTable.WebForms.Discussion
                 SqlCommand cmd4 = new SqlCommand("SELECT tagName FROM Tag WHERE tagID='" + tag + "'", con);
                 SqlCommand cmd5 = new SqlCommand("SELECT tagDesc FROM Tag WHERE tagID='" + tag + "'", con);
                 SqlCommand cmd6 = new SqlCommand("SELECT likeStatus FROM DiscussionLike WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
-                SqlCommand cmd7 = new SqlCommand("SELECT COUNT(bookmarkID) FROM Bookmark WHERE postID='" + postID + "'", con);
+                SqlCommand cmd7 = new SqlCommand("SELECT COUNT(bookmarkID) FROM Bookmark WHERE postID='" + postID + "' AND (bookmarkStatus = 1)", con);
+                SqlCommand cmd8 = new SqlCommand("SELECT bookmarkStatus FROM Bookmark WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+                SqlCommand cmd9 = new SqlCommand("SELECT COUNT(commentID) FROM DiscussionComment WHERE postID='" + postID + "' AND (commentStatus = 1) AND userID='" + userID + "'", con);
 
                 topicName_lbl.Text = cmd2.ExecuteScalar().ToString();
                 topic_btn.ToolTip = cmd3.ExecuteScalar().ToString();
@@ -78,6 +81,33 @@ namespace RoundTable.WebForms.Discussion
                 }
 
                 postBookmark_lbl.Text = cmd7.ExecuteScalar().ToString();
+
+                object obj2 = cmd8.ExecuteScalar();
+
+                if (obj2 != null && DBNull.Value != obj2)
+                {
+                    bookmarkStatus = (bool)cmd8.ExecuteScalar();
+                }
+
+                if (bookmarkStatus)
+                {
+                    string hex = "#7c3aed";
+                    react_bookmark_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+                    react_bookmark_btn.ToolTip = "Unbookmark";
+                }
+
+                object obj3 = cmd9.ExecuteScalar();
+
+                if (obj3 != null && DBNull.Value != obj3)
+                {
+                    commentStatus = Int32.Parse(cmd9.ExecuteScalar().ToString());
+                }
+
+                if (commentStatus > 0)
+                {
+                    string hex = "#7c3aed";
+                    react_comment_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+                }
 
                 con.Close();
 
@@ -105,6 +135,17 @@ namespace RoundTable.WebForms.Discussion
             i++;
             int id = 1000000000 + i;
             commentID = "DC" + id.ToString();
+        }
+
+        protected void GenerateBookmarkID()
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(bookmarkID) FROM Bookmark", con);
+            int i = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+            i++;
+            int id = 1000000000 + i;
+            bookmarkID = "BM" + id.ToString();
         }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -137,24 +178,81 @@ namespace RoundTable.WebForms.Discussion
             comment_txt.Focus();
         }
 
+        protected void react_bookmark_btn_Command(object sender, CommandEventArgs e)
+        {
+            bool bookmarkInsert, bookmarkStatus;
+
+            SqlCommand select = new SqlCommand("SELECT bookmarkStatus FROM Bookmark WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+            con.Open();
+            object obj = select.ExecuteScalar();
+
+            if (obj != null && DBNull.Value != obj)
+            {
+                bookmarkStatus = (bool)select.ExecuteScalar();
+                bookmarkInsert = false;
+            }
+            else
+            {
+                bookmarkStatus = true;
+                bookmarkInsert = true;
+            }
+            con.Close();
+
+            if (bookmarkInsert)
+            {
+                GenerateBookmarkID();
+
+                string bookmarkDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+                SqlCommand insert = new SqlCommand("INSERT INTO Bookmark(bookmarkID, bookmarkDate, postID, userID, bookmarkStatus) VALUES (@bookmarkID, @bookmarkDate, @postID, @userID, @bookmarkStatus)", con);
+                insert.Parameters.AddWithValue("@bookmarkID", bookmarkID);
+                insert.Parameters.AddWithValue("@bookmarkDate", bookmarkDate);
+                insert.Parameters.AddWithValue("@postID", postID);
+                insert.Parameters.AddWithValue("@userID", userID);
+                insert.Parameters.AddWithValue("@bookmarkStatus", bookmarkStatus);
+                con.Open();
+                insert.ExecuteNonQuery();
+                con.Close();
+
+                string hex = "#7c3aed";
+                react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+            else
+            {
+                bookmarkStatus = !bookmarkStatus;
+                string bookmarkDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+                SqlCommand update = new SqlCommand("UPDATE Bookmark SET bookmarkDate='" + bookmarkDate + "', bookmarkStatus='" + bookmarkStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+                con.Open();
+                update.ExecuteNonQuery();
+                con.Close();
+
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+        }
+
         protected void comment_btn_Command(object sender, CommandEventArgs e)
         {
             GenerateCommentID();
 
             string commentContent = comment_txt.Text;
             string commentDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            bool commentStatus = true;
 
             //To be modified
             string userID = "Shrimp";
 
             if(!String.IsNullOrEmpty(comment_txt.Text))
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO DiscussionComment(commentID, commentContent, commentDate, postID, userID) VALUES (@commentID, @commentContent, @commentDate, @postID, @userID)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO DiscussionComment(commentID, commentContent, commentDate, postID, userID, commentStatus) VALUES (@commentID, @commentContent, @commentDate, @postID, @userID, @commentStatus)", con);
                 cmd.Parameters.AddWithValue("@commentID", commentID);
                 cmd.Parameters.AddWithValue("@commentContent", commentContent);
                 cmd.Parameters.AddWithValue("@commentDate", commentDate);
                 cmd.Parameters.AddWithValue("@postID", postID);
                 cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Parameters.AddWithValue("@commentStatus", commentStatus);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -184,8 +282,8 @@ namespace RoundTable.WebForms.Discussion
             }
             else
             {
-                likeInsert = true;
                 likeStatus = true;
+                likeInsert = true;
             }
             con.Close();
 
@@ -216,8 +314,9 @@ namespace RoundTable.WebForms.Discussion
             else
             {
                 likeStatus = !likeStatus;
+                string likeDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-                SqlCommand update = new SqlCommand("UPDATE DiscussionLike SET likeStatus='" + likeStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+                SqlCommand update = new SqlCommand("UPDATE DiscussionLike SET likeDate='" + likeDate + "', likeStatus='" + likeStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
                 con.Open();
                 update.ExecuteNonQuery();
                 con.Close();

@@ -117,7 +117,7 @@
         <div class="flex flex-row items-center flex-wrap">
             <%--Like--%>
             <div class="mr-4 mt-4">
-                <asp:LinkButton ID="react_like_btn" runat="server" ToolTip="Like" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_like_btn_Command" CommandArgument='<%#Eval("postID") + "," + Eval("totalLike") %>'>
+                <asp:LinkButton ID="react_like_btn" runat="server" ToolTip="Like" CssClass="flex flex-row justify-start items-center hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_like_btn_Command" CommandArgument='<%#Eval("postID") + "," + Eval("totalLike") %>'>
                     <svg
                         runat="server"
                         class="w-6 h-6"
@@ -139,7 +139,7 @@
             </div>
             <%--Comment--%>
             <div class="mr-4 mt-4">
-                <asp:LinkButton ID="react_comment_btn" runat="server" ToolTip="Comment" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_comment_btn_Command">
+                <asp:LinkButton ID="react_comment_btn" runat="server" ToolTip="Comment" CssClass="flex flex-row justify-start items-center hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_comment_btn_Command">
                     <svg
                         runat="server"
                         class="w-6 h-6"
@@ -161,7 +161,7 @@
             </div>
             <%--Bookmark--%>
             <div class="mr-4 mt-4">
-                <asp:LinkButton ID="react_bookmark_btn" runat="server" ToolTip="Bookmark" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300">
+                <asp:LinkButton ID="react_bookmark_btn" runat="server" ToolTip="Bookmark" CssClass="flex flex-row justify-start items-center hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_bookmark_btn_Command">
                     <svg
                         runat="server"
                         class="w-6 h-6"

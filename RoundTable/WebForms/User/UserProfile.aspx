@@ -45,7 +45,7 @@
                     <asp:Label ID="lblTopicPosted" runat="server" Text="" CssClass="ml-5 text-lg font-medium"></asp:Label>
                          </span>
                          <span class="right-0 absolute mt-10 mr-20">
-                             <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" CssClass="font-bold px-6 py-2 border-2 rounded border-black" />
+                             <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" CssClass="editProfile-btn cursor-pointer font-bold py-3 px-6 rounded bg-indigo-600 <%--font-bold px-6 py-2 border-2 rounded border-black--%>" />
                          </span>
 
                          <div class="flex text-xl ml-10 mt-10 font-bold justify-between">

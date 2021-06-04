@@ -31,7 +31,7 @@ namespace RoundTable.WebForms.Discussion
             likeID = "LK" + id.ToString();
         }
 
-        protected void postTitle_btn_Command(object sender, CommandEventArgs e)
+        protected void postBody_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();
             Response.Redirect("DiscussionPost.aspx?p=" + postID);

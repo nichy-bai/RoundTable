@@ -150,6 +150,15 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.LinkButton react_bookmark_btn;
 
         /// <summary>
+        /// postBookmark_lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label postBookmark_lbl;
+
+        /// <summary>
         /// comment_txt control.
         /// </summary>
         /// <remarks>

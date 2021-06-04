@@ -116,8 +116,8 @@
         <%--Reaction--%>
         <div class="flex flex-row items-center flex-wrap">
             <%--Like--%>
-            <div class="mr-5 mt-4">
-                <asp:LinkButton ID="react_like_btn" runat="server" ToolTip="Like" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300" OnCommand="react_like_btn_Command" CommandArgument='<%#Eval("postID") + "," + Eval("totalLike") %>'>
+            <div class="mr-4 mt-4">
+                <asp:LinkButton ID="react_like_btn" runat="server" ToolTip="Like" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_like_btn_Command" CommandArgument='<%#Eval("postID") + "," + Eval("totalLike") %>'>
                     <svg
                         runat="server"
                         class="w-6 h-6"
@@ -138,8 +138,8 @@
                 </asp:LinkButton>
             </div>
             <%--Comment--%>
-            <div class="mr-5 mt-4">
-                <asp:LinkButton ID="react_comment_btn" runat="server" ToolTip="Comment" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300" OnCommand="react_comment_btn_Command">
+            <div class="mr-4 mt-4">
+                <asp:LinkButton ID="react_comment_btn" runat="server" ToolTip="Comment" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_comment_btn_Command">
                     <svg
                         runat="server"
                         class="w-6 h-6"
@@ -160,8 +160,8 @@
                 </asp:LinkButton>
             </div>
             <%--Bookmark--%>
-            <div class="mr-5 mt-4">
-                <asp:LinkButton ID="react_bookmark_btn" runat="server" ToolTip="Bookmark" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 transition ease-in-out duration-300">
+            <div class="mr-4 mt-4">
+                <asp:LinkButton ID="react_bookmark_btn" runat="server" ToolTip="Bookmark" CssClass="flex flex-row justify-start items-center hover:text-indigo-600 hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300">
                     <svg
                         runat="server"
                         class="w-6 h-6"
@@ -176,6 +176,9 @@
                             d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z">
                         </path>
                     </svg>
+                    <div class="px-1">
+                        <asp:Label ID="postBookmark_lbl" runat="server" Text="[postBookmark]"></asp:Label>
+                    </div>
                 </asp:LinkButton>
             </div>
         </div>

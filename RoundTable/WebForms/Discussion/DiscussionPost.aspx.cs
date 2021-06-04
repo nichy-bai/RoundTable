@@ -55,6 +55,7 @@ namespace RoundTable.WebForms.Discussion
                 SqlCommand cmd4 = new SqlCommand("SELECT tagName FROM Tag WHERE tagID='" + tag + "'", con);
                 SqlCommand cmd5 = new SqlCommand("SELECT tagDesc FROM Tag WHERE tagID='" + tag + "'", con);
                 SqlCommand cmd6 = new SqlCommand("SELECT likeStatus FROM DiscussionLike WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+                SqlCommand cmd7 = new SqlCommand("SELECT COUNT(bookmarkID) FROM Bookmark WHERE postID='" + postID + "'", con);
 
                 topicName_lbl.Text = cmd2.ExecuteScalar().ToString();
                 topic_btn.ToolTip = cmd3.ExecuteScalar().ToString();
@@ -75,6 +76,9 @@ namespace RoundTable.WebForms.Discussion
                     react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
                     react_like_btn.ToolTip = "Unlike";
                 }
+
+                postBookmark_lbl.Text = cmd7.ExecuteScalar().ToString();
+
                 con.Close();
 
                 SqlDataSource1.SelectParameters.Add("postID", postID.ToString());

@@ -30,7 +30,7 @@ namespace RoundTable.WebForms.Discussion
             }
         }
 
-        protected void GenerateID()
+        protected void GeneratePostID()
         {
             con.Open();
             SqlCommand cmd = new SqlCommand("SELECT COUNT(postID) FROM Post", con);
@@ -77,7 +77,7 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            GenerateID();
+            GeneratePostID();
 
             SqlCommand cmd = new SqlCommand("SELECT topicID FROM Topic WHERE topicName='" + DropDownList1.SelectedItem.Value + "'", con);
             SqlCommand cmd2 = new SqlCommand("SELECT tagID FROM Tag WHERE tagName='" + DropDownList2.SelectedItem.Value + "'", con);
@@ -90,25 +90,21 @@ namespace RoundTable.WebForms.Discussion
             string postTitle = TextBox1.Text;
             string postContent = TextBox2.Text;
             string postDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            int postLike = 0;
-            int postComment = 0;
-            int postView = 1;
+            bool postStatus = true;
 
             //to be modified
-            string userID = "testing";
+            string userID = "Shrimp";
 
-            string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, postLike, postComment, postView, userID, tagID, topicID) VALUES (@postID, @postTitle, @postContent, @postDate, @postLike, @postComment, @postView, @userID, @tagID, @topicID)";
+            string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, userID, tagID, topicID, postStatus) VALUES (@postID, @postTitle, @postContent, @postDate, @userID, @tagID, @topicID, @postStatus)";
             SqlCommand cmd3 = new SqlCommand(insertCmd, con);
             cmd3.Parameters.AddWithValue("@postID", postID);
             cmd3.Parameters.AddWithValue("@postTitle", postTitle);
             cmd3.Parameters.AddWithValue("@postContent", postContent);
             cmd3.Parameters.AddWithValue("@postDate", postDate);
-            cmd3.Parameters.AddWithValue("@postLike", postLike);
-            cmd3.Parameters.AddWithValue("@postComment", postComment);
-            cmd3.Parameters.AddWithValue("@postView", postView);
             cmd3.Parameters.AddWithValue("@userID", userID);
             cmd3.Parameters.AddWithValue("@tagID", tagID);
             cmd3.Parameters.AddWithValue("@topicID", topicID);
+            cmd3.Parameters.AddWithValue("@postStatus", postStatus);
             con.Open();
             cmd3.ExecuteNonQuery();
             con.Close();
@@ -119,6 +115,10 @@ namespace RoundTable.WebForms.Discussion
             DropDownList2.Items.Insert(0, "[Select a Tag]");
             TextBox1.Text = "";
             TextBox2.Text = "";
+
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Successfully posted!')", true);
+
+            //Response.Redirect("../Discussion/Homepage.aspx");
         }
 
     }

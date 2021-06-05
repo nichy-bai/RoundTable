@@ -117,8 +117,22 @@ document.addEventListener('keydown', function (e) {
 
 });
 
-/*Dropdown content*/
+//Dropdown content
 function postDropdown() {
     document.getElementById("threedot_dropdown").classList.toggle('hidden');
     document.getElementById("threedot_btn").classList.toggle('text-indigo-600');
+}
+
+//Copy URL to clipboard
+function copyURL() {
+    //var copyText = document.getElementById("<%= post_url_txt.ClientID %>");
+    //copyText.select();
+    //copyText.setSelectionRange(0, 99999);
+    //document.execCommand("copy");
+    //alert("Copied the text: " + copyText.value);
+
+    var copyText = document.getElementById("ContentPlaceHolder1_post_url_txt");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
 }

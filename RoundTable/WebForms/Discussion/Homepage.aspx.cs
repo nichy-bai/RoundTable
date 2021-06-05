@@ -20,6 +20,18 @@ namespace RoundTable.WebForms.Discussion
 
         }
 
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (Repeater1.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    Label lblFooter = (Label)e.Item.FindControl("noPost_lbl");
+                    lblFooter.Visible = true;
+                }
+            }
+        }
+
         protected void GenerateLikeID()
         {
             con.Open();
@@ -34,8 +46,8 @@ namespace RoundTable.WebForms.Discussion
         protected void postBody_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();
-            Response.Redirect("DiscussionPost.aspx?p=" + postID);
-            //Response.Redirect("DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
+            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 
         protected void react_like_btn_Command(object sender, CommandEventArgs e)

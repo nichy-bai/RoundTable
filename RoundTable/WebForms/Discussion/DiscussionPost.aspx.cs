@@ -13,6 +13,8 @@ namespace RoundTable.WebForms.Discussion
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         string postID, likeID, commentID, bookmarkID;
+        string hex = "#7c3aed";
+
         //To be modified
         string userID = "Shrimp";
 
@@ -20,7 +22,7 @@ namespace RoundTable.WebForms.Discussion
         {
             Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            postID = Request.QueryString["p"];
+            postID = "DP" + Request.QueryString["p"];
 
             if (!IsPostBack)
             {
@@ -75,7 +77,6 @@ namespace RoundTable.WebForms.Discussion
 
                 if (likeStatus)
                 {
-                    string hex = "#7c3aed";
                     react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
                     react_like_btn.ToolTip = "Unlike";
                 }
@@ -91,7 +92,6 @@ namespace RoundTable.WebForms.Discussion
 
                 if (bookmarkStatus)
                 {
-                    string hex = "#7c3aed";
                     react_bookmark_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
                     react_bookmark_btn.ToolTip = "Unbookmark";
                 }
@@ -105,13 +105,18 @@ namespace RoundTable.WebForms.Discussion
 
                 if (commentStatus > 0)
                 {
-                    string hex = "#7c3aed";
                     react_comment_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
                 }
 
                 con.Close();
 
                 SqlDataSource1.SelectParameters.Add("postID", postID.ToString());
+
+                if (userID != userID_lbl.Text)
+                {
+                    threedot_dropdown_btn_2.Visible = false;
+                    threedot_dropdown_btn_3.Visible = false;
+                }
             }
         }
 
@@ -163,74 +168,71 @@ namespace RoundTable.WebForms.Discussion
 
         protected void threedot_dropdown_btn_1_Click(object sender, EventArgs e)
         {
-            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('report')", true);
-            Response.Write("<script>alert('report')</script>");
+            share_panel.Visible = true;
+            post_url_txt.Text = Request.Url.AbsoluteUri;
         }
 
         protected void threedot_dropdown_btn_2_Click(object sender, EventArgs e)
         {
-            //ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('share')", true);
-            Response.Write("<script>alert('share')</script>");
+            Response.Redirect("../Discussion/EditDiscussion.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 
-        protected void react_comment_btn_Command(object sender, CommandEventArgs e)
+        protected void threedot_dropdown_btn_3_Click(object sender, EventArgs e)
         {
-            comment_txt.Focus();
-        }
+            bool likeStatus = false;
 
-        protected void react_bookmark_btn_Command(object sender, CommandEventArgs e)
-        {
-            bool bookmarkInsert, bookmarkStatus;
-
-            SqlCommand select = new SqlCommand("SELECT bookmarkStatus FROM Bookmark WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+            SqlCommand update = new SqlCommand("UPDATE Post SET postStatus='" + likeStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
             con.Open();
-            object obj = select.ExecuteScalar();
-
-            if (obj != null && DBNull.Value != obj)
-            {
-                bookmarkStatus = (bool)select.ExecuteScalar();
-                bookmarkInsert = false;
-            }
-            else
-            {
-                bookmarkStatus = true;
-                bookmarkInsert = true;
-            }
+            update.ExecuteNonQuery();
             con.Close();
 
-            if (bookmarkInsert)
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+            "alert('Successfully deleted!'); window.location='" +
+            Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+        }
+
+        protected void threedot_dropdown_btn_4_Click(object sender, EventArgs e)
+        {
+            Response.Write("<script>alert('4')</script>");
+        }
+
+        protected void copy_btn_Click(object sender, EventArgs e)
+        {
+            if (copy_btn.Text == "Copy URL")
             {
-                GenerateBookmarkID();
-
-                string bookmarkDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-
-                SqlCommand insert = new SqlCommand("INSERT INTO Bookmark(bookmarkID, bookmarkDate, postID, userID, bookmarkStatus) VALUES (@bookmarkID, @bookmarkDate, @postID, @userID, @bookmarkStatus)", con);
-                insert.Parameters.AddWithValue("@bookmarkID", bookmarkID);
-                insert.Parameters.AddWithValue("@bookmarkDate", bookmarkDate);
-                insert.Parameters.AddWithValue("@postID", postID);
-                insert.Parameters.AddWithValue("@userID", userID);
-                insert.Parameters.AddWithValue("@bookmarkStatus", bookmarkStatus);
-                con.Open();
-                insert.ExecuteNonQuery();
-                con.Close();
-
-                string hex = "#7c3aed";
-                react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
-
-                Response.Redirect(Request.Url.AbsoluteUri);
+                copy_btn.Text = "Copied!";
             }
-            else
+            else if (copy_btn.Text == "Copied!")
             {
-                bookmarkStatus = !bookmarkStatus;
-                string bookmarkDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-
-                SqlCommand update = new SqlCommand("UPDATE Bookmark SET bookmarkDate='" + bookmarkDate + "', bookmarkStatus='" + bookmarkStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
-                con.Open();
-                update.ExecuteNonQuery();
-                con.Close();
-
-                Response.Redirect(Request.Url.AbsoluteUri);
+                copy_btn.Text = "Double Copy!";
             }
+            else if (copy_btn.Text == "Double Copy!")
+            {
+                copy_btn.Text = "Triple Copy!";
+            }
+            else if (copy_btn.Text == "Triple Copy!")
+            {
+                copy_btn.Text = "Stop It!";
+                copy_btn.CssClass += " animate-bounce";
+            }
+            else if (copy_btn.Text == "Stop It!")
+            {
+                copy_btn.Text = "Please Stop It!";
+            }
+            else if (copy_btn.Text == "Please Stop It!")
+            {
+                copy_btn.Text = "Click →";
+                copy_btn.Enabled = false;
+                copy_btn.CssClass = copy_btn.CssClass.Replace("animate-bounce", "");
+                copy_btn.CssClass = copy_btn.CssClass.Replace("hover:bg-gray-100", "");
+                close_btn.CssClass += " animate-pulse";
+            }
+        }
+
+        protected void close_btn_Command(object sender, CommandEventArgs e)
+        {
+            share_panel.Visible = false;
+            Response.Redirect(Request.Url.AbsoluteUri);
         }
 
         protected void comment_btn_Command(object sender, CommandEventArgs e)
@@ -244,7 +246,7 @@ namespace RoundTable.WebForms.Discussion
             //To be modified
             string userID = "Shrimp";
 
-            if(!String.IsNullOrEmpty(comment_txt.Text))
+            if (!String.IsNullOrEmpty(comment_txt.Text))
             {
                 SqlCommand cmd = new SqlCommand("INSERT INTO DiscussionComment(commentID, commentContent, commentDate, postID, userID, commentStatus) VALUES (@commentID, @commentContent, @commentDate, @postID, @userID, @commentStatus)", con);
                 cmd.Parameters.AddWithValue("@commentID", commentID);
@@ -304,7 +306,6 @@ namespace RoundTable.WebForms.Discussion
                 insert.ExecuteNonQuery();
                 con.Close();
 
-                string hex = "#7c3aed";
                 react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
 
                 //Response.Write("<script>alert('Liked')</script>");
@@ -321,14 +322,64 @@ namespace RoundTable.WebForms.Discussion
                 update.ExecuteNonQuery();
                 con.Close();
 
-                //if (likeStatus)
-                //{
-                //    Response.Write("<script>alert('Liked')</script>");
-                //}
-                //else
-                //{
-                //    Response.Write("<script>alert('Unliked')</script>");
-                //}
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+        }
+
+        protected void react_comment_btn_Command(object sender, CommandEventArgs e)
+        {
+            comment_txt.Focus();
+        }
+
+        protected void react_bookmark_btn_Command(object sender, CommandEventArgs e)
+        {
+            bool bookmarkInsert, bookmarkStatus;
+
+            SqlCommand select = new SqlCommand("SELECT bookmarkStatus FROM Bookmark WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+            con.Open();
+            object obj = select.ExecuteScalar();
+
+            if (obj != null && DBNull.Value != obj)
+            {
+                bookmarkStatus = (bool)select.ExecuteScalar();
+                bookmarkInsert = false;
+            }
+            else
+            {
+                bookmarkStatus = true;
+                bookmarkInsert = true;
+            }
+            con.Close();
+
+            if (bookmarkInsert)
+            {
+                GenerateBookmarkID();
+
+                string bookmarkDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+                SqlCommand insert = new SqlCommand("INSERT INTO Bookmark(bookmarkID, bookmarkDate, postID, userID, bookmarkStatus) VALUES (@bookmarkID, @bookmarkDate, @postID, @userID, @bookmarkStatus)", con);
+                insert.Parameters.AddWithValue("@bookmarkID", bookmarkID);
+                insert.Parameters.AddWithValue("@bookmarkDate", bookmarkDate);
+                insert.Parameters.AddWithValue("@postID", postID);
+                insert.Parameters.AddWithValue("@userID", userID);
+                insert.Parameters.AddWithValue("@bookmarkStatus", bookmarkStatus);
+                con.Open();
+                insert.ExecuteNonQuery();
+                con.Close();
+
+                react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+
+                Response.Redirect(Request.Url.AbsoluteUri);
+            }
+            else
+            {
+                bookmarkStatus = !bookmarkStatus;
+                string bookmarkDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+
+                SqlCommand update = new SqlCommand("UPDATE Bookmark SET bookmarkDate='" + bookmarkDate + "', bookmarkStatus='" + bookmarkStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+                con.Open();
+                update.ExecuteNonQuery();
+                con.Close();
 
                 Response.Redirect(Request.Url.AbsoluteUri);
             }

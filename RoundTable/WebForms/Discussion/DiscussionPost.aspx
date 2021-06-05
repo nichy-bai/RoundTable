@@ -1,6 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="DiscussionPost.aspx.cs" Inherits="RoundTable.WebForms.Discussion.DiscussionPost" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <%--Modal box--%>
+    <asp:Panel ID="share_panel" runat="server" Visible="false" CssClass="fixed w-full h-full top-0 left-0 flex items-center justify-center">
+        <div class="absolute w-full h-full bg-gray-900 opacity-50 z-40"></div>
+        <div class="bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-md z-50 overflow-y-auto">
+            <div class="py-5 text-left px-7">
+                <!--Title-->
+                <div class="flex justify-between items-center mb-2">
+                    <asp:Label ID="post_url_lbl" runat="server" CssClass="text-2xl font-bold text-gray-800" Text="Share Discussion Post"></asp:Label>
+                </div>
+
+                <!--Body-->
+                <div class="mb-5 text-gray-700">Copy this unique URL and share it with your friends to start an asynchronous discussion!</div>
+                <asp:TextBox ID="post_url_txt" runat="server" TextMode="MultiLine" ReadOnly="true" Text="[postURL]" onFocus="this.select()" CssClass="border-2 px-5 py-4 w-full resize-none text-gray-800 focus:text-black"></asp:TextBox>
+
+                <!--Footer-->
+                <div class="flex justify-end mt-5">
+                    <asp:Button ID="copy_btn" runat="server" Text="Copy URL" CssClass="px-4 bg-transparent p-3 rounded-lg text-indigo-600 hover:bg-gray-100 mr-5 cursor-pointer" OnClientClick="copyURL()" OnClick="copy_btn_Click" />
+                    <asp:Button ID="close_btn" runat="server" Text="Close" CssClass="px-4 bg-indigo-600 p-3 rounded-lg text-white hover:bg-indigo-500 cursor-pointer" OnCommand="close_btn_Command" />
+                </div>
+            </div>
+        </div>
+    </asp:Panel>
+
     <div
         class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between border-b-2 pb-2">
@@ -61,10 +84,10 @@
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     stroke-width="1.5"
-                                    d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
                                 </path>
                             </svg>
-                            <span class="pl-2">Report Post</span>
+                            <span class="pl-2">Share Post</span>
                         </asp:LinkButton>
                         <asp:LinkButton runat="server" ID="threedot_dropdown_btn_2" CssClass="flex flex-row px-4 py-3 text-sm capitalize text-gray-700 hover:bg-indigo-500 hover:text-white rounded-xl transition ease-in-out duration-300" OnClick="threedot_dropdown_btn_2_Click">
                             <svg
@@ -77,10 +100,42 @@
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                     stroke-width="1.5"
-                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
                                 </path>
                             </svg>
-                            <span class="pl-2">Share Post</span>
+                            <span class="pl-2">Edit Post</span>
+                        </asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="threedot_dropdown_btn_3" CssClass="flex flex-row px-4 py-3 text-sm capitalize text-gray-700 hover:bg-indigo-500 hover:text-white rounded-xl transition ease-in-out duration-300" OnClick="threedot_dropdown_btn_3_Click" OnClientClick="return confirm('Are you sure to delete the discussion post?')" >
+                            <svg
+                                class="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                </path>
+                            </svg>
+                            <span class="pl-2">Delete Post</span>
+                        </asp:LinkButton>
+                        <asp:LinkButton runat="server" ID="threedot_dropdown_btn_4" CssClass="flex flex-row px-4 py-3 text-sm capitalize text-gray-700 hover:bg-indigo-500 hover:text-white rounded-xl transition ease-in-out duration-300" OnClick="threedot_dropdown_btn_4_Click">
+                            <svg
+                                class="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9">
+                                </path>
+                            </svg>
+                            <span class="pl-2">Report Post</span>
                         </asp:LinkButton>
                     </div>
                 </div>
@@ -182,12 +237,11 @@
                 </asp:LinkButton>
             </div>
         </div>
-
     </div>
 
     <%--Add comment--%>
     <div
-        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="flex flex-row flex-grow justify-between items-start">
             <div class="flex-grow">
                 <asp:TextBox ID="comment_txt" runat="server" placeholder="Comment" ToolTip="Comment" TextMode="MultiLine" CssClass="h-14 w-full px-2 py-3 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
@@ -256,6 +310,8 @@
         </ItemTemplate>
         <FooterTemplate>
             <asp:Label ID="noComment_lbl" runat="server" CssClass="text-gray-400 text-center mt-10 mb-14" Text="No comment yet" Visible="false"></asp:Label>
+            <asp:Label ID="footer_lbl" runat="server" CssClass="invisible text-gray-400 text-center mt-5" Text="There are no more comments to show."></asp:Label>
         </FooterTemplate>
     </asp:Repeater>
+
 </asp:Content>

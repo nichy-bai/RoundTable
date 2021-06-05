@@ -42,6 +42,18 @@ namespace RoundTable.WebForms.Bookmark
             }
         }
 
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (Repeater1.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    Label lblFooter = (Label)e.Item.FindControl("noBookmark_lbl");
+                    lblFooter.Visible = true;
+                }
+            }
+        }
+
         protected void bookmarkBody_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();

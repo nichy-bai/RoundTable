@@ -7,16 +7,17 @@
         <div class="bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-md z-50 overflow-y-auto">
             <div class="py-5 text-left px-7">
                 <!--Title-->
-                <div class="flex justify-between items-center mb-2">
-                    <asp:Label ID="post_url_lbl" runat="server" CssClass="text-2xl font-bold text-gray-800" Text="Share Discussion Post"></asp:Label>
+                <div class="flex justify-around items-center mb-5">
+                    <asp:LinkButton ID="share_url_btn" runat="server" CssClass="text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-gray-700" Text="Bookmark URL" OnCommand="share_url_btn_Command"></asp:LinkButton>
+                    <asp:LinkButton ID="share_embeded_btn" runat="server" CssClass="text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Embed Code" OnCommand="share_embeded_btn_Command"></asp:LinkButton>
                 </div>
 
                 <!--Body-->
-                <div class="mb-5 text-gray-700">Copy this unique URL and share it with your friends to start an asynchronous discussion!</div>
-                <asp:TextBox ID="post_url_txt" runat="server" TextMode="MultiLine" ReadOnly="true" Text="[postURL]" onFocus="this.select()" CssClass="border-2 px-5 py-4 w-full resize-none text-gray-800 focus:text-black"></asp:TextBox>
+                <asp:Label ID="share_url_lbl" runat="server" CssClass="text-gray-700" Text="Copy this unique URL and share it with your friends to start an asynchronous discussion!"></asp:Label>
+                <asp:TextBox ID="post_url_txt" runat="server" TextMode="MultiLine" ReadOnly="true" Text="[postURL]" onFocus="this.select()" CssClass="border-2 my-5 px-5 py-4 w-full resize-none text-gray-800 focus:text-black"></asp:TextBox>
 
                 <!--Footer-->
-                <div class="flex justify-end mt-5">
+                <div class="flex justify-end">
                     <asp:Button ID="copy_btn" runat="server" Text="Copy URL" CssClass="px-4 bg-transparent p-3 rounded-lg text-indigo-600 hover:bg-gray-100 mr-5 cursor-pointer" OnClientClick="copyURL()" OnClick="copy_btn_Click" />
                     <asp:Button ID="close_btn" runat="server" Text="Close" CssClass="px-4 bg-indigo-600 p-3 rounded-lg text-white hover:bg-indigo-500 cursor-pointer" OnCommand="close_btn_Command" />
                 </div>

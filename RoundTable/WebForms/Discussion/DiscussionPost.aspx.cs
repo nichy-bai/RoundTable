@@ -168,20 +168,26 @@ namespace RoundTable.WebForms.Discussion
 
         protected void threedot_dropdown_btn_1_Click(object sender, EventArgs e)
         {
+            //Share Post
+
             share_panel.Visible = true;
             post_url_txt.Text = Request.Url.AbsoluteUri;
         }
 
         protected void threedot_dropdown_btn_2_Click(object sender, EventArgs e)
         {
+            //Edit Post
+
             Response.Redirect("../Discussion/EditDiscussion.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 
         protected void threedot_dropdown_btn_3_Click(object sender, EventArgs e)
         {
-            bool likeStatus = false;
+            //Delete Post
 
-            SqlCommand update = new SqlCommand("UPDATE Post SET postStatus='" + likeStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+            bool postStatus = false;
+
+            SqlCommand update = new SqlCommand("UPDATE Post SET postStatus='" + postStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
             con.Open();
             update.ExecuteNonQuery();
             con.Close();
@@ -193,12 +199,48 @@ namespace RoundTable.WebForms.Discussion
 
         protected void threedot_dropdown_btn_4_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('4')</script>");
+            //Report Post
+
+            Response.Write("<script>alert('not yet implemented')</script>");
+        }
+
+        protected void share_url_btn_Command(object sender, CommandEventArgs e)
+        {
+            share_url_btn.CssClass = share_url_btn.CssClass.Replace("border-transparent", "border-gray-700");
+            share_embeded_btn.CssClass = share_embeded_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            share_url_lbl.Text = "Copy this unique URL and share it with your friends to start an asynchronous discussion!";
+            copy_btn.Text = "Copy URL";
+
+            if (share_url_btn.CssClass.Contains("border-gray-700"))
+            {
+                post_url_txt.Text = Request.Url.AbsoluteUri;
+            }
+            else
+            {
+                post_url_txt.Text = "Embed Code";
+            }
+        }
+
+        protected void share_embeded_btn_Command(object sender, CommandEventArgs e)
+        {
+            share_url_btn.CssClass = share_url_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            share_embeded_btn.CssClass = share_embeded_btn.CssClass.Replace("border-transparent", "border-gray-700");
+            share_url_lbl.Text = "Copy this unique embed code and share it on your website to further promote the discussion!";
+            copy_btn.Text = "Copy Embed Code";
+
+            if (share_url_btn.CssClass.Contains("border-gray-700"))
+            {
+                post_url_txt.Text = Request.Url.AbsoluteUri;
+            }
+            else
+            {
+                post_url_txt.Text = "Embed Code";
+            }
         }
 
         protected void copy_btn_Click(object sender, EventArgs e)
         {
-            if (copy_btn.Text == "Copy URL")
+            if (copy_btn.Text == "Copy URL" || copy_btn.Text == "Copy Embed Code")
             {
                 copy_btn.Text = "Copied!";
             }

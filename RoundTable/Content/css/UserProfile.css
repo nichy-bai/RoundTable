@@ -16,6 +16,67 @@
     margin-bottom: 20px;
     border-radius: 50%;
     box-shadow: 0px 1px 5px #b5b5b5;
-    background-color: red;
 }
 
+.editProfile-btn {
+    width: 100%;
+    background-color: #4F46E5;
+    color: #fff;
+    border: 2px #4F46E5 solid;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: linear 0.2s;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+    .editProfile-btn:hover {
+        border-color: #4F46E5;
+        background-color: #fff;
+        color: #4F46E5;
+        box-shadow: 0px 1px 5px #b5b5b5;
+    }
+
+.cancel-btn {
+    width: 100%;
+    background-color: red;
+    color: #fff;
+    border: 2px red solid;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: linear 0.2s;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+    .cancel-btn:hover {
+        border-color: red;
+        background-color: #fff;
+        color: red;
+        box-shadow: 0px 1px 5px #b5b5b5;
+    }
+
+.save-btn {
+    width: 100%;
+    background-color: green;
+    color: #fff;
+    border: 2px green solid;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: linear 0.2s;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+    .save-btn:hover {
+        border-color: green;
+        background-color: #fff;
+        color: green;
+        box-shadow: 0px 1px 5px #b5b5b5;
+    }

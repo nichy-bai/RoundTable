@@ -9,42 +9,64 @@ using System.Data;
 
 namespace RoundTable.WebForms.Discussion
 {
-    public partial class CreateDiscussion : System.Web.UI.Page
+    public partial class EditDiscussion : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         string postID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            postID = "DP" + Request.QueryString["p"];
+
+            if (!Page.IsPostBack)
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Topic", con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                string topicID = "", topicName = "", tagID = "", tagName = "";
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Post WHERE postID='" + postID + "'", con);
+                cmd.CommandType = CommandType.Text;
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    topicID = dr["topicID"].ToString();
+                    tagID = dr["tagID"].ToString();
+
+                    TextBox1.Text = dr["postTitle"].ToString();
+                    TextBox2.Text = dr["postContent"].ToString();
+                }
+                con.Close();
+
+                SqlCommand cmd2 = new SqlCommand("SELECT * FROM Topic", con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd2);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 DropDownList1.DataSource = dt;
                 DropDownList1.DataBind();
 
-                DropDownList1.Items.Insert(0, "[Select a Topic]");
-                DropDownList2.Items.Insert(0, "[Select a Tag]");
-            }
-        }
+                SqlCommand cmd3 = new SqlCommand("SELECT * FROM Tag WHERE topicID='" + topicID + "'", con);
+                SqlDataAdapter sda2 = new SqlDataAdapter(cmd3);
+                DataTable dt2 = new DataTable();
+                sda2.Fill(dt2);
+                DropDownList2.DataSource = dt2;
+                DropDownList2.DataBind();
 
-        protected void GeneratePostID()
-        {
-            con.Open();
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(postID) FROM Post", con);
-            int i = Convert.ToInt32(cmd.ExecuteScalar());
-            con.Close();
-            i++;
-            int id = 1000000000 + i;
-            postID = "DP" + id.ToString();
+                con.Open();
+                SqlCommand cmd4 = new SqlCommand("SELECT topicName FROM Topic WHERE topicID='" + topicID + "'", con);
+                SqlCommand cmd5 = new SqlCommand("SELECT tagName FROM Tag WHERE tagID='" + tagID + "'", con);
+
+                topicName = cmd4.ExecuteScalar().ToString();
+                tagName = cmd5.ExecuteScalar().ToString();
+
+                DropDownList1.Items.FindByValue(topicName).Selected = true;
+                DropDownList2.Items.FindByValue(tagName).Selected = true;
+            }
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DropDownList2.Enabled = true;
-            DropDownList1.Items.Remove(DropDownList1.Items.FindByText("[Select a Topic]"));
             SqlCommand cmd = new SqlCommand("SELECT topicID FROM Topic WHERE topicName='" + DropDownList1.SelectedItem.Value + "'", con);
             con.Open();
             string topicID = cmd.ExecuteScalar().ToString();
@@ -77,8 +99,6 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            GeneratePostID();
-
             SqlCommand cmd = new SqlCommand("SELECT topicID FROM Topic WHERE topicName='" + DropDownList1.SelectedItem.Value + "'", con);
             SqlCommand cmd2 = new SqlCommand("SELECT tagID FROM Tag WHERE tagName='" + DropDownList2.SelectedItem.Value + "'", con);
 
@@ -89,22 +109,8 @@ namespace RoundTable.WebForms.Discussion
 
             string postTitle = TextBox1.Text;
             string postContent = TextBox2.Text;
-            string postDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            bool postStatus = true;
 
-            //to be modified
-            string userID = "Shrimp";
-
-            string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, userID, tagID, topicID, postStatus) VALUES (@postID, @postTitle, @postContent, @postDate, @userID, @tagID, @topicID, @postStatus)";
-            SqlCommand cmd3 = new SqlCommand(insertCmd, con);
-            cmd3.Parameters.AddWithValue("@postID", postID);
-            cmd3.Parameters.AddWithValue("@postTitle", postTitle);
-            cmd3.Parameters.AddWithValue("@postContent", postContent);
-            cmd3.Parameters.AddWithValue("@postDate", postDate);
-            cmd3.Parameters.AddWithValue("@userID", userID);
-            cmd3.Parameters.AddWithValue("@tagID", tagID);
-            cmd3.Parameters.AddWithValue("@topicID", topicID);
-            cmd3.Parameters.AddWithValue("@postStatus", postStatus);
+            SqlCommand cmd3 = new SqlCommand("UPDATE Post SET postTitle='" + postTitle + "', postContent='" + postContent + "', topicID='" + topicID + "', tagID='" + tagID + "' WHERE postID='" + postID + "'", con);
             con.Open();
             cmd3.ExecuteNonQuery();
             con.Close();
@@ -117,9 +123,8 @@ namespace RoundTable.WebForms.Discussion
             TextBox2.Text = "";
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-            "alert('Successfully posted!'); window.location='" +
+            "alert('Successfully updated!'); window.location='" +
             Request.ApplicationPath + "../WebForms/Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2) + "';", true);
         }
-
     }
 }

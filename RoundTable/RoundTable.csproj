@@ -168,6 +168,7 @@
     <Content Include="Content\js\script.js" />
     <Content Include="Web.config" />
     <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
+    <Content Include="WebForms\Discussion\EditDiscussion.aspx" />
     <Content Include="WebForms\Explore\Explore.aspx" />
     <Content Include="WebForms\Search\Search.aspx" />
     <Content Include="WebForms\Support\About.aspx" />
@@ -211,6 +212,13 @@
     </Compile>
     <Compile Include="WebForms\Discussion\DiscussionPost.aspx.designer.cs">
       <DependentUpon>DiscussionPost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Discussion\EditDiscussion.aspx.cs">
+      <DependentUpon>EditDiscussion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Discussion\EditDiscussion.aspx.designer.cs">
+      <DependentUpon>EditDiscussion.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Discussion\Homepage.aspx.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>

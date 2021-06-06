@@ -15,6 +15,51 @@ namespace RoundTable.WebForms.Discussion
     {
 
         /// <summary>
+        /// share_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel share_panel;
+
+        /// <summary>
+        /// post_url_lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label post_url_lbl;
+
+        /// <summary>
+        /// post_url_txt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox post_url_txt;
+
+        /// <summary>
+        /// copy_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button copy_btn;
+
+        /// <summary>
+        /// close_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button close_btn;
+
+        /// <summary>
         /// userID_lbl control.
         /// </summary>
         /// <remarks>
@@ -49,6 +94,24 @@ namespace RoundTable.WebForms.Discussion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton threedot_dropdown_btn_2;
+
+        /// <summary>
+        /// threedot_dropdown_btn_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton threedot_dropdown_btn_3;
+
+        /// <summary>
+        /// threedot_dropdown_btn_4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton threedot_dropdown_btn_4;
 
         /// <summary>
         /// postTitle_lbl control.

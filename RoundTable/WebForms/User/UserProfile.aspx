@@ -44,7 +44,7 @@
                                 <asp:Label ID="lblName" runat="server" Text="" CssClass="text-3xl ml-10 font-bold"></asp:Label>
                             </div>
                             <div class="right-0 absolute">
-                                <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" CssClass="editProfile-btn <%--font-bold px-6 py-2 border-2 rounded border-black--%>" />
+                                <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" CssClass="editProfile-btn font-bold <%--font-bold px-6 py-2 border-2 rounded border-black--%>" />
                             </div>
                         </div>
 
@@ -64,13 +64,13 @@
                             Email
                              <asp:Label ID="lblEmail" runat="server" Text="" CssClass="mr-16 text-lg font-normal"></asp:Label>
                         </div>
-                        <div class="flex flex-wrap text-xl flex-col ml-10 font-bold justify-between">
-                            <div>
+                        <div class="flex flex-wrap flex-col ml-10 justify-between">
+                            <div class="text-xl font-bold">
                                 Profile Description
                             </div>
                             <div>
-                                <%--<asp:Label ID="lblProfileDesc" runat="server" Text="" CssClass="mr-48 text-lg font-normal border-2"></asp:Label>--%>
-                                <asp:TextBox ID="txtProfileViewDesc" Text="adasd" Enabled="false" runat="server" BorderStyle="None" BackColor="Transparent" ReadOnly="true" CssClass="w-full"></asp:TextBox>
+                                <asp:Label ID="lblProfileDesc" runat="server" Text="" CssClass="text-lg font-normal w-full break-normal break-all" ></asp:Label>
+                                <%--<asp:TextBox ID="txtProfileViewDesc" Text="" Enabled="false" runat="server" BorderStyle="None" BackColor="Transparent" ReadOnly="true" CssClass="w-full break-all"></asp:TextBox>--%>
                             </div>
                         </div>
 
@@ -96,7 +96,7 @@
                                 Name
                             </div>
                             <div class="w-4/5">
-                                <asp:TextBox ID="txtName" runat="server" placeholder="Name" ToolTip="Name" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+                                <asp:TextBox ID="txtName" runat="server" placeholder="Name" ToolTip="Name" CssClass="w-full p-2 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
                             </div>
                         </div>
                         <div class="flex ml-10 mt-3 justify-between space-x-3">
@@ -144,7 +144,7 @@
                                 Email
                             </div>
                             <div class="w-4/5">
-                                <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" TextMode="Email" ToolTip="Email" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+                                <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" TextMode="Email" ToolTip="Email" CssClass="w-full p-2 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
                             </div>
                         </div>
                         <div class="flex text-xl ml-10 mt-6 font-bold justify-between">
@@ -153,14 +153,14 @@
                         <div class="ml-10 mt-2">
                             <asp:TextBox ID="txtProfileDesc" runat="server" placeholder="Profile Description (Optional)" TextMode="MultiLine" ToolTip="Profile Description" CssClass="overflow-auto min-h-20 h-64 w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
                         </div>
-                        <div class="flex justify-end mt-4">
-                            <span>
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-btn font-bold px-6 py-2 border-2 rounded border-black" />
-                                <asp:Button ID="btnSaveChanges" runat="server" Text="Save Changes" OnClick="btnSaveChanges_Click" CssClass="save-btn font-bold px-6 py-2 border-2 rounded border-black" />
-                            </span>
-
+                        <div class="flex flex-row justify-end mt-4 space-x-6">
+                            <div>
+                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" CssClass="cancel-btn font-bold" />
+                            </div>
+                            <div>
+                                <asp:Button ID="btnSaveChanges" runat="server" Text="Save Changes" OnClick="btnSaveChanges_Click" CssClass="save-btn font-bold" />
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </asp:View>

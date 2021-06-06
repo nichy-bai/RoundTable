@@ -88,13 +88,7 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            DropDownList1.ClearSelection();
-            DropDownList2.ClearSelection();
-            DropDownList1.Items.Insert(0, "[Select a Topic]");
-            DropDownList2.Items.Insert(0, "[Select a Tag]");
-
-            TextBox1.Text = "";
-            TextBox2.Text = "";
+            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 
         protected void Button2_Click(object sender, EventArgs e)

@@ -11,14 +11,14 @@
         </div>
     </header>
     <div
-        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row justify-between shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1300">
+        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row flex-wrap justify-between shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1300">
         <div
-            class="flex flex-row items-center justify-start dark:bg-dark-300 hover:bg-gray-300 dark:hover:bg-dark-400 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-100 w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300">
+            class="flex flex-row items-center justify-start dark:bg-dark-300 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-100 w-full md:w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300 mb-10 md:mb-0">
             <asp:DropDownList ID="DropDownList1" runat="server" DataTextField="topicName" DataValueField="topicName" ToolTip="Select a Topic" CssClass="h-12 w-auto sm:w-64 px-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
             </asp:DropDownList>
         </div>
         <div
-            class="flex flex-row items-center justify-start dark:bg-dark-300 hover:bg-gray-300 dark:hover:bg-dark-400 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-100 w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300">
+            class="flex flex-row items-center justify-start dark:bg-dark-300 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-100 w-full md:w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300">
             <asp:DropDownList ID="DropDownList2" runat="server" DataTextField="tagName" DataValueField="tagName" ToolTip="Select a Tag" CssClass="h-12 w-auto sm:w-64 px-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged"></asp:DropDownList>
         </div>
     </div>

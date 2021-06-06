@@ -27,15 +27,16 @@ body {
 #bot-launch-button {
     font-family: "Calibri", "Roboto", sans-serif;
     position: fixed;
-    background: #4F46E5;
+    background: #f5886e;
     color: #fff;
     right: 25px;
     bottom: 25px;
     cursor: pointer;
-    padding: 10px 20px;
+    width: 50px;
+    height: 50px;
     border-radius: 9999px;
-    border: 2px #4F46E5 solid;
-    transition: linear 0.2s;
+    border: 5px #f5886e solid;
+    transition: linear 0.5s;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -44,11 +45,15 @@ body {
     -ms-user-select: none;
     user-select: none;
     z-index: 40;
+    opacity: 0.95;
+    background-image: url("../BotResources/bot-avatar.png");
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
     #bot-launch-button:hover {
-        background: #fff;
-        color: #4F46E5;
+        border: 5px #f5ac9a solid;
     }
 
 @media (min-width: 768px) {
@@ -114,8 +119,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 40px 40px;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     justify-self: center;
     align-self: center;
     margin: 0px 5px;
@@ -173,7 +178,7 @@ body {
     border: 1px solid #E5E7EB;
     border: none;
     padding: 0 20px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 #bot-send-button {

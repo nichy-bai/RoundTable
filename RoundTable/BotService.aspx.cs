@@ -34,7 +34,7 @@ namespace RoundTable
             WidgetChannel.UseExternalResource = true;
 
             WidgetChannel.WidgetTitle = "RoundTable Chatbot";
-            WidgetChannel.LaunchButtonText = "Click Me";
+            WidgetChannel.LaunchButtonText = "";
             WidgetChannel.InputPlaceHolder = "Say Something...";
         }
 

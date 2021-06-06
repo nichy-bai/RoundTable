@@ -51,15 +51,6 @@ namespace RoundTable.WebForms.User
         protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// lblTopicPosted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTopicPosted;
-
-        /// <summary>
         /// btnEditProfile control.
         /// </summary>
         /// <remarks>
@@ -67,6 +58,15 @@ namespace RoundTable.WebForms.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEditProfile;
+
+        /// <summary>
+        /// lblTopicPosted control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTopicPosted;
 
         /// <summary>
         /// lblGender control.
@@ -96,6 +96,15 @@ namespace RoundTable.WebForms.User
         protected global::System.Web.UI.WebControls.Label lblEmail;
 
         /// <summary>
+        /// txtProfileViewDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProfileViewDesc;
+
+        /// <summary>
         /// EditProfileView control.
         /// </summary>
         /// <remarks>
@@ -123,13 +132,22 @@ namespace RoundTable.WebForms.User
         protected global::System.Web.UI.WebControls.TextBox txtName;
 
         /// <summary>
-        /// lblTopicPosted1 control.
+        /// FileUpload control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTopicPosted1;
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload;
+
+        /// <summary>
+        /// uploadImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image uploadImg;
 
         /// <summary>
         /// ddlGender control.
@@ -157,6 +175,15 @@ namespace RoundTable.WebForms.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+
+        /// <summary>
+        /// txtProfileDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProfileDesc;
 
         /// <summary>
         /// btnCancel control.

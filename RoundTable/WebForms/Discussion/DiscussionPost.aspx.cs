@@ -41,7 +41,7 @@ namespace RoundTable.WebForms.Discussion
                     userID_lbl.ToolTip = dr["name"].ToString();
 
                     postDate_lbl.Text = Convert.ToDateTime(dr["postDate"]).ToString("d MMMM yyyy");
-                    postDate_lbl.ToolTip = dr["postDate"].ToString();
+                    postDate_lbl.ToolTip = Convert.ToDateTime(dr["postDate"]).ToString("dddd, dd/MM/yyyy h:mm:ss tt");
 
                     postTitle_lbl.Text = dr["postTitle"].ToString();
                     postContent_lbl.Text = dr["postContent"].ToString();
@@ -61,6 +61,7 @@ namespace RoundTable.WebForms.Discussion
                 SqlCommand cmd7 = new SqlCommand("SELECT COUNT(bookmarkID) FROM Bookmark WHERE postID='" + postID + "' AND (bookmarkStatus = 1)", con);
                 SqlCommand cmd8 = new SqlCommand("SELECT bookmarkStatus FROM Bookmark WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
                 SqlCommand cmd9 = new SqlCommand("SELECT COUNT(commentID) FROM DiscussionComment WHERE postID='" + postID + "' AND (commentStatus = 1) AND userID='" + userID + "'", con);
+                SqlCommand cmd10 = new SqlCommand("SELECT editDate FROM Post WHERE postID='" + postID + "'", con);
 
                 topicName_lbl.Text = cmd2.ExecuteScalar().ToString();
                 topic_btn.ToolTip = cmd3.ExecuteScalar().ToString();
@@ -106,6 +107,17 @@ namespace RoundTable.WebForms.Discussion
                 if (commentStatus > 0)
                 {
                     react_comment_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+                }
+
+                object obj4 = cmd10.ExecuteScalar();
+
+                if (obj4 != null && DBNull.Value != obj4)
+                {
+                    string editDate = Convert.ToDateTime(cmd10.ExecuteScalar()).ToString("d MMMM yyyy");
+                    string editDateFull = Convert.ToDateTime(cmd10.ExecuteScalar()).ToString("dddd, dd/MM/yyyy h:mm:ss tt");
+
+                    editDate_lbl.Text = "(Edited on " + editDate +")";
+                    editDate_lbl.ToolTip = "Edited on " + editDateFull;
                 }
 
                 con.Close();

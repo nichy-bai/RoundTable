@@ -8,13 +8,13 @@
             <div class="py-5 text-left px-7">
                 <!--Title-->
                 <div class="flex justify-around items-center mb-5">
-                    <asp:LinkButton ID="share_url_btn" runat="server" CssClass="text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-gray-700" Text="Bookmark URL" OnCommand="share_url_btn_Command"></asp:LinkButton>
-                    <asp:LinkButton ID="share_embeded_btn" runat="server" CssClass="text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Embed Code" OnCommand="share_embeded_btn_Command"></asp:LinkButton>
+                    <asp:LinkButton ID="share_url_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-gray-700" Text="Bookmark URL" OnCommand="share_url_btn_Command"></asp:LinkButton>
+                    <asp:LinkButton ID="share_embeded_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Embed Code" OnCommand="share_embeded_btn_Command"></asp:LinkButton>
                 </div>
 
                 <!--Body-->
-                <asp:Label ID="share_url_lbl" runat="server" CssClass="text-gray-700" Text="Copy this unique URL and share it with your friends to start an asynchronous discussion!"></asp:Label>
-                <asp:TextBox ID="post_url_txt" runat="server" TextMode="MultiLine" ReadOnly="true" Text="[postURL]" onFocus="this.select()" CssClass="border-2 my-5 px-5 py-4 w-full resize-none text-gray-800 focus:text-black"></asp:TextBox>
+                <asp:Label ID="share_url_lbl" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Copy this unique URL and share it with your friends to start an asynchronous discussion!"></asp:Label>
+                <asp:TextBox ID="post_url_txt" runat="server" TextMode="MultiLine" ReadOnly="true" Text="[postURL]" onFocus="this.select()" CssClass="border-2 my-5 px-5 py-4 w-full rounded-lg resize-none text-gray-800 focus:text-black"></asp:TextBox>
 
                 <!--Footer-->
                 <div class="flex justify-end">
@@ -48,8 +48,9 @@
                         <div class="font-medium">
                             <asp:Label ID="userID_lbl" runat="server" Text="[userID]"></asp:Label>
                         </div>
-                        <div class="text-sm opacity-80 no-underline">
-                            <asp:Label ID="postDate_lbl" runat="server" Text="[postDate]"></asp:Label>
+                        <div class="flex flex-wrap text-sm opacity-80 no-underline">
+                            <asp:Label ID="postDate_lbl" runat="server" Text="[postDate]" CssClass="mr-2"></asp:Label>
+                            <asp:Label ID="editDate_lbl" runat="server" Text=""></asp:Label>
                         </div>
                     </div>
                 </a>

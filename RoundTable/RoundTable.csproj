@@ -166,6 +166,8 @@
     <Content Include="Content\img\support_illustration_1.svg" />
     <Content Include="Content\img\support_illustration_2.svg" />
     <Content Include="Content\js\script.js" />
+    <Content Include="ProfileImages\Avatar.png" />
+    <Content Include="ProfileImages\Sheesh.png" />
     <Content Include="Web.config" />
     <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
     <Content Include="WebForms\Discussion\EditDiscussion.aspx" />
@@ -335,9 +337,7 @@
     <Content Include="WebForms\Discussion\Homepage.aspx" />
     <Content Include="WebForms\RoundTable_master.Master" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ProfileImages\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

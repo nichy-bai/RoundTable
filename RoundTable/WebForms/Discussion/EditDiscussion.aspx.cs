@@ -103,8 +103,9 @@ namespace RoundTable.WebForms.Discussion
 
             string postTitle = TextBox1.Text;
             string postContent = TextBox2.Text;
+            string editDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-            SqlCommand cmd3 = new SqlCommand("UPDATE Post SET postTitle='" + postTitle + "', postContent='" + postContent + "', topicID='" + topicID + "', tagID='" + tagID + "' WHERE postID='" + postID + "'", con);
+            SqlCommand cmd3 = new SqlCommand("UPDATE Post SET postTitle='" + postTitle + "', postContent='" + postContent + "', topicID='" + topicID + "', tagID='" + tagID + "', editDate='" + editDate + "' WHERE postID='" + postID + "'", con);
             con.Open();
             cmd3.ExecuteNonQuery();
             con.Close();

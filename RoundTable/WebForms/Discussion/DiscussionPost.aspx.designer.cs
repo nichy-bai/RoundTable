@@ -96,6 +96,15 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Label postDate_lbl;
 
         /// <summary>
+        /// editDate_lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label editDate_lbl;
+
+        /// <summary>
         /// threedot_dropdown_btn_1 control.
         /// </summary>
         /// <remarks>

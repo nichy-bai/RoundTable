@@ -57,8 +57,8 @@ namespace RoundTable.WebForms.Bookmark
         protected void bookmarkBody_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();
-            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID);
-            //Response.Redirect("DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+            //Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID);
+            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
     }
 }

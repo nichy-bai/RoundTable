@@ -213,7 +213,6 @@ namespace RoundTable.WebForms.Discussion
             else if (copy_btn.Text == "Triple Copy!")
             {
                 copy_btn.Text = "Stop It!";
-                copy_btn.CssClass += " animate-bounce";
             }
             else if (copy_btn.Text == "Stop It!")
             {
@@ -223,7 +222,6 @@ namespace RoundTable.WebForms.Discussion
             {
                 copy_btn.Text = "Click →";
                 copy_btn.Enabled = false;
-                copy_btn.CssClass = copy_btn.CssClass.Replace("animate-bounce", "");
                 copy_btn.CssClass = copy_btn.CssClass.Replace("hover:bg-gray-100", "");
                 close_btn.CssClass += " animate-pulse";
             }

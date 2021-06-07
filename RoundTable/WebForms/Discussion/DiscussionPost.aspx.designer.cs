@@ -249,6 +249,24 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Label postBookmark_lbl;
 
         /// <summary>
+        /// post_view_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel post_view_panel;
+
+        /// <summary>
+        /// postView_lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label postView_lbl;
+
+        /// <summary>
         /// comment_txt control.
         /// </summary>
         /// <remarks>

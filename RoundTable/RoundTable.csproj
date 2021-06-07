@@ -171,6 +171,7 @@
     <Content Include="Web.config" />
     <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
     <Content Include="WebForms\Discussion\EditDiscussion.aspx" />
+    <Content Include="WebForms\Discussion\MyDiscussion.aspx" />
     <Content Include="WebForms\Explore\Explore.aspx" />
     <Content Include="WebForms\Search\Search.aspx" />
     <Content Include="WebForms\Support\About.aspx" />
@@ -228,6 +229,13 @@
     </Compile>
     <Compile Include="WebForms\Discussion\Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Discussion\MyDiscussion.aspx.cs">
+      <DependentUpon>MyDiscussion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Discussion\MyDiscussion.aspx.designer.cs">
+      <DependentUpon>MyDiscussion.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Explore\Explore.aspx.cs">
       <DependentUpon>Explore.aspx</DependentUpon>

@@ -12,8 +12,8 @@ namespace RoundTable.WebForms.Discussion
     public partial class DiscussionPost : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string postID, likeID, commentID, bookmarkID;
-        string hex = "#7c3aed";
+        string postID, likeID, commentID, bookmarkID, viewID;
+        string hex = "#4F46E5";
 
         //To be modified
         string userID = "Shrimp";
@@ -31,7 +31,7 @@ namespace RoundTable.WebForms.Discussion
                 int commentStatus = 0;
 
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT *,(SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID) AND (commentStatus = 1)) AS totalComment FROM Post INNER JOIN [User] ON Post.userID = [User].userID WHERE postID='" + postID + "'", con);
+                SqlCommand cmd = new SqlCommand("SELECT *,(SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID) AND (commentStatus = 1)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN [User] ON Post.userID = [User].userID WHERE postID='" + postID + "'", con);
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader dr = cmd.ExecuteReader();
 
@@ -49,6 +49,7 @@ namespace RoundTable.WebForms.Discussion
                     tag = dr["tagID"].ToString();
                     postLike_lbl.Text = dr["totalLike"].ToString();
                     postComment_lbl.Text = dr["totalComment"].ToString();
+                    postView_lbl.Text = dr["totalView"].ToString();
                 }
                 con.Close();
 
@@ -129,6 +130,8 @@ namespace RoundTable.WebForms.Discussion
                     threedot_dropdown_btn_2.Visible = false;
                     threedot_dropdown_btn_3.Visible = false;
                 }
+
+                IncreaseViewCount();
             }
         }
 
@@ -163,6 +166,79 @@ namespace RoundTable.WebForms.Discussion
             i++;
             int id = 1000000000 + i;
             bookmarkID = "BM" + id.ToString();
+        }
+
+        protected void GenerateViewID()
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(viewID) FROM DiscussionView", con);
+            int i = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+            i++;
+            int id = 1000000000 + i;
+            viewID = "VW" + id.ToString();
+        }
+
+        private void IncreaseViewCount()
+        {
+            string viewDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            int viewCount, totalViewCount;
+
+            GenerateViewID();
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT viewID FROM DiscussionView WHERE userID='" + userID + "' AND postID='" + postID + "'", con);
+            SqlCommand cmd2 = new SqlCommand("SELECT viewCount FROM DiscussionView WHERE userID='" + userID + "' AND postID='" + postID + "'", con);
+            SqlCommand cmd3 = new SqlCommand("SELECT COUNT(viewID) FROM DiscussionView WHERE postID='" + postID + "'", con);
+
+            object obj = cmd.ExecuteScalar();
+
+            if (obj != null && DBNull.Value != obj)
+            {
+                viewID = cmd.ExecuteScalar().ToString();
+                viewCount = (int)cmd2.ExecuteScalar();
+                viewCount += 1;
+                SqlCommand update = new SqlCommand("UPDATE DiscussionView SET viewCount='" + viewCount + "' WHERE userID='" + userID + "' AND postID='" + postID + "'", con);
+
+                update.ExecuteNonQuery();
+            }
+            else
+            {
+                viewCount = 1;
+
+                SqlCommand insert = new SqlCommand("INSERT INTO DiscussionView(viewID, viewCount, viewDate, postID, userID) VALUES (@viewID, @viewCount, @viewDate, @postID, @userID)", con);
+                insert.Parameters.AddWithValue("@viewID", viewID);
+                insert.Parameters.AddWithValue("@viewCount", viewCount);
+                insert.Parameters.AddWithValue("@viewDate", viewDate);
+                insert.Parameters.AddWithValue("@postID", postID);
+                insert.Parameters.AddWithValue("@userID", userID);
+
+                insert.ExecuteNonQuery();
+            }
+
+            totalViewCount = (int)cmd3.ExecuteScalar();
+
+            con.Close();
+
+            if(totalViewCount < 2 && viewCount < 2)
+            {
+                post_view_panel.ToolTip = "No one has viewed this post yet.\nYou are the first.";
+            }
+            else if (totalViewCount < 2)
+            {
+                post_view_panel.ToolTip = "You are the first to view this post.\nYou have viewed this post " + viewCount +" times.";
+            }
+            else
+            {
+                if (viewCount < 2)
+                {
+                    post_view_panel.ToolTip = totalViewCount - 1 + " people have viewed this post.";
+                }
+                else
+                {
+                    post_view_panel.ToolTip = totalViewCount + " people have viewed this post.\nYou have viewed this post " + viewCount + " times.";
+                }
+            }
         }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -223,31 +299,21 @@ namespace RoundTable.WebForms.Discussion
             share_url_lbl.Text = "Copy this unique URL and share it with your friends to start an asynchronous discussion!";
             copy_btn.Text = "Copy URL";
 
-            if (share_url_btn.CssClass.Contains("border-gray-700"))
-            {
-                post_url_txt.Text = Request.Url.AbsoluteUri;
-            }
-            else
-            {
-                post_url_txt.Text = "Embed Code";
-            }
+            post_url_txt.Text = Request.Url.AbsoluteUri;
+            post_url_txt.CssClass = post_url_txt.CssClass.Replace("font-mono", "");
         }
 
         protected void share_embeded_btn_Command(object sender, CommandEventArgs e)
         {
             share_url_btn.CssClass = share_url_btn.CssClass.Replace("border-gray-700", "border-transparent");
             share_embeded_btn.CssClass = share_embeded_btn.CssClass.Replace("border-transparent", "border-gray-700");
-            share_url_lbl.Text = "Copy this unique embed code and share it on your website to further promote the discussion!";
+            share_url_lbl.Text = "Copy this unique embed code and share it on your website to promote the discussion!";
             copy_btn.Text = "Copy Embed Code";
 
-            if (share_url_btn.CssClass.Contains("border-gray-700"))
-            {
-                post_url_txt.Text = Request.Url.AbsoluteUri;
-            }
-            else
-            {
-                post_url_txt.Text = "Embed Code";
-            }
+            string url = Request.Url.AbsoluteUri;
+
+            post_url_txt.Text = "<iframe src='" + url + "' height='500' width='600' style='border: none;' title='" + postTitle_lbl.Text + "'></iframe>";
+            post_url_txt.CssClass += " font-mono";
         }
 
         protected void copy_btn_Click(object sender, EventArgs e)
@@ -284,7 +350,7 @@ namespace RoundTable.WebForms.Discussion
         protected void close_btn_Command(object sender, CommandEventArgs e)
         {
             share_panel.Visible = false;
-            Response.Redirect(Request.Url.AbsoluteUri);
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void comment_btn_Command(object sender, CommandEventArgs e)
@@ -313,7 +379,7 @@ namespace RoundTable.WebForms.Discussion
 
                 comment_txt.Text = "";
 
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.RawUrl);
             }
             else
             {
@@ -362,7 +428,7 @@ namespace RoundTable.WebForms.Discussion
 
                 //Response.Write("<script>alert('Liked')</script>");
 
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.RawUrl);
             }
             else
             {
@@ -374,7 +440,7 @@ namespace RoundTable.WebForms.Discussion
                 update.ExecuteNonQuery();
                 con.Close();
 
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.RawUrl);
             }
         }
 
@@ -421,7 +487,7 @@ namespace RoundTable.WebForms.Discussion
 
                 react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
 
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.RawUrl);
             }
             else
             {
@@ -433,7 +499,7 @@ namespace RoundTable.WebForms.Discussion
                 update.ExecuteNonQuery();
                 con.Close();
 
-                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect(Request.RawUrl);
             }
         }
     }

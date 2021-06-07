@@ -166,11 +166,21 @@
     <Content Include="Content\img\support_illustration_1.svg" />
     <Content Include="Content\img\support_illustration_2.svg" />
     <Content Include="Content\js\script.js" />
+    <Content Include="SearchService.asmx" />
     <Content Include="Web.config" />
     <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
     <Content Include="WebForms\Discussion\EditDiscussion.aspx" />
     <Content Include="WebForms\Explore\Explore.aspx" />
     <Content Include="WebForms\Search\Search.aspx" />
+    <Content Include="WebForms\Search\SearchScripts\jquery-ui.min.js" />
+    <Content Include="WebForms\Search\SearchScripts\jquery.js" />
+    <Content Include="WebForms\Search\SearchStyles\images\ui-icons_444444_256x240.png" />
+    <Content Include="WebForms\Search\SearchStyles\images\ui-icons_555555_256x240.png" />
+    <Content Include="WebForms\Search\SearchStyles\images\ui-icons_777620_256x240.png" />
+    <Content Include="WebForms\Search\SearchStyles\images\ui-icons_777777_256x240.png" />
+    <Content Include="WebForms\Search\SearchStyles\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="WebForms\Search\SearchStyles\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="WebForms\Search\SearchStyles\jquery-ui.min.css" />
     <Content Include="WebForms\Support\About.aspx" />
     <Content Include="WebForms\Support\Feedback.aspx" />
     <Content Include="WebForms\Support\Privacy.aspx" />
@@ -192,6 +202,10 @@
       <DependentUpon>BotService.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchService.asmx.cs">
+      <DependentUpon>SearchService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WebForms\Bookmark\Bookmark.aspx.cs">
       <DependentUpon>Bookmark.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

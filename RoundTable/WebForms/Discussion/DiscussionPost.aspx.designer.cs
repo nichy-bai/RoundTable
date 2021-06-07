@@ -24,13 +24,31 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Panel share_panel;
 
         /// <summary>
-        /// post_url_lbl control.
+        /// share_url_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label post_url_lbl;
+        protected global::System.Web.UI.WebControls.LinkButton share_url_btn;
+
+        /// <summary>
+        /// share_embeded_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton share_embeded_btn;
+
+        /// <summary>
+        /// share_url_lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label share_url_lbl;
 
         /// <summary>
         /// post_url_txt control.
@@ -76,6 +94,15 @@ namespace RoundTable.WebForms.Discussion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label postDate_lbl;
+
+        /// <summary>
+        /// editDate_lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label editDate_lbl;
 
         /// <summary>
         /// threedot_dropdown_btn_1 control.

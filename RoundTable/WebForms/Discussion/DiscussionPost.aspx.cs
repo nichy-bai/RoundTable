@@ -41,7 +41,7 @@ namespace RoundTable.WebForms.Discussion
                     userID_lbl.ToolTip = dr["name"].ToString();
 
                     postDate_lbl.Text = Convert.ToDateTime(dr["postDate"]).ToString("d MMMM yyyy");
-                    postDate_lbl.ToolTip = dr["postDate"].ToString();
+                    postDate_lbl.ToolTip = Convert.ToDateTime(dr["postDate"]).ToString("dddd, dd/MM/yyyy h:mm:ss tt");
 
                     postTitle_lbl.Text = dr["postTitle"].ToString();
                     postContent_lbl.Text = dr["postContent"].ToString();
@@ -61,6 +61,7 @@ namespace RoundTable.WebForms.Discussion
                 SqlCommand cmd7 = new SqlCommand("SELECT COUNT(bookmarkID) FROM Bookmark WHERE postID='" + postID + "' AND (bookmarkStatus = 1)", con);
                 SqlCommand cmd8 = new SqlCommand("SELECT bookmarkStatus FROM Bookmark WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
                 SqlCommand cmd9 = new SqlCommand("SELECT COUNT(commentID) FROM DiscussionComment WHERE postID='" + postID + "' AND (commentStatus = 1) AND userID='" + userID + "'", con);
+                SqlCommand cmd10 = new SqlCommand("SELECT editDate FROM Post WHERE postID='" + postID + "'", con);
 
                 topicName_lbl.Text = cmd2.ExecuteScalar().ToString();
                 topic_btn.ToolTip = cmd3.ExecuteScalar().ToString();
@@ -106,6 +107,17 @@ namespace RoundTable.WebForms.Discussion
                 if (commentStatus > 0)
                 {
                     react_comment_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
+                }
+
+                object obj4 = cmd10.ExecuteScalar();
+
+                if (obj4 != null && DBNull.Value != obj4)
+                {
+                    string editDate = Convert.ToDateTime(cmd10.ExecuteScalar()).ToString("d MMMM yyyy");
+                    string editDateFull = Convert.ToDateTime(cmd10.ExecuteScalar()).ToString("dddd, dd/MM/yyyy h:mm:ss tt");
+
+                    editDate_lbl.Text = "(Edited on " + editDate +")";
+                    editDate_lbl.ToolTip = "Edited on " + editDateFull;
                 }
 
                 con.Close();
@@ -168,20 +180,26 @@ namespace RoundTable.WebForms.Discussion
 
         protected void threedot_dropdown_btn_1_Click(object sender, EventArgs e)
         {
+            //Share Post
+
             share_panel.Visible = true;
             post_url_txt.Text = Request.Url.AbsoluteUri;
         }
 
         protected void threedot_dropdown_btn_2_Click(object sender, EventArgs e)
         {
+            //Edit Post
+
             Response.Redirect("../Discussion/EditDiscussion.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 
         protected void threedot_dropdown_btn_3_Click(object sender, EventArgs e)
         {
-            bool likeStatus = false;
+            //Delete Post
 
-            SqlCommand update = new SqlCommand("UPDATE Post SET postStatus='" + likeStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
+            bool postStatus = false;
+
+            SqlCommand update = new SqlCommand("UPDATE Post SET postStatus='" + postStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
             con.Open();
             update.ExecuteNonQuery();
             con.Close();
@@ -193,12 +211,48 @@ namespace RoundTable.WebForms.Discussion
 
         protected void threedot_dropdown_btn_4_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('4')</script>");
+            //Report Post
+
+            Response.Write("<script>alert('not yet implemented')</script>");
+        }
+
+        protected void share_url_btn_Command(object sender, CommandEventArgs e)
+        {
+            share_url_btn.CssClass = share_url_btn.CssClass.Replace("border-transparent", "border-gray-700");
+            share_embeded_btn.CssClass = share_embeded_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            share_url_lbl.Text = "Copy this unique URL and share it with your friends to start an asynchronous discussion!";
+            copy_btn.Text = "Copy URL";
+
+            if (share_url_btn.CssClass.Contains("border-gray-700"))
+            {
+                post_url_txt.Text = Request.Url.AbsoluteUri;
+            }
+            else
+            {
+                post_url_txt.Text = "Embed Code";
+            }
+        }
+
+        protected void share_embeded_btn_Command(object sender, CommandEventArgs e)
+        {
+            share_url_btn.CssClass = share_url_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            share_embeded_btn.CssClass = share_embeded_btn.CssClass.Replace("border-transparent", "border-gray-700");
+            share_url_lbl.Text = "Copy this unique embed code and share it on your website to further promote the discussion!";
+            copy_btn.Text = "Copy Embed Code";
+
+            if (share_url_btn.CssClass.Contains("border-gray-700"))
+            {
+                post_url_txt.Text = Request.Url.AbsoluteUri;
+            }
+            else
+            {
+                post_url_txt.Text = "Embed Code";
+            }
         }
 
         protected void copy_btn_Click(object sender, EventArgs e)
         {
-            if (copy_btn.Text == "Copy URL")
+            if (copy_btn.Text == "Copy URL" || copy_btn.Text == "Copy Embed Code")
             {
                 copy_btn.Text = "Copied!";
             }

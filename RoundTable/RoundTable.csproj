@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\OneDrive\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Discord.Net.Core, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Discord.Net.Core.2.2.0\lib\net461\Discord.Net.Core.dll</HintPath>
     </Reference>
@@ -168,12 +172,12 @@
     <Content Include="Content\js\script.js" />
     <Content Include="ProfileImages\Avatar.png" />
     <Content Include="ProfileImages\Sheesh.png" />
-    <Content Include="SearchService.asmx" />
+    <Content Include="WebForms\Search\SearchService.asmx" />
     <Content Include="Web.config" />
     <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
     <Content Include="WebForms\Discussion\EditDiscussion.aspx" />
     <Content Include="WebForms\Explore\Explore.aspx" />
-    <Content Include="WebForms\Search\Search.aspx" />
+    <Content Include="WebForms\Search\Searchpage.aspx" />
     <Content Include="WebForms\Search\SearchScripts\jquery-ui.min.js" />
     <Content Include="WebForms\Search\SearchScripts\jquery.js" />
     <Content Include="WebForms\Search\SearchStyles\images\ui-icons_444444_256x240.png" />
@@ -204,7 +208,7 @@
       <DependentUpon>BotService.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchService.asmx.cs">
+    <Compile Include="WebForms\Search\SearchService.asmx.cs">
       <DependentUpon>SearchService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
@@ -257,12 +261,12 @@
     <Compile Include="WebForms\RoundTable_master.Master.designer.cs">
       <DependentUpon>RoundTable_master.Master</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\Search\Search.aspx.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
+    <Compile Include="WebForms\Search\Searchpage.aspx.cs">
+      <DependentUpon>Searchpage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\Search\Search.aspx.designer.cs">
-      <DependentUpon>Search.aspx</DependentUpon>
+    <Compile Include="WebForms\Search\Searchpage.aspx.designer.cs">
+      <DependentUpon>Searchpage.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Support\About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>

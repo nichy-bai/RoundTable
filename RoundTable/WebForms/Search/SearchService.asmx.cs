@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace RoundTable
 {
@@ -21,27 +21,27 @@ namespace RoundTable
     {
 
         [WebMethod]
-        public List<string> search(string searchKey)
+        public List<string> searchQuery(string keyword)
         {
             string CS = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            List<string> searchKeys = new List<string>();
+            List<string> keywords = new List<string>();
             using (SqlConnection con = new SqlConnection(CS))
             {
-                SqlCommand cmd = new SqlCommand("spGetMatchingQuery", con);
+                SqlCommand cmd = new SqlCommand("spSearch", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                SqlParameter parameter = new SqlParameter("@searchKey", searchKey);
+                SqlParameter parameter = new SqlParameter("@keyword", keyword);
                 cmd.Parameters.Add(parameter);
 
                 con.Open();
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    searchKeys.Add(rdr["postTitle"].ToString());
-                    searchKeys.Add(rdr["postContent"].ToString());
+                    //keywords.Add(rdr["postTitle"].ToString());
+                    keywords.Add(rdr["postContent"].ToString());
                 }
             }
-            return searchKeys;
+            return keywords;
         }
     }
 }

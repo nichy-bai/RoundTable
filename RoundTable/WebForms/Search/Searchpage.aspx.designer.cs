@@ -11,7 +11,7 @@ namespace RoundTable.WebForms.Search
 {
 
 
-    public partial class Search
+    public partial class Searchpage
     {
 
         /// <summary>

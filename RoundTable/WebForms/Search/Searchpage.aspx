@@ -1,15 +1,26 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="Search.aspx.cs" Inherits="RoundTable.WebForms.Search.Search" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="Searchpage.aspx.cs" Inherits="RoundTable.WebForms.Search.Searchpage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="SearchStyles/jquery-ui.min.css" rel="stylesheet" />
-    <script src="<%= Page.ResolveClientUrl("SearchScripts/jquery.js") %>"></script>
-    <script src="<%= Page.ResolveClientUrl("SearchScripts/jquery-ui.min.js") %>"></script>
+    <script src="SearchScripts/jquery.js"></script>
+    <script src="SearchScripts/jquery-ui.min.js"></script>
+    <script>
+        $.extend($.ui.autocomplete.prototype.options, {
+            open: function (event, ui) {
+                $(this).autocomplete("widget").css({
+                    "width": ($(this).outerWidth() + "px")
+                });
+            }
+        });
+    </script>
     <script type="text/javascript">
         $(function () {
             $('#<%= txtSearch.ClientID %>').autocomplete({
                source: function (request, response) {
                    $.ajax({
                        url: "SearchService.asmx/searchQuery",
-                       data: "{ 'searchKey': '" + request.term + "' }",
+                       data: "{ 'keyword': '" + request.term + "' }",
                        type: "POST",
                        dataType: "json",
                        contentType: "application/json;charset=utf-8",
@@ -33,7 +44,16 @@
             </div>
             <div class="flex flex-row justify-between space-x-2">
                 <div class="w-4/5">
-                    <asp:TextBox ID="txtSearch" runat="server" TextMode="Search" placeholder="Search" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+                   <%-- <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>--%>
+                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+                    <%--<ajaxToolkit:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server"
+                        TargetControlID="txtSearch" 
+                        ServiceMethod="SearchCustomers" 
+                        EnableCaching="true" 
+                        MinimumPrefixLength="1" 
+                        CompletionSetCount="1" 
+                        CompletionInterval="10">
+                    </ajaxToolkit:AutoCompleteExtender>--%>
                 </div>
                 <div class="w-1/5">
                     <asp:LinkButton ID="btnSearch" runat="server" OnClick="btnSearch_Click" CssClass="flex flex-row justify-center px-4 py-2.5 text-sm capitalize text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 rounded-xl border-2 border-indigo-500 transition ease-in-out duration-300">

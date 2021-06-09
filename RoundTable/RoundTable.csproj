@@ -176,6 +176,8 @@
     <Content Include="Web.config" />
     <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
     <Content Include="WebForms\Discussion\EditDiscussion.aspx" />
+    <Content Include="WebForms\Discussion\MyDiscussion.aspx" />
+    <Content Include="WebForms\Discussion\ReportDiscussion.aspx" />
     <Content Include="WebForms\Explore\Explore.aspx" />
     <Content Include="WebForms\Search\Searchpage.aspx" />
     <Content Include="WebForms\Search\SearchScripts\jquery-ui.min.js" />
@@ -246,6 +248,20 @@
     </Compile>
     <Compile Include="WebForms\Discussion\Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Discussion\MyDiscussion.aspx.cs">
+      <DependentUpon>MyDiscussion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Discussion\MyDiscussion.aspx.designer.cs">
+      <DependentUpon>MyDiscussion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Discussion\ReportDiscussion.aspx.cs">
+      <DependentUpon>ReportDiscussion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Discussion\ReportDiscussion.aspx.designer.cs">
+      <DependentUpon>ReportDiscussion.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Explore\Explore.aspx.cs">
       <DependentUpon>Explore.aspx</DependentUpon>

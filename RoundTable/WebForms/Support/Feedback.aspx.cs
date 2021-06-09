@@ -22,6 +22,7 @@ namespace RoundTable.WebForms.Support
                 DropDownList1.Items.Insert(1, "Feature requests");
                 DropDownList1.Items.Insert(2, "Bug reports");
                 DropDownList1.Items.Insert(3, "Ask questions");
+                DropDownList1.Items.Insert(4, "Others");
             }
         }
         protected void GenerateID()
@@ -55,10 +56,10 @@ namespace RoundTable.WebForms.Support
             string feedbackTitle = TextBox1.Text;
             string feedbackContent = TextBox2.Text;
             string feedbackDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            int feedbackType = DropDownList1.SelectedIndex;
+            string feedbackType = DropDownList1.SelectedItem.Value;
 
             //to be modified
-            string userID = "testing";
+            string userID = "Shrimp";
 
             string insertCmd = "INSERT INTO Feedback(feedbackID, feedbackTitle, feedbackContent, feedbackDate, feedbackType, userID) VALUES (@feedbackID, @feedbackTitle, @feedbackContent, @feedbackDate, @feedbackType, @userID)";
             SqlCommand cmd = new SqlCommand(insertCmd, con);
@@ -72,10 +73,9 @@ namespace RoundTable.WebForms.Support
             cmd.ExecuteNonQuery();
             con.Close();
 
-            DropDownList1.ClearSelection();
-            DropDownList1.Items.Insert(0, "[Select a Feedback Category]");
-            TextBox1.Text = "";
-            TextBox2.Text = "";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+            "alert('Successfully feedback!'); window.location='" +
+            Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
         }
     }
 }

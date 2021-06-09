@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="DiscussionPost.aspx.cs" Inherits="RoundTable.WebForms.Discussion.DiscussionPost" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="DiscussionPost.aspx.cs" Inherits="RoundTable.WebForms.Discussion.DiscussionPost" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--Modal box--%>
@@ -14,7 +14,7 @@
 
                 <!--Body-->
                 <asp:Label ID="share_url_lbl" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Copy this unique URL and share it with your friends to start an asynchronous discussion!"></asp:Label>
-                <asp:TextBox ID="post_url_txt" runat="server" TextMode="MultiLine" ReadOnly="true" Text="[postURL]" onFocus="this.select()" CssClass="border-2 my-5 px-5 py-4 w-full rounded-lg resize-none text-gray-800 focus:text-black"></asp:TextBox>
+                <asp:TextBox ID="post_url_txt" runat="server" TextMode="MultiLine" ReadOnly="true" Text="[postURL]" onFocus="this.select()" CssClass="border-2 my-5 px-5 py-4 w-full rounded-lg resize-none text-gray-800 focus:text-black text-sm"></asp:TextBox>
 
                 <!--Footer-->
                 <div class="flex justify-end">
@@ -30,7 +30,7 @@
         <div class="flex flex-row justify-between border-b-2 pb-2">
             <%--User detail--%>
             <div>
-                <a href="#" class="flex flex-row hover:underline transition ease-in-out duration-300">
+                <a href="#" class="flex flex-row">
                     <svg
                         class="w-12 h-12"
                         fill="none"
@@ -45,7 +45,7 @@
                         </path>
                     </svg>
                     <div class="flex flex-col px-4 justify-start items-start">
-                        <div class="font-medium">
+                        <div class="font-medium hover:underline">
                             <asp:Label ID="userID_lbl" runat="server" Text="[userID]"></asp:Label>
                         </div>
                         <div class="flex flex-wrap text-sm opacity-80 no-underline">
@@ -237,6 +237,32 @@
                         <asp:Label ID="postBookmark_lbl" runat="server" Text="[postBookmark]"></asp:Label>
                     </div>
                 </asp:LinkButton>
+            </div>
+            <%--View--%>
+            <div class="mr-5 mt-4">
+                <asp:Panel ID="post_view_panel" runat="server" CssClass="flex flex-row justify-start items-center px-2 py-1">
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                        </path>
+                    </svg>
+                    <div class="px-1">
+                        <asp:Label ID="postView_lbl" runat="server" Text="[postView]"></asp:Label>
+                    </div>
+                </asp:Panel>
             </div>
         </div>
     </div>

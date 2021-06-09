@@ -289,7 +289,7 @@ namespace RoundTable.WebForms.Discussion
         {
             //Report Post
 
-            Response.Write("<script>alert('not yet implemented')</script>");
+            Response.Redirect("../Discussion/ReportDiscussion.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 
         protected void share_url_btn_Command(object sender, CommandEventArgs e)

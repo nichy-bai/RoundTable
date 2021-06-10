@@ -14,11 +14,9 @@
     <%--View bookmark--%>
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="Repeater1_ItemDataBound">
         <ItemTemplate>
-            <div
-                class="mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
-
+            <asp:Panel ID="post_panel" runat="server" CssClass="mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
                 <asp:LinkButton ID="bookmarkBody_btn" runat="server" CssClass="flex flex-col cursor-pointer hover:shadow-md hover:text-gray-800 p-5 px-6 rounded-lg transition ease-in-out duration-500 border-r-4 border-b-4 border-transparent hover:border-gray-600" OnCommand="bookmarkBody_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
-                    <div class="flex flex-row justify-start border-b-2 pb-2">
+                    <asp:Panel ID="user_detail_panel" runat="server" CssClass="flex flex-row justify-start border-b-2 pb-2 mb-5">
                         <%--User detail--%>
                         <div>
                             <div class="flex flex-row">
@@ -39,22 +37,36 @@
                                     <div class="font-medium">
                                         <abbr title="<%#Eval("name") %>" style="text-decoration: none;"><%#Eval("postUserID") %></abbr>
                                     </div>
-                                    <div class="flex flex-wrap text-sm opacity-80 no-underline">
+                                    <div class="flex flex-wrap text-sm text-gray-600">
                                         <abbr class="mr-2" title="<%#DataBinder.Eval(Container.DataItem, "postDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "postDate", "{0:d MMMM yyyy}") %></abbr>
                                         <asp:Label ID="edit_date_lbl" runat="server" CssClass="no-underline" Visible='<%# DataBinder.Eval(Container.DataItem, "editDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}").ToString().Length > 0 ? true : false %>' ToolTip='<%# "Edited on " + DataBinder.Eval(Container.DataItem, "editDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>' Text='<%# "(Edited on " + DataBinder.Eval(Container.DataItem, "editDate", "{0:d MMMM yyyy}") + ")" %>'></asp:Label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:Panel>
 
                     <%--Discussion title--%>
-                    <div class="my-5">
-                        <asp:Label ID="postID_lbl" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
+                    <div class="mb-5">
                         <asp:Label ID="postTitle_lbl" runat="server" Text='<%#Eval("postTitle") %>' CssClass="text-xl font-medium py-2"></asp:Label>
                     </div>
+
+                    <%--Compact layout's user detail--%>
+                    <asp:Panel ID="compact_user_panel" runat="server" Visible="false" CssClass="flex flex-row flex-wrap text-sm text-gray-600 mb-2">
+                        <span>—&nbsp;</span>
+                        <abbr title="<%#Eval("name") %>" style="text-decoration: none;"><%#Eval("postUserID") %></abbr>
+                        <span>&nbsp;@&nbsp;</span>
+                        <abbr class="mr-2" title="<%#DataBinder.Eval(Container.DataItem, "postDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "postDate", "{0:d MMMM yyyy}") %></abbr>
+                        <asp:Label ID="Label1" runat="server" CssClass="no-underline" Visible='<%# DataBinder.Eval(Container.DataItem, "editDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}").ToString().Length > 0 ? true : false %>' ToolTip='<%# "Edited on " + DataBinder.Eval(Container.DataItem, "editDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>' Text='<%# "(Edited on " + DataBinder.Eval(Container.DataItem, "editDate", "{0:d MMMM yyyy}") + ")" %>'></asp:Label>
+                    </asp:Panel>
+
+                    <%--Cozy layout's post content--%>
+                    <asp:Panel ID="cozy_content_panel" runat="server" Visible="false" CssClass="flex flex-row flex-wrap mb-2">
+                        <asp:Label ID="postContent_lbl" runat="server" Text='<%#Eval("postContent").ToString().Length > 200 ? Eval("postContent").ToString().PadRight(200).Substring(0,200).TrimEnd() + " ..." : Eval("postContent").ToString().Length > 0 ? Eval("postContent") : "(No Content)"%>' CssClass="text-gray-700 py-2"></asp:Label>
+                    </asp:Panel>
+
                     <%--Discussion tag--%>
-                    <div class="flex flex-row my-2 items-center">
+                    <asp:Panel ID="tag_panel" runat="server" CssClass="flex flex-row my-2 items-center">
                         <asp:Label ID="topic_lbl" runat="server" ToolTip='<%#Eval("topicDesc") %>' CssClass="mr-5">
                         <div class="flex flex-row justify-center items-center text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1">
                             <div class="mr-1">#</div>
@@ -71,7 +83,8 @@
                             </div>
                         </div>
                         </asp:Label>
-                    </div>
+                    </asp:Panel>
+
                     <%--Reaction--%>
                     <div class="flex flex-row items-center flex-wrap">
                         <%--Like--%>
@@ -157,7 +170,7 @@
                         </div>
                     </div>
                 </asp:LinkButton>
-            </div>
+            </asp:Panel>
         </ItemTemplate>
         <FooterTemplate>
             <asp:Label ID="noBookmark_lbl" runat="server" CssClass="text-gray-400 text-center mt-10 mb-14" Text="No bookmark yet" Visible="false"></asp:Label>

@@ -27,7 +27,7 @@ namespace RoundTable
             List<string> keywords = new List<string>();
             using (SqlConnection con = new SqlConnection(CS))
             {
-                SqlCommand cmd = new SqlCommand("spSearch", con);
+                SqlCommand cmd = new SqlCommand("spTopic", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlParameter parameter = new SqlParameter("@keyword", keyword);

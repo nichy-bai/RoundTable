@@ -38,8 +38,31 @@ namespace RoundTable
                 while (rdr.Read())
                 {
                     //keywords.Add(rdr["postTitle"].ToString());
-                    keywords.Add(rdr["postContent"].ToString());
+                    keywords.Add(rdr["topicName"].ToString());
+                    //keywords.Add(rdr["postTitle"].ToString());
+                    //keywords.Add(rdr["userID"].ToString());
                 }
+                con.Close();
+
+                con.Open();
+                SqlCommand cmdUser = new SqlCommand("spUser", con);
+                cmdUser.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter parameterUser = new SqlParameter("@keyword", keyword);
+                cmdUser.Parameters.Add(parameterUser);
+
+
+                SqlDataReader rdrUser = cmdUser.ExecuteReader();
+                while (rdrUser.Read())
+                {
+                    //keywords.Add(rdr["postTitle"].ToString());
+                    //keywords.Add(rdr["topicName"].ToString());
+                    //keywords.Add(rdr["postTitle"].ToString());
+                    keywords.Add(rdrUser["userID"].ToString());
+                }
+                con.Close();
+
+
             }
             return keywords;
         }

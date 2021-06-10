@@ -78,6 +78,123 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Button close_btn;
 
         /// <summary>
+        /// view_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel view_panel;
+
+        /// <summary>
+        /// view_global_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton view_global_btn;
+
+        /// <summary>
+        /// view_personal_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton view_personal_btn;
+
+        /// <summary>
+        /// view_lbl_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label view_lbl_1;
+
+        /// <summary>
+        /// count_lbl_1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label count_lbl_1;
+
+        /// <summary>
+        /// count_lbl_11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label count_lbl_11;
+
+        /// <summary>
+        /// view_lbl_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label view_lbl_2;
+
+        /// <summary>
+        /// count_lbl_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label count_lbl_2;
+
+        /// <summary>
+        /// count_lbl_22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label count_lbl_22;
+
+        /// <summary>
+        /// view_lbl_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label view_lbl_3;
+
+        /// <summary>
+        /// count_lbl_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label count_lbl_3;
+
+        /// <summary>
+        /// count_lbl_33 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label count_lbl_33;
+
+        /// <summary>
+        /// close_view_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button close_view_btn;
+
+        /// <summary>
         /// userID_lbl control.
         /// </summary>
         /// <remarks>
@@ -249,13 +366,13 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Label postBookmark_lbl;
 
         /// <summary>
-        /// post_view_panel control.
+        /// react_view_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel post_view_panel;
+        protected global::System.Web.UI.WebControls.LinkButton react_view_btn;
 
         /// <summary>
         /// postView_lbl control.
@@ -265,6 +382,15 @@ namespace RoundTable.WebForms.Discussion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label postView_lbl;
+
+        /// <summary>
+        /// post_report_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel post_report_panel;
 
         /// <summary>
         /// comment_txt control.

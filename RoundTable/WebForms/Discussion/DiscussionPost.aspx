@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="DiscussionPost.aspx.cs" Inherits="RoundTable.WebForms.Discussion.DiscussionPost" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%--Modal box--%>
+    <%--Share post modal box--%>
     <asp:Panel ID="share_panel" runat="server" Visible="false" CssClass="fixed w-full h-full top-0 left-0 flex items-center justify-center">
         <div class="absolute w-full h-full bg-gray-900 opacity-50 z-40"></div>
         <div class="bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-md z-50 overflow-y-auto">
@@ -20,6 +20,51 @@
                 <div class="flex justify-end">
                     <asp:Button ID="copy_btn" runat="server" Text="Copy URL" CssClass="px-4 bg-transparent p-3 rounded-lg text-indigo-600 hover:bg-gray-100 mr-5 cursor-pointer" OnClientClick="copyURL()" OnClick="copy_btn_Click" />
                     <asp:Button ID="close_btn" runat="server" Text="Close" CssClass="px-4 bg-indigo-600 p-3 rounded-lg text-white hover:bg-indigo-500 cursor-pointer" OnCommand="close_btn_Command" />
+                </div>
+            </div>
+        </div>
+    </asp:Panel>
+
+    <%--View count modal box--%>
+    <asp:Panel ID="view_panel" runat="server" Visible="false" CssClass="fixed w-full h-full top-0 left-0 flex items-center justify-center">
+        <div class="absolute w-full h-full bg-gray-900 opacity-50 z-40"></div>
+        <div class="bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-md z-50 overflow-y-auto">
+            <div class="py-5 text-left px-7">
+                <!--Title-->
+                <div class="flex justify-around items-center mb-5">
+                    <asp:LinkButton ID="view_global_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-gray-700" Text="Global View" OnCommand="view_global_btn_Command"></asp:LinkButton>
+                    <asp:LinkButton ID="view_personal_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Personal View" OnCommand="view_personal_btn_Command"></asp:LinkButton>
+                </div>
+
+                <!--Body-->
+                <div class="flex flex-col justify-center mb-5">
+                    <table class="table-fixed border-collapse">
+                        <tbody>
+                            <tr class="border-b-2">
+                                <td class="py-2 w-9/12"><asp:Label ID="view_lbl_1" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Number of people viewed this post"></asp:Label></td>
+                                <td class="pr-2">: </td>
+                                <td class="text-center"><asp:Label ID="count_lbl_1" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center"><asp:Label ID="count_lbl_11" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                            </tr>
+                            <tr class="border-b-2">
+                                <td class="py-2 w-9/12"><asp:Label ID="view_lbl_2" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Total number of views of this post"></asp:Label></td>
+                                <td class="pr-2">: </td>
+                                <td class="text-center"><asp:Label ID="count_lbl_2" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center"><asp:Label ID="count_lbl_22" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 w-9/12"><asp:Label ID="view_lbl_3" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Average number of views per person"></asp:Label></td>
+                                <td class="pr-2">: </td>
+                                <td class="text-center"><asp:Label ID="count_lbl_3" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center"><asp:Label ID="count_lbl_33" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--Footer-->
+                <div class="flex justify-end">
+                    <asp:Button ID="close_view_btn" runat="server" Text="Close" CssClass="px-4 bg-indigo-600 p-3 rounded-lg text-white hover:bg-indigo-500 cursor-pointer" OnCommand="close_view_btn_Command" />
                 </div>
             </div>
         </div>
@@ -239,8 +284,8 @@
                 </asp:LinkButton>
             </div>
             <%--View--%>
-            <div class="mr-5 mt-4">
-                <asp:Panel ID="post_view_panel" runat="server" CssClass="flex flex-row justify-start items-center px-2 py-1">
+            <div class="mr-4 mt-4">
+                <asp:LinkButton ID="react_view_btn" runat="server" CssClass="flex flex-row justify-start items-center hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_view_btn_Command">
                     <svg
                         class="w-6 h-6"
                         fill="none"
@@ -262,6 +307,24 @@
                     <div class="px-1">
                         <asp:Label ID="postView_lbl" runat="server" Text="[postView]"></asp:Label>
                     </div>
+                </asp:LinkButton>
+            </div>
+            <%--Report--%>
+            <div class="mr-4 mt-4">
+                <asp:Panel ID="post_report_panel" runat="server" CssClass="flex flex-row justify-start items-center px-2 py-1 text-yellow-600" Visible="false">
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z">
+                        </path>
+                    </svg>
                 </asp:Panel>
             </div>
         </div>

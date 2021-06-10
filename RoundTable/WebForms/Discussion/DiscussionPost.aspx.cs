@@ -63,6 +63,7 @@ namespace RoundTable.WebForms.Discussion
                 SqlCommand cmd8 = new SqlCommand("SELECT bookmarkStatus FROM Bookmark WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
                 SqlCommand cmd9 = new SqlCommand("SELECT COUNT(commentID) FROM DiscussionComment WHERE postID='" + postID + "' AND (commentStatus = 1) AND userID='" + userID + "'", con);
                 SqlCommand cmd10 = new SqlCommand("SELECT editDate FROM Post WHERE postID='" + postID + "'", con);
+                SqlCommand cmd11 = new SqlCommand("SELECT reportID FROM Report WHERE postID='" + postID + "'", con);
 
                 topicName_lbl.Text = cmd2.ExecuteScalar().ToString();
                 topic_btn.ToolTip = cmd3.ExecuteScalar().ToString();
@@ -119,6 +120,14 @@ namespace RoundTable.WebForms.Discussion
 
                     editDate_lbl.Text = "(Edited on " + editDate +")";
                     editDate_lbl.ToolTip = "Edited on " + editDateFull;
+                }
+
+                object obj5 = cmd11.ExecuteScalar();
+
+                if (obj5 != null && DBNull.Value != obj5)
+                {
+                    post_report_panel.Visible = true;
+                    post_report_panel.ToolTip = "This discussion post was recently reported by other users.\nIt may contain harmful content that violates regulations.";
                 }
 
                 con.Close();
@@ -222,21 +231,21 @@ namespace RoundTable.WebForms.Discussion
 
             if(totalViewCount < 2 && viewCount < 2)
             {
-                post_view_panel.ToolTip = "No one has viewed this post yet.\nYou are the first.";
+                react_view_btn.ToolTip = "No one has viewed this post yet.\nYou are the first.";
             }
             else if (totalViewCount < 2)
             {
-                post_view_panel.ToolTip = "You are the first to view this post.\nYou have viewed this post " + viewCount +" times.";
+                react_view_btn.ToolTip = "You are the first to view this post.\nYou have viewed this post " + viewCount +" times.";
             }
             else
             {
                 if (viewCount < 2)
                 {
-                    post_view_panel.ToolTip = totalViewCount - 1 + " people have viewed this post.";
+                    react_view_btn.ToolTip = totalViewCount - 1 + " people have viewed this post.";
                 }
                 else
                 {
-                    post_view_panel.ToolTip = totalViewCount + " people have viewed this post.\nYou have viewed this post " + viewCount + " times.";
+                    react_view_btn.ToolTip = totalViewCount + " people have viewed this post.\nYou have viewed this post " + viewCount + " times.";
                 }
             }
         }
@@ -350,6 +359,44 @@ namespace RoundTable.WebForms.Discussion
         protected void close_btn_Command(object sender, CommandEventArgs e)
         {
             share_panel.Visible = false;
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void view_global_btn_Command(object sender, CommandEventArgs e)
+        {
+            view_global_btn.CssClass = view_global_btn.CssClass.Replace("border-transparent", "border-gray-700");
+            view_personal_btn.CssClass = view_personal_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            view_lbl_1.Text = "Number of people viewed this post";
+            view_lbl_2.Text = "Total number of views of this post";
+            view_lbl_3.Text = "Average number of views per person";
+
+            count_lbl_1.Visible = true;
+            count_lbl_2.Visible = true;
+            count_lbl_3.Visible = true;
+            count_lbl_11.Visible = false;
+            count_lbl_22.Visible = false;
+            count_lbl_33.Visible = false;
+        }
+
+        protected void view_personal_btn_Command(object sender, CommandEventArgs e)
+        {
+            view_global_btn.CssClass = view_global_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            view_personal_btn.CssClass = view_personal_btn.CssClass.Replace("border-transparent", "border-gray-700");
+            view_lbl_1.Text = "Number of times you viewed this post";
+            view_lbl_2.Text = "The first time you viewed this post";
+            view_lbl_3.Text = "How long has it been since you first saw this";
+
+            count_lbl_1.Visible = false;
+            count_lbl_2.Visible = false;
+            count_lbl_3.Visible = false;
+            count_lbl_11.Visible = true;
+            count_lbl_22.Visible = true;
+            count_lbl_33.Visible = true;
+        }
+
+        protected void close_view_btn_Command(object sender, CommandEventArgs e)
+        {
+            view_panel.Visible = false;
             Response.Redirect(Request.RawUrl);
         }
 
@@ -502,5 +549,38 @@ namespace RoundTable.WebForms.Discussion
                 Response.Redirect(Request.RawUrl);
             }
         }
+
+        protected void react_view_btn_Command(object sender, CommandEventArgs e)
+        {
+            view_panel.Visible = true;
+
+            int numPeopleView, totalNumView, personalView;
+            double AvgNumView;
+            DateTime personalViewDate, todayDate = System.DateTime.Now;
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(viewID) FROM DiscussionView WHERE postID='" + postID + "'", con);
+            SqlCommand cmd2 = new SqlCommand("SELECT SUM(viewCount) FROM DiscussionView WHERE postID='" + postID + "'", con);
+            SqlCommand cmd3 = new SqlCommand("SELECT viewCount FROM DiscussionView WHERE postID='" + postID + "' AND userID='" + userID + "'", con);
+            SqlCommand cmd4 = new SqlCommand("SELECT viewDate FROM DiscussionView WHERE postID='" + postID + "' AND userID='" + userID + "'", con);
+
+            numPeopleView = (int)cmd.ExecuteScalar();
+            totalNumView = (int)cmd2.ExecuteScalar();
+            AvgNumView = (totalNumView / numPeopleView);
+
+            personalView = (int)cmd3.ExecuteScalar();
+            personalViewDate = Convert.ToDateTime(cmd4.ExecuteScalar());
+
+            con.Close();
+
+            count_lbl_1.Text = numPeopleView.ToString();
+            count_lbl_2.Text = totalNumView.ToString();
+            count_lbl_3.Text = AvgNumView.ToString();
+
+            count_lbl_11.Text = personalView.ToString();
+            count_lbl_22.Text = personalViewDate.ToString("dd/MM/yy");
+            count_lbl_33.Text = (todayDate - personalViewDate).Days.ToString() + " Day(s)";
+        }
+
     }
 }

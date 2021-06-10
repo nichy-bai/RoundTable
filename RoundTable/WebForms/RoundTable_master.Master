@@ -125,7 +125,7 @@
                     </div>
                     <div class="mb-3">
                         <asp:Panel ID="nav_search_btn" runat="server">
-                            <a href="#" class="flex flex-col items-center px-8 py-2 h-auto w-24 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
+                            <a href="../Search/Searchpage.aspx" class="flex flex-col items-center px-8 py-2 h-auto w-24 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-dark-300 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
                                 <svg
                                     class="w-8 h-8"
                                     fill="none"

@@ -132,6 +132,33 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.Label count_lbl_11;
 
         /// <summary>
+        /// count_up_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel count_up_panel;
+
+        /// <summary>
+        /// count_down_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel count_down_panel;
+
+        /// <summary>
+        /// count_equal_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel count_equal_panel;
+
+        /// <summary>
         /// view_lbl_2 control.
         /// </summary>
         /// <remarks>

@@ -41,22 +41,79 @@
                     <table class="table-fixed border-collapse">
                         <tbody>
                             <tr class="border-b-2">
-                                <td class="py-2 w-9/12"><asp:Label ID="view_lbl_1" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Number of people viewed this post"></asp:Label></td>
+                                <td class="py-2 w-9/12">
+                                    <asp:Label ID="view_lbl_1" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Number of people viewed this post"></asp:Label></td>
                                 <td class="pr-2">: </td>
-                                <td class="text-center"><asp:Label ID="count_lbl_1" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
-                                <td class="text-center"><asp:Label ID="count_lbl_11" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center">
+                                    <asp:Label ID="count_lbl_1" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center">
+                                    <asp:Label ID="count_lbl_11" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label>
+                                </td>
+                                <td>
+                                    <asp:Panel ID="count_up_panel" runat="server" CssClass="text-green-600 w-auto" ToolTip="You have viewed this post more than average." Visible="false">
+                                        <svg
+                                            class="w-5 h-5"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1.5"
+                                                d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z">
+                                            </path>
+                                        </svg>
+                                    </asp:Panel>
+                                    <asp:Panel ID="count_down_panel" runat="server" CssClass="text-red-600 w-auto" ToolTip="The number of times you have viewed posts is below average." Visible="false">
+                                        <svg
+                                            class="w-5 h-5"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1.5"
+                                                d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z">
+                                            </path>
+                                        </svg>
+                                    </asp:Panel>
+                                    <asp:Panel ID="count_equal_panel" runat="server" CssClass="text-gray-400 w-auto rounded-full border-2 border-gray-400" ToolTip="The number of times you have viewed a post is equal to the average." Visible="false">
+                                        <svg
+                                            class="w-3 h-3"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1.5"
+                                                d="M4 8h16M4 16h16">
+                                            </path>
+                                        </svg>
+                                    </asp:Panel>
+                                </td>
                             </tr>
                             <tr class="border-b-2">
-                                <td class="py-2 w-9/12"><asp:Label ID="view_lbl_2" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Total number of views of this post"></asp:Label></td>
+                                <td class="py-2 w-9/12">
+                                    <asp:Label ID="view_lbl_2" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Total number of views of this post"></asp:Label></td>
                                 <td class="pr-2">: </td>
-                                <td class="text-center"><asp:Label ID="count_lbl_2" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
-                                <td class="text-center"><asp:Label ID="count_lbl_22" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center">
+                                    <asp:Label ID="count_lbl_2" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center">
+                                    <asp:Label ID="count_lbl_22" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
                             </tr>
                             <tr>
-                                <td class="py-2 w-9/12"><asp:Label ID="view_lbl_3" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Average number of views per person"></asp:Label></td>
+                                <td class="py-2 w-9/12">
+                                    <asp:Label ID="view_lbl_3" runat="server" CssClass="text-sm md:text-md text-gray-700" Text="Average number of views per person"></asp:Label></td>
                                 <td class="pr-2">: </td>
-                                <td class="text-center"><asp:Label ID="count_lbl_3" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
-                                <td class="text-center"><asp:Label ID="count_lbl_33" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center">
+                                    <asp:Label ID="count_lbl_3" runat="server" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
+                                <td class="text-center">
+                                    <asp:Label ID="count_lbl_33" runat="server" Visible="false" CssClass="text-md sm:text-lg text-gray-800 font-bold"></asp:Label></td>
                             </tr>
                         </tbody>
                     </table>
@@ -152,7 +209,7 @@
                             </svg>
                             <span class="pl-2">Edit Post</span>
                         </asp:LinkButton>
-                        <asp:LinkButton runat="server" ID="threedot_dropdown_btn_3" CssClass="flex flex-row px-4 py-3 text-sm capitalize text-gray-700 hover:bg-indigo-500 hover:text-white rounded-xl transition ease-in-out duration-300" OnClick="threedot_dropdown_btn_3_Click" OnClientClick="return confirm('Are you sure to delete the discussion post?')" >
+                        <asp:LinkButton runat="server" ID="threedot_dropdown_btn_3" CssClass="flex flex-row px-4 py-3 text-sm capitalize text-gray-700 hover:bg-indigo-500 hover:text-white rounded-xl transition ease-in-out duration-300" OnClick="threedot_dropdown_btn_3_Click" OnClientClick="return confirm('Are you sure to delete the discussion post?')">
                             <svg
                                 class="w-6 h-6"
                                 fill="none"
@@ -287,6 +344,7 @@
             <div class="mr-4 mt-4">
                 <asp:LinkButton ID="react_view_btn" runat="server" CssClass="flex flex-row justify-start items-center hover:bg-gray-100 px-2 py-1 rounded-lg transition ease-in-out duration-300" OnCommand="react_view_btn_Command">
                     <svg
+                        runat="server"
                         class="w-6 h-6"
                         fill="none"
                         stroke="currentColor"
@@ -296,7 +354,8 @@
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="1.5"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                        </path>
                         <path
                             stroke-linecap="round"
                             stroke-linejoin="round"
@@ -311,7 +370,7 @@
             </div>
             <%--Report--%>
             <div class="mr-4 mt-4">
-                <asp:Panel ID="post_report_panel" runat="server" CssClass="flex flex-row justify-start items-center px-2 py-1 text-yellow-600" Visible="false">
+                <asp:Panel ID="post_report_panel" runat="server" CssClass="flex flex-row justify-start items-center px-2 py-1 text-yellow-600 cursor-help" Visible="false">
                     <svg
                         class="w-6 h-6"
                         fill="none"

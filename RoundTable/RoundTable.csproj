@@ -172,6 +172,7 @@
     <Content Include="Content\js\script.js" />
     <Content Include="ProfileImages\Avatar.png" />
     <Content Include="ProfileImages\Sheesh.png" />
+    <Content Include="WebForms\Search\SearchScripts\speech-input.js" />
     <Content Include="WebForms\Search\SearchService.asmx" />
     <Content Include="Web.config" />
     <Content Include="WebForms\Discussion\DiscussionPost.aspx" />
@@ -189,6 +190,7 @@
     <Content Include="WebForms\Search\SearchStyles\images\ui-icons_cc0000_256x240.png" />
     <Content Include="WebForms\Search\SearchStyles\images\ui-icons_ffffff_256x240.png" />
     <Content Include="WebForms\Search\SearchStyles\jquery-ui.min.css" />
+    <Content Include="WebForms\Search\SearchStyles\speech-input.css" />
     <Content Include="WebForms\Support\About.aspx" />
     <Content Include="WebForms\Support\Feedback.aspx" />
     <Content Include="WebForms\Support\Privacy.aspx" />

@@ -6,7 +6,7 @@
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
                 <span class="block text-4xl font-bold mb-2 font-title text-gray-700">Submit Report</span>
-                <span class="block opacity-80">Please describe your concerns and we'll look into it.</span>
+                <span class="block opacity-80">Please describe your concerns and we'll look into it</span>
             </div>
         </div>
     </header>

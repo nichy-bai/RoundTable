@@ -376,6 +376,10 @@ namespace RoundTable.WebForms.Discussion
             count_lbl_11.Visible = false;
             count_lbl_22.Visible = false;
             count_lbl_33.Visible = false;
+
+            count_up_panel.Visible = false;
+            count_down_panel.Visible = false;
+            count_equal_panel.Visible = false;
         }
 
         protected void view_personal_btn_Command(object sender, CommandEventArgs e)
@@ -392,6 +396,22 @@ namespace RoundTable.WebForms.Discussion
             count_lbl_11.Visible = true;
             count_lbl_22.Visible = true;
             count_lbl_33.Visible = true;
+
+            int personal = Int32.Parse(count_lbl_11.Text);
+            int avg = Int32.Parse(count_lbl_3.Text);
+
+            if(personal > avg)
+            {
+                count_up_panel.Visible = true;
+            }
+            else if(personal < avg)
+            {
+                count_down_panel.Visible = true;
+            }
+            else
+            {
+                count_equal_panel.Visible = true;
+            }
         }
 
         protected void close_view_btn_Command(object sender, CommandEventArgs e)
@@ -580,6 +600,10 @@ namespace RoundTable.WebForms.Discussion
             count_lbl_11.Text = personalView.ToString();
             count_lbl_22.Text = personalViewDate.ToString("dd/MM/yy");
             count_lbl_33.Text = (todayDate - personalViewDate).Days.ToString() + " Day(s)";
+
+            count_up_panel.Visible = false;
+            count_down_panel.Visible = false;
+            count_equal_panel.Visible = false;
         }
 
     }

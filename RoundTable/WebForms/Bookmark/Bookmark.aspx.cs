@@ -23,6 +23,63 @@ namespace RoundTable.WebForms.Bookmark
             {
                 this.BindRepeater();
             }
+
+            HttpCookie layoutCookie = Request.Cookies["layoutCookie"];
+            string layout;
+
+            if (layoutCookie != null)
+            {
+                layout = layoutCookie["Layout"];
+
+                if (layout == "Classic")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Panel p1 = (Panel)item.FindControl("post_panel");
+                        Panel p2 = (Panel)item.FindControl("user_detail_panel");
+                        Panel p3 = (Panel)item.FindControl("compact_user_panel");
+                        Panel p4 = (Panel)item.FindControl("tag_panel");
+                        Panel p5 = (Panel)item.FindControl("cozy_content_panel");
+                        p1.CssClass = "mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
+                        p2.Visible = true;
+                        p3.Visible = false;
+                        p4.Visible = true;
+                        p5.Visible = false;
+                    }
+                }
+                else if (layout == "Compact")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Panel p1 = (Panel)item.FindControl("post_panel");
+                        Panel p2 = (Panel)item.FindControl("user_detail_panel");
+                        Panel p3 = (Panel)item.FindControl("compact_user_panel");
+                        Panel p4 = (Panel)item.FindControl("tag_panel");
+                        Panel p5 = (Panel)item.FindControl("cozy_content_panel");
+                        p1.CssClass = "mx-5 bg-white border-b-4 rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
+                        p2.Visible = false;
+                        p3.Visible = true;
+                        p4.Visible = false;
+                        p5.Visible = false;
+                    }
+                }
+                else if (layout == "Cozy")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Panel p1 = (Panel)item.FindControl("post_panel");
+                        Panel p2 = (Panel)item.FindControl("user_detail_panel");
+                        Panel p3 = (Panel)item.FindControl("compact_user_panel");
+                        Panel p4 = (Panel)item.FindControl("tag_panel");
+                        Panel p5 = (Panel)item.FindControl("cozy_content_panel");
+                        p1.CssClass = "mt-0 m-5 mb-8 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
+                        p2.Visible = true;
+                        p3.Visible = false;
+                        p4.Visible = true;
+                        p5.Visible = true;
+                    }
+                }
+            }
         }
 
         private void BindRepeater()

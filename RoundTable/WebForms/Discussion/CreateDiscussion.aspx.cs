@@ -88,7 +88,7 @@ namespace RoundTable.WebForms.Discussion
             con.Close();
 
             string postTitle = TextBox1.Text;
-            string postContent = TextBox2.Text;
+            string postContent = TextBox2.Text.Replace("\n", "<br>");
             string postDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             bool postStatus = true;
 

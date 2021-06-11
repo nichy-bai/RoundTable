@@ -77,6 +77,9 @@ namespace RoundTable.WebForms.Bookmark
                         p3.Visible = false;
                         p4.Visible = true;
                         p5.Visible = true;
+
+                        Label lbl = (Label)item.FindControl("postContent_lbl");
+                        lbl.Text = lbl.Text.Replace("<br>", "");
                     }
                 }
             }

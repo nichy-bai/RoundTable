@@ -424,7 +424,7 @@ namespace RoundTable.WebForms.Discussion
         {
             GenerateCommentID();
 
-            string commentContent = comment_txt.Text;
+            string commentContent = comment_txt.Text.Replace("\n", "<br>");
             string commentDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             bool commentStatus = true;
 
@@ -599,7 +599,7 @@ namespace RoundTable.WebForms.Discussion
 
             count_lbl_11.Text = personalView.ToString();
             count_lbl_22.Text = personalViewDate.ToString("dd/MM/yy");
-            count_lbl_33.Text = (todayDate - personalViewDate).Days.ToString() + " Day(s)";
+            count_lbl_33.Text = (todayDate - personalViewDate).Days.ToString() + "&nbsp;Day(s)";
 
             count_up_panel.Visible = false;
             count_down_panel.Visible = false;

@@ -35,7 +35,7 @@ namespace RoundTable.WebForms.Discussion
                     tagID = dr["tagID"].ToString();
 
                     TextBox1.Text = dr["postTitle"].ToString();
-                    TextBox2.Text = dr["postContent"].ToString();
+                    TextBox2.Text = dr["postContent"].ToString().Replace("<br>", "");
                 }
                 con.Close();
 
@@ -102,7 +102,7 @@ namespace RoundTable.WebForms.Discussion
             con.Close();
 
             string postTitle = TextBox1.Text;
-            string postContent = TextBox2.Text;
+            string postContent = TextBox2.Text.Replace("\n", "<br>");
             string editDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
             SqlCommand cmd3 = new SqlCommand("UPDATE Post SET postTitle='" + postTitle + "', postContent='" + postContent + "', topicID='" + topicID + "', tagID='" + tagID + "', editDate='" + editDate + "' WHERE postID='" + postID + "'", con);

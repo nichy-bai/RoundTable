@@ -135,6 +135,9 @@ namespace RoundTable.WebForms.Discussion
                         p3.Visible = false;
                         p4.Visible = true;
                         p5.Visible = true;
+
+                        Label lbl = (Label)item.FindControl("postContent_lbl");
+                        lbl.Text = lbl.Text.Replace("<br>", "");
                     }
 
                     layout_classic_btn.CssClass = layout_classic_btn.CssClass.Replace("text-indigo-600", "text-gray-800");

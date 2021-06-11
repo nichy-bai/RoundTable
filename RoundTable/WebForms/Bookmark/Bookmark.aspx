@@ -1,6 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="Bookmark.aspx.cs" Inherits="RoundTable.WebForms.Bookmark.Bookmark" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        .customize-scrollbar::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        .customize-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #E5E7EB;
+        }
+
+        .customize-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #9CA3AF;
+        }
+    </style>
     <header
         class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="relative px-0 flex flex-row flex-grow">
@@ -62,7 +75,7 @@
 
                     <%--Cozy layout's post content--%>
                     <asp:Panel ID="cozy_content_panel" runat="server" Visible="false" CssClass="flex flex-row flex-wrap mb-2">
-                        <asp:Label ID="postContent_lbl" runat="server" Text='<%#Eval("postContent").ToString().Length > 200 ? Eval("postContent").ToString().PadRight(200).Substring(0,200).TrimEnd() + " ..." : Eval("postContent").ToString().Length > 0 ? Eval("postContent") : "(No Content)"%>' CssClass="text-gray-700 py-2"></asp:Label>
+                        <asp:Label ID="postContent_lbl" runat="server" Text='<%#Eval("postContent").ToString().Length > 0 ? Eval("postContent") : "(No Content)"%>' CssClass="text-gray-700 py-2 w-full h-auto max-h-40 overflow-y-auto hover:border-gray-200 border-t-2 border-b-2 border-transparent transition ease-in-out duration-500 customize-scrollbar"></asp:Label>
                     </asp:Panel>
 
                     <%--Discussion tag--%>

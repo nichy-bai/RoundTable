@@ -1,6 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="Homepage.aspx.cs" Inherits="RoundTable.WebForms.Discussion.Homepage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        .customize-scrollbar::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        .customize-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #E5E7EB;
+        }
+
+        .customize-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #9CA3AF;
+        }
+    </style>
     <%--Modal box--%>
     <asp:Panel ID="personalize_panel" runat="server" Visible="false" CssClass="fixed w-full h-full top-0 left-0 flex items-center justify-center">
         <div class="absolute w-full h-full bg-gray-900 opacity-50 z-40"></div>
@@ -237,8 +250,8 @@
                     </asp:Panel>
 
                     <%--Cozy layout's post content--%>
-                    <asp:Panel ID="cozy_content_panel" runat="server" Visible="false" CssClass="flex flex-row flex-wrap mb-2">
-                        <asp:Label ID="postContent_lbl" runat="server" Text='<%#Eval("postContent").ToString().Length > 200 ? Eval("postContent").ToString().PadRight(200).Substring(0,200).TrimEnd() + " ..." : Eval("postContent").ToString().Length > 0 ? Eval("postContent") : "(No Content)"%>' CssClass="text-gray-700 py-2"></asp:Label>
+                    <asp:Panel ID="cozy_content_panel" runat="server" Visible="false" CssClass="flex flex-row flex-nowrap w-full mb-2">
+                        <asp:Label ID="postContent_lbl" runat="server" Text='<%#Eval("postContent").ToString().Length > 0 ? Eval("postContent") : "(No Content)"%>' CssClass="text-gray-700 py-2 w-full h-auto max-h-40 overflow-y-auto hover:border-gray-200 border-t-2 border-b-2 border-transparent transition ease-in-out duration-500 customize-scrollbar"></asp:Label>
                     </asp:Panel>
 
                     <%--Discussion tag--%>
@@ -333,7 +346,8 @@
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         stroke-width="1.5"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                    </path>
                                     <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"

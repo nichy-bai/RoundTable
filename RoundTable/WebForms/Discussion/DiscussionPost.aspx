@@ -247,7 +247,7 @@
         </div>
         <%--Discussion title--%>
         <div class="my-5">
-            <asp:Label ID="postTitle_lbl" runat="server" Text="[postTitle]" CssClass="text-xl font-medium py-2"></asp:Label>
+            <asp:Label ID="postTitle_lbl" runat="server" Text="[postTitle]" CssClass="text-2xl font-medium py-2"></asp:Label>
         </div>
         <%--Discussion content--%>
         <div class="mb-5">

@@ -40,10 +40,10 @@
                 <span class="block text-4xl font-bold mb-2 font-title">Search</span>
                 <%--<span class="block opacity-80">Search RoundTable.</span>--%>
             </div>
-            <div class="flex flex-row justify-between space-x-2">
-                <div class="w-4/5">
+            <div class="flex flex-row justify-between space-x-4">
+                <div class="si-wrapper w-11/12">
                    <%-- <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>--%>
-                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+                    <asp:TextBox ID="txtSearch" runat="server" TextMode="Search" placeholder="Search" CssClass="speech-input overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
                     <%--<ajaxToolkit:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server"
                         TargetControlID="txtSearch" 
                         ServiceMethod="SearchCustomers" 
@@ -53,8 +53,8 @@
                         CompletionInterval="10">
                     </ajaxToolkit:AutoCompleteExtender>--%>
                 </div>
-                <div class="w-1/5">
-                    <asp:LinkButton ID="btnSearch" runat="server" OnClick="btnSearch_Click" CssClass="flex flex-row justify-center px-4 py-2.5 text-sm capitalize text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 rounded-xl border-2 border-indigo-500 transition ease-in-out duration-300">
+                <div class="1/12">
+                    <asp:LinkButton ID="btnSearch" runat="server" OnClick="btnSearch_Click" CssClass="flex flex-row justify-center px-4 py-2.5 text-sm capitalize text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 rounded-xl border-2 border-indigo-500 transition ease-in-out duration-300 shadow-2xl">
                         <svg 
                             class="w-6 h-6" 
                             fill="none" 
@@ -70,6 +70,38 @@
                         </svg>
                     </asp:LinkButton>
                 </div>
+                <div>
+                    <%--<asp:LinkButton ID="btnVoice" runat="server" CssClass="si-btn flex flex-row justify-center px-4 py-2.5 text-sm capitalize text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 rounded-xl border-2 border-indigo-500 transition ease-in-out duration-300 shadow-2xl">
+                        <svg 
+                            class="w-6 h-6" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
+                            </path>
+                        </svg>
+                    </asp:LinkButton>--%>
+                    <%--<button class="flex flex-row justify-center px-4 py-2.5 text-sm capitalize text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 rounded-xl border-2 border-indigo-500 transition ease-in-out duration-300 shadow-2xl" id="btnVoice">
+                        <svg 
+                            class="w-6 h-6" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path 
+                                stroke-linecap="round" 
+                                stroke-linejoin="round" 
+                                stroke-width="2" 
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z">
+                            </path>
+                        </svg>
+                    </button>--%>
+                </div>
             </div>
         </div>
     </header>
@@ -77,7 +109,10 @@
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         test
     </div>
-    <asp:Label ID="lblNoResult" runat="server" Text="Tiuuu"></asp:Label>
+    <div>
+        <asp:Label ID="lblNoResult" runat="server" Text="" CssClass="flex justify-center items-center"></asp:Label>
+    </div>
+    
     <asp:Repeater ID="Repeater1" runat="server">
         <ItemTemplate>
             <div
@@ -200,4 +235,7 @@
             </div>
         </ItemTemplate>
     </asp:Repeater>
+    <link href="SearchStyles/speech-input.css" rel="stylesheet" />
+    <script src="SearchScripts/speech-input.js"></script>
+    <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
 </asp:Content>

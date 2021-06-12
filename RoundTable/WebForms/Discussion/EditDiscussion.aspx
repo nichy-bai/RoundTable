@@ -52,9 +52,9 @@
         tinymce.init({
             selector: 'textarea',
             menubar: 'edit view insert format help',
-            plugins: 'wordcount insertdatetime help fullscreen emoticons',
+            plugins: 'wordcount insertdatetime help fullscreen emoticons code',
             toolbar: [
-                'undo redo | styleselect | bold italic underline | link image | alignleft aligncenter alignright alignjustify | wordcount fullscreen'
+                'undo redo | styleselect | bold italic underline | link image | alignleft aligncenter alignright alignjustify | wordcount fullscreen code'
             ]
         });
     </script>

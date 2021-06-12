@@ -422,9 +422,12 @@ namespace RoundTable.WebForms.Discussion
 
         protected void comment_btn_Command(object sender, CommandEventArgs e)
         {
+            var filter = new ProfanityFilter.ProfanityFilter();
+
             GenerateCommentID();
 
             string commentContent = comment_txt.Text.TrimEnd('\r', '\n').Replace("\n", "<br>");
+            commentContent = filter.CensorString(commentContent);
             string commentDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             bool commentStatus = true;
 

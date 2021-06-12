@@ -77,6 +77,8 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+            var filter = new ProfanityFilter.ProfanityFilter();
+
             GeneratePostID();
 
             SqlCommand cmd = new SqlCommand("SELECT topicID FROM Topic WHERE topicName='" + DropDownList1.SelectedItem.Value + "'", con);
@@ -90,6 +92,9 @@ namespace RoundTable.WebForms.Discussion
             string postTitle = TextBox1.Text;
             string postContent = TextBox2.Text;
             postContent = TrimEnd(postContent, "\r\n<p>&nbsp;</p>");
+            postContent = postContent.Replace(">", "> ");
+            postContent = postContent.Replace("</", " </");
+            postContent = filter.CensorString(postContent);
             string postDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             bool postStatus = true;
 

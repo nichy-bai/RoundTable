@@ -50,7 +50,12 @@
         };
 
         tinymce.init({
-            selector: 'textarea'
+            selector: 'textarea',
+            menubar: 'edit view insert format help',
+            plugins: 'wordcount insertdatetime help fullscreen emoticons',
+            toolbar: [
+                'undo redo | styleselect | bold italic underline | link image | alignleft aligncenter alignright alignjustify | wordcount fullscreen'
+            ]
         });
     </script>
 </asp:Content>

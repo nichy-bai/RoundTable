@@ -424,7 +424,7 @@ namespace RoundTable.WebForms.Discussion
         {
             GenerateCommentID();
 
-            string commentContent = comment_txt.Text.Replace("\n", "<br>");
+            string commentContent = comment_txt.Text.TrimEnd('\r', '\n').Replace("\n", "<br>");
             string commentDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             bool commentStatus = true;
 

@@ -103,6 +103,7 @@ namespace RoundTable.WebForms.Discussion
 
             string postTitle = TextBox1.Text;
             string postContent = TextBox2.Text;
+            postContent = TrimEnd(postContent, "\r\n<p>&nbsp;</p>");
             string editDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
             SqlCommand cmd3 = new SqlCommand("UPDATE Post SET postTitle='" + postTitle + "', postContent='" + postContent + "', topicID='" + topicID + "', tagID='" + tagID + "', editDate='" + editDate + "' WHERE postID='" + postID + "'", con);
@@ -120,6 +121,15 @@ namespace RoundTable.WebForms.Discussion
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
             "alert('Successfully updated!'); window.location='" +
             Request.ApplicationPath + "../WebForms/Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2) + "';", true);
+        }
+
+        public static string TrimEnd(string input, string suffixToRemove)
+        {
+            while (input != null && suffixToRemove != null && input.EndsWith(suffixToRemove))
+            {
+                input = input.Substring(0, input.Length - suffixToRemove.Length);
+            }
+            return input;
         }
     }
 }

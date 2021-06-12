@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace RoundTable.WebForms.Discussion
 {
@@ -157,6 +158,12 @@ namespace RoundTable.WebForms.Discussion
                     Label lblFooter = (Label)e.Item.FindControl("noPost_lbl");
                     lblFooter.Visible = true;
                 }
+            }
+
+            foreach (RepeaterItem item in Repeater1.Items)
+            {
+                Label lbl = item.FindControl("postContent_lbl") as Label;
+                lbl.Text = Regex.Replace(lbl.Text , "<[a-zA-Z]\\s+.*>\\s+.*\\s+<\\/a>", string.Empty);
             }
         }
 

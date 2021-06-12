@@ -51,11 +51,11 @@
 
         tinymce.init({
             selector: 'textarea',
-            menubar: 'edit view insert format help',
-            plugins: 'wordcount insertdatetime help fullscreen emoticons code',
-            toolbar: [
-                'undo redo | styleselect | bold italic underline | link image | alignleft aligncenter alignright alignjustify | wordcount fullscreen code'
-            ]
+            menubar: 'file edit view insert format help',
+            statusbar: false,
+            plugins: 'wordcount insertdatetime help fullscreen emoticons link image autolink autoresize autosave charmap hr imagetools media paste preview searchreplace visualchars',
+            toolbar: ['undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | wordcount fullscreen'],
+            default_link_target: '_blank'
         });
     </script>
 </asp:Content>

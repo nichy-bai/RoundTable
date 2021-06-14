@@ -9,6 +9,10 @@
             <hr />
             <br />
             <div>
+                <p class="text-gray-600 italic">Last updated on 9 June 2021</p>
+                <br />
+                <br />
+
                 <p>Welcome to RoundTable!</p>
                 <br />
                 <p>These terms and conditions outline the rules and regulations for the use of RoundTable's Website.</p>
@@ -18,6 +22,7 @@
                 <p>The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and all Agreements: "Client", "You" and "Your" refers to you, the person log on this website and compliant to the Company’s terms and conditions. "The Company", "Ourselves", "We", "Our" and "Us", refers to our Company. "Party", "Parties", or "Us", refers to both the Client and ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services, in accordance with and subject to, prevailing law of Netherlands. Any use of the above terminology or other words in the singular, plural, capitalization and/or he/she or they, are taken as interchangeable and therefore as referring to same.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Cookies</h3>
                 <br />
                 <p>We employ the use of cookies. By accessing RoundTable, you agreed to use cookies in agreement with the RoundTable's Privacy Policy.</p>
@@ -25,6 +30,7 @@
                 <p>Most interactive websites use cookies to let us retrieve the user’s details for each visit. Cookies are used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our affiliate/advertising partners may also use cookies.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">License</h3>
                 <br />
                 <p>Unless otherwise stated, RoundTable and/or its licensors own the intellectual property rights for all material on RoundTable. All intellectual property rights are reserved. You may access this from RoundTable for your own personal use subjected to restrictions set in these terms and conditions.</p>
@@ -54,6 +60,7 @@
                 <p>You hereby grant RoundTable a non-exclusive license to use, reproduce, edit and authorize others to use, reproduce and edit any of your Comments in any and all forms, formats or media.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Hyperlinking to our Content</h3>
                 <br />
                 <p>The following organizations may link to our Website without prior written approval:</p>
@@ -94,26 +101,31 @@
                 <p>No use of RoundTable's logo or other artwork will be allowed for linking absent a trademark license agreement.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">iFrames</h3>
                 <br />
                 <p>Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Content Liability</h3>
                 <br />
                 <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Your Privacy</h3>
                 <br />
                 <p>Please read <a href="Privacy.aspx" class="underline" target="_blank">Privacy Policy</a></p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Reservation of Rights</h3>
                 <br />
                 <p>We reserve the right to request that you remove all links or any particular link to our Website. You approve to immediately remove all links to our Website upon request. We also reserve the right to amen these terms and conditions and it’s linking policy at any time. By continuously linking to our Website, you agree to be bound to and follow these linking terms and conditions.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Removal of links from our website</h3>
                 <br />
                 <p>If you find any link on our Website that is offensive for any reason, you are free to contact and inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly.</p>
@@ -121,6 +133,7 @@
                 <p>We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up to date.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Disclaimer</h3>
                 <br />
                 <p>To the maximum extent permitted by applicable law, we exclude all representations, warranties and conditions relating to our website and the use of this website.</p>
@@ -140,39 +153,4 @@
             </div>
         </div>
     </div>
-    <%--Footer--%>
-    <div
-        class="hidden md:flex mt-0 m-5 p-10 bg-white rounded-lg flex-row flex-wrap justify-between items-center shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
-        <div class="flex flex-col items-start justify-items-start">
-            <div class="text-2xl font-bold mb-2 font-title tracking-wide flex flex-row justify-center items-center text-gray-800">
-                <svg
-                    width="40"
-                    height="40"
-                    viewBox="0 0 500 500"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M500 250.594C500 297.339 487.232 341.094 465 378.547V255.361V239.927L451.202 233.011L261.702 138.03L250.5 132.416L239.298 138.03L49.7979 233.011L36 239.927V255.361V380.217C13.1518 342.397 0 298.035 0 250.594C0 112.195 111.929 0 250 0C388.071 0 500 112.195 500 250.594ZM415 295.856V438.861C376.969 472.377 328.698 494.498 275.5 499.9V365.776L415 295.856ZM225.5 365.776V500C172.372 494.82 124.115 472.971 86 439.738V295.856L225.5 365.776Z"
-                        fill="currentColor" />
-                </svg>
-                <span class="ml-3">RoundTable</span>
-            </div>
-            <div class="my-5">
-                <span
-                    class="font-sm font-title hover:text-indigo-600 dark:hover:text-indigo-500 transition ease-in-out duration-300 cursor-default">&#169; 2021 RoundTable</span>
-            </div>
-        </div>
-        <div>
-            <div class="grid grid-cols-1 gap-x-4 gap-y-1 w-64">
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">About</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Support</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Logo & Media</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Privacy</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Terms and Conditions</a>
-            </div>
-        </div>
-    </div>
-    <%--End of Footer--%>
 </asp:Content>

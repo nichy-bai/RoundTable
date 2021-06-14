@@ -191,6 +191,7 @@
     <Content Include="WebForms\Search\SearchStyles\jquery-ui.min.css" />
     <Content Include="WebForms\Search\SearchStyles\speech-input.css" />
     <Content Include="WebForms\Support\About.aspx" />
+    <Content Include="WebForms\Support\Disclaimer.aspx" />
     <Content Include="WebForms\Support\Feedback.aspx" />
     <Content Include="WebForms\Support\Privacy.aspx" />
     <Content Include="WebForms\Support\Support.aspx" />
@@ -291,6 +292,13 @@
     </Compile>
     <Compile Include="WebForms\Support\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Support\Disclaimer.aspx.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Support\Disclaimer.aspx.designer.cs">
+      <DependentUpon>Disclaimer.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Support\Feedback.aspx.cs">
       <DependentUpon>Feedback.aspx</DependentUpon>

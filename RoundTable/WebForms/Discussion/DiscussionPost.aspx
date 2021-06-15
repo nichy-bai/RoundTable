@@ -465,13 +465,13 @@
     </asp:Panel>
 
     <%--View comment--%>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate ASC"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, DiscussionComment.commentStatus, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) AND (commentStatus = 1) ORDER BY DiscussionComment.commentDate ASC"></asp:SqlDataSource>
 
     <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
         <ItemTemplate>
             <div
                 class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
-                <div class="flex flex-row justify-between border-b-2 pb-2">
+                <div class="flex flex-row justify-between items-center border-b-2 pb-2">
                     <%--User detail--%>
                     <div>
                         <a href="#" class="flex flex-row hover:underline transition ease-in-out duration-300">
@@ -491,6 +491,7 @@
                             <div class="flex flex-col px-4 justify-start items-start">
                                 <div class="font-medium">
                                     <abbr title="<%#Eval("name") %>" style="text-decoration: none;"><%#Eval("userID") %></abbr>
+                                    <asp:Label ID="username_hidden_lbl" runat="server" Text='<%#Eval("userID") %>' Visible="false"></asp:Label>
                                 </div>
                                 <div class="text-sm opacity-80 no-underline">
                                     <abbr title="<%#DataBinder.Eval(Container.DataItem, "commentDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "commentDate", "{0:d MMMM yyyy}") %></abbr>
@@ -498,10 +499,28 @@
                             </div>
                         </a>
                     </div>
+                    <div>
+                        <asp:LinkButton ID="delete_comment_btn" runat="server" Visible="false" CssClass="text-gray-300 hover:text-indigo-600 transition ease-in-out duration-300" CommandArgument='<%#Eval("commentID") %>' OnCommand="delete_comment_btn_Command" OnClientClick="return confirm('Are you sure to delete the comment?')" >
+                            <svg
+                                class="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M6 18L18 6M6 6l12 12">
+                                </path>
+                            </svg>
+                        </asp:LinkButton>
+                    </div>
                 </div>
                 <%--Discussion comment--%>
-                <div class="my-5">
-                    <div class="px-1 break-words"><%#Eval("commentContent") %></div>
+                <div class="mt-5">
+                    <asp:Label ID="comment_status_hidden_lbl" runat="server" Text='<%#Eval("commentStatus") %>' Visible="false"></asp:Label>
+                    <asp:Label ID="comment_lbl" runat="server" Text='<%#Eval("commentContent") %>' CssClass="px-1 break-words"></asp:Label>
                 </div>
             </div>
         </ItemTemplate>

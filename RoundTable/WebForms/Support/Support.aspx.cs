@@ -12,7 +12,11 @@ namespace RoundTable.WebForms.Support
         protected void Page_Load(object sender, EventArgs e)
         {
             Panel p1 = (Panel)Master.FindControl("master_aside_panel");
-            p1.Style.Add("display", "none");
+            Panel p2 = (Panel)Master.FindControl("bottom_aside_panel");
+            Panel p3 = (Panel)Master.FindControl("whole_body_panel");
+            p1.Visible = false;
+            p2.Visible = true;
+            p3.CssClass = p3.CssClass.Replace("md:flex-row", "md:flex-col");
         }
     }
 }

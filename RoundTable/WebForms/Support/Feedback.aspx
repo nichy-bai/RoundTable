@@ -14,8 +14,8 @@
         class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row justify-between shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1300">
         <div
             class="flex flex-row items-center justify-start dark:bg-dark-300 hover:bg-gray-300 dark:hover:bg-dark-400 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-100 w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300">
-            <asp:DropDownList ID="DropDownList1" runat="server" DataTextField="topicName" ToolTip="Select a Feedback Category" CssClass="h-12 w-auto sm:w-64 px-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-            </asp:DropDownList>
+            <asp:DropDownList ID="DropDownList1" runat="server" DataTextField="topicName" ToolTip="Select a Feedback Category" CssClass="h-12 w-auto sm:w-64 px-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownList1" InitialValue="[Select a Feedback Category]" ErrorMessage="*Required" ValidationGroup="SendFeedback" Display="Dynamic" CssClass="text-red-600 text-sm mx-2" />
         </div>
     </div>
     <div
@@ -23,6 +23,7 @@
         <div class="mb-5 relative">
             <asp:TextBox ID="TextBox1" runat="server" placeholder="Title" ToolTip="Title" onkeyup="countChar(this)" onkeydown="countChar(this)" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
             <div class="numberOfChar absolute top-1/4 right-3 text-gray-500"></div>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox1" ErrorMessage="*Required" ValidationGroup="SendFeedback" Display="Dynamic" CssClass="text-red-600 text-sm m-2" />
         </div>
         <div>
             <asp:TextBox ID="TextBox2" runat="server" placeholder="Text (Optional)" TextMode="MultiLine" ToolTip="Text" CssClass="overflow-auto min-h-20 h-64 w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
@@ -31,7 +32,7 @@
     <div
         class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row justify-end shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-300">
         <asp:Button ID="Button1" runat="server" Text="Discard" CssClass="mr-5 h-12 w-24 sm:w-40 px-2 border-2 rounded-lg cursor-pointer bg-white hover:bg-gray-100 transition ease-in-out duration-300" OnClick="Button1_Click" OnClientClick="return confirm('Are you sure to discard the current feedback?')" />
-        <asp:Button ID="Button2" runat="server" Text="Send" CssClass="h-12 w-24 sm:w-40 px-2 border-2 rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-700 text-white transition ease-in-out duration-300" OnClick="Button2_Click" />
+        <asp:Button ID="Button2" runat="server" Text="Send" CssClass="h-12 w-24 sm:w-40 px-2 border-2 rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-700 text-white transition ease-in-out duration-300" OnClick="Button2_Click" ValidationGroup="SendFeedback" />
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>

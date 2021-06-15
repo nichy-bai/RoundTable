@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace RoundTable.WebForms.Support
 {
-    public partial class About : System.Web.UI.Page
+    public partial class Disclaimer : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

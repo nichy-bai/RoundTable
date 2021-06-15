@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.UI.HtmlControls;
 
 namespace RoundTable.WebForms.Discussion
 {
@@ -14,6 +15,7 @@ namespace RoundTable.WebForms.Discussion
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         string postID, likeID, commentID, bookmarkID, viewID;
         string hex = "#4F46E5";
+        HttpCookie sortCookie = new HttpCookie("sortCookie");
 
         //To be modified
         string userID = "Shrimp";
@@ -21,6 +23,8 @@ namespace RoundTable.WebForms.Discussion
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            HttpCookie sortCookie = Request.Cookies["sortCookie"];
+            string sort;
 
             postID = "DP" + Request.QueryString["p"];
 
@@ -31,7 +35,7 @@ namespace RoundTable.WebForms.Discussion
                 int commentStatus = 0;
 
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT *,(SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID) AND (commentStatus = 1)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN [User] ON Post.userID = [User].userID WHERE postID='" + postID + "'", con);
+                SqlCommand cmd = new SqlCommand("SELECT *,(SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN [User] ON Post.userID = [User].userID WHERE postID='" + postID + "'", con);
                 cmd.CommandType = CommandType.Text;
                 SqlDataReader dr = cmd.ExecuteReader();
 
@@ -141,6 +145,36 @@ namespace RoundTable.WebForms.Discussion
                 }
 
                 IncreaseViewCount();
+            }
+
+            if(sortCookie != null)
+            {
+                sort = sortCookie["Sort"];
+
+                if(sort == "Old")
+                {
+                    SqlDataSource1.SelectCommand = "SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, DiscussionComment.commentStatus, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate ASC";
+                    SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+                    SqlDataSource1.DataBind();
+                    Repeater1.DataBind();
+
+                    old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+                    old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("bg-white", "bg-gray-200");
+                    new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                }
+                else if (sort == "New")
+                {
+                    SqlDataSource1.SelectCommand = "SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, DiscussionComment.commentStatus, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate DESC";
+                    SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+                    SqlDataSource1.DataBind();
+                    Repeater1.DataBind();
+
+                    old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                    new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+                    new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("bg-white", "bg-gray-200");
+                }
             }
         }
 
@@ -259,6 +293,27 @@ namespace RoundTable.WebForms.Discussion
                     Label lblFooter = (Label)e.Item.FindControl("noComment_lbl");
                     lblFooter.Visible = true;
                     comment_txt.Attributes.Add("placeholder", "Be the first to comment");
+                    sort_panel.Visible = false;
+                }
+            }
+
+            foreach (RepeaterItem item in Repeater1.Items)
+            {
+                LinkButton btn = (LinkButton)item.FindControl("delete_comment_btn");
+                Label lbl = (Label)item.FindControl("username_hidden_lbl");
+                Label lbl2 = (Label)item.FindControl("comment_status_hidden_lbl");
+                Label lbl3 = (Label)item.FindControl("comment_lbl");
+
+                if (lbl.Text == userID && lbl2.Text == "True")
+                {
+                    btn.Visible = true;
+                }
+
+                if(lbl2.Text == "False")
+                {
+                    btn.Visible = false;
+                    lbl3.Text = "(Comment Deleted)";
+                    lbl3.ForeColor = System.Drawing.ColorTranslator.FromHtml("#6B7280");
                 }
             }
         }
@@ -422,9 +477,12 @@ namespace RoundTable.WebForms.Discussion
 
         protected void comment_btn_Command(object sender, CommandEventArgs e)
         {
+            var filter = new ProfanityFilter.ProfanityFilter();
+
             GenerateCommentID();
 
-            string commentContent = comment_txt.Text;
+            string commentContent = comment_txt.Text.TrimEnd('\r', '\n').Replace("\n", "<br>");
+            commentContent = filter.CensorString(commentContent);
             string commentDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             bool commentStatus = true;
 
@@ -452,6 +510,53 @@ namespace RoundTable.WebForms.Discussion
             {
                 Response.Write("<script>alert('Comment cannot be empty')</script>");
             }
+        }
+
+        protected void old_comment_btn_Command(object sender, CommandEventArgs e)
+        {
+            SqlDataSource1.SelectCommand = "SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, DiscussionComment.commentStatus, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate ASC";
+            SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+            SqlDataSource1.DataBind();
+            Repeater1.DataBind();
+
+            old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+            old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("bg-white", "bg-gray-200");
+            new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("bg-gray-200", "bg-white");
+
+            sortCookie["Sort"] = "Old";
+            sortCookie.Expires = DateTime.Now.AddDays(999);
+            Response.Cookies.Add(sortCookie);
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void new_comment_btn_Command(object sender, CommandEventArgs e)
+        {
+            SqlDataSource1.SelectCommand = "SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, DiscussionComment.commentStatus, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate DESC";
+            SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+            SqlDataSource1.DataBind();
+            Repeater1.DataBind();
+
+            old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("bg-gray-200", "bg-white");
+            new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+            new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("bg-white", "bg-gray-200");
+
+            sortCookie["Sort"] = "New";
+            sortCookie.Expires = DateTime.Now.AddDays(999);
+            Response.Cookies.Add(sortCookie);
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void delete_comment_btn_Command(object sender, CommandEventArgs e)
+        {
+            string commentID = e.CommandArgument.ToString();
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("UPDATE DiscussionComment SET commentStatus = 0 WHERE commentID='" + commentID + "'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void react_like_btn_Command(object sender, CommandEventArgs e)
@@ -599,7 +704,7 @@ namespace RoundTable.WebForms.Discussion
 
             count_lbl_11.Text = personalView.ToString();
             count_lbl_22.Text = personalViewDate.ToString("dd/MM/yy");
-            count_lbl_33.Text = (todayDate - personalViewDate).Days.ToString() + " Day(s)";
+            count_lbl_33.Text = (todayDate - personalViewDate).Days.ToString() + "&nbsp;Day(s)";
 
             count_up_panel.Visible = false;
             count_down_panel.Visible = false;

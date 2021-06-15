@@ -78,6 +78,15 @@ namespace RoundTable.WebForms
         protected global::System.Web.UI.WebControls.Panel nav_notification_btn;
 
         /// <summary>
+        /// whole_body_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel whole_body_panel;
+
+        /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace RoundTable.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel master_aside_panel;
+
+        /// <summary>
+        /// bottom_aside_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel bottom_aside_panel;
 
         /// <summary>
         /// ScriptManager1 control.

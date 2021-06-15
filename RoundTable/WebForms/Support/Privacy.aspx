@@ -9,18 +9,24 @@
             <hr />
             <br />
             <div>
+                <p class="text-gray-600 italic">Last updated on 9 June 2021</p>
+                <br />
+                <br />
+
                 <p>At RoundTable, accessible from roundtable.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by RoundTable and how we use it.</p>
                 <br />
-                <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
+                <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to <a href="mailto:roundtable.cs@gmail.com" class="underline">contact us</a>.</p>
                 <br />
                 <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in RoundTable. This policy is not applicable to any information collected offline or via channels other than this website. Our Privacy Policy was created with the help of the Privacy Policy Generator.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Consent</h3>
                 <br />
                 <p>By using our website, you hereby consent to our Privacy Policy and agree to its <a href="Terms.aspx" class="underline" target="_blank">terms</a>.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Information we collect</h3>
                 <br />
                 <p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>
@@ -30,6 +36,7 @@
                 <p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">How we use your information</h3>
                 <br />
                 <p>We use the information we collect in various ways, including to:</p>
@@ -44,11 +51,13 @@
                 </ul>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Log Files</h3>
                 <br />
                 <p>RoundTable follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Cookies and Web Beacons</h3>
                 <br />
                 <p>Like any other website, RoundTable uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
@@ -56,6 +65,7 @@
                 <p>For more general information on cookies, please read <a href="https://www.privacypolicyonline.com/what-are-cookies/" class="underline" target="_blank">"What Are Cookies" from Cookie Consent</a>.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Advertising Partners Privacy Policies</h3>
                 <br />
                 <p>You may consult this list to find the Privacy Policy for each of the advertising partners of RoundTable.</p>
@@ -65,6 +75,7 @@
                 <p>Note that RoundTable has no access to or control over these cookies that are used by third-party advertisers.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Third Party Privacy Policies</h3>
                 <br />
                 <p>RoundTable's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options.</p>
@@ -72,6 +83,7 @@
                 <p>You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">CCPA Privacy Rights (Do Not Sell My Personal Information)</h3>
                 <br />
                 <p>Under the CCPA, among other rights, California consumers have the right to:</p>
@@ -84,6 +96,7 @@
                 <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">GDPR Data Protection Rights</h3>
                 <br />
                 <p>We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
@@ -103,6 +116,7 @@
                 <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
                 <br />
 
+                <br />
                 <h3 class="font-medium text-2xl">Children's Information</h3>
                 <br />
                 <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.</p>
@@ -112,39 +126,4 @@
             </div>
         </div>
     </div>
-    <%--Footer--%>
-    <div
-        class="hidden md:flex mt-0 m-5 p-10 bg-white rounded-lg flex-row flex-wrap justify-between items-center shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
-        <div class="flex flex-col items-start justify-items-start">
-            <div class="text-2xl font-bold mb-2 font-title tracking-wide flex flex-row justify-center items-center text-gray-800">
-                <svg
-                    width="40"
-                    height="40"
-                    viewBox="0 0 500 500"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M500 250.594C500 297.339 487.232 341.094 465 378.547V255.361V239.927L451.202 233.011L261.702 138.03L250.5 132.416L239.298 138.03L49.7979 233.011L36 239.927V255.361V380.217C13.1518 342.397 0 298.035 0 250.594C0 112.195 111.929 0 250 0C388.071 0 500 112.195 500 250.594ZM415 295.856V438.861C376.969 472.377 328.698 494.498 275.5 499.9V365.776L415 295.856ZM225.5 365.776V500C172.372 494.82 124.115 472.971 86 439.738V295.856L225.5 365.776Z"
-                        fill="currentColor" />
-                </svg>
-                <span class="ml-3">RoundTable</span>
-            </div>
-            <div class="my-5">
-                <span
-                    class="font-sm font-title hover:text-indigo-600 dark:hover:text-indigo-500 transition ease-in-out duration-300 cursor-default">&#169; 2021 RoundTable</span>
-            </div>
-        </div>
-        <div>
-            <div class="grid grid-cols-1 gap-x-4 gap-y-1 w-64">
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">About</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Support</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Logo & Media</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Privacy</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Terms and Conditions</a>
-            </div>
-        </div>
-    </div>
-    <%--End of Footer--%>
 </asp:Content>

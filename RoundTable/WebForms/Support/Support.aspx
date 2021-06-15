@@ -105,27 +105,49 @@
         <div class="my-10 flex justify-center items-center invert">
             <img src="../../Content/img/support_illustration_1.svg" alt="illustration_2" class="w-11/12 md:w-2/5 h-auto">
         </div>
-        <div class="text-xl text-center my-10 opacity-80 font-bold text-2xl">Still having problem?</div>
-        <div class="flex flex-row justify-center items-center mb-20">
-            <a
-                href="Feedback.aspx"
-                class="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 dark:bg-dark-300 dark:hover:bg-dark-400 ease-in-out duration-300">
-                <svg class="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                    </path>
-                </svg>
-                <span class="mx-2 hidden sm:inline font-title">Contact Us</span>
-            </a>
+        <div class="text-center mt-10 mb-5 text-gray-800 font-bold text-2xl">Still having problem?</div>
+        <div class="text-center mb-14 text-gray-600 text-xl">Please feel free to contact us.</div>
+        <div class="flex flex-row justify-center flex-wrap">
+            <div class="flex flex-row justify-center items-center mb-20">
+                <a
+                    href="Feedback.aspx"
+                    class="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 dark:bg-dark-300 dark:hover:bg-dark-400 ease-in-out duration-300 mr-10">
+                    <svg class="w-8 h-8"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
+                        </path>
+                    </svg>
+                    <span class="mx-2 hidden sm:inline font-title">Feedback</span>
+                </a>
+            </div>
+            <div class="flex flex-row justify-center items-center mb-20">
+                <a
+                    href="mailto:roundtable.cs@gmail.com"
+                    class="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 dark:bg-dark-300 dark:hover:bg-dark-400 ease-in-out duration-300">
+                    <svg class="w-8 h-8"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span class="mx-2 hidden sm:inline font-title">Email</span>
+                </a>
+            </div>
         </div>
     </div>
     <%--Footer--%>
-    <div
+    <%--<div
         class="hidden md:flex mt-0 m-5 p-10 bg-white rounded-lg flex-row flex-wrap justify-between items-center shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="flex flex-col items-start justify-items-start">
             <div class="text-2xl font-bold mb-2 font-title tracking-wide flex flex-row justify-center items-center text-gray-800">
@@ -157,6 +179,6 @@
                 <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Terms and Conditions</a>
             </div>
         </div>
-    </div>
+    </div>--%>
     <%--End of Footer--%>
 </asp:Content>

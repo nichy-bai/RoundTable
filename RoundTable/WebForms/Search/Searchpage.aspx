@@ -54,7 +54,7 @@
                     </ajaxToolkit:AutoCompleteExtender>--%>
                 </div>
                 <div class="1/12">
-                    <asp:LinkButton ID="btnSearch" runat="server" OnClick="btnSearch_Click" CssClass="flex flex-row justify-center px-4 py-2.5 text-sm capitalize text-white bg-indigo-500 hover:bg-white hover:text-indigo-500 rounded-xl border-2 border-indigo-500 transition ease-in-out duration-300 shadow-2xl">
+                    <asp:LinkButton ID="btnSearch" runat="server" OnClick="btnSearch_Click" CssClass="flex flex-row justify-center px-4 py-2.5 text-sm capitalize text-white bg-indigo-600 hover:bg-white hover:text-indigo-600 rounded-xl border-2 border-indigo-600 transition ease-in-out duration-300 shadow-2xl">
                         <svg 
                             class="w-6 h-6" 
                             fill="none" 
@@ -106,8 +106,48 @@
         </div>
     </header>
     <div
-        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
-        test
+        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        <div>
+            <span class="block text-2xl font-bold mb-2 font-title">Tags</span>
+        </div>
+        <div class="relative flex flex-row flex-wrap justify-items-center">
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button0" runat="server" Text="All Topics" CssClass="cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button0_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button1" runat="server" Text="Computer Science" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button1_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button2" runat="server" Text="Social Sciences" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button2_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button3" runat="server" Text="Natural Science" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button3_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button4" runat="server" Text="Mathematics" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button4_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button5" runat="server" Text="Medicine & Health" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button5_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button6" runat="server" Text="Humanities & Arts" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button6_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button7" runat="server" Text="Business & Finance" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button7_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button8" runat="server" Text="History" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button8_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button9" runat="server" Text="Society & Politics" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button9_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button10" runat="server" Text="Literature & Language" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button10_Click"/>
+            </div>
+            <div class="mr-4 my-2">
+                <asp:Button ID="Button11" runat="server" Text="Others" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button11_Click"/>
+            </div>
+        </div>
     </div>
     <div>
         <asp:Label ID="lblNoResult" runat="server" Text="" CssClass="flex justify-center items-center"></asp:Label>
@@ -228,6 +268,30 @@
                                     </path>
                                 </svg>
                                 <div class="px-1"><%#Eval("totalBookmark") %></div>
+                            </div>
+                        </div>
+                        <%--View--%>
+                        <div class="mr-5 mt-4">
+                            <div class="flex flex-row justify-start items-center">
+                                <svg
+                                    class="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                    </path>
+                                </svg>
+                                <div class="px-1"><%#Eval("totalView") %></div>
                             </div>
                         </div>
                     </div>

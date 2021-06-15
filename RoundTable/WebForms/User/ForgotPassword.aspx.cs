@@ -48,7 +48,7 @@ namespace RoundTable.WebForms.User
                     MailMessage mailMessage = new MailMessage("roundtable.cs@gmail.com", email);
 
                     Random rnd = new Random();
-                    int code = rnd.Next(1000, 9999);
+                    int code = rnd.Next(100000, 999999);
                     verificationCode = code.ToString();
 
                     mailMessage.Subject = "Verification Code";

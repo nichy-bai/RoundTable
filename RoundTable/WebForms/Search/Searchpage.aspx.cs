@@ -14,10 +14,17 @@ namespace RoundTable.WebForms.Search
 {
     public partial class Searchpage : System.Web.UI.Page
     {
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         DataAccess DA = new DataAccess();
+        string topicID = "";
+        string keyword;
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Form.DefaultButton = btnSearch.UniqueID;
+            if (!this.IsPostBack)
+            {
+                this.BindRepeater(keyword);
+            }
         }
 
         protected void postBody_btn_Command(object sender, CommandEventArgs e)
@@ -58,6 +65,250 @@ namespace RoundTable.WebForms.Search
             }
         }
 
+        private void BindRepeater(string keyword)
+        {
+            using (con)
+            {
+                string query = "";
+
+                if (topicID == "")
+                {
+                    query = "SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID) AND (commentStatus = 1)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) ORDER BY Post.postDate DESC";
+                }
+                else
+                {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 //something wrong here
+                    query = "SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID) AND (commentStatus = 1)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND ([User].userID LIKE '%''" + keyword + "''%' OR Topic.topicName LIKE '%''" + keyword + "''%') AND Topic.topicID='" + topicID + "' ORDER BY Post.postDate DESC";
+                }
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        Repeater1.DataSource = dt;
+                        Repeater1.DataBind();
+                    }
+                }
+            }
+        }
+
+        protected void Button0_Click(object sender, EventArgs e)
+        {
+            topicID = "";
+            Button0.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000001";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000002";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000003";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000004";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000005";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000006";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button7_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000007";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button8_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000008";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000009";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button10_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000010";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
+        protected void Button11_Click(object sender, EventArgs e)
+        {
+            topicID = "TP1000000011";
+            Button0.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            BindRepeater(keyword);
+        }
+
         //[ScriptMethod()]
         //[WebMethod]
         //public static List<string> SearchCustomers(string prefixText, int count)
@@ -86,6 +337,7 @@ namespace RoundTable.WebForms.Search
         //    }
         //}
     }
+
 
     internal class DataAccess
     {

@@ -14,6 +14,7 @@ namespace RoundTable.WebForms.Discussion
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         string postID, likeID, commentID, bookmarkID, viewID;
         string hex = "#4F46E5";
+        HttpCookie sortCookie = new HttpCookie("sortCookie");
 
         //To be modified
         string userID = "Shrimp";
@@ -21,6 +22,8 @@ namespace RoundTable.WebForms.Discussion
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            HttpCookie sortCookie = Request.Cookies["sortCookie"];
+            string sort;
 
             postID = "DP" + Request.QueryString["p"];
 
@@ -142,6 +145,36 @@ namespace RoundTable.WebForms.Discussion
 
                 IncreaseViewCount();
             }
+
+            if(sortCookie != null)
+            {
+                sort = sortCookie["Sort"];
+
+                if(sort == "Old")
+                {
+                    SqlDataSource1.SelectCommand = "SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate ASC";
+                    SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+                    SqlDataSource1.DataBind();
+                    Repeater1.DataBind();
+
+                    old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+                    old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("bg-white", "bg-gray-200");
+                    new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                }
+                else if (sort == "New")
+                {
+                    SqlDataSource1.SelectCommand = "SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate DESC";
+                    SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+                    SqlDataSource1.DataBind();
+                    Repeater1.DataBind();
+
+                    old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                    new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+                    new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("bg-white", "bg-gray-200");
+                }
+            }
         }
 
         protected void GenerateLikeID()
@@ -259,6 +292,7 @@ namespace RoundTable.WebForms.Discussion
                     Label lblFooter = (Label)e.Item.FindControl("noComment_lbl");
                     lblFooter.Visible = true;
                     comment_txt.Attributes.Add("placeholder", "Be the first to comment");
+                    sort_panel.Visible = false;
                 }
             }
         }
@@ -455,6 +489,42 @@ namespace RoundTable.WebForms.Discussion
             {
                 Response.Write("<script>alert('Comment cannot be empty')</script>");
             }
+        }
+
+        protected void old_comment_btn_Command(object sender, CommandEventArgs e)
+        {
+            SqlDataSource1.SelectCommand = "SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate ASC";
+            SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+            SqlDataSource1.DataBind();
+            Repeater1.DataBind();
+
+            old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+            old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("bg-white", "bg-gray-200");
+            new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("bg-gray-200", "bg-white");
+
+            sortCookie["Sort"] = "Old";
+            sortCookie.Expires = DateTime.Now.AddDays(999);
+            Response.Cookies.Add(sortCookie);
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void new_comment_btn_Command(object sender, CommandEventArgs e)
+        {
+            SqlDataSource1.SelectCommand = "SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate DESC";
+            SqlDataSource1.Select(DataSourceSelectArguments.Empty);
+            SqlDataSource1.DataBind();
+            Repeater1.DataBind();
+
+            old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            old_comment_btn.CssClass = old_comment_btn.CssClass.Replace("bg-gray-200", "bg-white");
+            new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+            new_comment_btn.CssClass = new_comment_btn.CssClass.Replace("bg-white", "bg-gray-200");
+
+            sortCookie["Sort"] = "New";
+            sortCookie.Expires = DateTime.Now.AddDays(999);
+            Response.Cookies.Add(sortCookie);
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void react_like_btn_Command(object sender, CommandEventArgs e)

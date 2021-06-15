@@ -394,10 +394,11 @@
         class="m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
         <div class="flex flex-row flex-grow justify-between items-start">
             <div class="flex-grow">
-                <asp:TextBox ID="comment_txt" runat="server" placeholder="Comment" ToolTip="Comment" TextMode="MultiLine" CssClass="h-14 w-full px-2 py-3 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+                <asp:TextBox ID="comment_txt" runat="server" placeholder="Comment" ToolTip="Comment" TextMode="MultiLine" CssClass="h-14 w-full px-2 py-3 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300 overflow-hidden" onkeyup="AutoExpand(this)"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="comment_txt" ErrorMessage="*Required" ValidationGroup="AddComment" Display="Dynamic" CssClass="text-red-600 text-sm m-2" />
             </div>
             <div class="ml-5">
-                <asp:LinkButton ID="comment_btn" runat="server" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 dark:bg-dark-300 dark:hover:bg-dark-400 ease-in-out duration-300" OnCommand="comment_btn_Command">
+                <asp:LinkButton ID="comment_btn" runat="server" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 dark:bg-dark-300 dark:hover:bg-dark-400 ease-in-out duration-300" OnCommand="comment_btn_Command" ValidationGroup="AddComment">
                     <svg
                     class="w-8 h-8"
                     fill="none"
@@ -416,6 +417,52 @@
             </div>
         </div>
     </div>
+
+    <%--Sort comment--%>
+    <asp:Panel ID="sort_panel" runat="server">
+
+        <div class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-row flex-wrap justify-center md:justify-end items-center shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+            <div class="mr-2 text-gray-800 text-sm">Sort By :</div>
+            <asp:LinkButton ID="old_comment_btn" runat="server" CssClass="flex flex-row justify-center items-center w-24 text-indigo-600 bg-gray-200 hover:bg-gray-100 p-2 rounded-lg transition ease-in-out duration-300" OnCommand="old_comment_btn_Command">
+                <svg
+                    runat="server"
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z">
+                    </path>
+                </svg>
+                <div class="ml-2 font-title">
+                    <asp:Label ID="old_comment_lbl" runat="server" Text="Old"></asp:Label>
+                </div>
+            </asp:LinkButton>
+            <asp:LinkButton ID="new_comment_btn" runat="server" CssClass="ml-5 flex flex-row justify-center items-center w-24 bg-white text-gray-800 hover:bg-gray-100 p-2 rounded-lg transition ease-in-out duration-300" OnCommand="new_comment_btn_Command">
+                <svg
+                    runat="server"
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M13 10V3L4 14h7v7l9-11h-7z">
+                    </path>
+                </svg>
+                <div class="ml-2 font-title">
+                    <asp:Label ID="new_comment_lbl" runat="server" Text="New"></asp:Label>
+                </div>
+            </asp:LinkButton>
+        </div>
+    </asp:Panel>
 
     <%--View comment--%>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) ORDER BY DiscussionComment.commentDate ASC"></asp:SqlDataSource>
@@ -454,7 +501,7 @@
                 </div>
                 <%--Discussion comment--%>
                 <div class="my-5">
-                    <div class="px-1"><%#Eval("commentContent") %></div>
+                    <div class="px-1 break-words"><%#Eval("commentContent") %></div>
                 </div>
             </div>
         </ItemTemplate>
@@ -463,5 +510,13 @@
             <asp:Label ID="footer_lbl" runat="server" CssClass="invisible text-gray-400 text-center mt-5" Text="There are no more comments to show."></asp:Label>
         </FooterTemplate>
     </asp:Repeater>
+
+    <script type="text/javascript">
+        function AutoExpand(txtbox) {
+            txtbox.style.height = "1px";
+            txtbox.style.height = (25 + txtbox.scrollHeight) + "px";
+        }
+
+    </script>
 
 </asp:Content>

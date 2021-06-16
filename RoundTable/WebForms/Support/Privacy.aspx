@@ -13,6 +13,10 @@
                 <br />
                 <br />
 
+                <div class="mt-10 mb-20 flex justify-center items-center">
+                    <img src="../../Content/img/privacy_illustration_1.svg" alt="illustration_1" class="w-11/12 md:w-9/12 h-auto">
+                </div>
+
                 <p>At RoundTable, accessible from roundtable.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by RoundTable and how we use it.</p>
                 <br />
                 <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to <a href="mailto:roundtable.cs@gmail.com" class="underline">contact us</a>.</p>

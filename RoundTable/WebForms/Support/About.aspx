@@ -7,8 +7,8 @@
             <div class="flex flex-col justify-center items-center w-full">
                 <div class="text-3xl md:text-5xl font-bold mb-2 font-title tracking-wide flex flex-row justify-center items-center py-5 text-gray-800">
                     <svg
-                        width="80"
-                        height="80"
+                        width="64"
+                        height="64"
                         viewBox="0 0 500 500"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +20,7 @@
                     </svg>
                     <span class="ml-5">RoundTable</span>
                 </div>
-                <div class="text-xl font-medium text-center my-5 w-4/5 lg:w-1/2 opacity-80">RoundTable is the easiest way to start an asynchronous discussion for free and connect with the user through our global community!</div>
+                <div class="text-md md:text-xl font-medium text-center my-5 w-4/5 lg:w-1/2 text-gray-600">RoundTable is the easiest way to start an asynchronous discussion for free and connect with the user through our global community!</div>
             </div>
         </div>
         <div class="my-10 flex justify-center items-center">
@@ -28,7 +28,7 @@
         </div>
         <div class="flex flex-col justify-center items-center text-center mt-20 mb-10">
             <div class="uppercase font-bold mb-5 text-gray-800">Our Mission</div>
-            <div class="text-xl font-medium text-center w-4/5 md:w-1/2 opacity-80">Connect people from all over the world and help them easily share knowledge and grow.</div>
+            <div class="text-md md:text-xl font-medium text-center w-4/5 md:w-1/2 opacity-80">Connect people from all over the world and help them easily share knowledge and grow.</div>
         </div>
         <div class="mt-10 mb-20 flex justify-center items-center">
             <img src="../../Content/img/about_illustration_2.svg" alt="illustration_1" class="w-11/12 md:w-3/5 h-auto">

@@ -13,6 +13,10 @@
                 <br />
                 <br />
 
+                <div class="mt-10 mb-20 flex justify-center items-center">
+                    <img src="../../Content/img/disclaimer_illustration_1.svg" alt="illustration_1" class="w-11/12 md:w-3/5 h-auto">
+                </div>
+
                 <p>If you require any more information or have any questions about our site's disclaimer, please feel free to contact us by <a href="mailto:roundtable.cs@gmail.com" class="underline">email</a>. Our Disclaimer was generated with the help of disclaimer generator.</p>
                 <br />
 

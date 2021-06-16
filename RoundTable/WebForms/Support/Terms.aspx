@@ -13,6 +13,10 @@
                 <br />
                 <br />
 
+                <div class="mt-10 mb-20 flex justify-center items-center">
+                    <img src="../../Content/img/terms_illustration_1.svg" alt="illustration_1" class="w-11/12 md:w-7/12 h-auto">
+                </div>
+
                 <p>Welcome to RoundTable!</p>
                 <br />
                 <p>These terms and conditions outline the rules and regulations for the use of RoundTable's Website.</p>

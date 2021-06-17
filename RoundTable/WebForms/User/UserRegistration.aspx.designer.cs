@@ -69,6 +69,15 @@ namespace RoundTable.WebForms.User
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvUserID;
 
         /// <summary>
+        /// revUserID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revUserID;
+
+        /// <summary>
         /// txtEmail control.
         /// </summary>
         /// <remarks>

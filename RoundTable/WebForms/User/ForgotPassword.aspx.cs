@@ -97,7 +97,7 @@ namespace RoundTable.WebForms.User
                 string updatePassword = "Update [dbo].[User] Set userPassword = @UserPassword Where userID = @Username";
                 SqlCommand cmdUpdatePassword = new SqlCommand(updatePassword, con);
                 cmdUpdatePassword.Parameters.AddWithValue("@Username", txtUserID.Text);
-                cmdUpdatePassword.Parameters.AddWithValue("@UserPassword", txtNewPassword.Text);
+                cmdUpdatePassword.Parameters.AddWithValue("@UserPassword", Encryptdata(txtNewPassword.Text));
                 con.Open();
                 cmdSelectUser.ExecuteNonQuery();
                 cmdUpdatePassword.ExecuteNonQuery();
@@ -127,6 +127,15 @@ namespace RoundTable.WebForms.User
             }
         }
 
-        
+        private string Encryptdata(string password)
+        {
+            string strmsg = string.Empty;
+            byte[] encode = new byte[password.Length];
+            encode = Encoding.UTF8.GetBytes(password);
+            strmsg = Convert.ToBase64String(encode);
+            return strmsg;
+        }
+
+
     }
 }

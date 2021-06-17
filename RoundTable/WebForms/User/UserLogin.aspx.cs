@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -26,7 +27,7 @@ namespace RoundTable.WebForms.User
             String getUser = "Select count(*) from [dbo].[User] where userID = @Username AND userPassword = @Password";
             SqlCommand cmdGetUser = new SqlCommand(getUser, con);
             cmdGetUser.Parameters.AddWithValue("@Username", txtUserID.Text);
-            cmdGetUser.Parameters.AddWithValue("@Password", txtPassword.Text);
+            cmdGetUser.Parameters.AddWithValue("@Password", Encryptdata(txtPassword.Text));
 
             String output = cmdGetUser.ExecuteScalar().ToString();
 
@@ -45,6 +46,15 @@ namespace RoundTable.WebForms.User
         protected void btnForgotPassword_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/WebForms/User/ForgotPassword.aspx");
+        }
+
+        private string Encryptdata(string password)
+        {
+            string strmsg = string.Empty;
+            byte[] encode = new byte[password.Length];
+            encode = Encoding.UTF8.GetBytes(password);
+            strmsg = Convert.ToBase64String(encode);
+            return strmsg;
         }
     }
 }

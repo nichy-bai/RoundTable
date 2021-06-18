@@ -304,6 +304,13 @@ namespace RoundTable.WebForms.Discussion
                     Label lblFooter = (Label)e.Item.FindControl("noComment_lbl");
                     lblFooter.Visible = true;
                     comment_txt.Attributes.Add("placeholder", "Be the first to comment");
+                }
+            }
+
+            if (Repeater1.Items.Count < 2)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
                     sort_panel.Visible = false;
                 }
             }

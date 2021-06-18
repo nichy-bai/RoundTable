@@ -32,7 +32,7 @@
             <div id="download" class="uppercase font-bold mb-5 text-gray-800">Download Now</div>
             <div class="text-md md:text-xl font-medium text-center w-4/5 md:w-2/3 text-gray-600">RoundTable's logo can be used in both light and dark or non-white backgrounds. Pick the one that suits your need. Make sure to preserve the aspect ratio of the logo.</div>
         </div>
-        <div class="mt-10 mb-20 flex flex-row flex-wrap justify-center items-stretch">
+        <div class="mt-10 mb-24 flex flex-row flex-wrap justify-center items-stretch">
             <div class="w-96 my-5 py-5 border-2 rounded-lg shadow-md lg:mr-5 flex flex-col items-center justify-start text-white transition ease-in-out duration-300 bg-indigo-500 hover:bg-indigo-600">
                 <div class="uppercase font-bold mb-10 p-2 border-b-2">Full Brand Logo</div>
                 <a href="https://drive.google.com/file/d/1eNbaMVWFl7Q4E2VPiwndgPyVP7KoTa4J/view?usp=sharing" target="_blank">
@@ -42,7 +42,7 @@
                     <img src="../../Content/img/brand_logo_2.png" alt="logo_2" class="w-80 h-auto mb-10 hover:bg-gray-900 hover:shadow-md rounded-lg p-5 transition ease-in-out duration-300">
                 </a>
                 <a href="https://drive.google.com/drive/folders/1eoBm-1DozYziidlDckOla9wjBepvV7Zb?usp=sharing" target="_blank">
-                    <div class="flex flex-row border-2 border-indigo-300 px-5 py-3 bg-white hover:bg-gray-200 text-indigo-600 rounded-lg">
+                    <div class="flex flex-row border-2 border-indigo-300 px-5 py-3 bg-white hover:bg-gray-200 text-indigo-600 rounded-lg transition ease-in-out duration-300">
                         <svg
                             class="w-6 h-6"
                             fill="none"
@@ -68,7 +68,7 @@
                     <img src="../../Content/img/brand_icon_2.png" alt="icon_2" class="w-28 h-auto mb-10 hover:bg-gray-900 hover:shadow-md rounded-lg p-5 transition ease-in-out duration-300">
                 </a>
                 <a href="https://drive.google.com/drive/folders/1pmDEyla7ayq9blmSyULO023ImmATVQSt?usp=sharing" target="_blank">
-                    <div class="flex flex-row border-2 border-indigo-300 px-5 py-3 bg-white hover:bg-gray-200 text-indigo-600 rounded-lg">
+                    <div class="flex flex-row border-2 border-indigo-300 px-5 py-3 bg-white hover:bg-gray-200 text-indigo-600 rounded-lg transition ease-in-out duration-300">
                         <svg
                             class="w-6 h-6"
                             fill="none"
@@ -85,6 +85,10 @@
                     </div>
                 </a>
             </div>
+        </div>
+        <div class="flex justify-center items-center">
+            <img src="../../Content/img/brand_mockup_1.png" alt="mockup_1" class="w-full h-auto">
+            <img src="../../Content/img/brand_mockup_1.png" alt="mockup_1" class="absolute bottom-0 w-full h-auto">
         </div>
     </div>
 </asp:Content>

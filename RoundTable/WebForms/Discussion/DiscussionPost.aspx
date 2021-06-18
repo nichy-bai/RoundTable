@@ -423,7 +423,7 @@
 
         <div class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-row flex-wrap justify-center md:justify-end items-center shadow-md h-auto transition ease-in-out duration-1000">
             <div class="mr-2 text-gray-800 text-sm">Sort By :</div>
-            <asp:LinkButton ID="old_comment_btn" runat="server" CssClass="flex flex-row justify-center items-center w-24 text-indigo-600 bg-gray-200 hover:bg-gray-100 p-2 rounded-lg transition ease-in-out duration-300" OnCommand="old_comment_btn_Command">
+            <asp:LinkButton ID="old_comment_btn" runat="server" ToolTip="Sort comments from oldest to newest" CssClass="flex flex-row justify-center items-center w-24 text-indigo-600 bg-gray-200 hover:bg-gray-100 p-2 rounded-lg transition ease-in-out duration-300" OnCommand="old_comment_btn_Command">
                 <svg
                     runat="server"
                     class="w-6 h-6"
@@ -442,7 +442,7 @@
                     <asp:Label ID="old_comment_lbl" runat="server" Text="Old"></asp:Label>
                 </div>
             </asp:LinkButton>
-            <asp:LinkButton ID="new_comment_btn" runat="server" CssClass="ml-5 flex flex-row justify-center items-center w-24 bg-white text-gray-800 hover:bg-gray-100 p-2 rounded-lg transition ease-in-out duration-300" OnCommand="new_comment_btn_Command">
+            <asp:LinkButton ID="new_comment_btn" runat="server" ToolTip="Sort comments from newest to oldest" CssClass="ml-5 flex flex-row justify-center items-center w-24 bg-white text-gray-800 hover:bg-gray-100 p-2 rounded-lg transition ease-in-out duration-300" OnCommand="new_comment_btn_Command">
                 <svg
                     runat="server"
                     class="w-6 h-6"
@@ -578,7 +578,7 @@
                 <%--View reply--%>
                 <asp:Repeater ID="Repeater2" runat="server" OnItemDataBound="Repeater2_ItemDataBound">
                     <ItemTemplate>
-                        <div class="mb-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col border-2 h-auto bg-gray-50">
+                        <div class="mb-0 my-5 p-5 px-6 bg-white rounded-lg flex flex-col border-2 h-auto bg-gray-50">
                             <%--Reply header--%>
                             <div class="flex flex-row justify-between items-center border-b-2 pb-2">
                                 <%--User detail--%>

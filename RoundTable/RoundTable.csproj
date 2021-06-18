@@ -170,6 +170,7 @@
     <Content Include="Content\img\brand_icon_2.png" />
     <Content Include="Content\img\brand_logo_1.png" />
     <Content Include="Content\img\brand_logo_2.png" />
+    <Content Include="Content\img\brand_mockup_1.png" />
     <Content Include="Content\img\disclaimer_illustration_1.svg" />
     <Content Include="Content\img\media_illustration_1.svg" />
     <Content Include="Content\img\privacy_illustration_1.svg" />

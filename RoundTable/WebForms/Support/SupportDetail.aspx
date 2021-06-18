@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div
-        class="support-body relative m-5 mt-0 px-10 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="support-body relative m-5 mt-0 px-10 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="text-3xl lg:text-5xl font-bold mt-5 mb-20 font-title tracking-wide flex flex-row justify-center items-center py-5 text-gray-800 flex-wrap">
             <a href="Support.aspx">
                 <svg
@@ -107,7 +107,7 @@
     </div>
     <%--Footer--%>
     <div
-        class="hidden md:flex mt-0 m-5 p-10 bg-white rounded-lg flex-row flex-wrap justify-between items-center shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="hidden md:flex mt-0 m-5 p-10 bg-white rounded-lg flex-row flex-wrap justify-between items-center shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-col items-start justify-items-start">
             <div class="text-2xl font-bold mb-2 font-title tracking-wide flex flex-row justify-center items-center text-gray-800">
                 <svg
@@ -126,16 +126,16 @@
             </div>
             <div class="my-5">
                 <span
-                    class="font-sm font-title hover:text-indigo-600 dark:hover:text-indigo-500 transition ease-in-out duration-300 cursor-default">&#169; 2021 RoundTable</span>
+                    class="font-sm font-title hover:text-indigo-600 transition ease-in-out duration-300 cursor-default">&#169; 2021 RoundTable</span>
             </div>
         </div>
         <div>
             <div class="grid grid-cols-1 gap-x-4 gap-y-1 w-64">
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">About</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Support</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Logo & Media</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Privacy</a>
-                <a href="#" class="hover:bg-gray-200 dark:hover:bg-dark-300 rounded-lg px-4 py-2 transition ease-in-out duration-300">Terms and Conditions</a>
+                <a href="#" class="hover:bg-gray-200 rounded-lg px-4 py-2 transition ease-in-out duration-300">About</a>
+                <a href="#" class="hover:bg-gray-200 rounded-lg px-4 py-2 transition ease-in-out duration-300">Support</a>
+                <a href="#" class="hover:bg-gray-200 rounded-lg px-4 py-2 transition ease-in-out duration-300">Logo & Media</a>
+                <a href="#" class="hover:bg-gray-200 rounded-lg px-4 py-2 transition ease-in-out duration-300">Privacy</a>
+                <a href="#" class="hover:bg-gray-200 rounded-lg px-4 py-2 transition ease-in-out duration-300">Terms and Conditions</a>
             </div>
         </div>
     </div>

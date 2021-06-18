@@ -13,7 +13,7 @@ namespace RoundTable.WebForms.Discussion
     public partial class DiscussionPost : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string postID, likeID, commentID, bookmarkID, viewID;
+        string postID, likeID, commentID, bookmarkID, viewID, replyID;
         string hex = "#4F46E5";
         HttpCookie sortCookie = new HttpCookie("sortCookie");
 
@@ -284,6 +284,17 @@ namespace RoundTable.WebForms.Discussion
             }
         }
 
+        protected void GenerateReplyID()
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(replyID) FROM DiscussionReply", con);
+            int i = Convert.ToInt32(cmd.ExecuteScalar());
+            con.Close();
+            i++;
+            int id = 1000000000 + i;
+            replyID = "RP" + id.ToString();
+        }
+
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (Repeater1.Items.Count < 1)
@@ -300,9 +311,11 @@ namespace RoundTable.WebForms.Discussion
             foreach (RepeaterItem item in Repeater1.Items)
             {
                 LinkButton btn = (LinkButton)item.FindControl("delete_comment_btn");
+                LinkButton btn2 = (LinkButton)item.FindControl("reply_comment_btn");
                 Label lbl = (Label)item.FindControl("username_hidden_lbl");
                 Label lbl2 = (Label)item.FindControl("comment_status_hidden_lbl");
                 Label lbl3 = (Label)item.FindControl("comment_lbl");
+                Label lbl4 = (Label)item.FindControl("comment_id_hidden_lbl");
 
                 if (lbl.Text == userID && lbl2.Text == "True")
                 {
@@ -313,6 +326,57 @@ namespace RoundTable.WebForms.Discussion
                 {
                     btn.Visible = false;
                     lbl3.Text = "(Comment Deleted)";
+                    lbl3.ForeColor = System.Drawing.ColorTranslator.FromHtml("#6B7280");
+                }
+
+
+                if (lbl.Text != userID && lbl2.Text == "True")
+                {
+                    btn2.Visible = true;
+                }
+            }
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                RepeaterItem item = e.Item;
+                string comment = (item.FindControl("comment_id_hidden_lbl") as Label).Text;
+
+                Repeater r2 = (Repeater)e.Item.FindControl("Repeater2");
+
+                using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SELECT DiscussionReply.replyID, DiscussionReply.replyContent, DiscussionReply.replyDate, DiscussionReply.commentID, DiscussionReply.userID, DiscussionReply.replyStatus, [User].userID AS replyUserID, [User].name, [User].profilePicture FROM DiscussionReply INNER JOIN [User] ON DiscussionReply.userID = [User].userID WHERE (DiscussionReply.commentID ='" + comment + "') ORDER BY DiscussionReply.replyDate", con))
+                    {
+                        using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            r2.DataSource = dt;
+                            r2.DataBind();
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void Repeater2_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                LinkButton btn = (LinkButton)e.Item.FindControl("delete_reply_btn");
+                Label lbl = (Label)e.Item.FindControl("reply_username_hidden_lbl");
+                Label lbl2 = (Label)e.Item.FindControl("reply_status_hidden_lbl");
+                Label lbl3 = (Label)e.Item.FindControl("reply_lbl");
+
+                if (lbl.Text == userID && lbl2.Text == "True")
+                {
+                    btn.Visible = true;
+                }
+
+                if (lbl2.Text == "False")
+                {
+                    btn.Visible = false;
+                    lbl3.Text = "(Reply Deleted)";
                     lbl3.ForeColor = System.Drawing.ColorTranslator.FromHtml("#6B7280");
                 }
             }
@@ -557,6 +621,83 @@ namespace RoundTable.WebForms.Discussion
             cmd.ExecuteNonQuery();
             con.Close();
             Response.Redirect(Request.RawUrl);
+        }
+
+        protected void delete_reply_btn_Command(object sender, CommandEventArgs e)
+        {
+            string replyID = e.CommandArgument.ToString();
+
+            con.Open();
+            SqlCommand cmd = new SqlCommand("UPDATE DiscussionReply SET replyStatus = 0 WHERE replyID='" + replyID + "'", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void reply_comment_btn_Command(object sender, CommandEventArgs e)
+        {
+            LinkButton btn = (LinkButton)sender;
+            RepeaterItem item = (RepeaterItem)btn.NamingContainer;
+            Panel p1 = (Panel)item.FindControl("reply_panel");
+            TextBox txt = (TextBox)item.FindControl("reply_txt");
+            p1.Visible = true;
+            txt.Focus();
+        }
+
+        protected void reply_btn_Command(object sender, CommandEventArgs e)
+        {
+            var filter = new ProfanityFilter.ProfanityFilter();
+
+            GenerateReplyID();
+
+            string comment = e.CommandArgument.ToString();
+            string reply = null;
+
+            LinkButton btn = (sender as LinkButton);
+
+            //foreach (RepeaterItem item in Repeater1.Items)
+            //{
+            //    Panel p = item.FindControl("reply_panel") as Panel;
+            //    TextBox t = p.FindControl("reply_txt") as TextBox;
+
+            //    // 16/6/21 10:58PM if without reply panel the reply function will work but all textbox are required to fill in
+
+            //    if (t != null)
+            //    {
+            //        reply = t.Text;
+            //    }
+            //}
+
+            RepeaterItem item = (sender as LinkButton).NamingContainer as RepeaterItem;
+            reply = (item.FindControl("reply_txt") as TextBox).Text;
+
+            string replyContent = reply.TrimEnd('\r', '\n').Replace("\n", "<br>");
+            replyContent = filter.CensorString(replyContent);
+            string replyDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+            bool replyStatus = true;
+
+            //To be modified
+            string userID = "Shrimp";
+
+            if (!String.IsNullOrEmpty(reply))
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO DiscussionReply(replyID, replyContent, replyDate, commentID, userID, replyStatus) VALUES (@replyID, @replyContent, @replyDate, @commentID, @userID, @replyStatus)", con);
+                cmd.Parameters.AddWithValue("@replyID", replyID);
+                cmd.Parameters.AddWithValue("@replyContent", replyContent);
+                cmd.Parameters.AddWithValue("@replyDate", replyDate);
+                cmd.Parameters.AddWithValue("@commentID", comment);
+                cmd.Parameters.AddWithValue("@userID", userID);
+                cmd.Parameters.AddWithValue("@replyStatus", replyStatus);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                Response.Redirect(Request.RawUrl);
+            }
+            else
+            {
+                Response.Write("<script>alert('Reply cannot be empty : " + comment + "')</script>");
+            }
         }
 
         protected void react_like_btn_Command(object sender, CommandEventArgs e)

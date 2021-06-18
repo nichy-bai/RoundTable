@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <header
-        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
                 <span class="block text-4xl font-bold mb-2 font-title text-gray-700">Edit Discussion Post</span>
@@ -11,20 +11,20 @@
         </div>
     </header>
     <div
-        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row flex-wrap justify-between shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1300">
+        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row flex-wrap justify-between shadow-md h-auto transition ease-in-out duration-1300">
         <div
-            class="flex flex-row items-center justify-start dark:bg-dark-300 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-100 w-full md:w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300 mb-10 md:mb-0">
+            class="flex flex-row items-center justify-start text-gray-600 hover:text-gray-700 w-full md:w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300 mb-10 md:mb-0">
             <asp:DropDownList ID="DropDownList1" runat="server" DataTextField="topicName" DataValueField="topicName" ToolTip="Select a Topic" CssClass="h-12 w-auto sm:w-64 px-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DropDownList1" InitialValue="[Select a Topic]" ErrorMessage="*Required" ValidationGroup="EditDiscussion" Display="Dynamic" CssClass="text-red-600 text-sm mx-2" />
         </div>
         <div
-            class="flex flex-row items-center justify-start dark:bg-dark-300 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-100 w-full md:w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300">
+            class="flex flex-row items-center justify-start text-gray-600 hover:text-gray-700 w-full md:w-auto h-auto rounded-lg cursor-pointer transition ease-in-out duration-300">
             <asp:DropDownList ID="DropDownList2" runat="server" DataTextField="tagName" DataValueField="tagName" ToolTip="Select a Tag" CssClass="h-12 w-auto sm:w-64 px-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" AutoPostBack="true" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged"></asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DropDownList2" InitialValue="[Select a Tag]" ErrorMessage="*Required" ValidationGroup="EditDiscussion" Display="Dynamic" CssClass="text-red-600 text-sm mx-2" />
         </div>
     </div>
     <div
-        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-col justify-between shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-300">
+        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-col justify-between shadow-md h-auto transition ease-in-out duration-300">
         <div class="mb-5 relative">
             <asp:TextBox ID="TextBox1" runat="server" placeholder="Title" ToolTip="Title" onkeyup="countChar(this)" onkeydown="countChar(this)" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
             <div class="numberOfChar absolute top-1/4 right-3 text-gray-500"></div>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div
-        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row justify-end shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-300">
+        class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-row justify-end shadow-md h-auto transition ease-in-out duration-300">
         <asp:Button ID="Button1" runat="server" Text="Discard" CssClass="mr-5 h-12 w-24 sm:w-40 px-2 border-2 rounded-lg cursor-pointer bg-white hover:bg-gray-100 transition ease-in-out duration-300" OnClick="Button1_Click" OnClientClick="return confirm('Are you sure to discard the modification?')" />
         <asp:Button ID="Button2" runat="server" Text="Save" CssClass="h-12 w-24 sm:w-40 px-2 border-2 rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-700 text-white transition ease-in-out duration-300" OnClick="Button2_Click" ValidationGroup="EditDiscussion" />
     </div>

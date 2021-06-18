@@ -144,7 +144,7 @@
     </asp:Panel>
 
     <header
-        class="m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
         <div class="px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
                 <span class="block text-4xl font-bold mb-2 font-title text-gray-700">Homepage</span>
@@ -152,7 +152,7 @@
             </div>
         </div>
         <div class="flex flex-row items-center ml-4">
-            <asp:LinkButton ID="personalize_btn" runat="server" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 dark:bg-dark-300 dark:hover:bg-dark-400 ease-in-out duration-300" OnCommand="personalize_btn_Command" OnClientClick="window.document.forms[0].target='_self';">
+            <asp:LinkButton ID="personalize_btn" runat="server" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 ease-in-out duration-300" OnCommand="personalize_btn_Command" OnClientClick="window.document.forms[0].target='_self';">
                 <svg
                     class="w-8 h-8"
                     fill="none"
@@ -175,7 +175,7 @@
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark-theme">
         <div
-            class="bg-gray-200 dark:bg-dark-300 hover:bg-gray-300 dark:hover:bg-dark-400 text-gray-600 dark:text-gray-200 hover:text-gray-700 dark:hover:text-gray-100 w-full h-auto rounded-lg cursor-pointer transition ease-in-out duration-1000">
+            class="bg-gray-200 hover:bg-gray-300 text-gray-600 hover:text-gray-700 w-full h-auto rounded-lg cursor-pointer transition ease-in-out duration-1000">
             <a
                 href="CreateDiscussion.aspx"
                 class="px-0 flex flex-row flex-grow items-center m-5 text-lg h-auto">
@@ -203,7 +203,7 @@
     <%--View discussion post--%>
     <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
         <ItemTemplate>
-            <asp:Panel ID="post_panel" runat="server" CssClass="mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+            <asp:Panel ID="post_panel" runat="server" CssClass="mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
                 <asp:LinkButton ID="postBody_btn" runat="server" CssClass="flex flex-col cursor-pointer hover:shadow-md hover:text-gray-800 p-5 px-6 rounded-lg transition ease-in-out duration-500 border-r-4 border-b-4 border-transparent hover:border-gray-600" OnCommand="postBody_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
                     <asp:Panel ID="user_detail_panel" runat="server" CssClass="flex flex-row justify-start border-b-2 pb-2 mb-5">
                         <%--User detail--%>

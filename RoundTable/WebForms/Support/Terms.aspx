@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div
-        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-col items-center shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-col items-center shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-col md:w-3/4 p-5 text-justify">
             <div class="text-4xl font-bold mb-2 font-title text-gray-700">Terms and Conditions</div>
             <br />

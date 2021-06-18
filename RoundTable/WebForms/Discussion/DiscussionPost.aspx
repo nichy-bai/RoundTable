@@ -128,7 +128,7 @@
     </asp:Panel>
 
     <div
-        class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between border-b-2 pb-2">
             <%--User detail--%>
             <div>
@@ -391,14 +391,14 @@
 
     <%--Add comment--%>
     <div
-        class="m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-row flex-grow justify-between items-start">
             <div class="flex-grow">
                 <asp:TextBox ID="comment_txt" runat="server" placeholder="Comment" ToolTip="Comment" TextMode="MultiLine" CssClass="h-14 w-full px-2 py-3 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300 overflow-hidden" onkeyup="AutoExpand(this)"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="comment_txt" ErrorMessage="*Required" ValidationGroup="AddComment" Display="Dynamic" CssClass="text-red-600 text-sm m-2" />
             </div>
             <div class="ml-5">
-                <asp:LinkButton ID="comment_btn" runat="server" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 dark:bg-dark-300 dark:hover:bg-dark-400 ease-in-out duration-300" OnCommand="comment_btn_Command" ValidationGroup="AddComment">
+                <asp:LinkButton ID="comment_btn" runat="server" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 ease-in-out duration-300" OnCommand="comment_btn_Command" ValidationGroup="AddComment">
                     <svg
                     class="w-8 h-8"
                     fill="none"
@@ -421,7 +421,7 @@
     <%--Sort comment--%>
     <asp:Panel ID="sort_panel" runat="server">
 
-        <div class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-row flex-wrap justify-center md:justify-end items-center shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        <div class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-row flex-wrap justify-center md:justify-end items-center shadow-md h-auto transition ease-in-out duration-1000">
             <div class="mr-2 text-gray-800 text-sm">Sort By :</div>
             <asp:LinkButton ID="old_comment_btn" runat="server" CssClass="flex flex-row justify-center items-center w-24 text-indigo-600 bg-gray-200 hover:bg-gray-100 p-2 rounded-lg transition ease-in-out duration-300" OnCommand="old_comment_btn_Command">
                 <svg
@@ -465,15 +465,18 @@
     </asp:Panel>
 
     <%--View comment--%>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, DiscussionComment.commentStatus, [User].name, [User].profilePicture FROM DiscussionComment INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) AND (commentStatus = 1) ORDER BY DiscussionComment.commentDate ASC"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DiscussionComment.commentID, DiscussionComment.commentContent, DiscussionComment.commentDate, DiscussionComment.postID, DiscussionComment.userID, DiscussionComment.commentStatus, [User].name, [User].profilePicture, DiscussionReply.replyContent, DiscussionReply.replyID, DiscussionReply.replyDate, DiscussionReply.commentID AS replyCommentID, DiscussionReply.userID AS replyUserID, DiscussionReply.replyStatus FROM DiscussionComment INNER JOIN DiscussionReply ON DiscussionComment.commentID = DiscussionReply.commentID INNER JOIN [User] ON DiscussionComment.userID = [User].userID WHERE (DiscussionComment.postID = @postID) AND (DiscussionComment.commentStatus = 1) ORDER BY DiscussionComment.commentDate"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT DiscussionReply.replyID, DiscussionReply.replyContent, DiscussionReply.replyDate, DiscussionReply.commentID, DiscussionReply.userID, DiscussionReply.replyStatus, [User].userID AS replyUserID, [User].name, [User].profilePicture FROM DiscussionReply INNER JOIN [User] ON DiscussionReply.userID = [User].userID WHERE (DiscussionReply.commentID = @commentID) AND (DiscussionReply.replyStatus = 1) ORDER BY DiscussionReply.replyDate"></asp:SqlDataSource>
 
-    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound">
+    <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1" OnItemDataBound="Repeater1_ItemDataBound" EnableViewState="false">
         <ItemTemplate>
             <div
-                class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+                class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
+
+                <%--Comment header--%>
                 <div class="flex flex-row justify-between items-center border-b-2 pb-2">
                     <%--User detail--%>
-                    <div>
+                    <div class="mr-auto">
                         <a href="#" class="flex flex-row hover:underline transition ease-in-out duration-300">
                             <svg
                                 class="w-12 h-12"
@@ -499,8 +502,10 @@
                             </div>
                         </a>
                     </div>
+
+                    <%--Delete comment btn--%>
                     <div>
-                        <asp:LinkButton ID="delete_comment_btn" runat="server" Visible="false" CssClass="text-gray-300 hover:text-indigo-600 transition ease-in-out duration-300" CommandArgument='<%#Eval("commentID") %>' OnCommand="delete_comment_btn_Command" OnClientClick="return confirm('Are you sure to delete the comment?')" >
+                        <asp:LinkButton ID="delete_comment_btn" runat="server" ToolTip="Delete Comment" Visible="false" CssClass="text-gray-500 hover:text-indigo-600 transition ease-in-out duration-300" CommandArgument='<%#Eval("commentID") %>' OnCommand="delete_comment_btn_Command" OnClientClick="return confirm('Are you sure to delete the comment?')">
                             <svg
                                 class="w-6 h-6"
                                 fill="none"
@@ -516,12 +521,123 @@
                             </svg>
                         </asp:LinkButton>
                     </div>
+
+                    <%--Reply comment btn--%>
+                    <div>
+                        <asp:LinkButton ID="reply_comment_btn" runat="server" ToolTip="Reply Comment" Visible="false" CssClass="text-gray-500 hover:text-indigo-600 transition ease-in-out duration-300" CommandArgument='<%#Eval("commentID") %>' OnCommand="reply_comment_btn_Command">
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6">
+                                </path>
+                            </svg>
+                        </asp:LinkButton>
+                    </div>
                 </div>
+
                 <%--Discussion comment--%>
-                <div class="mt-5">
+                <div class="mt-5 text-left">
+                    <asp:Label ID="comment_id_hidden_lbl" runat="server" Text='<%#Eval("commentID") %>' Visible="false"></asp:Label>
                     <asp:Label ID="comment_status_hidden_lbl" runat="server" Text='<%#Eval("commentStatus") %>' Visible="false"></asp:Label>
-                    <asp:Label ID="comment_lbl" runat="server" Text='<%#Eval("commentContent") %>' CssClass="px-1 break-words"></asp:Label>
+                    <asp:Label ID="comment_lbl" runat="server" Text='<%#Eval("commentContent") %>' CssClass="break-words"></asp:Label>
                 </div>
+
+                <%--Add reply--%>
+                <asp:Panel ID="reply_panel" runat="server" Visible="false" CssClass="flex flex-row flex-grow justify-between items-start">
+                    <div class="flex-grow">
+                        <asp:TextBox ID="reply_txt" runat="server" placeholder="Reply" ToolTip="Reply" TextMode="MultiLine" CssClass="h-14 w-full px-2 py-3 mt-5 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300 overflow-hidden" onkeyup="AutoExpand(this)"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="reply_txt" ErrorMessage="*Required" ValidationGroup="ReplyComment" Display="Dynamic" CssClass="text-red-600 text-sm m-2" />
+                    </div>
+                    <div class="ml-5">
+                        <asp:LinkButton ID="reply_btn" runat="server" CssClass="w-auto flex flex-row justify-center items-center mt-5 p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 ease-in-out duration-300" OnCommand="reply_btn_Command" ValidationGroup="ReplyComment" CommandArgument='<%#Eval("commentID") %>'>
+                            <svg
+                                class="w-8 h-8"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                                </path>
+                            </svg>
+                            <span class="ml-2 hidden sm:inline font-title">Reply</span>
+                        </asp:LinkButton>
+                    </div>
+                </asp:Panel>
+
+                <%--View reply--%>
+                <asp:Repeater ID="Repeater2" runat="server" OnItemDataBound="Repeater2_ItemDataBound">
+                    <ItemTemplate>
+                        <div class="mb-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col border-2 h-auto bg-gray-50">
+                            <%--Reply header--%>
+                            <div class="flex flex-row justify-between items-center border-b-2 pb-2">
+                                <%--User detail--%>
+                                <div class="mr-auto">
+                                    <a href="#" class="flex flex-row hover:underline transition ease-in-out duration-300">
+                                        <svg
+                                            class="w-12 h-12"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1"
+                                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
+                                            </path>
+                                        </svg>
+                                        <div class="flex flex-col px-4 justify-start items-start">
+                                            <div class="font-medium">
+                                                <abbr title="<%#Eval("name") %>" style="text-decoration: none;"><%#Eval("userID") %></abbr>
+                                                <asp:Label ID="reply_username_hidden_lbl" runat="server" Text='<%#Eval("userID") %>' Visible="false"></asp:Label>
+                                            </div>
+                                            <div class="text-sm opacity-80 no-underline">
+                                                <abbr title="<%#DataBinder.Eval(Container.DataItem, "replyDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "replyDate", "{0:d MMMM yyyy}") %></abbr>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <%--Delete reply btn--%>
+                                <div>
+                                    <asp:LinkButton ID="delete_reply_btn" runat="server" ToolTip="Delete Reply" Visible="false" CssClass="text-gray-500 hover:text-indigo-600 transition ease-in-out duration-300" CommandArgument='<%#Eval("replyID") %>' OnCommand="delete_reply_btn_Command" OnClientClick="return confirm('Are you sure to delete the reply?')">
+                                        <svg
+                                            class="w-6 h-6"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="1.5"
+                                                d="M6 18L18 6M6 6l12 12">
+                                            </path>
+                                        </svg>
+                                    </asp:LinkButton>
+                                </div>
+                            </div>
+
+                            <%--Discussion reply--%>
+                            <div class="mt-5">
+                                <asp:Label ID="reply_status_hidden_lbl" runat="server" Text='<%#Eval("replyStatus") %>' Visible="false"></asp:Label>
+                                <asp:Label ID="reply_lbl" runat="server" Text='<%#Eval("replyContent") %>' CssClass="break-words"></asp:Label>
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+
             </div>
         </ItemTemplate>
         <FooterTemplate>

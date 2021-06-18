@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,12 +25,13 @@ namespace RoundTable.WebForms.User
             }
             else
             {
+                string encryptedPassword = Encryptdata(txtPassword.Text);
                 String saveUserData = "Insert into [dbo].[User] (userID, name, emailAddress, userPassword) VALUES (@UserID, @Name, @EmailAddress, @UserPassword)";
                 SqlCommand cmdSaveUser = new SqlCommand(saveUserData, con);
                 cmdSaveUser.Parameters.AddWithValue("@UserID", txtUserID.Text);
                 cmdSaveUser.Parameters.AddWithValue("@Name", txtName.Text);
                 cmdSaveUser.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
-                cmdSaveUser.Parameters.AddWithValue("@UserPassword", txtPassword.Text);
+                cmdSaveUser.Parameters.AddWithValue("@UserPassword", encryptedPassword);
                 //cmdSaveUser.Parameters.AddWithValue("@Gender", rblGender.SelectedValue);
                 //cmdSaveUser.Parameters.AddWithValue("@DOB", txtDOB.Text);
                 con.Open();
@@ -37,6 +39,15 @@ namespace RoundTable.WebForms.User
                 con.Close();
                 Response.Redirect("~/WebForms/Discussion/Homepage.aspx");
             }
+        }
+
+        private string Encryptdata(string password)
+        {
+            string strmsg = string.Empty;
+            byte[] encode = new byte[password.Length];
+            encode = Encoding.UTF8.GetBytes(password);
+            strmsg = Convert.ToBase64String(encode);
+            return strmsg;
         }
 
         public bool CheckUsername(string username)

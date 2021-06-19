@@ -33,15 +33,6 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.LinkButton content_btn;
 
         /// <summary>
-        /// topic_btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton topic_btn;
-
-        /// <summary>
         /// layout_btn control.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace RoundTable.WebForms.Discussion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton layout_btn;
+
+        /// <summary>
+        /// topic_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton topic_btn;
 
         /// <summary>
         /// personalize_lbl control.

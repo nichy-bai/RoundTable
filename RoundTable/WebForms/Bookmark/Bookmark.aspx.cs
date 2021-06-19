@@ -15,6 +15,8 @@ namespace RoundTable.WebForms.Bookmark
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
 
+        string recommendPostID;
+
         //To be modified
         string bookmarkUserID = "Shrimp";
 
@@ -97,6 +99,67 @@ namespace RoundTable.WebForms.Bookmark
                         Repeater1.DataBind();
                     }
                 }
+
+
+                //Bind recommend post
+                string topic = null, tag = null;
+
+                con.Open();
+                SqlCommand count = new SqlCommand("SELECT COUNT(postID) FROM Post", con);
+                int totalPost = (int)count.ExecuteScalar();
+
+                Random rnd = new Random();
+                int randomPost = rnd.Next(1, totalPost);
+
+                randomPost += 1000000000;
+
+                recommendPostID = "DP" + randomPost.ToString();
+
+                SqlCommand cmd1 = new SqlCommand("SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND postID='" + recommendPostID + "'", con);
+                cmd1.CommandType = CommandType.Text;
+                SqlDataReader dr = cmd1.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    recommend_username_lbl.Text = dr["userID"].ToString();
+                    recommend_username_lbl.ToolTip = dr["name"].ToString();
+
+                    recommend_date_lbl.Text = Convert.ToDateTime(dr["postDate"]).ToString("d MMMM yyyy");
+                    recommend_date_lbl.ToolTip = Convert.ToDateTime(dr["postDate"]).ToString("dddd, dd/MM/yyyy h:mm:ss tt");
+
+                    recommend_postID_lbl.Text = dr["postID"].ToString();
+                    recommend_postTitle_lbl.Text = dr["postTitle"].ToString();
+                    topic = dr["topicID"].ToString();
+                    tag = dr["tagID"].ToString();
+                    recommend_like_lbl.Text = dr["totalLike"].ToString();
+                    recommend_comment_lbl.Text = dr["totalComment"].ToString();
+                    recommend_bookmark_lbl.Text = dr["totalView"].ToString();
+                }
+                con.Close();
+
+                con.Open();
+                SqlCommand cmd2 = new SqlCommand("SELECT topicName FROM Topic WHERE topicID='" + topic + "'", con);
+                SqlCommand cmd3 = new SqlCommand("SELECT topicDesc FROM Topic WHERE topicID='" + topic + "'", con);
+                SqlCommand cmd4 = new SqlCommand("SELECT tagName FROM Tag WHERE tagID='" + tag + "'", con);
+                SqlCommand cmd5 = new SqlCommand("SELECT tagDesc FROM Tag WHERE tagID='" + tag + "'", con);
+                SqlCommand cmd6 = new SqlCommand("SELECT editDate FROM Post WHERE postID='" + recommendPostID + "'", con);
+
+                recommend_topic_name.Text = cmd2.ExecuteScalar().ToString();
+                recommend_topic_name.ToolTip = cmd3.ExecuteScalar().ToString();
+                recommend_tag_name.Text = cmd4.ExecuteScalar().ToString();
+                recommend_tag_name.ToolTip = cmd5.ExecuteScalar().ToString();
+
+                object obj = cmd6.ExecuteScalar();
+
+                if (obj != null && DBNull.Value != obj)
+                {
+                    string editDate = Convert.ToDateTime(cmd6.ExecuteScalar()).ToString("d MMMM yyyy");
+                    string editDateFull = Convert.ToDateTime(cmd6.ExecuteScalar()).ToString("dddd, dd/MM/yyyy h:mm:ss tt");
+
+                    recommend_edit_date_lbl.Text = "(Edited on " + editDate + ")";
+                    recommend_edit_date_lbl.ToolTip = "Edited on " + editDateFull;
+                }
+                con.Close();
             }
         }
 
@@ -107,7 +170,15 @@ namespace RoundTable.WebForms.Bookmark
                 if (e.Item.ItemType == ListItemType.Footer)
                 {
                     Label lblFooter = (Label)e.Item.FindControl("noBookmark_lbl");
+                    Label lblFooter2 = (Label)e.Item.FindControl("noBookmark_lbl_2");
+                    LinkButton lblFooter3 = (LinkButton)e.Item.FindControl("homepage_btn");
+                    Panel lblFooter4 = (Panel)e.Item.FindControl("noBookmark_panel");
                     lblFooter.Visible = true;
+                    lblFooter2.Visible = true;
+                    lblFooter3.Visible = true;
+                    lblFooter4.Visible = true;
+                    recommend_lbl.Visible = true;
+                    recommend_panel.Visible = true;
                 }
             }
 
@@ -121,8 +192,38 @@ namespace RoundTable.WebForms.Bookmark
         protected void bookmarkBody_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();
-            //Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID);
             Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+        }
+
+        protected void recommendBody_btn_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + recommend_postID_lbl.Text.Substring(2, recommend_postID_lbl.Text.Length - 2));
+        }
+
+        protected void remove_bookmark_btn_Command(object sender, CommandEventArgs e)
+        {
+            if (Repeater1.Items.Count > 0)
+            {
+                bool bookmarkStatus = false;
+
+                SqlCommand update = new SqlCommand("UPDATE Bookmark SET bookmarkStatus='" + bookmarkStatus + "' WHERE userID='" + bookmarkUserID + "'", con);
+                con.Open();
+                update.ExecuteNonQuery();
+                con.Close();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                "alert('Clear all bookmarks successfully!'); window.location='" +
+                Request.ApplicationPath + "../WebForms/Bookmark/Bookmark.aspx';", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You have not bookmarked any posts')", true);
+            }
+        }
+
+        protected void homepage_btn_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("../Discussion/Homepage.aspx");
         }
     }
 }

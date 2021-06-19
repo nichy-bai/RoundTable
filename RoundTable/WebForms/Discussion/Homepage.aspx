@@ -22,8 +22,8 @@
                 <!--Title-->
                 <div class="flex justify-around items-center mb-5">
                     <asp:LinkButton ID="content_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-gray-700" Text="Content" OnCommand="content_btn_Command"></asp:LinkButton>
-                    <asp:LinkButton ID="topic_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Topic"></asp:LinkButton>
                     <asp:LinkButton ID="layout_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Layout" OnCommand="layout_btn_Command"></asp:LinkButton>
+                    <asp:LinkButton ID="topic_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Topic"></asp:LinkButton>
                 </div>
 
                 <!--Body-->
@@ -152,7 +152,7 @@
             </div>
         </div>
         <div class="flex flex-row items-center ml-4">
-            <asp:LinkButton ID="personalize_btn" runat="server" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 ease-in-out duration-300" OnCommand="personalize_btn_Command" OnClientClick="window.document.forms[0].target='_self';">
+            <asp:LinkButton ID="personalize_btn" runat="server" ToolTip="Customize content, topic and layout to your liking" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-gray-600 ease-in-out duration-300" OnCommand="personalize_btn_Command" OnClientClick="window.document.forms[0].target='_self';">
                 <svg
                     class="w-8 h-8"
                     fill="none"
@@ -174,8 +174,7 @@
     <%--Create discussion post--%>
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark-theme">
-        <div
-            class="bg-gray-200 hover:bg-gray-300 text-gray-600 hover:text-gray-700 w-full h-auto rounded-lg cursor-pointer transition ease-in-out duration-1000">
+        <div title="Start an asynchronous discussion" class="bg-gray-200 hover:bg-gray-300 text-gray-600 hover:text-gray-700 w-full h-auto rounded-lg cursor-pointer transition ease-in-out duration-1000">
             <a
                 href="CreateDiscussion.aspx"
                 class="px-0 flex flex-row flex-grow items-center m-5 text-lg h-auto">

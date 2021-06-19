@@ -660,21 +660,6 @@ namespace RoundTable.WebForms.Discussion
             string comment = e.CommandArgument.ToString();
             string reply = null;
 
-            LinkButton btn = (sender as LinkButton);
-
-            //foreach (RepeaterItem item in Repeater1.Items)
-            //{
-            //    Panel p = item.FindControl("reply_panel") as Panel;
-            //    TextBox t = p.FindControl("reply_txt") as TextBox;
-
-            //    // 16/6/21 10:58PM if without reply panel the reply function will work but all textbox are required to fill in
-
-            //    if (t != null)
-            //    {
-            //        reply = t.Text;
-            //    }
-            //}
-
             RepeaterItem item = (sender as LinkButton).NamingContainer as RepeaterItem;
             reply = (item.FindControl("reply_txt") as TextBox).Text;
 

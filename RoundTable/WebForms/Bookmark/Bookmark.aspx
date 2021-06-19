@@ -208,7 +208,7 @@
             <div class="flex flex-col justify-center items-center mx-5">
                 <asp:Panel ID="noBookmark_panel" runat="server" Visible="false" CssClass="text-gray-500 mt-5 mb-2 md:mt-10">
                     <svg
-                        class="w-10 h-10 md:w-14 md:h-14"
+                        class="w-12 h-12 md:w-14 md:h-14"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -230,7 +230,7 @@
     </asp:Repeater>
 
     <%--Recommend post--%>
-    <asp:Label ID="recommend_lbl" runat="server" CssClass="text-gray-500 text-center pt-8 pb-4 mx-5 border-t-2 border-gray-300" Text="Recommended discussion post" Visible="false"></asp:Label>
+    <asp:Label ID="recommend_lbl" runat="server" CssClass="text-gray-500 text-center pt-10 pb-4 mx-5 border-t-2" Text="Recommended discussion post" Visible="false"></asp:Label>
 
     <asp:Panel ID="recommend_panel" runat="server" Visible="false" CssClass="mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <asp:LinkButton ID="recommendBody_btn" runat="server" CssClass="flex flex-col cursor-pointer hover:shadow-md hover:text-gray-800 p-5 px-6 rounded-lg transition ease-in-out duration-500 border-r-4 border-b-4 border-transparent hover:border-gray-600" OnCommand="recommendBody_btn_Command">

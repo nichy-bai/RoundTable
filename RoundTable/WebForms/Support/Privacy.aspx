@@ -17,7 +17,7 @@
                     <img src="../../Content/img/privacy_illustration_1.svg" alt="illustration_1" class="w-11/12 md:w-9/12 h-auto">
                 </div>
 
-                <p>At RoundTable, accessible from roundtable.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by RoundTable and how we use it.</p>
+                <p>At RoundTable, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by RoundTable and how we use it.</p>
                 <br />
                 <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to <a href="mailto:roundtable.cs@gmail.com" class="underline">contact us</a>.</p>
                 <br />
@@ -37,7 +37,7 @@
                 <br />
                 <p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
                 <br />
-                <p>When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
+                <p>When you register for an Account, we may ask for your contact information, including items such as name, email address, and telephone number.</p>
                 <br />
 
                 <br />
@@ -66,7 +66,19 @@
                 <br />
                 <p>Like any other website, RoundTable uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
                 <br />
-                <p>For more general information on cookies, please read <a href="https://www.privacypolicyonline.com/what-are-cookies/" class="underline" target="_blank">"What Are Cookies" from Cookie Consent</a>.</p>
+                <p>The technologies we use for this automatic data collection may include cookies, flash cookies, and web beacons.</p>
+                <br />
+                <p>Cookies (or browser cookies) Cookies are a small file placed on the hard drive of your device. You may refuse to accept browser cookies by activating the appropriate setting on your browser. However, if you select this setting you may be unable to access certain parts of the Websites or Service. Unless you have adjusted your browser setting so that it will refuse cookies, our system will issue cookies when you direct your browser to the Websites and/or Service.</p>
+                <br />
+                <p>Flash Cookies. Certain features of the Websites or Service may use local stored objects (or Flash cookies) to collect and store information about your preferences and navigation to, from, and on the Websites or Service. Flash cookies are not managed by the same browser settings as are used for browser cookies.</p>
+                <br />
+                <p>Web Beacons. Pages of the Websites and our e-mails may contain small electronic files known as web beacons (also referred to as clear gifs, pixel tags, and single-pixel gifs) that permit the Company, for example, to count users who have visited those pages or opened an email and for other related website statistics (for example, recording the popularity of certain website content and verifying system and server integrity).</p>
+                <br />
+                <p>If you delete your cookies, change browsers or use a different cookie, our cookie (or an opt-out cookie) may no longer work and you will have to reinput (or opt-out) again.</p>
+                <br />
+                <p>Cookies contain information that is transferred to your computer’s hard drive. These cookies are used to store information, such as the time that the current visit occurred, whether the visitor has been to the site before and what site referred the visitor to the web page. We then use the information to compile reports and to help us improve the Websites. For more general information on cookies, please read <a href="https://www.privacypolicyonline.com/what-are-cookies/" class="underline" target="_blank">"What Are Cookies"</a> from Cookie Consent.</p>
+                <br />
+                <p>It is possible at times when collecting non-personally identifiable information through automatic means that we may unintentionally collect or receive personally identifiable information that is mixed in with the non-personally identifiable information. While we will make reasonable efforts to prevent such incidental data collection, the possibility still exists. If you believe that we have inadvertently collected your personal information, please <a href="mailto:roundtable.cs@gmail.com" class="underline">contact us</a>.</p>
                 <br />
 
                 <br />

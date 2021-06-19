@@ -104,28 +104,52 @@ namespace RoundTable.WebForms.Discussion
             con.Close();
 
             string postTitle = TextBox1.Text;
-            string postContent = TextBox2.Text;
-            postContent = TrimEnd(postContent, "\r\n<p>&nbsp;</p>");
-            postContent = postContent.Replace(">", "> ");
-            postContent = postContent.Replace("</", " </");
-            postContent = filter.CensorString(postContent);
-            string editDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-            SqlCommand cmd3 = new SqlCommand("UPDATE Post SET postTitle='" + postTitle + "', postContent='" + postContent + "', topicID='" + topicID + "', tagID='" + tagID + "', editDate='" + editDate + "' WHERE postID='" + postID + "'", con);
-            con.Open();
-            cmd3.ExecuteNonQuery();
-            con.Close();
+            var profanityList = filter.DetectAllProfanities(postTitle);
 
-            DropDownList1.ClearSelection();
-            DropDownList2.ClearSelection();
-            DropDownList1.Items.Insert(0, "[Select a Topic]");
-            DropDownList2.Items.Insert(0, "[Select a Tag]");
-            TextBox1.Text = "";
-            TextBox2.Text = "";
+            if (profanityList.Count == 0)
+            {
+                string postContent = TextBox2.Text;
+                postContent = TrimEnd(postContent, "\r\n<p>&nbsp;</p>");
+                postContent = postContent.Replace(">", "> ");
+                postContent = postContent.Replace("</", " </");
+                postContent = filter.CensorString(postContent);
+                string editDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-            "alert('Successfully updated!'); window.location='" +
-            Request.ApplicationPath + "../WebForms/Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2) + "';", true);
+                SqlCommand cmd3 = new SqlCommand("UPDATE Post SET postTitle='" + postTitle + "', postContent='" + postContent + "', topicID='" + topicID + "', tagID='" + tagID + "', editDate='" + editDate + "' WHERE postID='" + postID + "'", con);
+                con.Open();
+                cmd3.ExecuteNonQuery();
+                con.Close();
+
+                DropDownList1.ClearSelection();
+                DropDownList2.ClearSelection();
+                DropDownList1.Items.Insert(0, "[Select a Topic]");
+                DropDownList2.Items.Insert(0, "[Select a Tag]");
+                TextBox1.Text = "";
+                TextBox2.Text = "";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                "alert('Successfully updated!'); window.location='" +
+                Request.ApplicationPath + "../WebForms/Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2) + "';", true);
+            }
+            else
+            {
+                string profanity = null;
+
+                for (int i = profanityList.Count() - 1; i >= 0; i--)
+                {
+                    if (i > 0)
+                    {
+                        profanity = profanity + profanityList[i].ToString() + ", ";
+                    }
+                    else
+                    {
+                        profanity += profanityList[i].ToString();
+                    }
+                }
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Discussion title cannot contain the following words: [" + profanity + "]')", true);
+            }
         }
 
         public static string TrimEnd(string input, string suffixToRemove)

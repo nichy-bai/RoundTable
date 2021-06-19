@@ -90,41 +90,65 @@ namespace RoundTable.WebForms.Discussion
             con.Close();
 
             string postTitle = TextBox1.Text;
-            string postContent = TextBox2.Text;
-            postContent = TrimEnd(postContent, "\r\n<p>&nbsp;</p>");
-            postContent = postContent.Replace(">", "> ");
-            postContent = postContent.Replace("</", " </");
-            postContent = filter.CensorString(postContent);
-            string postDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            bool postStatus = true;
 
-            //to be modified
-            string userID = "Shrimp";
+            var profanityList = filter.DetectAllProfanities(postTitle);
 
-            string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, userID, tagID, topicID, postStatus) VALUES (@postID, @postTitle, @postContent, @postDate, @userID, @tagID, @topicID, @postStatus)";
-            SqlCommand cmd3 = new SqlCommand(insertCmd, con);
-            cmd3.Parameters.AddWithValue("@postID", postID);
-            cmd3.Parameters.AddWithValue("@postTitle", postTitle);
-            cmd3.Parameters.AddWithValue("@postContent", postContent);
-            cmd3.Parameters.AddWithValue("@postDate", postDate);
-            cmd3.Parameters.AddWithValue("@userID", userID);
-            cmd3.Parameters.AddWithValue("@tagID", tagID);
-            cmd3.Parameters.AddWithValue("@topicID", topicID);
-            cmd3.Parameters.AddWithValue("@postStatus", postStatus);
-            con.Open();
-            cmd3.ExecuteNonQuery();
-            con.Close();
+            if(profanityList.Count == 0)
+            {
+                string postContent = TextBox2.Text;
+                postContent = TrimEnd(postContent, "\r\n<p>&nbsp;</p>");
+                postContent = postContent.Replace(">", "> ");
+                postContent = postContent.Replace("</", " </");
+                postContent = filter.CensorString(postContent);
+                string postDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                bool postStatus = true;
 
-            DropDownList1.ClearSelection();
-            DropDownList2.ClearSelection();
-            DropDownList1.Items.Insert(0, "[Select a Topic]");
-            DropDownList2.Items.Insert(0, "[Select a Tag]");
-            TextBox1.Text = "";
-            TextBox2.Text = "";
+                //to be modified
+                string userID = "Shrimp";
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-            "alert('Successfully posted!'); window.location='" +
-            Request.ApplicationPath + "../WebForms/Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2) + "';", true);
+                string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, userID, tagID, topicID, postStatus) VALUES (@postID, @postTitle, @postContent, @postDate, @userID, @tagID, @topicID, @postStatus)";
+                SqlCommand cmd3 = new SqlCommand(insertCmd, con);
+                cmd3.Parameters.AddWithValue("@postID", postID);
+                cmd3.Parameters.AddWithValue("@postTitle", postTitle);
+                cmd3.Parameters.AddWithValue("@postContent", postContent);
+                cmd3.Parameters.AddWithValue("@postDate", postDate);
+                cmd3.Parameters.AddWithValue("@userID", userID);
+                cmd3.Parameters.AddWithValue("@tagID", tagID);
+                cmd3.Parameters.AddWithValue("@topicID", topicID);
+                cmd3.Parameters.AddWithValue("@postStatus", postStatus);
+                con.Open();
+                cmd3.ExecuteNonQuery();
+                con.Close();
+
+                DropDownList1.ClearSelection();
+                DropDownList2.ClearSelection();
+                DropDownList1.Items.Insert(0, "[Select a Topic]");
+                DropDownList2.Items.Insert(0, "[Select a Tag]");
+                TextBox1.Text = "";
+                TextBox2.Text = "";
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                "alert('Successfully posted!'); window.location='" +
+                Request.ApplicationPath + "../WebForms/Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2) + "';", true);
+            }
+            else
+            {
+                string profanity = null;
+
+                for(int i = profanityList.Count() - 1; i >= 0; i--)
+                {
+                    if (i > 0)
+                    {
+                        profanity = profanity + profanityList[i].ToString() + ", ";
+                    }
+                    else
+                    {
+                        profanity += profanityList[i].ToString();
+                    }
+                }
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Discussion title cannot contain the following words: [" + profanity + "]')", true);
+            }
         }
 
         public static string TrimEnd(string input, string suffixToRemove)

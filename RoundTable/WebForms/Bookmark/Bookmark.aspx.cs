@@ -109,7 +109,7 @@ namespace RoundTable.WebForms.Bookmark
                 int totalPost = (int)count.ExecuteScalar();
 
                 Random rnd = new Random();
-                int randomPost = rnd.Next(1, totalPost);
+                int randomPost = rnd.Next(1, totalPost+1);
 
                 randomPost += 1000000000;
 

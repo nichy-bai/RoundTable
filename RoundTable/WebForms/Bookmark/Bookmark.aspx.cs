@@ -28,7 +28,8 @@ namespace RoundTable.WebForms.Bookmark
             }
 
             HttpCookie layoutCookie = Request.Cookies["layoutCookie"];
-            string layout;
+            HttpCookie fontCookie = Request.Cookies["fontCookie"];
+            string layout, font;
 
             if (layoutCookie != null)
             {
@@ -81,6 +82,51 @@ namespace RoundTable.WebForms.Bookmark
                         p4.Visible = true;
                         p5.Visible = true;
                     }
+                }
+            }
+
+            if (fontCookie != null)
+            {
+                font = fontCookie["Font"];
+
+                if (font == "Small")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Label title = (Label)item.FindControl("postTitle_lbl");
+                        title.CssClass = title.CssClass.Replace("text-xl", "text-md");
+                        title.CssClass = title.CssClass.Replace("text-2xl", "text-md");
+                    }
+
+                    Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
+                    title2.CssClass = title2.CssClass.Replace("text-xl", "text-md");
+                    title2.CssClass = title2.CssClass.Replace("text-2xl", "text-md");
+                }
+                else if (font == "Medium")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Label title = (Label)item.FindControl("postTitle_lbl");
+                        title.CssClass = title.CssClass.Replace("text-md", "text-xl");
+                        title.CssClass = title.CssClass.Replace("text-2xl", "text-xl");
+                    }
+
+                    Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
+                    title2.CssClass = title2.CssClass.Replace("text-md", "text-xl");
+                    title2.CssClass = title2.CssClass.Replace("text-2xl", "text-xl");
+                }
+                else if (font == "Large")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Label title = (Label)item.FindControl("postTitle_lbl");
+                        title.CssClass = title.CssClass.Replace("text-md", "text-2xl");
+                        title.CssClass = title.CssClass.Replace("text-xl", "text-2xl");
+                    }
+
+                    Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
+                    title2.CssClass = title2.CssClass.Replace("text-md", "text-2xl");
+                    title2.CssClass = title2.CssClass.Replace("text-xl", "text-2xl");
                 }
             }
         }

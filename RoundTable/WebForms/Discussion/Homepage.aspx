@@ -23,7 +23,7 @@
                 <div class="flex justify-around items-center mb-5">
                     <asp:LinkButton ID="content_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-gray-700" Text="Content" OnCommand="content_btn_Command"></asp:LinkButton>
                     <asp:LinkButton ID="layout_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Layout" OnCommand="layout_btn_Command"></asp:LinkButton>
-                    <asp:LinkButton ID="topic_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Topic"></asp:LinkButton>
+                    <asp:LinkButton ID="font_btn" runat="server" CssClass="text-md md:text-xl font-bold text-gray-800 px-1 pb-1 border-b-2 border-transparent" Text="Font" OnCommand="font_btn_Command"></asp:LinkButton>
                 </div>
 
                 <!--Body-->
@@ -133,6 +133,58 @@
                             <span class="md:ml-2 font-title">Cozy</span>
                         </asp:LinkButton>
                     </asp:Panel>
+
+                    <%--Font--%>
+                    <asp:Panel ID="font_panel" runat="server" CssClass="my-5 flex flex-row justify-center items-center" Visible="false">
+                        <asp:LinkButton ID="font_small_btn" runat="server" CssClass="w-32 flex flex-row flex-wrap justify-center items-center p-3 m-2 bg-gray-200 text-indigo-600 rounded-lg hover:bg-gray-100 ease-in-out duration-300" OnCommand="font_small_btn_Command">
+                            <svg
+                                class="w-8 h-8"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                            <span class="md:ml-2 font-title">Smaller</span>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="font_medium_btn" runat="server" CssClass="w-32 flex flex-row flex-wrap justify-center items-center p-3 m-2 bg-white text-gray-800 rounded-lg hover:bg-gray-100 ease-in-out duration-300" OnCommand="font_medium_btn_Command">
+                            <svg
+                                class="w-8 h-8"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <span class="md:ml-2 font-title">Normal</span>
+                        </asp:LinkButton>
+                        <asp:LinkButton ID="font_large_btn" runat="server" CssClass="w-32 flex flex-row flex-wrap justify-center items-center p-3 m-2 bg-white text-gray-800 rounded-lg hover:bg-gray-100 ease-in-out duration-300" OnCommand="font_large_btn_Command">
+                            <svg
+                                class="w-8 h-8"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                </path>
+                            </svg>
+                            <span class="md:ml-2 font-title">Larger</span>
+                        </asp:LinkButton>
+                    </asp:Panel>
                 </div>
 
                 <!--Footer-->
@@ -204,7 +256,7 @@
         <ItemTemplate>
             <asp:Panel ID="post_panel" runat="server" CssClass="mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
                 <asp:LinkButton ID="postBody_btn" runat="server" CssClass="flex flex-col cursor-pointer hover:shadow-md hover:text-gray-800 p-5 px-6 rounded-lg transition ease-in-out duration-500 border-r-4 border-b-4 border-transparent hover:border-gray-600" OnCommand="postBody_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
-                    <asp:Panel ID="user_detail_panel" runat="server" CssClass="flex flex-row justify-start border-b-2 pb-2 mb-5">
+                    <asp:Panel ID="user_detail_panel" runat="server" CssClass="flex flex-row justify-start items-center border-b-2 pb-2 mb-5">
                         <%--User detail--%>
                         <div>
                             <div class="flex flex-row">

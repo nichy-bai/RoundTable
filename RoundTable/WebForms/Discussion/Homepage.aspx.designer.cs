@@ -42,13 +42,13 @@ namespace RoundTable.WebForms.Discussion
         protected global::System.Web.UI.WebControls.LinkButton layout_btn;
 
         /// <summary>
-        /// topic_btn control.
+        /// font_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton topic_btn;
+        protected global::System.Web.UI.WebControls.LinkButton font_btn;
 
         /// <summary>
         /// personalize_lbl control.
@@ -130,6 +130,42 @@ namespace RoundTable.WebForms.Discussion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton layout_cozy_btn;
+
+        /// <summary>
+        /// font_panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel font_panel;
+
+        /// <summary>
+        /// font_small_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton font_small_btn;
+
+        /// <summary>
+        /// font_medium_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton font_medium_btn;
+
+        /// <summary>
+        /// font_large_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton font_large_btn;
 
         /// <summary>
         /// confirm_btn control.

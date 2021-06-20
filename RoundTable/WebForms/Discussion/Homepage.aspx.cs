@@ -17,12 +17,14 @@ namespace RoundTable.WebForms.Discussion
         string likeID;
         HttpCookie contentCookie = new HttpCookie("contentCookie");
         HttpCookie layoutCookie = new HttpCookie("layoutCookie");
+        HttpCookie fontCookie = new HttpCookie("fontCookie");
 
         protected void Page_Load(object sender, EventArgs e)
         {
             HttpCookie contentCookie = Request.Cookies["contentCookie"];
             HttpCookie layoutCookie = Request.Cookies["layoutCookie"];
-            string content, layout;
+            HttpCookie fontCookie = Request.Cookies["fontCookie"];
+            string content, layout, font;
 
             if(contentCookie != null)
             {
@@ -147,6 +149,67 @@ namespace RoundTable.WebForms.Discussion
                 }
             }
 
+            if(fontCookie != null)
+            {
+                font = fontCookie["Font"];
+
+                if(font == "Small")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Label title = (Label)item.FindControl("postTitle_lbl");
+                        title.CssClass = title.CssClass.Replace("text-xl", "text-md");
+                        title.CssClass = title.CssClass.Replace("text-2xl", "text-md");
+                    }
+
+                    font_small_btn.CssClass = font_small_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+                    font_small_btn.CssClass = font_small_btn.CssClass.Replace("bg-white", "bg-gray-200");
+                    font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                    font_large_btn.CssClass = font_large_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    font_large_btn.CssClass = font_large_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                }
+                else if(font == "Medium")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Label title = (Label)item.FindControl("postTitle_lbl");
+                        title.CssClass = title.CssClass.Replace("text-md", "text-xl");
+                        title.CssClass = title.CssClass.Replace("text-2xl", "text-xl");
+                    }
+
+                    font_small_btn.CssClass = font_small_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    font_small_btn.CssClass = font_small_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                    font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+                    font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("bg-white", "bg-gray-200");
+                    font_large_btn.CssClass = font_large_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    font_large_btn.CssClass = font_large_btn.CssClass.Replace("bg-gray-200", "bg-white");
+
+                    fontCookie["Font"] = "Medium";
+                    fontCookie.Expires = DateTime.Now.AddDays(999);
+                    Response.Cookies.Add(fontCookie);
+                }
+                else if(font == "Large")
+                {
+                    foreach (RepeaterItem item in Repeater1.Items)
+                    {
+                        Label title = (Label)item.FindControl("postTitle_lbl");
+                        title.CssClass = title.CssClass.Replace("text-md", "text-2xl");
+                        title.CssClass = title.CssClass.Replace("text-xl", "text-2xl");
+                    }
+
+                    font_small_btn.CssClass = font_small_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    font_small_btn.CssClass = font_small_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                    font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+                    font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("bg-gray-200", "bg-white");
+                    font_large_btn.CssClass = font_large_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+                    font_large_btn.CssClass = font_large_btn.CssClass.Replace("bg-white", "bg-gray-200");
+
+                    fontCookie["Font"] = "Large";
+                    fontCookie.Expires = DateTime.Now.AddDays(999);
+                    Response.Cookies.Add(fontCookie);
+                }
+            }
         }
 
         protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -229,9 +292,10 @@ namespace RoundTable.WebForms.Discussion
         {
             content_panel.Visible = true;
             layout_panel.Visible = false;
+            font_panel.Visible = false;
             content_btn.CssClass = content_btn.CssClass.Replace("border-transparent", "border-gray-700");
-            topic_btn.CssClass = topic_btn.CssClass.Replace("border-gray-700", "border-transparent");
             layout_btn.CssClass = layout_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            font_btn.CssClass = font_btn.CssClass.Replace("border-gray-700", "border-transparent");
             personalize_lbl.Text = "Customize the homepage content by choosing the order of discussion posts to be shown to you.";
         }
 
@@ -239,10 +303,22 @@ namespace RoundTable.WebForms.Discussion
         {
             content_panel.Visible = false;
             layout_panel.Visible = true;
+            font_panel.Visible = false;
             content_btn.CssClass = content_btn.CssClass.Replace("border-gray-700", "border-transparent");
-            topic_btn.CssClass = topic_btn.CssClass.Replace("border-gray-700", "border-transparent");
             layout_btn.CssClass = layout_btn.CssClass.Replace("border-transparent", "border-gray-700");
+            font_btn.CssClass = font_btn.CssClass.Replace("border-gray-700", "border-transparent");
             personalize_lbl.Text = "Personalize the homepage layout by choosing how you want to discuss the display of the posts and the design of the posts.";
+        }
+
+        protected void font_btn_Command(object sender, CommandEventArgs e)
+        {
+            content_panel.Visible = false;
+            layout_panel.Visible = false;
+            font_panel.Visible = true;
+            content_btn.CssClass = content_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            layout_btn.CssClass = layout_btn.CssClass.Replace("border-gray-700", "border-transparent");
+            font_btn.CssClass = font_btn.CssClass.Replace("border-transparent", "border-gray-700");
+            personalize_lbl.Text = "Customize the font size according to your needs for a better reading experience, visually from small to large.";
         }
 
         protected void content_recent_btn_Command(object sender, CommandEventArgs e)
@@ -326,7 +402,7 @@ namespace RoundTable.WebForms.Discussion
             layout_cozy_btn.CssClass = layout_cozy_btn.CssClass.Replace("bg-gray-200", "bg-white");
 
             layoutCookie["Layout"] = "Classic";
-            contentCookie.Expires = DateTime.Now.AddDays(999);
+            layoutCookie.Expires = DateTime.Now.AddDays(999);
             Response.Cookies.Add(layoutCookie);
         }
 
@@ -354,7 +430,7 @@ namespace RoundTable.WebForms.Discussion
             layout_cozy_btn.CssClass = layout_cozy_btn.CssClass.Replace("bg-gray-200", "bg-white");
 
             layoutCookie["Layout"] = "Compact";
-            contentCookie.Expires = DateTime.Now.AddDays(999);
+            layoutCookie.Expires = DateTime.Now.AddDays(999);
             Response.Cookies.Add(layoutCookie);
         }
 
@@ -382,8 +458,72 @@ namespace RoundTable.WebForms.Discussion
             layout_cozy_btn.CssClass = layout_cozy_btn.CssClass.Replace("bg-white", "bg-gray-200");
 
             layoutCookie["Layout"] = "Cozy";
-            contentCookie.Expires = DateTime.Now.AddDays(999);
+            layoutCookie.Expires = DateTime.Now.AddDays(999);
             Response.Cookies.Add(layoutCookie);
         }
+
+        protected void font_small_btn_Command(object sender, CommandEventArgs e)
+        {
+            foreach (RepeaterItem item in Repeater1.Items)
+            {
+                Label title = (Label)item.FindControl("postTitle_lbl");
+                title.CssClass = title.CssClass.Replace("text-xl", "text-md");
+                title.CssClass = title.CssClass.Replace("text-2xl", "text-md");
+            }
+
+            font_small_btn.CssClass = font_small_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+            font_small_btn.CssClass = font_small_btn.CssClass.Replace("bg-white", "bg-gray-200");
+            font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("bg-gray-200", "bg-white");
+            font_large_btn.CssClass = font_large_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            font_large_btn.CssClass = font_large_btn.CssClass.Replace("bg-gray-200", "bg-white");
+
+            fontCookie["Font"] = "Small";
+            fontCookie.Expires = DateTime.Now.AddDays(999);
+            Response.Cookies.Add(fontCookie);
+        }
+
+        protected void font_medium_btn_Command(object sender, CommandEventArgs e)
+        {
+            foreach (RepeaterItem item in Repeater1.Items)
+            {
+                Label title = (Label)item.FindControl("postTitle_lbl");
+                title.CssClass = title.CssClass.Replace("text-md", "text-xl");
+                title.CssClass = title.CssClass.Replace("text-2xl", "text-xl");
+            }
+
+            font_small_btn.CssClass = font_small_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            font_small_btn.CssClass = font_small_btn.CssClass.Replace("bg-gray-200", "bg-white");
+            font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+            font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("bg-white", "bg-gray-200");
+            font_large_btn.CssClass = font_large_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            font_large_btn.CssClass = font_large_btn.CssClass.Replace("bg-gray-200", "bg-white");
+
+            fontCookie["Font"] = "Medium";
+            fontCookie.Expires = DateTime.Now.AddDays(999);
+            Response.Cookies.Add(fontCookie);
+        }
+
+        protected void font_large_btn_Command(object sender, CommandEventArgs e)
+        {
+            foreach (RepeaterItem item in Repeater1.Items)
+            {
+                Label title = (Label)item.FindControl("postTitle_lbl");
+                title.CssClass = title.CssClass.Replace("text-md", "text-2xl");
+                title.CssClass = title.CssClass.Replace("text-xl", "text-2xl");
+            }
+
+            font_small_btn.CssClass = font_small_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            font_small_btn.CssClass = font_small_btn.CssClass.Replace("bg-gray-200", "bg-white");
+            font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("text-indigo-600", "text-gray-800");
+            font_medium_btn.CssClass = font_medium_btn.CssClass.Replace("bg-gray-200", "bg-white");
+            font_large_btn.CssClass = font_large_btn.CssClass.Replace("text-gray-800", "text-indigo-600");
+            font_large_btn.CssClass = font_large_btn.CssClass.Replace("bg-white", "bg-gray-200");
+
+            fontCookie["Font"] = "Large";
+            fontCookie.Expires = DateTime.Now.AddDays(999);
+            Response.Cookies.Add(fontCookie);
+        }
+
     }
 }

@@ -10,9 +10,9 @@
             background-color: #E5E7EB;
         }
 
-            .customize-scrollbar::-webkit-scrollbar-thumb:hover {
-                background-color: #9CA3AF;
-            }
+        .customize-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #9CA3AF;
+        }
     </style>
     <header
         class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
@@ -256,7 +256,7 @@
                                 <asp:Label ID="recommend_username_lbl" runat="server" CssClass="no-underline"></asp:Label>
                             </div>
                             <div class="flex flex-wrap text-sm text-gray-600">
-                                <asp:Label ID="recommend_date_lbl" runat="server" CssClass="no-underline"></asp:Label>
+                                <asp:Label ID="recommend_date_lbl" runat="server" CssClass="no-underline mr-2"></asp:Label>
                                 <asp:Label ID="recommend_edit_date_lbl" runat="server" CssClass="no-underline"></asp:Label>
                             </div>
                         </div>

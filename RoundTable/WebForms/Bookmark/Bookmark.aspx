@@ -78,7 +78,7 @@
                     </asp:Panel>
 
                     <%--Discussion title--%>
-                    <div class="mb-5">
+                    <div class="mb-5 break-words" style="max-width:100vh;">
                         <asp:Label ID="postTitle_lbl" runat="server" Text='<%#Eval("postTitle") %>' CssClass="text-xl font-medium py-2"></asp:Label>
                     </div>
 
@@ -92,7 +92,7 @@
                     </asp:Panel>
 
                     <%--Cozy layout's post content--%>
-                    <asp:Panel ID="cozy_content_panel" runat="server" Visible="false" CssClass="flex flex-row flex-wrap mb-2">
+                    <asp:Panel ID="cozy_content_panel" runat="server" Visible="false" CssClass="flex flex-row flex-wrap mb-2 break-words" style="max-width:100vh;">
                         <asp:Label ID="postContent_lbl" runat="server" Text='<%#Eval("postContent").ToString().Length > 0 ? Eval("postContent") : "(No Content)"%>' CssClass="text-gray-700 py-2 w-full h-auto max-h-40 overflow-y-auto hover:border-gray-200 border-t-2 border-b-2 border-transparent transition ease-in-out duration-500 customize-scrollbar"></asp:Label>
                     </asp:Panel>
 

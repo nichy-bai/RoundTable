@@ -171,6 +171,7 @@
     <Content Include="Content\img\brand_logo_1.png" />
     <Content Include="Content\img\brand_logo_2.png" />
     <Content Include="Content\img\brand_mockup_1.png" />
+    <Content Include="Content\img\changelog_illustration_1.svg" />
     <Content Include="Content\img\disclaimer_illustration_1.svg" />
     <Content Include="Content\img\media_illustration_1.svg" />
     <Content Include="Content\img\privacy_illustration_1.svg" />
@@ -202,6 +203,7 @@
     <Content Include="WebForms\Search\SearchStyles\jquery-ui.min.css" />
     <Content Include="WebForms\Search\SearchStyles\speech-input.css" />
     <Content Include="WebForms\Support\About.aspx" />
+    <Content Include="WebForms\Support\Changelog.aspx" />
     <Content Include="WebForms\Support\Disclaimer.aspx" />
     <Content Include="WebForms\Support\Feedback.aspx" />
     <Content Include="WebForms\Support\Media.aspx" />
@@ -318,6 +320,13 @@
     </Compile>
     <Compile Include="WebForms\Support\About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Support\Changelog.aspx.cs">
+      <DependentUpon>Changelog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Support\Changelog.aspx.designer.cs">
+      <DependentUpon>Changelog.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Support\Disclaimer.aspx.cs">
       <DependentUpon>Disclaimer.aspx</DependentUpon>

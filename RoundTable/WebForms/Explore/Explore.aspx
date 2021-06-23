@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="Explore.aspx.cs" Inherits="RoundTable.WebForms.Explore.Explore" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <header
-        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
                 <span class="block text-4xl font-bold mb-2 font-title">Explore</span>
@@ -10,13 +10,13 @@
         </div>
     </header>
     <div
-        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div>
             <span class="block text-2xl font-bold mb-2 font-title">Discussions You May Also Like...</span>
         </div>
     </div>
     <div
-        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between items-center mb-4">
             <div class="block text-2xl font-bold mb-2 font-title">Rising Topics</div>
             <div class="flex flex-row space-x-2 text-indigo-600 animate-bounce">
@@ -49,7 +49,7 @@
             <asp:Repeater ID="Repeater2" runat="server" DataSourceID="SqlDataSource2">
                 <ItemTemplate>
                     <%--<div
-                    class="mt-0 m-5 bg-white rounded-lg flex flex-row shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">--%>
+                    class="mt-0 m-5 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">--%>
                     <asp:LinkButton ID="topic_btn" runat="server" CssClass="" OnCommand="topic_btn_Command" CommandArgument='<%#Eval("topicID") %>' OnClientClick="window.document.forms[0].target='_blank';">
                              <div class="flex flex-row justify-center items-center text-indigo-600 text-md md:text-2xl border-2 border-indigo-600 bg-white hover:bg-indigo-600 hover:text-white rounded-lg my-2 px-2 py-1 md:px-6 py-2">
                                  <div class="mr-1">#</div>
@@ -65,7 +65,7 @@
         <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT TOP (3) Post.topicID, COUNT(*) AS totalTopic, Topic.topicName, Topic.topicDesc FROM Post INNER JOIN Topic ON Post.topicID = Topic.topicID GROUP BY Post.topicID, Topic.topicName, Topic.topicDesc ORDER BY totalTopic DESC"></asp:SqlDataSource>
     </div>
     <div
-        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between items-center mb-4">
             <div class="block text-2xl font-bold mb-2 font-title">Trending Discussion Posts</div>
             <div class="animate-pulse text-indigo-600">
@@ -90,7 +90,7 @@
             <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
                 <ItemTemplate>
                     <div
-                        class="mt-0 m-5 bg-gray-100 rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000">
+                        class="mt-0 m-5 bg-gray-100 rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
                         <asp:LinkButton ID="post_btn" runat="server" CssClass="flex flex-col cursor-pointer hover:shadow-md hover:text-gray-800 p-5 px-6 rounded-lg transition ease-in-out duration-500 border-r-4 border-b-4 border-transparent hover:border-gray-600" OnCommand="post_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
                             <div class="flex flex-row justify-start border-b-2 pb-2">
                                 <%--User detail--%>

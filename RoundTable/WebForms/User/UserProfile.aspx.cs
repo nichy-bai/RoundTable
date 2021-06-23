@@ -48,6 +48,12 @@ namespace RoundTable.WebForms.User
             MultiViewProfile.ActiveViewIndex = 0;
         }
 
+        protected void post_btn_Command(object sender, CommandEventArgs e)
+        {
+            string postID = e.CommandArgument.ToString();
+            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
+            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+        }
         protected void btnEditProfile_Click(object sender, EventArgs e)
         {
             MultiViewProfile.ActiveViewIndex = 1;

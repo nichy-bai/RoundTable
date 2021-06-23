@@ -246,11 +246,11 @@
             </div>
         </div>
         <%--Discussion title--%>
-        <div class="my-5">
+        <div class="my-5 break-words" style="max-width:100vh;">
             <asp:Label ID="postTitle_lbl" runat="server" Text="[postTitle]" CssClass="text-2xl font-medium py-2"></asp:Label>
         </div>
         <%--Discussion content--%>
-        <div class="mb-5">
+        <div class="mb-5 break-words" style="max-width:100vh;">
             <asp:Label ID="postContent_lbl" runat="server" Text="[postContent]" CssClass="text-md py-2"></asp:Label>
         </div>
         <%--Discussion tag--%>
@@ -543,7 +543,7 @@
                 </div>
 
                 <%--Discussion comment--%>
-                <div class="mt-5 text-left">
+                <div class="mt-5 text-left break-words" style="max-width:100vh;">
                     <asp:Label ID="comment_id_hidden_lbl" runat="server" Text='<%#Eval("commentID") %>' Visible="false"></asp:Label>
                     <asp:Label ID="comment_status_hidden_lbl" runat="server" Text='<%#Eval("commentStatus") %>' Visible="false"></asp:Label>
                     <asp:Label ID="comment_lbl" runat="server" Text='<%#Eval("commentContent") %>' CssClass="break-words"></asp:Label>

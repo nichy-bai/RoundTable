@@ -15,13 +15,14 @@ namespace RoundTable.WebForms.Bookmark
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
 
-        string recommendPostID;
-
-        //To be modified
-        string bookmarkUserID = "Shrimp";
+        string bookmarkUserID, recommendPostID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //To be modified
+            bookmarkUserID = "Shrimp";
+
+
             if (!this.IsPostBack)
             {
                 this.BindRepeater();
@@ -135,7 +136,7 @@ namespace RoundTable.WebForms.Bookmark
         {
             using (con)
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT Bookmark_1.bookmarkID, Bookmark_1.bookmarkDate, Bookmark_1.postID, Bookmark_1.userID AS bookmarkUserID, Post.postTitle, Post.postContent, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].name, [User].profilePicture, Post.userID AS postUserID, Post.postDate, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Bookmark AS Bookmark_1 INNER JOIN Post ON Bookmark_1.postID = Post.postID INNER JOIN [User] ON Bookmark_1.userID = [User].userID INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID WHERE Bookmark_1.bookmarkStatus=1 AND Bookmark_1.userID='" + bookmarkUserID + "' ORDER BY Bookmark_1.bookmarkDate DESC", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT Bookmark_1.bookmarkID, Bookmark_1.bookmarkDate, Bookmark_1.postID, Bookmark_1.userID AS bookmarkUserID, Post_1.postTitle, Post_1.postContent, Post_1.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, User_1.name, User_1.profilePicture, Post_1.userID AS postUserID, Post_1.postDate, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post_1.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post_1.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post_1.postID)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post_1.postID)) AS totalView, (SELECT profilePicture FROM [User] WHERE (userID = Post_1.userID)) AS postProfilePicture FROM Bookmark AS Bookmark_1 INNER JOIN Post AS Post_1 ON Bookmark_1.postID = Post_1.postID INNER JOIN [User] AS User_1 ON Bookmark_1.userID = User_1.userID INNER JOIN Tag ON Post_1.tagID = Tag.tagID INNER JOIN Topic ON Post_1.topicID = Topic.topicID WHERE (Bookmark_1.bookmarkStatus = 1) AND Bookmark_1.userID='" + bookmarkUserID + "' ORDER BY Bookmark_1.bookmarkDate DESC", con))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
@@ -189,6 +190,7 @@ namespace RoundTable.WebForms.Bookmark
                 SqlCommand cmd4 = new SqlCommand("SELECT tagName FROM Tag WHERE tagID='" + tag + "'", con);
                 SqlCommand cmd5 = new SqlCommand("SELECT tagDesc FROM Tag WHERE tagID='" + tag + "'", con);
                 SqlCommand cmd6 = new SqlCommand("SELECT editDate FROM Post WHERE postID='" + recommendPostID + "'", con);
+                SqlCommand cmd7 = new SqlCommand("SELECT profilePicture FROM [User] WHERE userID='" + recommend_username_lbl.Text + "'", con);
 
                 recommend_topic_name.Text = cmd2.ExecuteScalar().ToString();
                 recommend_topic_name.ToolTip = cmd3.ExecuteScalar().ToString();
@@ -205,6 +207,14 @@ namespace RoundTable.WebForms.Bookmark
                     recommend_edit_date_lbl.Text = "(Edited on " + editDate + ")";
                     recommend_edit_date_lbl.ToolTip = "Edited on " + editDateFull;
                 }
+
+                object obj6 = cmd7.ExecuteScalar();
+
+                if (obj6 != null && DBNull.Value != obj6)
+                {
+                    recommend_user_img.ImageUrl = obj6.ToString();
+                }
+
                 con.Close();
             }
         }

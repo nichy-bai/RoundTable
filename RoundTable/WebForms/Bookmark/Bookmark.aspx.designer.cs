@@ -69,6 +69,15 @@ namespace RoundTable.WebForms.Bookmark
         protected global::System.Web.UI.WebControls.Panel recommend_user_detail_panel;
 
         /// <summary>
+        /// recommend_user_img control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image recommend_user_img;
+
+        /// <summary>
         /// recommend_username_lbl control.
         /// </summary>
         /// <remarks>

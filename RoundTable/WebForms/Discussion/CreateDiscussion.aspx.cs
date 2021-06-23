@@ -12,11 +12,15 @@ namespace RoundTable.WebForms.Discussion
     public partial class CreateDiscussion : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string postID;
+        string userID, postID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            //To be modified
+            userID = "Shrimp";
+
+
+            if (!Page.IsPostBack)
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Topic", con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -102,9 +106,6 @@ namespace RoundTable.WebForms.Discussion
                 postContent = filter.CensorString(postContent);
                 string postDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
                 bool postStatus = true;
-
-                //to be modified
-                string userID = "Shrimp";
 
                 string insertCmd = "INSERT INTO Post(postID, postTitle, postContent, postDate, userID, tagID, topicID, postStatus) VALUES (@postID, @postTitle, @postContent, @postDate, @userID, @tagID, @topicID, @postStatus)";
                 SqlCommand cmd3 = new SqlCommand(insertCmd, con);

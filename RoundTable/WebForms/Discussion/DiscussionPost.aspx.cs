@@ -17,11 +17,14 @@ namespace RoundTable.WebForms.Discussion
         string hex = "#4F46E5";
         HttpCookie sortCookie = new HttpCookie("sortCookie");
 
-        //To be modified
-        string userID = "Shrimp";
+        string userID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //To be modified
+            userID = "Shrimp";
+
+
             Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
             HttpCookie sortCookie = Request.Cookies["sortCookie"];
             string sort;
@@ -68,6 +71,7 @@ namespace RoundTable.WebForms.Discussion
                 SqlCommand cmd9 = new SqlCommand("SELECT COUNT(commentID) FROM DiscussionComment WHERE postID='" + postID + "' AND (commentStatus = 1) AND userID='" + userID + "'", con);
                 SqlCommand cmd10 = new SqlCommand("SELECT editDate FROM Post WHERE postID='" + postID + "'", con);
                 SqlCommand cmd11 = new SqlCommand("SELECT reportID FROM Report WHERE postID='" + postID + "'", con);
+                SqlCommand cmd12 = new SqlCommand("SELECT profilePicture FROM [User] WHERE userID='" + userID_lbl.Text + "'", con);
 
                 topicName_lbl.Text = cmd2.ExecuteScalar().ToString();
                 topic_btn.ToolTip = cmd3.ExecuteScalar().ToString();
@@ -132,6 +136,13 @@ namespace RoundTable.WebForms.Discussion
                 {
                     post_report_panel.Visible = true;
                     post_report_panel.ToolTip = "This discussion post was recently reported by other users.\nIt may contain harmful content that violates regulations.";
+                }
+
+                object obj6 = cmd12.ExecuteScalar();
+
+                if (obj6 != null && DBNull.Value != obj6)
+                {
+                    post_user_img.ImageUrl = obj6.ToString();
                 }
 
                 con.Close();

@@ -51,19 +51,7 @@
                         <%--User detail--%>
                         <div>
                             <div class="flex flex-row">
-                                <svg
-                                    class="w-12 h-12"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1"
-                                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                                    </path>
-                                </svg>
+                                <asp:Image ID="user_img" runat="server" ImageUrl='<%#Eval("postProfilePicture").ToString().Length > 0 ? Eval("postProfilePicture") : "~/ProfileImages/Default.png" %>' CssClass="w-12 h-12 rounded-full" />
                                 <div class="flex flex-col px-4 justify-start items-start">
                                     <div class="font-medium">
                                         <abbr title="<%#Eval("name") %>" style="text-decoration: none;"><%#Eval("postUserID") %></abbr>
@@ -238,19 +226,7 @@
                 <%--User detail--%>
                 <div>
                     <div class="flex flex-row">
-                        <svg
-                            class="w-12 h-12"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1"
-                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                            </path>
-                        </svg>
+                        <asp:Image ID="recommend_user_img" runat="server" ImageUrl="~/ProfileImages/Default.png" CssClass="w-12 h-12 rounded-full" />
                         <div class="flex flex-col px-4 justify-start items-start">
                             <div class="font-medium">
                                 <asp:Label ID="recommend_username_lbl" runat="server" CssClass="no-underline"></asp:Label>

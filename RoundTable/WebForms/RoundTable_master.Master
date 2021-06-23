@@ -145,7 +145,7 @@
                     </div>
                 </div>
                 <div class="mt-auto mb-6">
-                    <div class="mb-3" id="darkMode"></div>
+                    <div id="darkMode"></div>
                     <div class="mb-3" id="notification">
                         <asp:Panel ID="nav_notification_btn" runat="server">
                             <!--Notification-->
@@ -166,22 +166,10 @@
                             </a>
                         </asp:Panel>
                     </div>
-                    <div class="my-0">
+                    <div class="my-0 flex justify-center items-center">
                         <!--User Profile-->
-                        <a href="../User/UserProfile.aspx" class="py-2 h-12 w-12" id="profile">
-                            <svg
-                                class="w-16 h-16"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="1"
-                                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                                </path>
-                            </svg>
+                        <a href="../User/UserProfile.aspx" class="py-2" id="profile">
+                            <asp:Image ID="post_user_img" runat="server" ImageUrl="~/ProfileImages/Default.png" CssClass="w-14 h-14 rounded-full" />
                         </a>
                     </div>
                 </div>
@@ -245,21 +233,9 @@
                             </a>
                         </div>
                         <!--User Profile-->
-                        <div class="ml-2">
+                        <div class="ml-4">
                             <a href="../User/UserProfile.aspx" title="Notifications">
-                                <svg
-                                    class="w-12 h-12"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1"
-                                        d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                                    </path>
-                                </svg>
+                                <asp:Image ID="post_user_img_2" runat="server" ImageUrl="~/ProfileImages/Default.png" CssClass="w-12 h-12 rounded-full" />
                             </a>
                         </div>
                     </div>

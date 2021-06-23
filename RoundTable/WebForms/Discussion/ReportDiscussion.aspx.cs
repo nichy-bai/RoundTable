@@ -12,10 +12,14 @@ namespace RoundTable.WebForms.Discussion
     public partial class ReportDiscussion : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string postID, reportID;
+        string userID, postID, reportID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //To be modified
+            userID = "Shrimp";
+
+
             Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
             postID = "DP" + Request.QueryString["p"];
@@ -64,9 +68,6 @@ namespace RoundTable.WebForms.Discussion
             string reportContent = TextBox2.Text;
             string reportDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             string reportType = DropDownList1.SelectedItem.Value;
-
-            //to be modified
-            string userID = "Shrimp";
 
             string insertCmd = "INSERT INTO Report(reportID, reportTitle, reportContent, reportDate, reportType, userID, postID) VALUES (@reportID, @reportTitle, @reportContent, @reportDate, @reportType, @userID, @postID)";
             SqlCommand cmd = new SqlCommand(insertCmd, con);

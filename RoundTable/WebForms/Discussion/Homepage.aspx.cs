@@ -14,13 +14,17 @@ namespace RoundTable.WebForms.Discussion
     public partial class Homepage : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string likeID;
+        string userID, likeID;
         HttpCookie contentCookie = new HttpCookie("contentCookie");
         HttpCookie layoutCookie = new HttpCookie("layoutCookie");
         HttpCookie fontCookie = new HttpCookie("fontCookie");
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //To be modified
+            userID = "Shrimp";
+
+
             HttpCookie contentCookie = Request.Cookies["contentCookie"];
             HttpCookie layoutCookie = Request.Cookies["layoutCookie"];
             HttpCookie fontCookie = Request.Cookies["fontCookie"];
@@ -256,10 +260,7 @@ namespace RoundTable.WebForms.Discussion
             string postID = commandArgs[0];
             string currentLike = commandArgs[1];
             string likeDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-
-            //To be modified
             bool likeStatus = true;
-            string userID = "Shrimp";
 
             SqlCommand cmd = new SqlCommand("INSERT INTO DiscussionLike(likeID, likeStatus, likeDate, postID, userID) VALUES (@likeID, @likeStatus, @likeDate, @postID, @userID)", con);
             cmd.Parameters.AddWithValue("@likeID", likeID);

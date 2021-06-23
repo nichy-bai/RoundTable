@@ -78,6 +78,24 @@ namespace RoundTable.WebForms
         protected global::System.Web.UI.WebControls.Panel nav_notification_btn;
 
         /// <summary>
+        /// post_user_img control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image post_user_img;
+
+        /// <summary>
+        /// post_user_img_2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image post_user_img_2;
+
+        /// <summary>
         /// whole_body_panel control.
         /// </summary>
         /// <remarks>

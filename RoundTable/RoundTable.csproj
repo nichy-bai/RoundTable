@@ -180,6 +180,8 @@
     <Content Include="Content\img\terms_illustration_1.svg" />
     <Content Include="Content\js\script.js" />
     <Content Include="ProfileImages\Avatar.png" />
+    <Content Include="ProfileImages\Default.png" />
+    <Content Include="ProfileImages\Doge.png" />
     <Content Include="ProfileImages\Sheesh.png" />
     <Content Include="WebForms\Explore\TrendingDiscussion.aspx" />
     <Content Include="WebForms\Explore\TrendingTopic.aspx" />

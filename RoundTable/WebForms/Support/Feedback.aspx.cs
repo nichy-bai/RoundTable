@@ -12,10 +12,14 @@ namespace RoundTable.WebForms.Support
     public partial class Feedback : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string feedbackID;
+        string userID, feedbackID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //To be modified
+            userID = "Shrimp";
+
+
             if (!Page.IsPostBack)
             {
                 DropDownList1.Items.Insert(0, "[Select a Feedback Category]");
@@ -57,9 +61,6 @@ namespace RoundTable.WebForms.Support
             string feedbackContent = TextBox2.Text;
             string feedbackDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             string feedbackType = DropDownList1.SelectedItem.Value;
-
-            //to be modified
-            string userID = "Shrimp";
 
             string insertCmd = "INSERT INTO Feedback(feedbackID, feedbackTitle, feedbackContent, feedbackDate, feedbackType, userID) VALUES (@feedbackID, @feedbackTitle, @feedbackContent, @feedbackDate, @feedbackType, @userID)";
             SqlCommand cmd = new SqlCommand(insertCmd, con);

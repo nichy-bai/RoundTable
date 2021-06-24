@@ -456,9 +456,9 @@ namespace RoundTable.WebForms.Discussion
             share_url_lbl.Text = "Copy this unique embed code and share it on your website to promote the discussion!";
             copy_btn.Text = "Copy Embed Code";
 
-            string url = Request.Url.AbsoluteUri;
+            string url = Request.Url.AbsoluteUri.ToString().Replace("DiscussionPost", "EmbedPost");
 
-            post_url_txt.Text = "<iframe src='" + url + "' height='500' width='600' style='border: none;' title='" + postTitle_lbl.Text + "'></iframe>";
+            post_url_txt.Text = "<iframe src='" + url + "' height='50%' width='100%' class='border-none'></iframe>";
             post_url_txt.CssClass += " font-mono";
         }
 

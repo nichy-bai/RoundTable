@@ -183,6 +183,7 @@
     <Content Include="ProfileImages\Default.png" />
     <Content Include="ProfileImages\Doge.png" />
     <Content Include="ProfileImages\Sheesh.png" />
+    <Content Include="WebForms\Discussion\EmbedPost.aspx" />
     <Content Include="WebForms\Explore\TrendingDiscussion.aspx" />
     <Content Include="WebForms\Explore\TrendingTopic.aspx" />
     <Content Include="WebForms\Search\SearchScripts\speech-input.js" />
@@ -228,6 +229,13 @@
       <DependentUpon>BotService.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebForms\Discussion\EmbedPost.aspx.cs">
+      <DependentUpon>EmbedPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Discussion\EmbedPost.aspx.designer.cs">
+      <DependentUpon>EmbedPost.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForms\Explore\TrendingDiscussion.aspx.cs">
       <DependentUpon>TrendingDiscussion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

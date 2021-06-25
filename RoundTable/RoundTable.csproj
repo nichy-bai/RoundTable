@@ -173,6 +173,7 @@
     <Content Include="Content\img\brand_mockup_1.png" />
     <Content Include="Content\img\changelog_illustration_1.svg" />
     <Content Include="Content\img\disclaimer_illustration_1.svg" />
+    <Content Include="Content\img\login_illustration_1.svg" />
     <Content Include="Content\img\media_illustration_1.svg" />
     <Content Include="Content\img\privacy_illustration_1.svg" />
     <Content Include="Content\img\support_illustration_1.svg" />
@@ -440,7 +441,9 @@
     <Content Include="WebForms\Discussion\Homepage.aspx" />
     <Content Include="WebForms\RoundTable_master.Master" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Error\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -2,9 +2,11 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head runat="server">
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RoundTable</title>
     <link href="~/Content/icons/favicon.png" rel="icon" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -36,34 +38,50 @@
 <body>
     <form id="form1" runat="server">
         <div class="h-screen flex flex-row justify-center items-center bg-indigo-400">
-            <div class="shadow-xl py-6 bg-white max-w-xl rounded">
+            <div class="shadow-xl py-6 bg-white max-w-xl rounded-lg">
                 <div class="flex flex-col justify-center px-16">
-                    <div class="flex justify-center text-4xl font-black mb-6">Sign Up</div>
+                    <div class="flex justify-center items-center text-4xl font-black mb-6">
+                        <a href="../Discussion/Homepage.aspx" class="hover:text-indigo-600 transition ease-in-out duration-300" title="Back to homepage">
+                            <svg
+                                width="45"
+                                height="45"
+                                viewBox="0 0 500 500"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M500 250.594C500 297.339 487.232 341.094 465 378.547V255.361V239.927L451.202 233.011L261.702 138.03L250.5 132.416L239.298 138.03L49.7979 233.011L36 239.927V255.361V380.217C13.1518 342.397 0 298.035 0 250.594C0 112.195 111.929 0 250 0C388.071 0 500 112.195 500 250.594ZM415 295.856V438.861C376.969 472.377 328.698 494.498 275.5 499.9V365.776L415 295.856ZM225.5 365.776V500C172.372 494.82 124.115 472.971 86 439.738V295.856L225.5 365.776Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </a>
+                        <span class="ml-2">Sign Up</span>
+                    </div>
                     <asp:Label ID="lblSignUpStatus" runat="server" Text="" ForeColor="Red"></asp:Label>
                     <div class="mb-12 relative">
-                        <asp:TextBox ID="txtName" runat="server" CssClass="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                        <asp:TextBox ID="txtName" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtName" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Name</label>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Name is required." ControlToValidate="txtName" ForeColor="Red"></asp:RequiredFieldValidator></div>
                     </div>
                     <div class="mb-12 relative">
-                        <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                        <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtUserID" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Username</label>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvUserID" runat="server" ErrorMessage="Username is required." ControlToValidate="txtUserID" ForeColor="Red"></asp:RequiredFieldValidator></div>
                         <div class="absolute"><asp:RegularExpressionValidator ID="revUserID" runat="server" ErrorMessage="Username must between 3 to 12 characters." ControlToValidate="txtUserID" ForeColor="Red" ValidationExpression="(\s|.){3,12}"></asp:RegularExpressionValidator></div>
                     </div>
                     <div class="mb-6 relative">
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtEmail" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Email</label>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvEmail" runat="server" ErrorMessage="Email is required." ControlToValidate="txtEmail" ForeColor="Red"></asp:RequiredFieldValidator></div>
                         <div class=""><asp:RegularExpressionValidator ID="revEmail" runat="server" ErrorMessage="Invalid email. Please enter email as name@email.com" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></asp:RegularExpressionValidator></div>
                     </div>
                     <div class="mb-12 relative">
-                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Password</label>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator></div>
                     </div>
                     <div class="mb-12 relative">
-                        <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                        <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtConfirmPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Confirm Password</label>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ErrorMessage="Confirm Password is required." ControlToValidate="txtConfirmPassword" ForeColor="Red"></asp:RequiredFieldValidator></div>
                         <div class="absolute"><asp:CompareValidator ID="cvPassword" runat="server" ErrorMessage="Password not matched." ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword" ForeColor="Red"></asp:CompareValidator></div>
@@ -80,9 +98,9 @@
                             <asp:ListItem Value="-">Prefer not to say</asp:ListItem>
                         </asp:RadioButtonList>
                     </div>--%>
-                    <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="login-btn font-bold py-3 px-6 rounded" OnClick="btnSignUp_Click" />
+                    <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="login-btn font-bold py-3 px-6 rounded-lg" OnClick="btnSignUp_Click" />
                     <div class="flex justify-center border-t border-gray-400 mt-4 pt-5">
-                        Already on RoundTable?<span><a href="UserLogin.aspx" style="text-decoration:none" class="ml-1 font-bold hover:text-indigo-600">Login</a></span>
+                        Already on RoundTable?<span><a href="UserLogin.aspx" style="text-decoration:none" class="ml-1 font-bold hover:text-indigo-600 transition ease-in-out duration-300">Login</a></span>
                     </div>
                 </div>
             </div>

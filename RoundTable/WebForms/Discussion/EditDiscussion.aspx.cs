@@ -12,56 +12,96 @@ namespace RoundTable.WebForms.Discussion
     public partial class EditDiscussion : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string postID;
+        string userID, postID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            postID = "DP" + Request.QueryString["p"];
-
-            if (!Page.IsPostBack)
+            if (Session["UserID"] != null)
             {
-                string topicID = "", topicName = "", tagID = "", tagName = "";
+                Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                userID = Session["UserID"].ToString();
+                postID = "DP" + Request.QueryString["p"];
 
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Post WHERE postID='" + postID + "'", con);
-                cmd.CommandType = CommandType.Text;
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                while (dr.Read())
+                SqlCommand valid = new SqlCommand("SELECT userID FROM Post WHERE postID='" + postID + "'", con);
+                string postUserID;
+                try
                 {
-                    topicID = dr["topicID"].ToString();
-                    tagID = dr["tagID"].ToString();
-
-                    TextBox1.Text = dr["postTitle"].ToString();
-                    TextBox2.Text = dr["postContent"].ToString().Replace("<br>", "");
+                    postUserID = valid.ExecuteScalar().ToString();
                 }
+                catch (Exception ex)
+                {
+                    postUserID = null;
+                }
+
                 con.Close();
 
-                SqlCommand cmd2 = new SqlCommand("SELECT * FROM Topic", con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd2);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                DropDownList1.DataSource = dt;
-                DropDownList1.DataBind();
+                if(postUserID != null)
+                {
+                    if(postUserID == userID)
+                    {
+                        if (!Page.IsPostBack)
+                        {
+                            string topicID = "", topicName = "", tagID = "", tagName = "";
 
-                SqlCommand cmd3 = new SqlCommand("SELECT * FROM Tag WHERE topicID='" + topicID + "'", con);
-                SqlDataAdapter sda2 = new SqlDataAdapter(cmd3);
-                DataTable dt2 = new DataTable();
-                sda2.Fill(dt2);
-                DropDownList2.DataSource = dt2;
-                DropDownList2.DataBind();
+                            con.Open();
+                            SqlCommand cmd = new SqlCommand("SELECT * FROM Post WHERE postID='" + postID + "'", con);
+                            cmd.CommandType = CommandType.Text;
+                            SqlDataReader dr = cmd.ExecuteReader();
 
-                con.Open();
-                SqlCommand cmd4 = new SqlCommand("SELECT topicName FROM Topic WHERE topicID='" + topicID + "'", con);
-                SqlCommand cmd5 = new SqlCommand("SELECT tagName FROM Tag WHERE tagID='" + tagID + "'", con);
+                            while (dr.Read())
+                            {
+                                topicID = dr["topicID"].ToString();
+                                tagID = dr["tagID"].ToString();
 
-                topicName = cmd4.ExecuteScalar().ToString();
-                tagName = cmd5.ExecuteScalar().ToString();
+                                TextBox1.Text = dr["postTitle"].ToString();
+                                TextBox2.Text = dr["postContent"].ToString().Replace("<br>", "");
+                            }
+                            con.Close();
 
-                DropDownList1.Items.FindByValue(topicName).Selected = true;
-                DropDownList2.Items.FindByValue(tagName).Selected = true;
+                            SqlCommand cmd2 = new SqlCommand("SELECT * FROM Topic", con);
+                            SqlDataAdapter sda = new SqlDataAdapter(cmd2);
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            DropDownList1.DataSource = dt;
+                            DropDownList1.DataBind();
+
+                            SqlCommand cmd3 = new SqlCommand("SELECT * FROM Tag WHERE topicID='" + topicID + "'", con);
+                            SqlDataAdapter sda2 = new SqlDataAdapter(cmd3);
+                            DataTable dt2 = new DataTable();
+                            sda2.Fill(dt2);
+                            DropDownList2.DataSource = dt2;
+                            DropDownList2.DataBind();
+
+                            con.Open();
+                            SqlCommand cmd4 = new SqlCommand("SELECT topicName FROM Topic WHERE topicID='" + topicID + "'", con);
+                            SqlCommand cmd5 = new SqlCommand("SELECT tagName FROM Tag WHERE tagID='" + tagID + "'", con);
+
+                            topicName = cmd4.ExecuteScalar().ToString();
+                            tagName = cmd5.ExecuteScalar().ToString();
+
+                            DropDownList1.Items.FindByValue(topicName).Selected = true;
+                            DropDownList2.Items.FindByValue(tagName).Selected = true;
+                        }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                        "alert('Error! Invalid user'); window.location='" +
+                        Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                    }
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                    "alert('Error! Invalid post'); window.location='" +
+                    Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                }
+            }
+            else
+            {
+                Response.Redirect("/WebForms/LoginError.aspx");
             }
         }
 

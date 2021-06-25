@@ -21,13 +21,13 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //To be modified
-            
             if(Session["UserID"] != null)
             {
                 Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 HttpCookie sortCookie = Request.Cookies["sortCookie"];
                 string sort;
+
+                userID = Session["UserID"].ToString();
 
                 postID = "DP" + Request.QueryString["p"];
 
@@ -576,7 +576,7 @@ namespace RoundTable.WebForms.Discussion
             bool commentStatus = true;
 
             //To be modified
-            string userID = Session["UserID"].ToString(); 
+            string userID = Session["UserID"].ToString();
 
             if (!String.IsNullOrEmpty(comment_txt.Text))
             {

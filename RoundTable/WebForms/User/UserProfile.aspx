@@ -22,9 +22,9 @@
                 <span class="block text-4xl font-bold mb-2 font-title">Profile</span>
                 <span class="block opacity-80">Information about the user</span>
             </div>
-        </div>  
+        </div>
     </header>
-    
+
         <asp:MultiView ID="MultiViewProfile" runat="server">
             <%--ProfileView--%>
             <asp:View ID="ProfileView" runat="server">
@@ -215,7 +215,7 @@
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </asp:View>
-        </asp:MultiView> 
+        </asp:MultiView>
 </asp:Content>

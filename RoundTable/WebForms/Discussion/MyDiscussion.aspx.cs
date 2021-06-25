@@ -13,14 +13,22 @@ namespace RoundTable.WebForms.Discussion
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
 
-        //To be modified
-        string userID = "Shrimp";
+        string userID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+            if (Session["UserID"] != null)
             {
-                this.BindRepeater();
+                userID = Session["UserID"].ToString();
+
+                if (!this.IsPostBack)
+                {
+                    this.BindRepeater();
+                }
+            }
+            else
+            {
+                Response.Redirect("/WebForms/LoginError.aspx");
             }
         }
 

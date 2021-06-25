@@ -39,9 +39,6 @@ namespace RoundTable.WebForms.User
                 email = Convert.ToString(cmdEmail.ExecuteScalar());
                 con.Close();
 
-
-
-
                 if (txtUserID.Text != "")
                 {
                     //new MailMessage(From, To)

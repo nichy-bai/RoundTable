@@ -4,7 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forgot Password</title>
     <link href="~/Content/icons/favicon.png" rel="icon" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />

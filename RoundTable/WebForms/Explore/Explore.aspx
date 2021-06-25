@@ -50,7 +50,7 @@
                 <ItemTemplate>
                     <%--<div
                     class="mt-0 m-5 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">--%>
-                    <asp:LinkButton ID="topic_btn" runat="server" CssClass="" OnCommand="topic_btn_Command" CommandArgument='<%#Eval("topicID") %>' OnClientClick="window.document.forms[0].target='_blank';">
+                    <asp:LinkButton ID="topic_btn" runat="server" CssClass="" OnCommand="topic_btn_Command" CommandArgument='<%#Eval("topicID") %>'>
                              <div class="flex flex-row justify-center items-center text-indigo-600 text-md md:text-2xl border-2 border-indigo-600 bg-white hover:bg-indigo-600 hover:text-white rounded-lg my-2 px-2 py-1 md:px-6 py-2">
                                  <div class="mr-1">#</div>
                                 <div>
@@ -91,24 +91,12 @@
                 <ItemTemplate>
                     <div
                         class="mt-0 m-5 bg-gray-100 rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
-                        <asp:LinkButton ID="post_btn" runat="server" CssClass="flex flex-col cursor-pointer hover:shadow-md hover:text-gray-800 p-5 px-6 rounded-lg transition ease-in-out duration-500 border-r-4 border-b-4 border-transparent hover:border-gray-600" OnCommand="post_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
+                        <asp:LinkButton ID="post_btn" runat="server" CssClass="flex flex-col cursor-pointer hover:shadow-md hover:text-gray-800 p-5 px-6 rounded-lg transition ease-in-out duration-500 border-r-4 border-b-4 border-transparent hover:border-gray-600" OnCommand="post_btn_Command" CommandArgument='<%#Eval("postID") %>'>
                             <div class="flex flex-row justify-start border-b-2 pb-2">
                                 <%--User detail--%>
                                 <div>
-                                    <div class="flex flex-row">
-                                        <svg
-                                            class="w-12 h-12"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1"
-                                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                                            </path>
-                                        </svg>
+                                    <div class="flex flex-row items-center">
+                                        <asp:Image ID="post_user_img" runat="server" ImageUrl='<%#Eval("profilePicture").ToString().Length > 0 ? Eval("profilePicture") : "~/ProfileImages/Default.png" %>' CssClass="w-12 h-12 rounded-full" />
                                         <div class="flex flex-col px-4 justify-start items-start">
                                             <div class="font-medium">
                                                 <abbr title="<%#Eval("name") %>" style="text-decoration: none;"><%#Eval("userID") %></abbr>
@@ -122,7 +110,7 @@
                             </div>
 
                             <%--Discussion title--%>
-                            <div class="my-5">
+                            <div class="my-5 break-words" style="max-width:100vh;">
                                 <asp:Label ID="postID_lbl" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
                                 <asp:Label ID="postTitle_lbl" runat="server" Text='<%#Eval("postTitle") %>' CssClass="text-xl font-medium py-2"></asp:Label>
                             </div>

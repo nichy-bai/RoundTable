@@ -17,21 +17,29 @@ namespace RoundTable.WebForms.Discussion
         protected void Page_Load(object sender, EventArgs e)
         {
             //To be modified
-            userID = "Shrimp";
+            
 
-
-            if (!Page.IsPostBack)
+            if(Session["UserID"] != null)
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Topic", con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                DropDownList1.DataSource = dt;
-                DropDownList1.DataBind();
+                if (!Page.IsPostBack)
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Topic", con);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    DropDownList1.DataSource = dt;
+                    DropDownList1.DataBind();
 
-                DropDownList1.Items.Insert(0, "[Select a Topic]");
-                DropDownList2.Items.Insert(0, "[Select a Tag]");
+                    DropDownList1.Items.Insert(0, "[Select a Topic]");
+                    DropDownList2.Items.Insert(0, "[Select a Tag]");
+                }
             }
+            else
+            {
+                Response.Redirect("/WebForms/LoginError.aspx");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
+            }
+            
         }
 
         protected void GeneratePostID()

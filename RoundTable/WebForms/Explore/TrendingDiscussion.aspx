@@ -18,20 +18,8 @@
                             <div class="flex flex-row justify-start border-b-2 pb-2">
                                 <%--User detail--%>
                                 <div>
-                                    <div class="flex flex-row">
-                                        <svg
-                                            class="w-12 h-12"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="1"
-                                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z">
-                                            </path>
-                                        </svg>
+                                   <div class="flex flex-row items-center">
+                                        <asp:Image ID="post_user_img" runat="server" ImageUrl='<%#Eval("profilePicture").ToString().Length > 0 ? Eval("profilePicture") : "~/ProfileImages/Default.png" %>' CssClass="w-12 h-12 rounded-full" />
                                         <div class="flex flex-col px-4 justify-start items-start">
                                             <div class="font-medium">
                                                 <abbr title="<%#Eval("name") %>" style="text-decoration: none;"><%#Eval("userID") %></abbr>
@@ -45,7 +33,7 @@
                             </div>
 
                             <%--Discussion title--%>
-                            <div class="my-5">
+                            <div class="my-5 break-words" style="max-width:100vh;">
                                 <asp:Label ID="postID_lbl" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
                                 <asp:Label ID="postTitle_lbl" runat="server" Text='<%#Eval("postTitle") %>' CssClass="text-xl font-medium py-2"></asp:Label>
                             </div>

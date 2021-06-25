@@ -179,6 +179,7 @@
     <Content Include="Content\img\support_illustration_2.svg" />
     <Content Include="Content\img\terms_illustration_1.svg" />
     <Content Include="Content\js\script.js" />
+    <Content Include="WebForms\LoginError.aspx" />
     <Content Include="ProfileImages\Avatar.png" />
     <Content Include="ProfileImages\Default.png" />
     <Content Include="ProfileImages\Doge.png" />
@@ -227,6 +228,13 @@
     </Compile>
     <Compile Include="BotService.aspx.designer.cs">
       <DependentUpon>BotService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\LoginError.aspx.cs">
+      <DependentUpon>LoginError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\LoginError.aspx.designer.cs">
+      <DependentUpon>LoginError.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebForms\Discussion\EmbedPost.aspx.cs">

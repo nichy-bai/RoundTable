@@ -22,9 +22,11 @@ namespace RoundTable.WebForms.Discussion
         protected void Page_Load(object sender, EventArgs e)
         {
             //To be modified
-            userID = "Shrimp";
-
-
+            if(Session["UserID"] != null)
+            {
+                userID = Session["UserID"].ToString();
+            }
+            
             HttpCookie contentCookie = Request.Cookies["contentCookie"];
             HttpCookie layoutCookie = Request.Cookies["layoutCookie"];
             HttpCookie fontCookie = Request.Cookies["fontCookie"];
@@ -247,9 +249,17 @@ namespace RoundTable.WebForms.Discussion
 
         protected void postBody_btn_Command(object sender, CommandEventArgs e)
         {
-            string postID = e.CommandArgument.ToString();
-            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
-            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+            if(Session["UserID"] != null)
+            {
+                string postID = e.CommandArgument.ToString();
+                //Response.Redirect("DiscussionPost.aspx?p=" + postID);
+                Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+            }
+            else
+            {
+                Response.Redirect("/WebForms/LoginError.aspx");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
+            }
         }
 
         protected void react_like_btn_Command(object sender, CommandEventArgs e)
@@ -261,6 +271,7 @@ namespace RoundTable.WebForms.Discussion
             string currentLike = commandArgs[1];
             string likeDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             bool likeStatus = true;
+            string userID = Session["UserID"].ToString();
 
             SqlCommand cmd = new SqlCommand("INSERT INTO DiscussionLike(likeID, likeStatus, likeDate, postID, userID) VALUES (@likeID, @likeStatus, @likeDate, @postID, @userID)", con);
             cmd.Parameters.AddWithValue("@likeID", likeID);

@@ -17,8 +17,10 @@ namespace RoundTable.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
             //to be modified
-            userID = "Shrimp";
-
+            if (Session["UserID"] != null)
+            {
+                userID = Session["UserID"].ToString();
+            }
 
             string path = HttpContext.Current.Request.Url.AbsolutePath;
 

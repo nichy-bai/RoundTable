@@ -19,7 +19,6 @@ namespace RoundTable.WebForms.Bookmark
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //To be modified
             if (Session["UserID"] != null)
             {
                 bookmarkUserID = Session["UserID"].ToString();

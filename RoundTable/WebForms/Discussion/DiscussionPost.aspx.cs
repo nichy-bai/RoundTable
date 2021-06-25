@@ -21,13 +21,13 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //To be modified
-            
             if(Session["UserID"] != null)
             {
                 Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
                 HttpCookie sortCookie = Request.Cookies["sortCookie"];
                 string sort;
+
+                userID = Session["UserID"].ToString();
 
                 postID = "DP" + Request.QueryString["p"];
 
@@ -463,9 +463,9 @@ namespace RoundTable.WebForms.Discussion
             share_url_lbl.Text = "Copy this unique embed code and share it on your website to promote the discussion!";
             copy_btn.Text = "Copy Embed Code";
 
-            string url = Request.Url.AbsoluteUri;
+            string url = Request.Url.AbsoluteUri.ToString().Replace("DiscussionPost", "EmbedPost");
 
-            post_url_txt.Text = "<iframe src='" + url + "' height='500' width='600' style='border: none;' title='" + postTitle_lbl.Text + "'></iframe>";
+            post_url_txt.Text = "<iframe src='" + url + "' height='50%' width='100%' class='border-none'></iframe>";
             post_url_txt.CssClass += " font-mono";
         }
 
@@ -576,7 +576,7 @@ namespace RoundTable.WebForms.Discussion
             bool commentStatus = true;
 
             //To be modified
-            string userID = Session["UserID"].ToString(); 
+            string userID = Session["UserID"].ToString();
 
             if (!String.IsNullOrEmpty(comment_txt.Text))
             {

@@ -17,7 +17,7 @@ namespace RoundTable.WebForms.User
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnGetCode_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace RoundTable.WebForms.User
                     verificationCode = code.ToString();
 
                     mailMessage.Subject = "Verification Code";
-                    mailMessage.Body = "Your validation code to reset password is " + verificationCode; ;
+                    mailMessage.Body = "Your verification code to reset password is " + verificationCode; ;
                     mailMessage.BodyEncoding = Encoding.UTF8;
                     mailMessage.IsBodyHtml = true;
                     SmtpClient smtpClient = new SmtpClient();

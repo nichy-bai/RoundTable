@@ -16,11 +16,10 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //To be modified
-            
-
             if(Session["UserID"] != null)
             {
+                userID = Session["UserID"].ToString();
+
                 if (!Page.IsPostBack)
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Topic", con);
@@ -39,7 +38,6 @@ namespace RoundTable.WebForms.Discussion
                 Response.Redirect("/WebForms/LoginError.aspx");
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
-            
         }
 
         protected void GeneratePostID()

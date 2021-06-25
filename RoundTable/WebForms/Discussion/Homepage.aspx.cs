@@ -13,7 +13,7 @@ namespace RoundTable.WebForms.Discussion
 {
     public partial class Homepage : System.Web.UI.Page
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True;Timeout=60");
         string userID, likeID;
         HttpCookie contentCookie = new HttpCookie("contentCookie");
         HttpCookie layoutCookie = new HttpCookie("layoutCookie");
@@ -21,12 +21,11 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //To be modified
             if(Session["UserID"] != null)
             {
                 userID = Session["UserID"].ToString();
             }
-            
+
             HttpCookie contentCookie = Request.Cookies["contentCookie"];
             HttpCookie layoutCookie = Request.Cookies["layoutCookie"];
             HttpCookie fontCookie = Request.Cookies["fontCookie"];

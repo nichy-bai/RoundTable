@@ -16,11 +16,10 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //To be modified
             if (Session["UserID"] != null)
             {
                 Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
+                userID = Session["UserID"].ToString();
                 postID = "DP" + Request.QueryString["p"];
 
                 if (!Page.IsPostBack)

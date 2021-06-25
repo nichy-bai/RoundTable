@@ -20,116 +20,124 @@ namespace RoundTable.WebForms.Bookmark
         protected void Page_Load(object sender, EventArgs e)
         {
             //To be modified
-            bookmarkUserID = "Shrimp";
-
-
-            if (!this.IsPostBack)
+            if (Session["UserID"] != null)
             {
-                this.BindRepeater();
+                bookmarkUserID = Session["UserID"].ToString();
+
+                if (!this.IsPostBack)
+                {
+                    this.BindRepeater();
+                }
+
+                HttpCookie layoutCookie = Request.Cookies["layoutCookie"];
+                HttpCookie fontCookie = Request.Cookies["fontCookie"];
+                string layout, font;
+
+                if (layoutCookie != null)
+                {
+                    layout = layoutCookie["Layout"];
+
+                    if (layout == "Classic")
+                    {
+                        foreach (RepeaterItem item in Repeater1.Items)
+                        {
+                            Panel p1 = (Panel)item.FindControl("post_panel");
+                            Panel p2 = (Panel)item.FindControl("user_detail_panel");
+                            Panel p3 = (Panel)item.FindControl("compact_user_panel");
+                            Panel p4 = (Panel)item.FindControl("tag_panel");
+                            Panel p5 = (Panel)item.FindControl("cozy_content_panel");
+                            p1.CssClass = "mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
+                            p2.Visible = true;
+                            p3.Visible = false;
+                            p4.Visible = true;
+                            p5.Visible = false;
+                        }
+                    }
+                    else if (layout == "Compact")
+                    {
+                        foreach (RepeaterItem item in Repeater1.Items)
+                        {
+                            Panel p1 = (Panel)item.FindControl("post_panel");
+                            Panel p2 = (Panel)item.FindControl("user_detail_panel");
+                            Panel p3 = (Panel)item.FindControl("compact_user_panel");
+                            Panel p4 = (Panel)item.FindControl("tag_panel");
+                            Panel p5 = (Panel)item.FindControl("cozy_content_panel");
+                            p1.CssClass = "mx-5 bg-white border-b-4 rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
+                            p2.Visible = false;
+                            p3.Visible = true;
+                            p4.Visible = false;
+                            p5.Visible = false;
+                        }
+                    }
+                    else if (layout == "Cozy")
+                    {
+                        foreach (RepeaterItem item in Repeater1.Items)
+                        {
+                            Panel p1 = (Panel)item.FindControl("post_panel");
+                            Panel p2 = (Panel)item.FindControl("user_detail_panel");
+                            Panel p3 = (Panel)item.FindControl("compact_user_panel");
+                            Panel p4 = (Panel)item.FindControl("tag_panel");
+                            Panel p5 = (Panel)item.FindControl("cozy_content_panel");
+                            p1.CssClass = "mt-0 m-5 mb-8 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
+                            p2.Visible = true;
+                            p3.Visible = false;
+                            p4.Visible = true;
+                            p5.Visible = true;
+                        }
+                    }
+                }
+
+                if (fontCookie != null)
+                {
+                    font = fontCookie["Font"];
+
+                    if (font == "Small")
+                    {
+                        foreach (RepeaterItem item in Repeater1.Items)
+                        {
+                            Label title = (Label)item.FindControl("postTitle_lbl");
+                            title.CssClass = title.CssClass.Replace("text-xl", "text-md");
+                            title.CssClass = title.CssClass.Replace("text-2xl", "text-md");
+                        }
+
+                        Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
+                        title2.CssClass = title2.CssClass.Replace("text-xl", "text-md");
+                        title2.CssClass = title2.CssClass.Replace("text-2xl", "text-md");
+                    }
+                    else if (font == "Medium")
+                    {
+                        foreach (RepeaterItem item in Repeater1.Items)
+                        {
+                            Label title = (Label)item.FindControl("postTitle_lbl");
+                            title.CssClass = title.CssClass.Replace("text-md", "text-xl");
+                            title.CssClass = title.CssClass.Replace("text-2xl", "text-xl");
+                        }
+
+                        Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
+                        title2.CssClass = title2.CssClass.Replace("text-md", "text-xl");
+                        title2.CssClass = title2.CssClass.Replace("text-2xl", "text-xl");
+                    }
+                    else if (font == "Large")
+                    {
+                        foreach (RepeaterItem item in Repeater1.Items)
+                        {
+                            Label title = (Label)item.FindControl("postTitle_lbl");
+                            title.CssClass = title.CssClass.Replace("text-md", "text-2xl");
+                            title.CssClass = title.CssClass.Replace("text-xl", "text-2xl");
+                        }
+
+                        Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
+                        title2.CssClass = title2.CssClass.Replace("text-md", "text-2xl");
+                        title2.CssClass = title2.CssClass.Replace("text-xl", "text-2xl");
+                    }
+                }
+            }
+            else
+            {
+                Response.Redirect("/WebForms/LoginError.aspx");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
 
-            HttpCookie layoutCookie = Request.Cookies["layoutCookie"];
-            HttpCookie fontCookie = Request.Cookies["fontCookie"];
-            string layout, font;
-
-            if (layoutCookie != null)
-            {
-                layout = layoutCookie["Layout"];
-
-                if (layout == "Classic")
-                {
-                    foreach (RepeaterItem item in Repeater1.Items)
-                    {
-                        Panel p1 = (Panel)item.FindControl("post_panel");
-                        Panel p2 = (Panel)item.FindControl("user_detail_panel");
-                        Panel p3 = (Panel)item.FindControl("compact_user_panel");
-                        Panel p4 = (Panel)item.FindControl("tag_panel");
-                        Panel p5 = (Panel)item.FindControl("cozy_content_panel");
-                        p1.CssClass = "mt-0 m-5 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
-                        p2.Visible = true;
-                        p3.Visible = false;
-                        p4.Visible = true;
-                        p5.Visible = false;
-                    }
-                }
-                else if (layout == "Compact")
-                {
-                    foreach (RepeaterItem item in Repeater1.Items)
-                    {
-                        Panel p1 = (Panel)item.FindControl("post_panel");
-                        Panel p2 = (Panel)item.FindControl("user_detail_panel");
-                        Panel p3 = (Panel)item.FindControl("compact_user_panel");
-                        Panel p4 = (Panel)item.FindControl("tag_panel");
-                        Panel p5 = (Panel)item.FindControl("cozy_content_panel");
-                        p1.CssClass = "mx-5 bg-white border-b-4 rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
-                        p2.Visible = false;
-                        p3.Visible = true;
-                        p4.Visible = false;
-                        p5.Visible = false;
-                    }
-                }
-                else if (layout == "Cozy")
-                {
-                    foreach (RepeaterItem item in Repeater1.Items)
-                    {
-                        Panel p1 = (Panel)item.FindControl("post_panel");
-                        Panel p2 = (Panel)item.FindControl("user_detail_panel");
-                        Panel p3 = (Panel)item.FindControl("compact_user_panel");
-                        Panel p4 = (Panel)item.FindControl("tag_panel");
-                        Panel p5 = (Panel)item.FindControl("cozy_content_panel");
-                        p1.CssClass = "mt-0 m-5 mb-8 bg-white rounded-lg flex flex-col shadow-md h-auto dark:bg-dark-200 dark:text-gray-200 transition ease-in-out duration-1000";
-                        p2.Visible = true;
-                        p3.Visible = false;
-                        p4.Visible = true;
-                        p5.Visible = true;
-                    }
-                }
-            }
-
-            if (fontCookie != null)
-            {
-                font = fontCookie["Font"];
-
-                if (font == "Small")
-                {
-                    foreach (RepeaterItem item in Repeater1.Items)
-                    {
-                        Label title = (Label)item.FindControl("postTitle_lbl");
-                        title.CssClass = title.CssClass.Replace("text-xl", "text-md");
-                        title.CssClass = title.CssClass.Replace("text-2xl", "text-md");
-                    }
-
-                    Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
-                    title2.CssClass = title2.CssClass.Replace("text-xl", "text-md");
-                    title2.CssClass = title2.CssClass.Replace("text-2xl", "text-md");
-                }
-                else if (font == "Medium")
-                {
-                    foreach (RepeaterItem item in Repeater1.Items)
-                    {
-                        Label title = (Label)item.FindControl("postTitle_lbl");
-                        title.CssClass = title.CssClass.Replace("text-md", "text-xl");
-                        title.CssClass = title.CssClass.Replace("text-2xl", "text-xl");
-                    }
-
-                    Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
-                    title2.CssClass = title2.CssClass.Replace("text-md", "text-xl");
-                    title2.CssClass = title2.CssClass.Replace("text-2xl", "text-xl");
-                }
-                else if (font == "Large")
-                {
-                    foreach (RepeaterItem item in Repeater1.Items)
-                    {
-                        Label title = (Label)item.FindControl("postTitle_lbl");
-                        title.CssClass = title.CssClass.Replace("text-md", "text-2xl");
-                        title.CssClass = title.CssClass.Replace("text-xl", "text-2xl");
-                    }
-
-                    Label title2 = (Label)recommend_panel.FindControl("recommend_postTitle_lbl");
-                    title2.CssClass = title2.CssClass.Replace("text-md", "text-2xl");
-                    title2.CssClass = title2.CssClass.Replace("text-xl", "text-2xl");
-                }
-            }
         }
 
         private void BindRepeater()

@@ -17,27 +17,33 @@ namespace RoundTable.WebForms.Discussion
         protected void Page_Load(object sender, EventArgs e)
         {
             //To be modified
-            userID = "Shrimp";
-
-
-            Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-
-            postID = "DP" + Request.QueryString["p"];
-
-            if (!Page.IsPostBack)
+            if (Session["UserID"] != null)
             {
-                DropDownList1.Items.Insert(0, "[Select a Report Category]");
-                DropDownList1.Items.Insert(1, "Threatening violence");
-                DropDownList1.Items.Insert(2, "Misinformation");
-                DropDownList1.Items.Insert(3, "Sexualization");
-                DropDownList1.Items.Insert(4, "Impersonation");
-                DropDownList1.Items.Insert(5, "Harassment");
-                DropDownList1.Items.Insert(6, "Spam");
-                DropDownList1.Items.Insert(7, "Hate");
-                DropDownList1.Items.Insert(8, "Others");
+                Page.Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-                TextBox1.Text = "Report: Discussion Post " + postID.Substring(2, postID.Length - 2);
+                postID = "DP" + Request.QueryString["p"];
+
+                if (!Page.IsPostBack)
+                {
+                    DropDownList1.Items.Insert(0, "[Select a Report Category]");
+                    DropDownList1.Items.Insert(1, "Threatening violence");
+                    DropDownList1.Items.Insert(2, "Misinformation");
+                    DropDownList1.Items.Insert(3, "Sexualization");
+                    DropDownList1.Items.Insert(4, "Impersonation");
+                    DropDownList1.Items.Insert(5, "Harassment");
+                    DropDownList1.Items.Insert(6, "Spam");
+                    DropDownList1.Items.Insert(7, "Hate");
+                    DropDownList1.Items.Insert(8, "Others");
+
+                    TextBox1.Text = "Report: Discussion Post " + postID.Substring(2, postID.Length - 2);
+                }
             }
+            else
+            {
+                Response.Redirect("/WebForms/LoginError.aspx");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
+            }
+
         }
 
         protected void GenerateID()
@@ -68,6 +74,7 @@ namespace RoundTable.WebForms.Discussion
             string reportContent = TextBox2.Text;
             string reportDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             string reportType = DropDownList1.SelectedItem.Value;
+            string userID = Session["UserID"].ToString();
 
             string insertCmd = "INSERT INTO Report(reportID, reportTitle, reportContent, reportDate, reportType, userID, postID) VALUES (@reportID, @reportTitle, @reportContent, @reportDate, @reportType, @userID, @postID)";
             SqlCommand cmd = new SqlCommand(insertCmd, con);

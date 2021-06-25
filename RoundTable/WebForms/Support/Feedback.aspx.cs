@@ -17,17 +17,26 @@ namespace RoundTable.WebForms.Support
         protected void Page_Load(object sender, EventArgs e)
         {
             //To be modified
-            userID = "Shrimp";
-
-
-            if (!Page.IsPostBack)
+            
+            if(Session["UserID"] != null)
             {
-                DropDownList1.Items.Insert(0, "[Select a Feedback Category]");
-                DropDownList1.Items.Insert(1, "Feature requests");
-                DropDownList1.Items.Insert(2, "Bug reports");
-                DropDownList1.Items.Insert(3, "Ask questions");
-                DropDownList1.Items.Insert(4, "Others");
+                if (!Page.IsPostBack)
+                {
+                    DropDownList1.Items.Insert(0, "[Select a Feedback Category]");
+                    DropDownList1.Items.Insert(1, "Feature requests");
+                    DropDownList1.Items.Insert(2, "Bug reports");
+                    DropDownList1.Items.Insert(3, "Ask questions");
+                    DropDownList1.Items.Insert(4, "Others");
+                }
             }
+            else
+            {
+                Response.Redirect("/WebForms/LoginError.aspx");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
+            }
+
+
+
         }
         protected void GenerateID()
         {
@@ -61,6 +70,7 @@ namespace RoundTable.WebForms.Support
             string feedbackContent = TextBox2.Text;
             string feedbackDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             string feedbackType = DropDownList1.SelectedItem.Value;
+            string userID = Session["UserID"].ToString();
 
             string insertCmd = "INSERT INTO Feedback(feedbackID, feedbackTitle, feedbackContent, feedbackDate, feedbackType, userID) VALUES (@feedbackID, @feedbackTitle, @feedbackContent, @feedbackDate, @feedbackType, @userID)";
             SqlCommand cmd = new SqlCommand(insertCmd, con);

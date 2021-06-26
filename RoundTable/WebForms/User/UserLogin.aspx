@@ -38,7 +38,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="h-screen flex flex-row justify-center items-center bg-indigo-400">
+        <div class="h-screen flex flex-row justify-center items-center bg-indigo-400 overflow-y-auto sm:overflow-hidden">
             <div class="shadow-xl p-10 bg-white max-w-xl rounded-lg">
                 <div class="flex flex-col justify-center">
                     <div class="flex justify-center items-center text-4xl font-black mb-6">
@@ -59,13 +59,16 @@
                         <span class="ml-2">Login</span>
                     </div>
                     <asp:Label ID="lblLoginStatus" runat="server" Text="" CssClass=" text-red-600 mb-2"></asp:Label>
-                    <div class="mb-6 relative">
+                    <div class="mb-8 relative">
                         <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtUserID" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Username</label>
+                        <div class="absolute"><asp:RequiredFieldValidator ID="rfvUserID" runat="server" ErrorMessage="Username is required." ControlToValidate="txtUserID" ForeColor="Red"></asp:RequiredFieldValidator></div>
+                        <div class="absolute"><asp:RegularExpressionValidator ID="revUserID" runat="server" ErrorMessage="Username must between 3 to 12 characters." ControlToValidate="txtUserID" ForeColor="Red" ValidationExpression="(\s|.){3,12}"></asp:RegularExpressionValidator></div>
                     </div>
-                    <div class="mb-4 relative">
+                    <div class="mb-6 relative">
                         <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Password</label>
+                        <div class="absolute"><asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator></div>
                     </div>
                     <div class="mb-4 relative">
                         <asp:LinkButton ID="btnForgotPassword" runat="server" CssClass="hover:underline text-sm" OnClick="btnForgotPassword_Click" Text="Forgot Password?"></asp:LinkButton>

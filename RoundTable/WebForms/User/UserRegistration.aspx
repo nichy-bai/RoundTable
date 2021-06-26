@@ -37,7 +37,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="h-screen flex flex-row justify-center items-center bg-indigo-400">
+        <div class="h-screen flex flex-row justify-center items-center bg-indigo-400 overflow-y-auto sm:overflow-hidden">
             <div class="shadow-xl py-6 bg-white max-w-xl rounded-lg">
                 <div class="flex flex-col justify-center px-16">
                     <div class="flex justify-center items-center text-4xl font-black mb-6">
@@ -69,11 +69,11 @@
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvUserID" runat="server" ErrorMessage="Username is required." ControlToValidate="txtUserID" ForeColor="Red"></asp:RequiredFieldValidator></div>
                         <div class="absolute"><asp:RegularExpressionValidator ID="revUserID" runat="server" ErrorMessage="Username must between 3 to 12 characters." ControlToValidate="txtUserID" ForeColor="Red" ValidationExpression="(\s|.){3,12}"></asp:RegularExpressionValidator></div>
                     </div>
-                    <div class="mb-6 relative">
+                    <div class="mb-12 relative">
                         <asp:TextBox ID="txtEmail" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtEmail" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Email</label>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvEmail" runat="server" ErrorMessage="Email is required." ControlToValidate="txtEmail" ForeColor="Red"></asp:RequiredFieldValidator></div>
-                        <div class=""><asp:RegularExpressionValidator ID="revEmail" runat="server" ErrorMessage="Invalid email. Please enter email as name@email.com" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></asp:RegularExpressionValidator></div>
+                        <div class="absolute"><asp:RegularExpressionValidator ID="revEmail" runat="server" ErrorMessage="Invalid email. Please enter email as name@email.com" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></asp:RegularExpressionValidator></div>
                     </div>
                     <div class="mb-12 relative">
                         <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
@@ -99,7 +99,7 @@
                         </asp:RadioButtonList>
                     </div>--%>
                     <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="login-btn font-bold py-3 px-6 rounded-lg" OnClick="btnSignUp_Click" />
-                    <div class="flex justify-center border-t border-gray-400 mt-4 pt-5">
+                    <div class="flex justify-center border-t border-gray-400 mt-4 pt-2">
                         Already on RoundTable?<span><a href="UserLogin.aspx" style="text-decoration:none" class="ml-1 font-bold hover:text-indigo-600 transition ease-in-out duration-300">Login</a></span>
                     </div>
                 </div>

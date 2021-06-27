@@ -20,10 +20,12 @@ namespace RoundTable.WebForms.Search
         string keyword;
         protected void Page_Load(object sender, EventArgs e)
         {
+            string keyword = txtSearch.Text;
+
             Page.Form.DefaultButton = btnSearch.UniqueID;
             if (!this.IsPostBack)
             {
-                this.BindRepeater(keyword);
+                this.BindRepeater();
             }
         }
 
@@ -37,6 +39,19 @@ namespace RoundTable.WebForms.Search
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            Button0.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button1.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button2.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button3.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button4.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button5.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button6.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button7.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button8.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+            Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
+
             //get keyword from textbox
             string keyword = txtSearch.Text;
             //if the search box is not empty
@@ -66,19 +81,20 @@ namespace RoundTable.WebForms.Search
             }
         }
 
-        private void BindRepeater(string keyword)
+        private void BindRepeater()
         {
             using (con)
             {
                 string query = "";
+                string keyword = txtSearch.Text;
 
                 if (topicID == "")
                 {
-                    query = "SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) ORDER BY Post.postDate DESC";
+                    query = "SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND (topicName LIKE '%' + @keyword + '%' OR [User].userID LIKE '%' + @keyword + '%') ORDER BY Post.postDate DESC";
                 }
                 else
                 {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 //something wrong here
-                    query = "SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND Topic.topicID='" + topicID + "' ORDER BY Post.postDate DESC";
+                    query = "SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND Topic.topicID='" + topicID + "' AND (topicName LIKE '%' + @keyword + '%' OR [User].userID LIKE '%' + @keyword + '%') ORDER BY Post.postDate DESC";
                 }
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
@@ -86,9 +102,21 @@ namespace RoundTable.WebForms.Search
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
+                        sda.SelectCommand.Parameters.AddWithValue("@keyword", keyword);
                         sda.Fill(dt);
                         Repeater1.DataSource = dt;
                         Repeater1.DataBind();
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            Repeater1.Visible = true;
+                            lblNoResult.Text = "";
+                        }
+                        else
+                        {
+                            lblNoResult.Text = "No Results.";
+                            Repeater1.Visible = false;
+                        }
                     }
                 }
             }
@@ -109,7 +137,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -127,7 +155,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -145,7 +173,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -163,7 +191,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button4_Click(object sender, EventArgs e)
@@ -181,7 +209,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button5_Click(object sender, EventArgs e)
@@ -199,7 +227,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button6_Click(object sender, EventArgs e)
@@ -217,7 +245,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button7_Click(object sender, EventArgs e)
@@ -235,7 +263,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button8_Click(object sender, EventArgs e)
@@ -253,7 +281,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button9_Click(object sender, EventArgs e)
@@ -271,7 +299,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button10_Click(object sender, EventArgs e)
@@ -289,7 +317,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         protected void Button11_Click(object sender, EventArgs e)
@@ -307,7 +335,7 @@ namespace RoundTable.WebForms.Search
             Button9.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button10.CssClass = "cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
             Button11.CssClass = "cursor-pointer text-white bg-indigo-600 hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded";
-            BindRepeater(keyword);
+            BindRepeater();
         }
 
         //[ScriptMethod()]

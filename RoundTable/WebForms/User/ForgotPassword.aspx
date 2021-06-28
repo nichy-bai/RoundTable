@@ -41,7 +41,7 @@
         <div class="h-screen flex flex-row justify-center items-center bg-indigo-400 overflow-y-auto overflow-x-hidden sm:overflow-hidden">
             <div class="shadow-xl py-6 bg-white max-w-xl rounded-lg">
                 <div class="flex flex-col justify-center px-10">
-                    <div class="flex justify-center items-center text-4xl font-black mb-6">
+                    <div class="flex justify-center items-center text-2xl font-black mb-6">
                         <a href="../Discussion/Homepage.aspx" class="hover:text-indigo-600 transition ease-in-out duration-300" title="Back to homepage">
                             <svg
                                 width="45"
@@ -61,21 +61,21 @@
                     <%--<asp:Label ID="lblLoginStatus" runat="server" Text="" CssClass=" text-red-600 mb-2"></asp:Label>--%>
                     <div class="flex flex-col">
                         <div class="mb-8 relative">
-                            <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                            <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                             <label for="txtUserID" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Username</label>
                             <div class="absolute">
                                 <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Name is required." ControlToValidate="txtUserID" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="mb-8 relative">
-                            <asp:TextBox ID="txtNewPassword" runat="server" type="password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPassword" runat="server" type="password" CssClass="input border border-gray-400 appearance-none rounded-lg px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                             <label for="txtNewPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">New Password</label>
                             <div class="absolute">
                                 <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtNewPassword" ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="mb-8 relative">
-                            <asp:TextBox ID="txtConfirmPassword" runat="server" type="password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                            <asp:TextBox ID="txtConfirmPassword" runat="server" type="password" CssClass="input border border-gray-400 appearance-none rounded-lg px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                             <label for="txtConfirmPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Confirm Password</label>
                             <div class="absolute">
                                 <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ErrorMessage="Confirm Password is required." ControlToValidate="txtConfirmPassword" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -84,20 +84,20 @@
                                 <asp:CompareValidator ID="cvPassword" runat="server" ErrorMessage="Password not matched." ControlToCompare="txtNewPassword" ControlToValidate="txtConfirmPassword" ForeColor="Red"></asp:CompareValidator>
                             </div>
                         </div>
-                        <div class="flex flex-row justify-evenly items-center space-x-4">
+                        <div class="flex flex-row justify-evenly items-center space-x-4 relative">
                             <div class="relative">
                                 <asp:TextBox ID="txtVerificationCode" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                                 <label for="txtVerificationCode" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Verification Code</label>
                             </div>
-                            <div class="">
-                                <asp:Button ID="btnGetCode" runat="server" Text="Get Code" CssClass="login-btn font-bold py-3 px-6 rounded-lg" OnClick="btnGetCode_Click" />
+                            <div class="absolute p-1 right-0">
+                                <asp:Button ID="btnGetCode" runat="server" Text="Get Code" CssClass="bg-white border-2 border-indigo-600 text-indigo-600 p-2 font-bold rounded-lg text-sm font-thin cursor-pointer hover:bg-indigo-600 hover:text-white hover:shadow-md transition ease-in-out duration-300" OnClick="btnGetCode_Click" />
                             </div>
                         </div>
-                        
+
                         <div class="mb-4">
                             <asp:Label ID="lblGetCode" runat="server" Text="" CssClass="mb-2 text-indigo-600"></asp:Label>
                         </div>
-                        
+
                         <div class="mb-4 w-full">
                             <asp:Button ID="btnChangePassword" runat="server" Text="Change Password" CssClass="login-btn font-bold py-3 px-6 rounded-lg" OnClick="btnChangePassword_Click" />
                         </div>

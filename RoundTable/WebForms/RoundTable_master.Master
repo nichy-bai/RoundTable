@@ -26,7 +26,7 @@
                 <div
                     class="p-4 my-4 cursor-pointer text-dark-200 hover:bg-gray-100 hover:shadow rounded-lg transition ease-in-out duration-300"
                     id="logo">
-                    <a href="../Discussion/Homepage.aspx">
+                    <a href="../Discussion/Homepage.aspx" title="RoundTable">
                         <svg
                             width="55"
                             height="55"
@@ -168,7 +168,7 @@
                     </div>
                     <div class="my-0 flex justify-center items-center">
                         <!--User Profile-->
-                        <a href="../User/UserProfile.aspx" class="py-2" id="profile">
+                        <a href="../User/UserProfile.aspx" class="py-2" id="profile" title="Profile">
                             <asp:Image ID="post_user_img" runat="server" ImageUrl="~/ProfileImages/Default.png" CssClass="w-14 h-14 rounded-full" />
                         </a>
                     </div>

@@ -94,8 +94,8 @@
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <asp:Label ID="lblGetCode" runat="server" Text="" CssClass="mb-2 text-indigo-600"></asp:Label>
+                        <div class="mb-4 w-64">
+                            <asp:Label ID="lblGetCode" runat="server" Text="" CssClass="mb-2 text-gray-700"></asp:Label>
                         </div>
 
                         <div class="mb-4 w-full">

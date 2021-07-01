@@ -76,13 +76,39 @@ namespace RoundTable.WebForms.Discussion
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            DropDownList1.ClearSelection();
-            DropDownList2.ClearSelection();
-            DropDownList1.Items.Insert(0, "[Select a Topic]");
-            DropDownList2.Items.Insert(0, "[Select a Tag]");
+            if (DropDownList1.SelectedValue != "[Select a Topic]" || DropDownList2.SelectedValue != "[Select a Tag]" || TextBox1.Text.Length > 0 || TextBox2.Text.Length > 0)
+            {
+                TextBox1.Text = "";
+                TextBox2.Text = "";
 
-            TextBox1.Text = "";
-            TextBox2.Text = "";
+                if (TextBox1.Text.Length > 0)
+                {
+                    TextBox1.Text = "";
+                }
+
+                if (TextBox2.Text.Length > 0)
+                {
+                    TextBox2.Text = "";
+                }
+
+                if (DropDownList1.SelectedValue != "[Select a Topic]")
+                {
+                    DropDownList1.ClearSelection();
+                    DropDownList1.Items.Insert(0, "[Select a Topic]");
+                }
+
+                if (DropDownList2.SelectedValue != "[Select a Tag]")
+                {
+                    DropDownList2.ClearSelection();
+                    DropDownList2.Items.Insert(0, "[Select a Tag]");
+                }
+
+                DropDownList2.Enabled = false;
+            }
+            else
+            {
+                Response.Redirect("/WebForms/Discussion/Homepage.aspx");
+            }
         }
 
         protected void Button2_Click(object sender, EventArgs e)

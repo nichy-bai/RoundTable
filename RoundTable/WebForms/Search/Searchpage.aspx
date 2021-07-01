@@ -107,6 +107,20 @@
     </header>
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
+        <div class="flex flex-row items-center">
+            <div class="block text-base font-bold font-title text-gray-600">Sort By</div>
+            <div class="ml-2">
+                <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" CssClass="h-8 w-auto px-2 border-0 rounded-lg cursor-pointer transition ease-in-out duration-300" AutoPostBack="True">
+                    <asp:ListItem>Latest</asp:ListItem>
+                    <asp:ListItem>Oldest</asp:ListItem>
+                    <asp:ListItem>Featured</asp:ListItem>
+                    <asp:ListItem>Trending</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+        </div>
+    </div>
+    <div
+        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div>
             <span class="block text-2xl font-bold mb-2 font-title">Tags</span>
         </div>
@@ -176,7 +190,7 @@
                     </div>
 
                     <%--Discussion title--%>
-                    <div class="my-5 break-words" style="max-width:100vh;">
+                    <div class="my-5 break-words" style="max-width: 100vh;">
                         <asp:Label ID="postID_lbl" runat="server" Text='<%#Eval("postID") %>' Visible="false"></asp:Label>
                         <asp:Label ID="postTitle_lbl" runat="server" Text='<%#Eval("postTitle") %>' CssClass="text-xl font-medium py-2"></asp:Label>
                     </div>
@@ -271,7 +285,8 @@
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
                                         stroke-width="1.5"
-                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+                                    </path>
                                     <path
                                         stroke-linecap="round"
                                         stroke-linejoin="round"

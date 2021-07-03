@@ -25,19 +25,22 @@ namespace RoundTable.WebForms.User
             }
             else
             {
+                string defaultPicture = "~/ProfileImages/Default.png";
                 string encryptedPassword = Encryptdata(txtPassword.Text);
-                String saveUserData = "Insert into [dbo].[User] (userID, name, emailAddress, userPassword) VALUES (@UserID, @Name, @EmailAddress, @UserPassword)";
+                String saveUserData = "Insert into [dbo].[User] (userID, name, emailAddress, userPassword, profilePicture, Gender) VALUES (@UserID, @Name, @EmailAddress, @UserPassword, @ProfilePicture, @Gender)";
                 SqlCommand cmdSaveUser = new SqlCommand(saveUserData, con);
                 cmdSaveUser.Parameters.AddWithValue("@UserID", txtUserID.Text);
                 cmdSaveUser.Parameters.AddWithValue("@Name", txtName.Text);
                 cmdSaveUser.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
                 cmdSaveUser.Parameters.AddWithValue("@UserPassword", encryptedPassword);
-                //cmdSaveUser.Parameters.AddWithValue("@Gender", rblGender.SelectedValue);
-                //cmdSaveUser.Parameters.AddWithValue("@DOB", txtDOB.Text);
+                cmdSaveUser.Parameters.AddWithValue("@ProfilePicture", defaultPicture);
+                //cmdSaveUser.Parameters.AddWithValue("@ProfileDesc", null);
+                cmdSaveUser.Parameters.AddWithValue("@Gender", "-");
+                //cmdSaveUser.Parameters.AddWithValue("@DOB", null);
                 con.Open();
                 cmdSaveUser.ExecuteNonQuery();
                 con.Close();
-                Response.Redirect("~/WebForms/Discussion/Homepage.aspx");
+                Response.Redirect("~/WebForms/User/UserLogin.aspx");
             }
         }
 

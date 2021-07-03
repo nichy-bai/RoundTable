@@ -117,6 +117,9 @@
                                         </asp:LinkButton>
                                     </div>
                                 </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="noPost_lbl" runat="server" CssClass="text-gray-400 text-center mt-10 mb-14" Text="No activities yet" Visible="false"></asp:Label>
+                                </FooterTemplate>
                             </asp:Repeater>
                         </div>
                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND ([User].userID = @UserID) ORDER BY totalComment DESC">
@@ -177,7 +180,7 @@
                                 </div>
                                 <div class="w-4/5">
                                     <asp:DropDownList ID="ddlGender" runat="server" ToolTip="Gender" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300">
-                                        <asp:ListItem Value="-">Select Gender</asp:ListItem>
+                                        <%--<asp:ListItem Value="-">Select Gender</asp:ListItem>--%>
                                         <asp:ListItem Value="M">Male</asp:ListItem>
                                         <asp:ListItem Value="F">Female</asp:ListItem>
                                     </asp:DropDownList>

@@ -21,7 +21,7 @@
     <div
         class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-col justify-between shadow-md h-auto transition ease-in-out duration-300">
         <div class="mb-5 relative">
-            <asp:TextBox ID="TextBox1" runat="server" placeholder="Title" ToolTip="Title" Enabled="false" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" placeholder="Title" ToolTip="Title" Enabled="false" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" autocomplete="off"></asp:TextBox>
         </div>
         <div>
             <asp:TextBox ID="TextBox2" runat="server" placeholder="Text (Optional)" TextMode="MultiLine" ToolTip="Text" CssClass="overflow-auto min-h-20 h-64 w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>

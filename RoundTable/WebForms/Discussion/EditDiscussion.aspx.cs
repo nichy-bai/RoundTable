@@ -25,14 +25,18 @@ namespace RoundTable.WebForms.Discussion
 
                 con.Open();
                 SqlCommand valid = new SqlCommand("SELECT userID FROM Post WHERE postID='" + postID + "'", con);
-                string postUserID;
-                try
+                string postUserID = null;
+                object obj = valid.ExecuteScalar();
+
+                if(obj != null && DBNull.Value != obj)
                 {
                     postUserID = valid.ExecuteScalar().ToString();
                 }
-                catch (Exception ex)
+                else
                 {
-                    postUserID = null;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                        "alert('Error! Invalid post!'); window.location='" +
+                        Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
                 }
 
                 con.Close();
@@ -88,14 +92,14 @@ namespace RoundTable.WebForms.Discussion
                     else
                     {
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-                        "alert('Error! Invalid user'); window.location='" +
+                        "alert('Error! Invalid user!'); window.location='" +
                         Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
                     }
                 }
                 else
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-                    "alert('Error! Invalid post'); window.location='" +
+                    "alert('Error! Invalid post!'); window.location='" +
                     Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
                 }
             }

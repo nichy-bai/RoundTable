@@ -21,7 +21,7 @@
     <div
         class="mt-0 m-5 p-5 bg-white rounded-lg flex flex-col justify-between shadow-md h-auto transition ease-in-out duration-300">
         <div class="mb-5 relative">
-            <asp:TextBox ID="TextBox1" runat="server" placeholder="Title" ToolTip="Title" onkeyup="countChar(this)" onkeydown="countChar(this)" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+            <asp:TextBox ID="TextBox1" runat="server" placeholder="Title" ToolTip="Title" onkeyup="countChar(this)" onkeydown="countChar(this)" CssClass="overflow-auto h-12 w-full px-2 pr-12 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" autocomplete="off"></asp:TextBox>
             <div class="numberOfChar absolute top-1/4 right-3 text-gray-500"></div>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox1" ErrorMessage="*Required" ValidationGroup="SendFeedback" Display="Dynamic" CssClass="text-red-600 text-sm m-2" />
         </div>

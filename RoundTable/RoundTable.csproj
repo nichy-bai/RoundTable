@@ -173,6 +173,7 @@
     <Content Include="Content\img\brand_mockup_1.png" />
     <Content Include="Content\img\changelog_illustration_1.svg" />
     <Content Include="Content\img\disclaimer_illustration_1.svg" />
+    <Content Include="Content\img\error_illustration_1.svg" />
     <Content Include="Content\img\login_illustration_1.svg" />
     <Content Include="Content\img\media_illustration_1.svg" />
     <Content Include="Content\img\privacy_illustration_1.svg" />
@@ -180,6 +181,7 @@
     <Content Include="Content\img\support_illustration_2.svg" />
     <Content Include="Content\img\terms_illustration_1.svg" />
     <Content Include="Content\js\script.js" />
+    <Content Include="WebForms\Error.aspx" />
     <Content Include="WebForms\LoginError.aspx" />
     <Content Include="ProfileImages\Avatar.png" />
     <Content Include="ProfileImages\Default.png" />
@@ -229,6 +231,13 @@
     </Compile>
     <Compile Include="BotService.aspx.designer.cs">
       <DependentUpon>BotService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\LoginError.aspx.cs">
       <DependentUpon>LoginError.aspx</DependentUpon>

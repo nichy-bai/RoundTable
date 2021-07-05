@@ -35,14 +35,23 @@ namespace RoundTable.WebForms.User
 
                 while (rdr.Read())
                 {
-                    DateTime sourceDate = (DateTime)rdr["DOB"];
+                    object date = rdr["DOB"];
+                    if (date != null && DBNull.Value != date)
+                    {
+                        lblDOB.Text = Convert.ToDateTime(date).ToString("dd/MM/yyyy");
+                    }
+                    else
+                    {
+                        lblDOB.Text = "-";
+                    }
+
+                    lblGender.Text = rdr["Gender"].ToString();
                     imgProfilePic.ImageUrl = rdr["profilePicture"].ToString();
                     profilePicture.ImageUrl = rdr["profilePicture"].ToString();
                     lblName.Text = rdr["name"].ToString();
-                    lblGender.Text = rdr["Gender"].ToString();
-                    lblDOB.Text = sourceDate.ToString("dd MMMM yyyy");
                     lblEmail.Text = rdr["emailAddress"].ToString();
                     lblProfileDesc.Text = rdr["profileDesc"].ToString();
+                    
                 }
             }
             else
@@ -74,10 +83,20 @@ namespace RoundTable.WebForms.User
 
                 while (rdr.Read())
                 {
-                    DateTime sourceDate = (DateTime)rdr["DOB"];
+                    object date = rdr["DOB"];
+                    if (date != null && DBNull.Value != date)
+                    {
+                        txtDOB.Text = Convert.ToDateTime(date).ToString("yyyy-MM-dd");
+                        
+                    }
+
+                    string gender = rdr["Gender"].ToString();
+                    if (gender == "-")
+                    {
+                        ddlGender.Items.Insert(0, "[Select Gender]");
+                        ddlGender.SelectedValue = "[Select Gender]";
+                    }
                     txtName.Text = rdr["name"].ToString();
-                    ddlGender.Text = rdr["Gender"].ToString();
-                    txtDOB.Text = sourceDate.ToString("yyyy-MM-dd");
                     txtEmail.Text = rdr["emailAddress"].ToString();
                     txtProfileDesc.Text = rdr["profileDesc"].ToString();
                 }
@@ -86,7 +105,8 @@ namespace RoundTable.WebForms.User
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            MultiViewProfile.ActiveViewIndex = 0;
+            //MultiViewProfile.ActiveViewIndex = 0;
+            Response.Redirect("~/WebForms/User/UserProfile.aspx");
         }
 
         protected void btnSaveChanges_Click(object sender, EventArgs e)
@@ -141,6 +161,18 @@ namespace RoundTable.WebForms.User
             
 
             Response.Redirect("~/WebForms/User/UserProfile.aspx");
+        }
+
+        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (Repeater1.Items.Count < 1)
+            {
+                if (e.Item.ItemType == ListItemType.Footer)
+                {
+                    Label lblFooter = (Label)e.Item.FindControl("noPost_lbl");
+                    lblFooter.Visible = true;
+                }
+            }
         }
 
     }

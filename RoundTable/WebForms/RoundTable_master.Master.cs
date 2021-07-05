@@ -58,5 +58,18 @@ namespace RoundTable.WebForms
 
             con.Close();
         }
+
+        protected void post_btn_Command(object sender, CommandEventArgs e)
+        {
+            string postID = e.CommandArgument.ToString();
+            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
+            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+        }
+
+        protected void topic_btn_Command(object sender, CommandEventArgs e)
+        {
+            string topicID = e.CommandArgument.ToString();
+            Response.Redirect("../Explore/TrendingTopic.aspx?topic=" + topicID.Substring(2, topicID.Length - 2));
+        }
     }
 }

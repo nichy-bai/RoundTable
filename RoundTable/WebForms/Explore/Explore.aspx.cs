@@ -39,10 +39,10 @@ namespace RoundTable.WebForms.Explore
             Response.Redirect("../Explore/TrendingTopic.aspx?topic=" + topicID.Substring(2, topicID.Length - 2));
         }
 
-        protected void trendingTopic_btn_Command(object sender, CommandEventArgs e)
-        {
-            Response.Redirect("../Explore/TrendingTopic.aspx");
-        }
+        //protected void trendingTopic_btn_Command(object sender, CommandEventArgs e)
+        //{
+        //    Response.Redirect("../Explore/TrendingTopic.aspx");
+        //}
 
         //private void BindRepeater()
         //{

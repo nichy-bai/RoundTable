@@ -11,12 +11,6 @@
     </header>
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
-        <div>
-            <span class="block text-2xl font-bold mb-2 font-title">Discussions You May Also Like...</span>
-        </div>
-    </div>
-    <div
-        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between items-center mb-4">
             <div class="block text-2xl font-bold mb-2 font-title">Rising Topics</div>
             <div class="flex flex-row space-x-2 text-indigo-600 animate-bounce">
@@ -63,6 +57,30 @@
             </asp:Repeater>
         </div>
         <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT TOP (3) Post.topicID, COUNT(*) AS totalTopic, Topic.topicName, Topic.topicDesc FROM Post INNER JOIN Topic ON Post.topicID = Topic.topicID GROUP BY Post.topicID, Topic.topicName, Topic.topicDesc ORDER BY totalTopic DESC"></asp:SqlDataSource>
+    </div>
+    <div
+        class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
+        <div class="mb-4">
+            <div id="tags" class="block text-2xl font-bold mb-2 font-title">Discover More Topics</div>
+        </div>
+        <div class="flex flex-row flex-wrap justify-left">
+            <asp:Repeater ID="Repeater3" runat="server" DataSourceID="SqlDataSource3">
+                <ItemTemplate>
+                    <div
+                    class="mt-0 m-5 ml-10 bg-indigo-600 hover:bg-white text-white hover:text-indigo-600 rounded-lg flex flex-row shadow h-auto transition ease-in-out duration-150 w-1/4 hover:shadow-lg">
+                    <asp:LinkButton ID="topic_btn" runat="server" CssClass="" OnCommand="topic_btn_Command" CommandArgument='<%#Eval("topicID") %>'>
+                             <div class="flex flex-wrap flex-row justify-center items-center text-md md:text-base my-2 px-2 py-1 md:px-6 py-2">
+                                 <%--<div class="mr-1">#</div>--%>
+                                <div>
+                                    <%#Eval("topicName") %>
+                                </div>
+                             </div>
+                    </asp:LinkButton>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+            <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT Topic.* FROM Topic"></asp:SqlDataSource>
+        </div>
     </div>
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
@@ -222,7 +240,7 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
-            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP (3) Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) ORDER BY totalComment DESC"></asp:SqlDataSource>
+            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT TOP (3) Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) ORDER BY totalView DESC"></asp:SqlDataSource>
         </div>
     </div>
 </asp:Content>

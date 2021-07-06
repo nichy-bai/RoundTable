@@ -4,7 +4,7 @@
         class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
-                <span class="block text-4xl font-bold mb-2 font-title">Explore</span>
+                <span class="block text-4xl font-bold mb-2 font-title text-gray-700">Explore</span>
                 <span class="block opacity-80">Explore rising discussions in various categories.</span>
             </div>
         </div>
@@ -12,41 +12,41 @@
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between items-center mb-4">
-            <div class="block text-2xl font-bold mb-2 font-title">Rising Topics</div>
-            <div class="flex flex-row space-x-2 text-indigo-600 animate-bounce">
+            <div class="block text-2xl font-bold mb-2 font-title text-gray-700">Rising Topics</div>
+            <div class="flex flex-row space-x-2 text-indigo-600 animate-bounce hover:opacity-80 cursor-default">
                 <div>
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                 </div>
                 <div>
-                    Today's Top 3 Trending Topics 
+                    Today's Top 3 Trending Topics
                 </div>
             </div>
             <%--<div class="animate-pulse">
                 <asp:LinkButton ID="trendingTopic_btn" runat="server" OnCommand="trendingTopic_btn_Command" CssClass="hover:text-indigo-600">
-                    <svg 
-                        class="w-6 h-6" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24" 
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
-                        <path 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round" 
-                            stroke-width="2" 
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
                             d="M13 5l7 7-7 7M5 5l7 7-7 7">
                         </path>
                     </svg>
                 </asp:LinkButton>
             </div>--%>
         </div>
-        <div class="flex flex-row flex-wrap md:flex-nowrap justify-between">
+        <div class="flex flex-row flex-wrap justify-evenly items-center">
             <asp:Repeater ID="Repeater2" runat="server" DataSourceID="SqlDataSource2">
                 <ItemTemplate>
                     <%--<div
                     class="mt-0 m-5 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">--%>
                     <asp:LinkButton ID="topic_btn" runat="server" CssClass="" OnCommand="topic_btn_Command" CommandArgument='<%#Eval("topicID") %>'>
-                             <div class="flex flex-row justify-center items-center text-indigo-600 text-md md:text-2xl border-2 border-indigo-600 bg-white hover:bg-indigo-600 hover:text-white rounded-lg my-2 px-2 py-1 md:px-6 py-2">
-                                 <div class="mr-1">#</div>
+                             <div class="flex flex-row justify-center items-center px-2 py-1 mx-2 text-gray-700 hover:text-indigo-600 text-md md:text-2xl border-2 border-transparent hover:border-indigo-600 rounded-lg transition ease-in-out duration-300">
+                                 <div class="mr-1 md:text-xl">#</div>
                                 <div>
                                     <%#Eval("topicName") %>
                                 </div>
@@ -61,15 +61,15 @@
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="mb-4">
-            <div id="tags" class="block text-2xl font-bold mb-2 font-title">Discover More Topics</div>
+            <div id="tags" class="block text-2xl font-bold mb-2 font-title text-gray-700">Discover More Topics</div>
         </div>
-        <div class="flex flex-row flex-wrap justify-left">
+        <div class="flex flex-row flex-wrap justify-center">
             <asp:Repeater ID="Repeater3" runat="server" DataSourceID="SqlDataSource3">
                 <ItemTemplate>
                     <div
-                    class="mt-0 m-5 ml-10 bg-indigo-600 hover:bg-white text-white hover:text-indigo-600 rounded-lg flex flex-row shadow h-auto transition ease-in-out duration-150 w-1/4 hover:shadow-lg">
+                    class="mt-0 m-5 border-2 border-indigo-600 bg-indigo-600 hover:bg-white text-white hover:text-indigo-600 rounded-lg flex flex-row flex-wrap justify-center items-center shadow h-auto transition ease-in-out duration-300 w-full md:w-1/4 hover:shadow-lg cursor-pointer">
                     <asp:LinkButton ID="topic_btn" runat="server" CssClass="" OnCommand="topic_btn_Command" CommandArgument='<%#Eval("topicID") %>'>
-                             <div class="flex flex-wrap flex-row justify-center items-center text-md md:text-base my-2 px-2 py-1 md:px-6 py-2">
+                             <div class="flex flex-wrap flex-row justify-center items-center text-md md:text-base my-2">
                                  <%--<div class="mr-1">#</div>--%>
                                 <div>
                                     <%#Eval("topicName") %>
@@ -85,19 +85,19 @@
     <div
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between items-center mb-4">
-            <div class="block text-2xl font-bold mb-2 font-title">Trending Discussion Posts</div>
+            <div class="block text-2xl font-bold mb-2 font-title text-gray-700">Trending Discussion Posts</div>
             <div class="animate-pulse text-indigo-600">
                 <asp:LinkButton ID="trendingPost_btn" runat="server" OnCommand="trendingPost_btn_Command" CssClass="hover:text-indigo-600">
-                    <svg 
-                        class="w-6 h-6" 
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24" 
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
-                        <path 
-                            stroke-linecap="round" 
-                            stroke-linejoin="round" 
-                            stroke-width="2" 
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
                             d="M13 5l7 7-7 7M5 5l7 7-7 7">
                         </path>
                     </svg>

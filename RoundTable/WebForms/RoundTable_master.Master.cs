@@ -36,13 +36,17 @@ namespace RoundTable.WebForms
             {
                 nav_explore_btn.Attributes.Add("Class", "text-indigo-600");
             }
-            else if (path.Contains("Tag/"))
-            {
-                nav_tag_btn.Attributes.Add("Class", "text-indigo-600");
-            }
             else if (path.Contains("Search/"))
             {
                 nav_search_btn.Attributes.Add("Class", "text-indigo-600");
+            }
+            else if (path.Contains("Support/"))
+            {
+                nav_support_btn.Attributes.Add("Class", "text-indigo-600");
+            }
+            else if (path.Contains("User/"))
+            {
+                nav_profile_btn.CssClass = nav_profile_btn.CssClass.Replace("border-transparent", "border-indigo-500");
             }
 
             SqlCommand cmd = new SqlCommand("SELECT profilePicture FROM [User] WHERE userID='" + userID + "'", con);

@@ -6,7 +6,7 @@
             <div class="flex flex-col justify-center">
                 <asp:Repeater ID="Repeater2" runat="server">
                     <ItemTemplate>
-                        <span class="block text-4xl font-bold mb-2 font-title"><%#Eval("topicName") %></span>
+                        <span class="block text-4xl font-bold mb-2 font-title text-gray-700"><%#Eval("topicName") %></span>
                         <span class="block opacity-80"><%#Eval("topicDesc") %></span>
                     </ItemTemplate>
                 </asp:Repeater>

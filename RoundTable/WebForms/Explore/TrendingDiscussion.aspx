@@ -4,7 +4,7 @@
         class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
-                <span class="block text-4xl font-bold mb-2 font-title">Trending Discussions</span>
+                <span class="block text-4xl font-bold mb-2 font-title text-gray-700">Trending Discussions</span>
                 <span class="block opacity-80">Discover discussions that are currently popular with the masses.</span>
             </div>
         </div>

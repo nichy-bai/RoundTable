@@ -48,21 +48,24 @@
                 <span class="mx-2 hidden sm:inline font-title">Getting Started</span>
             </a>
         </div>
-        <div class="flex flex-row flex-wrap justify-evenly items-center my-20">
+        <div class="flex flex-row flex-wrap justify-evenly items-start my-20">
             <div class="flex flex-col my-5">
                 <div>
                     <div class="font-bold text-2xl mb-4 text-gray-700 hover:text-indigo-600 transition ease-in-out duration-300">Getting Started</div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Using RoundTable</a>
+                        <a href="SupportDetail.aspx#start-1" class="text-indigo-700 hover:text-indigo-600 hover:underline">Using RoundTable</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">RoundTable Glossary</a>
+                        <a href="SupportDetail.aspx#start-2" class="text-indigo-700 hover:text-indigo-600 hover:underline">How RoundTable Works</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Create Discussion Post</a>
+                        <a href="SupportDetail.aspx#start-3" class="text-indigo-700 hover:text-indigo-600 hover:underline">Create an Account</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Bug Reports and Feature Requests</a>
+                        <a href="SupportDetail.aspx#start-4" class="text-indigo-700 hover:text-indigo-600 hover:underline">Start A Discussion</a>
+                    </div>
+                    <div class="my-2">
+                        <a href="SupportDetail.aspx#start-5" class="text-indigo-700 hover:text-indigo-600 hover:underline">Participate In A Discussion</a>
                     </div>
                 </div>
             </div>

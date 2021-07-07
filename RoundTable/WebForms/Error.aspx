@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginError.aspx.cs" Inherits="RoundTable.LoginError" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Error.aspx.cs" Inherits="RoundTable.WebForms.Error" %>
 
 <!DOCTYPE html>
 
@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Login to continue</title>
+    <title>Error</title>
     <link href="~/Content/icons/favicon.png" rel="icon" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -35,17 +35,11 @@
                         <span class="ml-2">RoundTable</span>
                     </a>
                 </div>
-                <div class="mb-10 text-gray-600 font-normal">
+                <div class="mb-10 md:mb-20 text-gray-600 font-normal">
                     <h1 class="font-bold uppercase text-5xl lg:text-5xl text-indigo-300 mb-5 md:mb-2">Oops! </h1>
-                    <h1 class="font-bold uppercase text-3xl lg:text-4xl text-indigo-500 mb-5 md:mb-10">Please login to continue.</h1>
-                    <p>This feature is only available for RoundTable users.</p>
-                    <p>You must be logged in to access this feature.</p>
-                </div>
-                <div class="flex flex-row justify-center md:justify-start space-x-10">
-                    <a href="User/UserLogin.aspx"
-                        class="bg-indigo-600 hover:bg-white text-white hover:text-indigo-600 rounded-lg shadow-md py-2 px-4 border-2 border-indigo-600 transition ease-in-out duration-300">Login</a>
-                    <a href="User/UserRegistration.aspx"
-                        class="bg-transparent hover:bg-indigo-600 text-indigo-600 hover:text-white rounded-lg shadow-md py-2 px-4 border-2 border-indigo-600 transition ease-in-out duration-300">Sign Up</a>
+                    <h1 class="font-bold uppercase text-3xl lg:text-4xl text-indigo-500 mb-10">An error has occurred.</h1>
+                    <p>The page you're looking for isn't available.</p>
+                    <p>If the problem persists, please contact us via <a href="mailto:roundtable.cs@gmail.com" class="underline hover:text-indigo-500 transition ease-in-out duration-300">email</a> or the <a href="Support/Feedback.aspx" class="underline hover:text-indigo-500 transition ease-in-out duration-300">feedback</a> function.</p>
                 </div>
                 <div class="mb-20 md:mb-0">
                     <a href="Discussion/Homepage.aspx" class="text-indigo-500 flex flex-row md:justify-start justify-center items-center mt-10 hover:opacity-80 transition ease-in-out duration-300 text-md">
@@ -65,7 +59,7 @@
                 </div>
             </div>
             <div class="w-full md:w-1/2 text-center">
-                <img src="../../Content/img/login_illustration_1.svg" alt="illustration_1" class="w-full max-w-lg lg:max-w-full mx-auto">
+                <img src="../../Content/img/error_illustration_1.svg" alt="illustration_1" class="w-full max-w-lg lg:max-w-full mx-auto">
             </div>
         </div>
         <div class="w-64 md:w-96 h-96 md:h-full bg-indigo-200 bg-opacity-20 absolute -top-64 md:-top-96 right-20 md:right-32 rounded-full pointer-events-none -rotate-45 transform"></div>

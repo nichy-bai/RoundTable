@@ -51,15 +51,6 @@ namespace RoundTable.WebForms
         protected global::System.Web.UI.WebControls.Panel nav_explore_btn;
 
         /// <summary>
-        /// nav_tag_btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel nav_tag_btn;
-
-        /// <summary>
         /// nav_search_btn control.
         /// </summary>
         /// <remarks>
@@ -69,6 +60,15 @@ namespace RoundTable.WebForms
         protected global::System.Web.UI.WebControls.Panel nav_search_btn;
 
         /// <summary>
+        /// nav_support_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel nav_support_btn;
+
+        /// <summary>
         /// nav_notification_btn control.
         /// </summary>
         /// <remarks>
@@ -76,6 +76,15 @@ namespace RoundTable.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel nav_notification_btn;
+
+        /// <summary>
+        /// nav_profile_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel nav_profile_btn;
 
         /// <summary>
         /// post_user_img control.

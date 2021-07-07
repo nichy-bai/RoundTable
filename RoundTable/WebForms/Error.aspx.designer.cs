@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RoundTable
+namespace RoundTable.WebForms
 {
 
 
-    public partial class LoginError
+    public partial class Error
     {
     }
 }

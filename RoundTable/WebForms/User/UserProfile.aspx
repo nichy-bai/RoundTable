@@ -31,7 +31,7 @@
                 <div
                     class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
                     <div class="relative px-0 flex flex-row flex-grow flex-wrap">
-                        <div class="items-start w-40 min-w-full sm:min-w-0">
+                        <div class="items-start w-40 min-w-full sm:min-w-0 mt-20 sm:mt-0">
                             <div class="flex flex-row justify-center">
                                 <div>
                                     <asp:Image ID="imgProfilePic" runat="server" class="profile-pic" />
@@ -39,16 +39,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col flex-1">
-                            <div class="flex flex-row justify-between">
-                                <div>
-                                    <asp:Label ID="lblName" runat="server" Text="" CssClass="text-3xl ml-10 font-bold"></asp:Label>
-                                </div>
+                        <div class="flex flex-row flex-wrap justify-center sm:justify-between">
+                                <%--<div class="left-0 absolute sm:static">
+                                    <asp:Label ID="lblName" runat="server" Text="" CssClass="absolute text-3xl ml-10 font-bold break-words sm:break-normal"></asp:Label>
+                                </div>--%>
                                 <div class="right-0 absolute">
                                     <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" CssClass="editProfile-btn font-bold <%--font-bold px-6 py-2 border-2 rounded border-black--%>" />
                                 </div>
+                        </div>
+                        <div class="flex flex-col flex-1">
+                            <div class="flex flex-wrap break-all sm:break-normal">
+                                <asp:Label ID="lblName" runat="server" Text="" CssClass="text-3xl mx-10 font-bold "></asp:Label>
                             </div>
-
                             <div class="flex flex-wrap text-xl ml-10 mt-10 font-bold">
                                 Topic Posted
                              <asp:Label ID="lblTopicPosted" runat="server" Text="" CssClass="ml-5 text-lg font-medium"></asp:Label>
@@ -84,6 +86,9 @@
                             Activities
                         </div>
                         <div class="flex flex-col h-96 overflow-auto">
+                            <div>
+                                <asp:Label ID="noPost_lbl" runat="server" CssClass="flex justify-center items-center text-gray-400 text-center mt-10 mb-14" Text="No activities yet." Visible="false"></asp:Label>
+                            </div>
                             <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
                                 <ItemTemplate>
                                     <div
@@ -99,7 +104,8 @@
                                                                 <abbr title="<%#Eval("name") %>" style="text-decoration: none;"><%#Eval("userID") %></abbr>
                                                             </div>
                                                             <div class="text-sm opacity-80 no-underline">
-                                                                <abbr title="<%#DataBinder.Eval(Container.DataItem, "postDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "postDate", "{0:d MMMM yyyy}") %></abbr>
+                                                                <abbr class="mr-2" title="<%#DataBinder.Eval(Container.DataItem, "postDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "postDate", "{0:d MMMM yyyy}") %></abbr>
+                                                                <asp:Label ID="edit_date_lbl" runat="server" CssClass="no-underline" Visible='<%# DataBinder.Eval(Container.DataItem, "editDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}").ToString().Length > 0 ? true : false %>' ToolTip='<%# "Edited on " + DataBinder.Eval(Container.DataItem, "editDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>' Text='<%# "(Edited on " + DataBinder.Eval(Container.DataItem, "editDate", "{0:d MMMM yyyy}") + ")" %>'></asp:Label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -117,9 +123,6 @@
                                         </asp:LinkButton>
                                     </div>
                                 </ItemTemplate>
-                                <FooterTemplate>
-                                    <asp:Label ID="noPost_lbl" runat="server" CssClass="text-gray-400 text-center mt-10 mb-14" Text="No activities yet" Visible="false"></asp:Label>
-                                </FooterTemplate>
                             </asp:Repeater>
                         </div>
                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND ([User].userID = @UserID) ORDER BY totalComment DESC">
@@ -127,6 +130,11 @@
                                 <asp:SessionParameter SessionField="UserID" Name="UserID"></asp:SessionParameter>
                             </SelectParameters>
                         </asp:SqlDataSource>
+                    </div>
+                </div>
+                <div class="mt-0 m-5 p-5 px-6 flex justify-center sm:justify-end">
+                    <div class="w-full sm:w-1/6">
+                        <asp:Button ID="btnLogout" runat="server" Text="Log Out" OnClick="btnLogout_Click" CssClass="cancel-btn font-bold"/>
                     </div>
                 </div>
             </asp:View>
@@ -152,9 +160,11 @@
                                 </div>
                                 <div class="w-4/5">
                                     <asp:TextBox ID="txtName" runat="server" placeholder="Name" ToolTip="Name" CssClass="w-full p-2 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+                                    <div class="absolute"><asp:RegularExpressionValidator ID="revName" runat="server" ErrorMessage="Name maximum length is 26 characters." ControlToValidate="txtName" ForeColor="Red" ValidationExpression="(\s|.){0,26}"></asp:RegularExpressionValidator></div>
+                                    <div class="absolute"><asp:RegularExpressionValidator ID="revNameChar" runat="server" ErrorMessage="Name cannot contain numbers or special characters." ControlToValidate="txtName" ForeColor="Red" ValidationExpression="([a-z]|[A-Z]|[ ])*"></asp:RegularExpressionValidator></div>
                                 </div>
                             </div>
-                            <div class="flex ml-10 mt-3 justify-between space-x-3">
+                            <div class="flex ml-10 mt-6 justify-between space-x-3">
                                 <div class="text-xl font-bold w-1/5">
                                     Profile Photo
                                 </div>
@@ -186,15 +196,16 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="flex ml-10 mt-3 justify-between space-x-3">
+                            <div class="flex ml-10 mt-12 justify-between space-x-3">
                                 <div class="text-xl font-bold w-1/5">
                                     D.O.B
                                 </div>
                                 <div class="w-4/5">
                                     <asp:TextBox ID="txtDOB" runat="server" placeholder="Date Of Birth" TextMode="Date" ToolTip="Date Of Birth" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
+                                    <div class="absolute"><asp:RangeValidator ID="DateRangeValidator" runat="server" ControlToValidate="txtDOB" ForeColor="red" ErrorMessage="DOB cannot greater than today's date" Type="Date"></asp:RangeValidator></div>
                                 </div>
                             </div>
-                            <div class="flex ml-10 mt-3 justify-between space-x-3">
+                            <div class="flex ml-10 mt-12 justify-between space-x-3">
                                 <div class="text-xl font-bold w-1/5">
                                     Email
                                 </div>

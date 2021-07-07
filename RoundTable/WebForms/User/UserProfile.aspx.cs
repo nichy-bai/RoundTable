@@ -17,6 +17,9 @@ namespace RoundTable.WebForms.User
             //p1.Style.Add("display", "none");
             if (Session["UserID"] != null)
             {
+                DateRangeValidator.MinimumValue = DateTime.Now.AddYears(-100).ToShortDateString();
+                DateRangeValidator.MaximumValue = DateTime.Now.Date.ToShortDateString();
+
                 string getTopicPosted = "Select Count(*) from [Post] where userID = @currUserID";
                 SqlCommand cmdTopic = new SqlCommand(getTopicPosted, con);
                 cmdTopic.Parameters.AddWithValue("@currUserID", Session["UserID"].ToString());
@@ -52,6 +55,16 @@ namespace RoundTable.WebForms.User
                     lblEmail.Text = rdr["emailAddress"].ToString();
                     lblProfileDesc.Text = rdr["profileDesc"].ToString();
                     
+                }
+
+                Repeater1.DataBind();
+                if (Repeater1.Items.Count == 0)
+                {
+                    noPost_lbl.Visible = true;
+                }
+                else
+                {
+                    noPost_lbl.Visible = false;
                 }
             }
             else
@@ -163,17 +176,22 @@ namespace RoundTable.WebForms.User
             Response.Redirect("~/WebForms/User/UserProfile.aspx");
         }
 
-        protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (Repeater1.Items.Count < 1)
-            {
-                if (e.Item.ItemType == ListItemType.Footer)
-                {
-                    Label lblFooter = (Label)e.Item.FindControl("noPost_lbl");
-                    lblFooter.Visible = true;
-                }
-            }
-        }
+        //protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        //{
+        //    if (Repeater1.Items.Count < 1)
+        //    {
+        //        if (e.Item.ItemType == ListItemType.Footer)
+        //        {
+        //            Label lblFooter = (Label)e.Item.FindControl("noPost_lbl");
+        //            lblFooter.Visible = true;
+        //        }
+        //    }
+        //}
 
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have been successfully logged out!');window.location ='../Discussion/Homepage.aspx';", true);
+        }
     }
 }

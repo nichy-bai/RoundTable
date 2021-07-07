@@ -58,10 +58,11 @@
                         </a>
                         <span class="ml-2">Login</span>
                     </div>
-                    <asp:Label ID="lblLoginStatus" runat="server" Text="" CssClass=" text-red-600 mb-2"></asp:Label>
+                    
                     <div class="mb-8 relative">
                         <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtUserID" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Username</label>
+                        <div class="absolute"><asp:Label ID="lblLoginStatus" runat="server" Text="" ForeColor="Red" CssClass="mb-2"></asp:Label></div>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvUserID" runat="server" ErrorMessage="Username is required." ControlToValidate="txtUserID" ForeColor="Red"></asp:RequiredFieldValidator></div>
                         <div class="absolute"><asp:RegularExpressionValidator ID="revUserID" runat="server" ErrorMessage="Between 3 to 12 characters." ControlToValidate="txtUserID" ForeColor="Red" ValidationExpression="(\s|.){3,12}"></asp:RegularExpressionValidator></div>
                     </div>

@@ -17,10 +17,10 @@ namespace RoundTable.WebForms.Explore
         protected void Page_Load(object sender, EventArgs e)
         {
             //topicID = "TP" + Request.QueryString["p"];
-            //if (!this.IsPostBack)
-            //{
-            //    this.BindRepeater();
-            //}
+            if (!this.IsPostBack)
+            {
+                this.BindRepeater();
+            }
         }
 
         protected void post_btn_Command(object sender, CommandEventArgs e)
@@ -39,27 +39,36 @@ namespace RoundTable.WebForms.Explore
             Response.Redirect("../Explore/TrendingTopic.aspx?topic=" + topicID.Substring(2, topicID.Length - 2));
         }
 
-        //protected void trendingTopic_btn_Command(object sender, CommandEventArgs e)
-        //{
-        //    Response.Redirect("../Explore/TrendingTopic.aspx");
-        //}
+        protected void trendingTopic_btn_Command(object sender, CommandEventArgs e)
+        {
+            Response.Redirect("../Explore/TrendingTopic.aspx");
+        }
 
-        //private void BindRepeater()
-        //{
-        //    using (con)
-        //    {
-        //        //RMB ADD SELECT statement here
-        //        using (SqlCommand cmd = new SqlCommand("SELECT TOP 3 Topic.topicName, COUNT(*) AS totalTopic FROM Post GROUP BY topicName ORDER BY totalTopic DESC", con))
-        //        {
-        //            using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-        //            {
-        //                DataTable dt = new DataTable();
-        //                sda.Fill(dt);
-        //                Repeater1.DataSource = dt;
-        //                Repeater1.DataBind();
-        //            }
-        //        }
-        //    }
-        //}
+        private void BindRepeater()
+        {
+            using (con)
+            {
+                //RMB ADD SELECT statement here
+
+                //myRepeater.DataSource = myCollection
+                //    .OrderBy(x => rand.Next())
+                //    .Take(4);
+                //myRepeater.DataBind();
+
+                var rand = new Random();
+
+
+                using (SqlCommand cmd = new SqlCommand("SELECT TOP (3) Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) ORDER BY NEWID()", con))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        Repeater4.DataSource = dt;
+                        Repeater4.DataBind();
+                    }
+                }
+            }
+        }
     }
 }

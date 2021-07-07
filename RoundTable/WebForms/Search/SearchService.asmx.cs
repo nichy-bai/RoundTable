@@ -62,6 +62,20 @@ namespace RoundTable
                 }
                 con.Close();
 
+                con.Open();
+                SqlCommand cmdPost = new SqlCommand("spPost", con);
+                cmdPost.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter parameterPost = new SqlParameter("@keyword", keyword);
+                cmdPost.Parameters.Add(parameterPost);
+
+
+                SqlDataReader rdrPost = cmdPost.ExecuteReader();
+                while (rdrPost.Read())
+                {
+                    keywords.Add(rdrPost["postTitle"].ToString());
+                }
+                con.Close();
 
             }
             return keywords;

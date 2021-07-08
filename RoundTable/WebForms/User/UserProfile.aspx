@@ -16,10 +16,10 @@
 		}
     </script>
     <header
-        class="relative m-5 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
+        class="relative m-5 mt-0 px-5 py-4 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
-                <span class="block text-4xl font-bold mb-2 font-title">Profile</span>
+                <span class="block text-4xl font-bold mb-2 font-title text-gray-700">Profile</span>
                 <span class="block opacity-80">Information about the user</span>
             </div>
         </div>
@@ -30,8 +30,8 @@
             <asp:View ID="ProfileView" runat="server">
                 <div
                     class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
-                    <div class="relative px-0 flex flex-row flex-grow flex-wrap">
-                        <div class="items-start w-40 min-w-full sm:min-w-0 mt-20 sm:mt-0">
+                    <div class="relative px-0 flex flex-row flex-grow flex-wrap pb-20 md:pb-0">
+                        <div class="items-start w-40 min-w-full sm:min-w-0 mt-0 md:mt-2 mr-5">
                             <div class="flex flex-row justify-center">
                                 <div>
                                     <asp:Image ID="imgProfilePic" runat="server" class="profile-pic" />
@@ -43,38 +43,28 @@
                                 <%--<div class="left-0 absolute sm:static">
                                     <asp:Label ID="lblName" runat="server" Text="" CssClass="absolute text-3xl ml-10 font-bold break-words sm:break-normal"></asp:Label>
                                 </div>--%>
-                                <div class="right-0 absolute">
-                                    <asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" CssClass="editProfile-btn font-bold <%--font-bold px-6 py-2 border-2 rounded border-black--%>" />
+                                <div class="md:right-0 md:top-0 bottom-0 right-1 w-full md:w-auto absolute">
+                                    <asp:Button ID="btnEditProfile" runat="server" Text="Edit" OnClick="btnEditProfile_Click" CssClass="editProfile-btn font-bold <%--font-bold px-6 py-2 border-2 rounded border-black--%>" />
                                 </div>
                         </div>
-                        <div class="flex flex-col flex-1">
-                            <div class="flex flex-wrap break-all sm:break-normal">
-                                <asp:Label ID="lblName" runat="server" Text="" CssClass="text-3xl mx-10 font-bold "></asp:Label>
+                        <div class="flex flex-col flex-1 text-gray-800 w-full">
+                            <div class="flex flex-wrap break-all sm:break-normal justify-center md:justify-start border-b-2">
+                                <asp:Label ID="lblName" runat="server" Text="" CssClass="text-3xl font-bold py-2"></asp:Label>
                             </div>
-                            <div class="flex flex-wrap text-xl ml-10 mt-10 font-bold">
-                                Topic Posted
-                             <asp:Label ID="lblTopicPosted" runat="server" Text="" CssClass="ml-5 text-lg font-medium"></asp:Label>
-                            </div>
-                            <div class="flex flex-wrap text-xl ml-10 mt-10 font-bold justify-between">
-                                Gender
-                             <asp:Label ID="lblGender" runat="server" Text="" CssClass="mr-16 text-lg font-normal"></asp:Label>
-                            </div>
-                            <div class="flex flex-wrap text-xl ml-10 font-bold justify-between">
-                                Date Of Birth
-                             <asp:Label ID="lblDOB" runat="server" Text="" CssClass="mr-16 text-lg font-normal"></asp:Label>
-                            </div>
-                            <div class="flex flex-wrap text-xl ml-10 font-bold justify-between">
-                                Email
-                             <asp:Label ID="lblEmail" runat="server" Text="" CssClass="mr-16 text-lg font-normal"></asp:Label>
-                            </div>
-                            <div class="flex flex-wrap flex-col ml-10 justify-between">
-                                <div class="text-xl font-bold">
-                                    Profile Description
+                            <div class="flex flex-row flex-wrap justify-start items-center my-5">
+                                <div class="border-2 rounded-lg bg-gray-100 px-2 py-1 m-2">
+                                    <asp:Label ID="lblGender" runat="server" Text="" CssClass="text-md font-normal text-center"></asp:Label>
                                 </div>
-                                <div>
-                                    <asp:Label ID="lblProfileDesc" runat="server" Text="" CssClass="text-lg font-normal w-full break-normal break-all"></asp:Label>
-                                    <%--<asp:TextBox ID="txtProfileViewDesc" Text="" Enabled="false" runat="server" BorderStyle="None" BackColor="Transparent" ReadOnly="true" CssClass="w-full break-all"></asp:TextBox>--%>
+                                <div class="border-2 rounded-lg bg-gray-100 px-2 py-1 m-2">
+                                    <asp:Label ID="lblDOB" runat="server" Text="" CssClass="text-md font-normal text-center"></asp:Label>
                                 </div>
+                                <div class="border-2 rounded-lg bg-gray-100 px-2 py-1 m-2">
+                                    <asp:Label ID="lblEmail" runat="server" Text="" CssClass="text-md font-normal text-center"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="m-2">
+                                <asp:Label ID="lblProfileDesc" runat="server" Text="" CssClass="text-lg text-gray-700 font-normal w-full break-normal break-all"></asp:Label>
+                                <%--<asp:TextBox ID="txtProfileViewDesc" Text="" Enabled="false" runat="server" BorderStyle="None" BackColor="Transparent" ReadOnly="true" CssClass="w-full break-all"></asp:TextBox>--%>
                             </div>
                         </div>
                     </div>
@@ -82,8 +72,14 @@
                 <div
                     class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
                     <div>
-                        <div class="block text-3xl font-bold mb-6 font-title">
-                            Activities
+                        <div class="flex flex-row flex-nowrap justify-between items-center mb-5">
+                            <div class="block text-3xl font-bold font-title text-gray-700">
+                                Activities
+                            </div>
+                            <div class="flex flex-row flex-wrap text-md text-gray-600">
+                                <div>Total: </div>
+                                <asp:Label ID="lblTopicPosted" runat="server" Text="" CssClass="ml-1"></asp:Label>
+                            </div>
                         </div>
                         <div class="flex flex-col h-96 overflow-auto">
                             <div>

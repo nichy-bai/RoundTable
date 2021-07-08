@@ -60,15 +60,6 @@ namespace RoundTable.WebForms.User
         protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// lblTopicPosted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTopicPosted;
-
-        /// <summary>
         /// lblGender control.
         /// </summary>
         /// <remarks>
@@ -103,6 +94,15 @@ namespace RoundTable.WebForms.User
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProfileDesc;
+
+        /// <summary>
+        /// lblTopicPosted control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTopicPosted;
 
         /// <summary>
         /// noPost_lbl control.

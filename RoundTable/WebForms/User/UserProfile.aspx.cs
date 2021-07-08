@@ -49,12 +49,27 @@ namespace RoundTable.WebForms.User
                     }
 
                     lblGender.Text = rdr["Gender"].ToString();
+
+                    if(lblGender.Text == "M")
+                    {
+                        lblGender.Text = "Male";
+                    }
+                    else if(lblGender.Text == "F")
+                    {
+                        lblGender.Text = "Female";
+                    }
+
                     imgProfilePic.ImageUrl = rdr["profilePicture"].ToString();
                     profilePicture.ImageUrl = rdr["profilePicture"].ToString();
                     lblName.Text = rdr["name"].ToString();
                     lblEmail.Text = rdr["emailAddress"].ToString();
                     lblProfileDesc.Text = rdr["profileDesc"].ToString();
-                    
+
+                    if(lblProfileDesc.Text == null || lblProfileDesc.Text == "")
+                    {
+                        lblProfileDesc.Text = "(No Description)";
+                    }
+
                 }
 
                 Repeater1.DataBind();
@@ -100,7 +115,7 @@ namespace RoundTable.WebForms.User
                     if (date != null && DBNull.Value != date)
                     {
                         txtDOB.Text = Convert.ToDateTime(date).ToString("yyyy-MM-dd");
-                        
+
                     }
 
                     string gender = rdr["Gender"].ToString();
@@ -171,7 +186,7 @@ namespace RoundTable.WebForms.User
                 cmdEditProfile.ExecuteNonQuery();
                 con.Close();
             }
-            
+
 
             Response.Redirect("~/WebForms/User/UserProfile.aspx");
         }

@@ -13,11 +13,9 @@ namespace RoundTable.WebForms.Discussion
     public partial class DiscussionPost : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        string postID, likeID, commentID, bookmarkID, viewID, replyID;
+        string userID, postID, likeID, commentID, bookmarkID, viewID, replyID;
         string hex = "#4F46E5";
         HttpCookie sortCookie = new HttpCookie("sortCookie");
-
-        string userID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -504,6 +502,16 @@ namespace RoundTable.WebForms.Discussion
         {
             share_panel.Visible = false;
             Response.Redirect(Request.RawUrl);
+        }
+
+        protected void topic_btn_Command(object sender, CommandEventArgs e)
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("SELECT topicID FROM Topic WHERE topicName='" + topicName_lbl.Text + "'", con);
+            string id = cmd.ExecuteScalar().ToString();
+            con.Close();
+
+            Response.Redirect("../Explore/TrendingTopic.aspx?topic=" + id.Substring(2, id.Length - 2));
         }
 
         protected void view_global_btn_Command(object sender, CommandEventArgs e)

@@ -243,7 +243,7 @@
         </div>
         <%--Discussion tag--%>
         <div class="flex flex-row my-2 items-center">
-            <asp:LinkButton ID="topic_btn" runat="server" CssClass="mr-5">
+            <asp:LinkButton ID="topic_btn" runat="server" CssClass="mr-5" OnCommand="topic_btn_Command">
                 <div runat="server" class="flex flex-row justify-center items-center text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
                     <div class="mr-1">#</div>
                     <div>
@@ -251,7 +251,7 @@
                     </div>
                 </div>
             </asp:LinkButton>
-            <asp:LinkButton ID="tag_btn" runat="server">
+            <asp:LinkButton ID="tag_btn" runat="server" OnCommand="topic_btn_Command">
                 <div runat="server" class="flex flex-row justify-center items-center text-sm md:text-md border-2 rounded-lg bg-gray-100 px-2 py-1 hover:bg-white transition ease-in-out duration-300">
                     <div class="mr-1">#</div>
                     <div>

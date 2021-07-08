@@ -222,6 +222,7 @@
     <Content Include="WebForms\User\UserLogin.aspx" />
     <Content Include="WebForms\User\UserProfile.aspx" />
     <Content Include="WebForms\User\UserRegistration.aspx" />
+    <Content Include="WebForms\User\ViewProfile.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BotResources\DefaultDialog.cs" />
@@ -432,6 +433,13 @@
     </Compile>
     <Compile Include="WebForms\User\UserRegistration.aspx.designer.cs">
       <DependentUpon>UserRegistration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\User\ViewProfile.aspx.cs">
+      <DependentUpon>ViewProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\User\ViewProfile.aspx.designer.cs">
+      <DependentUpon>ViewProfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

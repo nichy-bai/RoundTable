@@ -19,7 +19,15 @@ namespace RoundTable.WebForms.Explore
             //topicID = "TP" + Request.QueryString["p"];
             if (!this.IsPostBack)
             {
-                this.BindRepeater();
+                if(Session["UserID"] != null)
+                {
+                    recommendations_div.Visible = true;
+                    this.BindRepeater();
+                }
+                else
+                {
+                    recommendations_div.Visible = false;
+                }
             }
         }
 

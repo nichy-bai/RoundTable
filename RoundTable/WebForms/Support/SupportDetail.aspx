@@ -1,6 +1,18 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/WebForms/RoundTable_master.Master" AutoEventWireup="true" CodeBehind="SupportDetail.aspx.cs" Inherits="RoundTable.WebForms.Support.SupportDetail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        .keyboard {
+            border: 1px solid gray;
+            font-size: 1rem;
+            box-shadow: 1px 0 1px 0 #eee, 0 2px 0 2px #ccc, 0 2px 0 3px #444;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            margin: 2px 3px;
+            padding: 1px 5px;
+        }
+    </style>
     <div
         class="support-body relative m-5 mt-0 px-5 md:px-10 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="text-3xl lg:text-5xl font-bold md:mt-5 mb-5 md:mb-20 font-title tracking-wide flex flex-row justify-center items-center py-5 text-gray-800 flex-wrap">
@@ -37,7 +49,7 @@
                     <p>With RoundTable, you can <a href="#start-4" class="text-indigo-500 hover:underline">start</a> a discussion or <a href="#start-5" class="text-indigo-500 hover:underline">participate</a> in a discussion with other people on the same topic.</p>
                     <br />
 
-                    <section id="start-1" class="md:mt-10">
+                    <section id="start-1">
                         <h3 class="py-5 md:py-10 font-medium text-2xl">Using RoundTable</h3>
                         <p>In all disciplines, a discussion is essential to learning because it helps individuals interpret knowledge rather than simply obtain it. The purpose of the discussion is to get individuals to practice thinking about the material of the course. In addition to helping individuals learn from each other, encouraging and stimulating conversations and discussions may also help individuals better understand and retain information.</p>
                         <br />
@@ -63,7 +75,7 @@
                         <br />
                         <p>Using your RoundTable account, you can access many functions that are only available to registered users, such as starting discussions, participating in discussions, bookmarking discussion posts, customizing your profile details, and changing your profile picture, and much more.</p>
                         <br />
-                        <p>Sign in and Create an account using the passwordless authentication process with your email address or social accounts is in our list, which will be added in the future. Stay tuned.</p>
+                        <p>Sign in and Create an account using the passwordless authentication process with your 📧 email address or 👾 social accounts is in our list, which will be added in the future. Stay tuned.</p>
                         <br />
                     </section>
 
@@ -140,50 +152,40 @@
                 <hr />
                 <section id="faq">
                     <h2 class="py-5 md:py-10 mt-10 font-bold text-3xl">FAQs</h2>
-                    <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
-                    <br />
-                    <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                    <br />
-                    <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                    <p>Find below frequently asked questions about RoundTable:</p>
                     <br />
 
-                    <section id="faq-1" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">Using RoundTable</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
+                    <section id="faq-1">
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">How to Insert Media or Hyperlinks in the Discussion Content?</h3>
+                        <p>When you start a discussion, you may need to insert media or hyperlinks to further elaborate on your discussion. Don't worry, because the rich text editor in RoundTable comes with various markup functions for you to customize your content.</p>
                         <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
+                        <p>To achieve this, just proceed to start the discussion and you will notice that there are various button menus at the top of the editor. Click <i>Insert</i> and you will see the button.</p>
                         <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                        <img src="https://www.tendenci.com/files/2538/" class="w-full h-auto" />
                         <br />
                     </section>
 
                     <section id="faq-2" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">How RoundTable Works</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">What's a Markdown Format?</h3>
+                        <p>Markdown is a lightweight plaintext markup language that you can use to add elements to plaintext documents rather than using the older WYSIWYG editor. RoundTable's editor supports the Markdown syntax and allows you to format your discussion easily.</p>
                         <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                        <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                        <img src="https://spandcrm2013.files.wordpress.com/2018/10/tinymce1.png" class="w-full h-auto" />
                         <br />
                     </section>
 
                     <section id="faq-3" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">Create an Account</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">How to Customize the Homepage?</h3>
+                        <p>RoundTable provides a variety of options for you to customize the homepage design. You can customize the content of the homepage, the sort order and the font size of the title.</p>
                         <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
+                        <p>To customize the homepage, first navigate to the homepage. Then click the <i>Personalize</i> button at the top of the screen. A modal box will appear with various options. Select the options you want and click <i>Confirm</i>. Your choices will be automatically saved and stored in a cookie.</p>
                         <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                        <p>*For more information about 🍪 cookies, please read our privacy policy.</p>
                         <br />
                     </section>
 
                     <section id="faq-4" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">Start A Discussion</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
-                        <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                        <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">Where Can I Find RoundTable's Privacy Policy and Terms of Service?</h3>
+                        <p>This is our <a href="Privacy.aspx" class="text-indigo-500 hover:underline" target="_blank">Privacy policy</a> and <a href="Terms.aspx" class="text-indigo-500 hover:underline" target="_blank">Terms of Service</a>.</p>
                         <br />
                     </section>
 
@@ -200,30 +202,113 @@
                 <hr />
                 <section id="tip">
                     <h2 class="py-5 md:py-10 mt-10 font-bold text-3xl">Tips & Tricks</h2>
-                    <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
-                    <br />
-                    <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                    <br />
-                    <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                    <p>Find below tips and tricks about RoundTable:</p>
                     <br />
 
-                    <section id="tip-1" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">Using RoundTable</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
+                    <section id="tip-1">
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">Rich Text Editor Shortcuts</h3>
+                        <p>This is a list of available keyboard shortcuts within the editor body.</p>
                         <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                        <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
-                        <br />
+                        <table class="w-full border-collapse table-auto text-center">
+                            <tr class="border-b-2">
+                                <th class="pb-2">Action</th>
+                                <th class="pb-2">PC Shortcut</th>
+                                <th class="pb-2 hidden lg:inline">Mac Shortcut</th>
+                            </tr>
+                            <tr>
+                                <td class="py-4">Bold</td>
+                                <td class="py-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">B</span></td>
+                                <td class="py-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">B</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Italic</td>
+                                <td class="pb-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">I</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">I</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Underline</td>
+                                <td class="pb-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">U</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">U</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Select All</td>
+                                <td class="pb-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">A</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">A</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Redo</td>
+                                <td class="pb-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">Y</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">Y</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Undo</td>
+                                <td class="pb-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">Z</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">Z</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Insert link</td>
+                                <td class="pb-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">K</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">K</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Save</td>
+                                <td class="pb-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">S</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">S</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Find</td>
+                                <td class="pb-4"><span class="keyboard">Ctrl</span> + <span class="keyboard">F</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">F</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Help</td>
+                                <td class="pb-4"><span class="keyboard">Alt</span> + <span class="keyboard">0</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌥</span> + <span class="keyboard">0</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Header 1</td>
+                                <td class="pb-4"><span class="keyboard">Alt</span> + <span class="keyboard">Shift</span> + <span class="keyboard">1</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">⌥</span> + <span class="keyboard">1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Header 2</td>
+                                <td class="pb-4"><span class="keyboard">Alt</span> + <span class="keyboard">Shift</span> + <span class="keyboard">2</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">⌥</span> + <span class="keyboard">2</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Header 3</td>
+                                <td class="pb-4"><span class="keyboard">Alt</span> + <span class="keyboard">Shift</span> + <span class="keyboard">3</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">⌥</span> + <span class="keyboard">3</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Paragraph</td>
+                                <td class="pb-4"><span class="keyboard">Alt</span> + <span class="keyboard">Shift</span> + <span class="keyboard">7</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">⌥</span> + <span class="keyboard">7</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Div</td>
+                                <td class="pb-4"><span class="keyboard">Alt</span> + <span class="keyboard">Shift</span> + <span class="keyboard">8</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">⌥</span> + <span class="keyboard">8</span></td>
+                            </tr>
+                            <tr>
+                                <td class="pb-4">Fullscreen</td>
+                                <td class="pb-4"><span class="keyboard">Alt</span> + <span class="keyboard">Shift</span> + <span class="keyboard">F</span></td>
+                                <td class="pb-4 hidden lg:block"><span class="keyboard">⌘</span> + <span class="keyboard">⌥</span> + <span class="keyboard">F</span></td>
+                            </tr>
+                        </table>
                     </section>
 
                     <section id="tip-2" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">How RoundTable Works</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">RoundTable Chatbot</h3>
+                        <p>RoundTable can not only conduct asynchronous discussions, but you can also communicate with RoundTable Chatbot synchronously at any time.</p>
                         <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
+                        <p>You can see the chatbot button in the lower right corner of the screen. Clicking the button will open a small chat window. In order to open the RoundTable Chatbot window faster, you can also use shortcut key by clicking <span class="keyboard">Ctrl</span> + <span class="keyboard">\</span> on Windows or <span class="keyboard">⌘</span> + <span class="keyboard">\</span> on Mac OS.</p>
                         <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
+                        <p>After the conversation starts, you can start talking with the chatbot by typing in the text box and pressing <span class="keyboard">Enter</span>.</p>
+                        <br />
+                        <p>You can ask any questions about RoundTable, such as discussions, bookmarks, login, registration, etc. The chatbot will try to respond to your inquiries, so please be patient.</p>
+                        <br />
+                        <p>You can also give developers <a href="Feedback.aspx" class="text-indigo-500 hover:underline" target="_blank">feedback</a> about the chatbot’s conversation experience so that they can further improve the chatbot.</p>
                         <br />
                     </section>
 
@@ -272,17 +357,17 @@
                     </li>
                     <li class="mt-2"><a href="#faq">FAQs</a>
                         <ul>
-                            <li class="pl-4"><a href="#faq-1">Using RoundTable</a></li>
-                            <li class="pl-4"><a href="#faq-2">How RoundTable Works</a></li>
-                            <li class="pl-4"><a href="#faq-3">Create an Account</a></li>
-                            <li class="pl-4"><a href="#faq-4">Start A Discussion</a></li>
+                            <li class="pl-4"><a href="#faq-1">Insert Media or Hyperlinks</a></li>
+                            <li class="pl-4"><a href="#faq-2">Markdown Format</a></li>
+                            <li class="pl-4"><a href="#faq-3">Customize Homepage</a></li>
+                            <li class="pl-4"><a href="#faq-4">Privacy Policy and Terms</a></li>
                             <li class="pl-4"><a href="#faq-5">Participate In A Discussion</a></li>
                         </ul>
                     </li>
                     <li class="mt-2"><a href="#tip">Tips & Tricks</a>
                         <ul>
-                            <li class="pl-4"><a href="#tip-1">Using RoundTable</a></li>
-                            <li class="pl-4"><a href="#tip-2">How RoundTable Works</a></li>
+                            <li class="pl-4"><a href="#tip-1">Rich Text Editor Shortcuts</a></li>
+                            <li class="pl-4"><a href="#tip-2">RoundTable Chatbot</a></li>
                             <li class="pl-4"><a href="#tip-3">Create an Account</a></li>
                             <li class="pl-4"><a href="#tip-4">Start A Discussion</a></li>
                             <li class="pl-4"><a href="#tip-5">Participate In A Discussion</a></li>

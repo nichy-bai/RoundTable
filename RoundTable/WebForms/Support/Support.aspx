@@ -73,16 +73,16 @@
                 <div>
                     <div class="font-bold text-2xl mb-4 text-gray-700 hover:text-indigo-600 transition ease-in-out duration-300">FAQs</div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Using RoundTable</a>
+                        <a href="SupportDetail.aspx#faq-1" class="text-indigo-700 hover:text-indigo-600 hover:underline">Insert Media or Hyperlinks</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">RoundTable Glossary</a>
+                        <a href="SupportDetail.aspx#faq-2" class="text-indigo-700 hover:text-indigo-600 hover:underline">Markdown Format</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Create Discussion Post</a>
+                        <a href="SupportDetail.aspx#faq-3" class="text-indigo-700 hover:text-indigo-600 hover:underline">Customize Homepage</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Bug Reports and Feature Requests</a>
+                        <a href="SupportDetail.aspx#faq-4" class="text-indigo-700 hover:text-indigo-600 hover:underline">Privacy Policy and Terms</a>
                     </div>
                 </div>
             </div>
@@ -90,16 +90,16 @@
                 <div>
                     <div class="font-bold text-2xl mb-4 text-gray-700 hover:text-indigo-600 transition ease-in-out duration-300">Tips & Tricks</div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Using RoundTable</a>
+                        <a href="SupportDetail.aspx#tip-1" class="text-indigo-700 hover:text-indigo-600 hover:underline">Rich Text Editor Shortcuts</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">RoundTable Glossary</a>
+                        <a href="SupportDetail.aspx#faq-2" class="text-indigo-700 hover:text-indigo-600 hover:underline">RoundTable Chatbot</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Create Discussion Post</a>
+                        <a href="SupportDetail.aspx#faq-3" class="text-indigo-700 hover:text-indigo-600 hover:underline">Create Discussion Post</a>
                     </div>
                     <div class="my-2">
-                        <a href="#" class="text-indigo-700 hover:text-indigo-600 hover:underline">Bug Reports and Feature Requests</a>
+                        <a href="SupportDetail.aspx#faq-4" class="text-indigo-700 hover:text-indigo-600 hover:underline">Bug Reports and Feature Requests</a>
                     </div>
                 </div>
             </div>

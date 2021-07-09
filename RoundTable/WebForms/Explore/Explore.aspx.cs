@@ -33,7 +33,17 @@ namespace RoundTable.WebForms.Explore
 
         protected void post_btn_Command(object sender, CommandEventArgs e)
         {
-            Response.Redirect("../Explore/TrendingDiscussion.aspx");
+            if (Session["UserID"] != null)
+            {
+                string postID = e.CommandArgument.ToString();
+                //Response.Redirect("DiscussionPost.aspx?p=" + postID);
+                Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+            }
+            else
+            {
+                Response.Redirect("/WebForms/LoginError.aspx");
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
+            }
         }
 
         protected void trendingPost_btn_Command(object sender, CommandEventArgs e)
@@ -65,8 +75,9 @@ namespace RoundTable.WebForms.Explore
 
                 var rand = new Random();
 
+                string userID = Session["UserID"].ToString();
 
-                using (SqlCommand cmd = new SqlCommand("SELECT TOP (3) Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) ORDER BY NEWID()", con))
+                using (SqlCommand cmd = new SqlCommand("SELECT TOP (3) Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND Post.userID <>'" + userID + "'ORDER BY NEWID()", con))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {

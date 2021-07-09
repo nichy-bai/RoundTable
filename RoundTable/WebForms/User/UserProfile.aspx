@@ -49,7 +49,7 @@
                         </div>
                         <div class="flex flex-col flex-1 text-gray-800 w-full">
                             <div class="flex flex-wrap break-all sm:break-normal justify-center md:justify-start border-b-2">
-                                <asp:Label ID="lblName" runat="server" Text="" CssClass="text-3xl font-bold py-2"></asp:Label>
+                                <asp:Label ID="lblName" runat="server" Text="" CssClass="text-3xl font-bold py-2 truncate"></asp:Label>
                             </div>
                             <div class="flex flex-row flex-wrap justify-start items-center my-5">
                                 <div class="border-2 rounded-lg bg-gray-100 px-2 py-1 m-2">

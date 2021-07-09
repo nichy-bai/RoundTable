@@ -293,7 +293,7 @@
                                         <asp:LinkButton ID="post_btn" runat="server" CssClass="" OnCommand="post_btn_Command" CommandArgument='<%#Eval("postID") %>'>
                                         <div class="flex flex-row h-auto py-2 rounded-lg hover:bg-gray-200 text-gray-800 transition ease-in-out duration-300 mb-1 px-1 leading-5">
                                             <%--<div class="mr-1">#</div>--%>
-                                                <div class="w-full">
+                                                <div class="w-full truncate">
                                                     <%#Eval("postTitle") %>
                                                 </div>
                                             </div>

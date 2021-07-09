@@ -56,6 +56,10 @@ namespace RoundTable.WebForms.User
                     {
                         lblGender.Text = "Female";
                     }
+                    else
+                    {
+                        lblGender.Text = "-";
+                    }
 
                     imgProfilePic.ImageUrl = rdr["profilePicture"].ToString();
                     lblName.Text = rdr["name"].ToString();

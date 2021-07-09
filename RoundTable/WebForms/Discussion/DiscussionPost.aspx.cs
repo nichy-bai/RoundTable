@@ -194,6 +194,21 @@ namespace RoundTable.WebForms.Discussion
 
         }
 
+        //ProfileView Click
+        protected void userProfile_btn_Command(object sender, CommandEventArgs e)
+        {
+            string viewUserID = userID_lbl.Text;
+            if (viewUserID != Session["UserID"].ToString())
+            {
+                Response.Redirect("../User/ViewProfile.aspx?userid=" + viewUserID);
+            }
+            else
+            {
+                Response.Redirect("../User/UserProfile.aspx");
+            }
+            
+        }
+
         protected void GenerateLikeID()
         {
             con.Open();

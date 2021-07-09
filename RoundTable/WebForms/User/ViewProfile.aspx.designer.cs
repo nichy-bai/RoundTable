@@ -7,75 +7,84 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RoundTable.WebForms.Explore
+namespace RoundTable.WebForms.User
 {
 
 
-    public partial class Explore
+    public partial class ViewProfile
     {
 
         /// <summary>
-        /// recommendations_div control.
+        /// imgProfilePic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl recommendations_div;
+        protected global::System.Web.UI.WebControls.Image imgProfilePic;
 
         /// <summary>
-        /// Repeater4 control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater4;
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
-        /// Repeater2 control.
+        /// lblGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater2;
+        protected global::System.Web.UI.WebControls.Label lblGender;
 
         /// <summary>
-        /// SqlDataSource2 control.
+        /// lblDOB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+        protected global::System.Web.UI.WebControls.Label lblDOB;
 
         /// <summary>
-        /// Repeater3 control.
+        /// lblEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater3;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
 
         /// <summary>
-        /// SqlDataSource3 control.
+        /// lblProfileDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
+        protected global::System.Web.UI.WebControls.Label lblProfileDesc;
 
         /// <summary>
-        /// trendingPost_btn control.
+        /// lblTopicPosted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton trendingPost_btn;
+        protected global::System.Web.UI.WebControls.Label lblTopicPosted;
+
+        /// <summary>
+        /// noPost_lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label noPost_lbl;
 
         /// <summary>
         /// Repeater1 control.

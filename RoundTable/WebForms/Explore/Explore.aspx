@@ -9,7 +9,7 @@
             </div>
         </div>
     </header>
-    <div
+    <div runat="server" id="recommendations_div"
         class="mt-0 m-5 px-5 py-4 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
         <div class="flex flex-row justify-between items-center mb-4">
             <div class="block text-2xl font-bold mb-2 font-title text-gray-700">Posts You May Like...</div>

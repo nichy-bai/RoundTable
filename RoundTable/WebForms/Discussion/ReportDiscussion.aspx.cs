@@ -22,19 +22,31 @@ namespace RoundTable.WebForms.Discussion
                 userID = Session["UserID"].ToString();
                 postID = "DP" + Request.QueryString["p"];
 
-                if (!Page.IsPostBack)
-                {
-                    DropDownList1.Items.Insert(0, "[Select a Report Category]");
-                    DropDownList1.Items.Insert(1, "Threatening violence");
-                    DropDownList1.Items.Insert(2, "Misinformation");
-                    DropDownList1.Items.Insert(3, "Sexualization");
-                    DropDownList1.Items.Insert(4, "Impersonation");
-                    DropDownList1.Items.Insert(5, "Harassment");
-                    DropDownList1.Items.Insert(6, "Spam");
-                    DropDownList1.Items.Insert(7, "Hate");
-                    DropDownList1.Items.Insert(8, "Others");
+                con.Open();
+                SqlCommand status = new SqlCommand("SELECT postStatus FROM Post WHERE postID='" + postID + "'", con);
+                bool postStatus = (bool)status.ExecuteScalar();
+                con.Close();
 
-                    TextBox1.Text = "Report: Discussion Post " + postID.Substring(2, postID.Length - 2);
+                if (postStatus)
+                {
+                    if (!Page.IsPostBack)
+                    {
+                        DropDownList1.Items.Insert(0, "[Select a Report Category]");
+                        DropDownList1.Items.Insert(1, "Threatening violence");
+                        DropDownList1.Items.Insert(2, "Misinformation");
+                        DropDownList1.Items.Insert(3, "Sexualization");
+                        DropDownList1.Items.Insert(4, "Impersonation");
+                        DropDownList1.Items.Insert(5, "Harassment");
+                        DropDownList1.Items.Insert(6, "Spam");
+                        DropDownList1.Items.Insert(7, "Hate");
+                        DropDownList1.Items.Insert(8, "Others");
+
+                        TextBox1.Text = "Report: Discussion Post " + postID.Substring(2, postID.Length - 2);
+                    }
+                }
+                else
+                {
+                    Response.Redirect("/WebForms/Error.aspx");
                 }
             }
             else
@@ -67,10 +79,13 @@ namespace RoundTable.WebForms.Discussion
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
+            var filter = new ProfanityFilter.ProfanityFilter();
+
             GenerateID();
 
             string reportTitle = TextBox1.Text;
             string reportContent = TextBox2.Text;
+            reportContent = filter.CensorString(reportContent);
             string reportDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             string reportType = DropDownList1.SelectedItem.Value;
             string userID = Session["UserID"].ToString();
@@ -87,6 +102,26 @@ namespace RoundTable.WebForms.Discussion
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
+
+            SqlCommand viewCmd = new SqlCommand("SELECT COUNT(viewID) FROM DiscussionView WHERE postID='" + postID + "'", con);
+            SqlCommand reportCmd = new SqlCommand("SELECT COUNT(reportID) FROM Report WHERE postID='" + postID + "'", con);
+            con.Open();
+            int viewCount = (int)viewCmd.ExecuteScalar();
+            int reportCount = (int)reportCmd.ExecuteScalar();
+            con.Close();
+
+            if((viewCount >= 10) && (reportCount >= viewCount / 5))
+            {
+                SqlCommand blockCmd = new SqlCommand("UPDATE Post SET postStatus=0 WHERE postID='" + postID + "'", con);
+
+                con.Open();
+                blockCmd.ExecuteNonQuery();
+                con.Close();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                "alert('Successfully reported! Due to too many reported cases, this post will be restricted'); window.location='" +
+                Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+            }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
             "alert('Successfully reported!'); window.location='" +

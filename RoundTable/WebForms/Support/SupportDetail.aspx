@@ -148,6 +148,13 @@
                         <p>Don’t forget to search for tags you like to make sure you are viewing discussion posts that match your interests.</p>
                         <br />
                     </section>
+                    <section id="start-6" class="md:mt-10">
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">Search For Discussions</h3>
+                        <p>You can search for discussion posts throughout the entire database of RoundTable.</p>
+                        <br />
+                        <p>Moreover, you can also filter the search results</p>
+                        <br />
+                    </section>
                 </section>
                 <hr />
                 <section id="faq">
@@ -353,6 +360,7 @@
                             <li class="pl-4"><a href="#start-3">Create an Account</a></li>
                             <li class="pl-4"><a href="#start-4">Start A Discussion</a></li>
                             <li class="pl-4"><a href="#start-5">Participate In A Discussion</a></li>
+                            <li class="pl-4"><a href="#start-6">Search For Discussions</a></li>
                         </ul>
                     </li>
                     <li class="mt-2"><a href="#faq">FAQs</a>

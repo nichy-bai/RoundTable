@@ -40,7 +40,7 @@ namespace RoundTable.WebForms.User
                 con.Open();
                 cmdSaveUser.ExecuteNonQuery();
                 con.Close();
-                Response.Redirect("~/WebForms/User/UserLogin.aspx");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have successfully registered!');window.location ='UserLogin.aspx';", true);
             }
         }
 
@@ -66,7 +66,7 @@ namespace RoundTable.WebForms.User
                     if (reader.HasRows)
                     {
                         return true;
-                    }  
+                    }
                     else
                     {
                         return false;
@@ -75,5 +75,5 @@ namespace RoundTable.WebForms.User
             }
         }
 
-    }   
+    }
 }

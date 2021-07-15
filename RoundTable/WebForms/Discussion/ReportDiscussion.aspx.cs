@@ -52,7 +52,6 @@ namespace RoundTable.WebForms.Discussion
             else
             {
                 Response.Redirect("/WebForms/LoginError.aspx");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
 
         }
@@ -110,17 +109,80 @@ namespace RoundTable.WebForms.Discussion
             int reportCount = (int)reportCmd.ExecuteScalar();
             con.Close();
 
-            if((viewCount >= 10) && (reportCount >= viewCount / 5))
+            if (viewCount > 1000)
             {
-                SqlCommand blockCmd = new SqlCommand("UPDATE Post SET postStatus=0 WHERE postID='" + postID + "'", con);
+                if (reportCount >= viewCount * 0.1)
+                {
+                    SqlCommand blockCmd = new SqlCommand("UPDATE Post SET postStatus=0 WHERE postID='" + postID + "'", con);
 
-                con.Open();
-                blockCmd.ExecuteNonQuery();
-                con.Close();
+                    con.Open();
+                    blockCmd.ExecuteNonQuery();
+                    con.Close();
 
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-                "alert('Successfully reported! Due to too many reported cases, this post will be restricted'); window.location='" +
-                Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                    "alert('Successfully reported! Due to too many reported cases, this post will be restricted until further notice'); window.location='" +
+                    Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                }
+            }
+            else if (viewCount > 500)
+            {
+                if (reportCount >= viewCount * 0.2)
+                {
+                    SqlCommand blockCmd = new SqlCommand("UPDATE Post SET postStatus=0 WHERE postID='" + postID + "'", con);
+
+                    con.Open();
+                    blockCmd.ExecuteNonQuery();
+                    con.Close();
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                    "alert('Successfully reported! Due to too many reported cases, this post will be restricted until further notice'); window.location='" +
+                    Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                }
+            }
+            else if (viewCount > 100)
+            {
+                if (reportCount >= viewCount * 0.3)
+                {
+                    SqlCommand blockCmd = new SqlCommand("UPDATE Post SET postStatus=0 WHERE postID='" + postID + "'", con);
+
+                    con.Open();
+                    blockCmd.ExecuteNonQuery();
+                    con.Close();
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                    "alert('Successfully reported! Due to too many reported cases, this post will be restricted until further notice'); window.location='" +
+                    Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                }
+            }
+            else if (viewCount > 50)
+            {
+                if (reportCount >= viewCount * 0.4)
+                {
+                    SqlCommand blockCmd = new SqlCommand("UPDATE Post SET postStatus=0 WHERE postID='" + postID + "'", con);
+
+                    con.Open();
+                    blockCmd.ExecuteNonQuery();
+                    con.Close();
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                    "alert('Successfully reported! Due to too many reported cases, this post will be restricted until further notice'); window.location='" +
+                    Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                }
+            }
+            else if (viewCount > 10)
+            {
+                if(reportCount >= viewCount * 0.5)
+                {
+                    SqlCommand blockCmd = new SqlCommand("UPDATE Post SET postStatus=0 WHERE postID='" + postID + "'", con);
+
+                    con.Open();
+                    blockCmd.ExecuteNonQuery();
+                    con.Close();
+
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                    "alert('Successfully reported! Due to too many reported cases, this post will be restricted until further notice'); window.location='" +
+                    Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                }
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",

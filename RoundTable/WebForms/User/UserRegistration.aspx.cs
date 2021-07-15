@@ -14,7 +14,7 @@ namespace RoundTable.WebForms.User
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
-            //CheckPassword(txtPassword.Text);
+
         }
 
         protected void btnSignUp_Click(object sender, EventArgs e)
@@ -40,8 +40,7 @@ namespace RoundTable.WebForms.User
                 con.Open();
                 cmdSaveUser.ExecuteNonQuery();
                 con.Close();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have signed up successfully!');window.location ='UserLogin.aspx';", true);
-                //Response.Redirect("~/WebForms/User/UserLogin.aspx");
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have successfully registered!');window.location ='UserLogin.aspx';", true);
             }
         }
 
@@ -53,38 +52,6 @@ namespace RoundTable.WebForms.User
             strmsg = Convert.ToBase64String(encode);
             return strmsg;
         }
-
-        //public void CheckPassword(string password)
-        //{
-        //    string noNumber = @"/\d /$";
-        //    string noAlphabets = @"/[a - zA - Z] /$";
-        //    string noSpecialChar = @"/[^a - zA - Z0 - 9\!\@\#\$\%\^\&\*\(\)\_\+]/";
-
-        //    if (password.Length < 6)
-        //    {
-        //        lblPasswordValidation.Text = "Password must at least 6 characters.";
-        //    }
-        //    else if (password.Length > 50)
-        //    {
-        //        lblPasswordValidation.Text = "Password maximum length is only 50 characters.";
-        //    }
-        //    else if (Regex.IsMatch(password, noNumber) == false)
-        //    {
-        //        lblPasswordValidation.Text = "Password must contain at least 1 number.";
-        //    }
-        //    else if (Regex.IsMatch(password, noAlphabets) == false)
-        //    {
-        //        lblPasswordValidation.Text = "Password must contain at least 1 alphabet.";
-        //    }
-        //    else if (Regex.IsMatch(password, noSpecialChar) == false) 
-        //    {
-        //        lblPasswordValidation.Text = "Password must contain special character(s).";
-        //    }
-        //    else
-        //    {
-        //        lblPasswordValidation.Text = "";
-        //    }
-        //}
 
         public bool CheckUsername(string username)
         {
@@ -99,7 +66,7 @@ namespace RoundTable.WebForms.User
                     if (reader.HasRows)
                     {
                         return true;
-                    }  
+                    }
                     else
                     {
                         return false;
@@ -108,5 +75,5 @@ namespace RoundTable.WebForms.User
             }
         }
 
-    }   
+    }
 }

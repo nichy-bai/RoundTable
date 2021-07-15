@@ -40,7 +40,7 @@ namespace RoundTable.WebForms.User
                 con.Open();
                 cmdSaveUser.ExecuteNonQuery();
                 con.Close();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have successfully registered!');window.location ='UserLogin.aspx';", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You have signed up successfully!');window.location ='UserLogin.aspx';", true);
             }
         }
 

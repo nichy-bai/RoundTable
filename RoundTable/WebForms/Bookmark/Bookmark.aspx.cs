@@ -159,17 +159,7 @@ namespace RoundTable.WebForms.Bookmark
                 string topic = null, tag = null;
 
                 con.Open();
-                SqlCommand count = new SqlCommand("SELECT COUNT(postID) FROM Post", con);
-                int totalPost = (int)count.ExecuteScalar();
-
-                Random rnd = new Random();
-                int randomPost = rnd.Next(1, totalPost+1);
-
-                randomPost += 1000000000;
-
-                recommendPostID = "DP" + randomPost.ToString();
-
-                SqlCommand cmd1 = new SqlCommand("SELECT Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND postID='" + recommendPostID + "'", con);
+                SqlCommand cmd1 = new SqlCommand("SELECT TOP(1) Post.postID, Post.postTitle, Post.postContent, Post.postDate, Post.postStatus, Post.editDate, Tag.tagID, Tag.tagName, Tag.tagDesc, Topic.topicID, Topic.topicName, Topic.topicDesc, [User].userID, [User].name, [User].profilePicture, (SELECT COUNT(*) AS Expr1 FROM DiscussionLike WHERE (postID = Post.postID) AND (likeStatus = 1)) AS totalLike, (SELECT COUNT(*) AS Expr1 FROM DiscussionComment WHERE (postID = Post.postID)) AS totalComment, (SELECT COUNT(*) AS Expr1 FROM Bookmark WHERE (postID = Post.postID) AND (bookmarkStatus = 1)) AS totalBookmark, (SELECT COUNT(*) AS Expr1 FROM DiscussionView WHERE (postID = Post.postID)) AS totalView FROM Post INNER JOIN Tag ON Post.tagID = Tag.tagID INNER JOIN Topic ON Post.topicID = Topic.topicID INNER JOIN [User] ON Post.userID = [User].userID WHERE (Post.postStatus = 1) AND Post.userID<>'" + bookmarkUserID + "' ORDER BY NEWID()", con);
                 cmd1.CommandType = CommandType.Text;
                 SqlDataReader dr = cmd1.ExecuteReader();
 
@@ -187,7 +177,8 @@ namespace RoundTable.WebForms.Bookmark
                     tag = dr["tagID"].ToString();
                     recommend_like_lbl.Text = dr["totalLike"].ToString();
                     recommend_comment_lbl.Text = dr["totalComment"].ToString();
-                    recommend_bookmark_lbl.Text = dr["totalView"].ToString();
+                    recommend_bookmark_lbl.Text = dr["totalBookmark"].ToString();
+                    recommend_view_lbl.Text = dr["totalView"].ToString();
                 }
                 con.Close();
 

@@ -16,8 +16,6 @@ namespace RoundTable.WebForms.Support
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //To be modified
-            
             if(Session["UserID"] != null)
             {
                 if (!Page.IsPostBack)
@@ -64,29 +62,56 @@ namespace RoundTable.WebForms.Support
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
+            var filter = new ProfanityFilter.ProfanityFilter();
+
             GenerateID();
 
             string feedbackTitle = TextBox1.Text;
-            string feedbackContent = TextBox2.Text;
-            string feedbackDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-            string feedbackType = DropDownList1.SelectedItem.Value;
-            string userID = Session["UserID"].ToString();
 
-            string insertCmd = "INSERT INTO Feedback(feedbackID, feedbackTitle, feedbackContent, feedbackDate, feedbackType, userID) VALUES (@feedbackID, @feedbackTitle, @feedbackContent, @feedbackDate, @feedbackType, @userID)";
-            SqlCommand cmd = new SqlCommand(insertCmd, con);
-            cmd.Parameters.AddWithValue("@feedbackID", feedbackID);
-            cmd.Parameters.AddWithValue("@feedbackTitle", feedbackTitle);
-            cmd.Parameters.AddWithValue("@feedbackContent", feedbackContent);
-            cmd.Parameters.AddWithValue("@feedbackDate", feedbackDate);
-            cmd.Parameters.AddWithValue("@feedbackType", feedbackType);
-            cmd.Parameters.AddWithValue("@userID", userID);
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
+            var profanityList = filter.DetectAllProfanities(feedbackTitle);
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-            "alert('Successfully feedback!'); window.location='" +
-            Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+            if (profanityList.Count == 0)
+            {
+                string feedbackContent = TextBox2.Text;
+                feedbackContent = filter.CensorString(feedbackContent);
+                string feedbackDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
+                string feedbackType = DropDownList1.SelectedItem.Value;
+                string userID = Session["UserID"].ToString();
+
+                string insertCmd = "INSERT INTO Feedback(feedbackID, feedbackTitle, feedbackContent, feedbackDate, feedbackType, userID) VALUES (@feedbackID, @feedbackTitle, @feedbackContent, @feedbackDate, @feedbackType, @userID)";
+                SqlCommand cmd = new SqlCommand(insertCmd, con);
+                cmd.Parameters.AddWithValue("@feedbackID", feedbackID);
+                cmd.Parameters.AddWithValue("@feedbackTitle", feedbackTitle);
+                cmd.Parameters.AddWithValue("@feedbackContent", feedbackContent);
+                cmd.Parameters.AddWithValue("@feedbackDate", feedbackDate);
+                cmd.Parameters.AddWithValue("@feedbackType", feedbackType);
+                cmd.Parameters.AddWithValue("@userID", userID);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                "alert('Successfully feedback!'); window.location='" +
+                Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+            }
+            else
+            {
+                string profanity = null;
+
+                for (int i = profanityList.Count() - 1; i >= 0; i--)
+                {
+                    if (i > 0)
+                    {
+                        profanity = profanity + profanityList[i].ToString() + ", ";
+                    }
+                    else
+                    {
+                        profanity += profanityList[i].ToString();
+                    }
+                }
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Feedback title cannot contain the following words: [" + profanity + "]')", true);
+            }
         }
     }
 }

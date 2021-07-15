@@ -20,7 +20,7 @@ namespace RoundTable.WebForms.User
                 DateRangeValidator.MinimumValue = DateTime.Now.AddYears(-100).ToShortDateString();
                 DateRangeValidator.MaximumValue = DateTime.Now.Date.ToShortDateString();
 
-                string getTopicPosted = "Select Count(*) from [Post] where userID = @currUserID";
+                string getTopicPosted = "Select Count(*) from [Post] where userID = @currUserID and postStatus=1";
                 SqlCommand cmdTopic = new SqlCommand(getTopicPosted, con);
                 cmdTopic.Parameters.AddWithValue("@currUserID", Session["UserID"].ToString());
                 con.Open();

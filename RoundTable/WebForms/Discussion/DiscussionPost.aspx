@@ -465,7 +465,7 @@
                 <div class="flex flex-row justify-between items-center border-b-2 pb-2">
                     <%--User detail--%>
                     <div class="mr-auto">
-                        <a href="#" class="flex flex-row hover:underline transition ease-in-out duration-300">
+                        <%--<asp:LinkButton ID="commentProfile_btn" runat="server" CssClass="flex flex-row" OnCommand="commentProfile_btn_Command" CommandArgument='<%#Eval("userID") %>'>--%>
                             <asp:Image ID="comment_user_img" runat="server" ImageUrl='<%#Eval("profilePicture").ToString().Length > 0 ? Eval("profilePicture") : "~/ProfileImages/Default.png" %>' CssClass="w-12 h-12 rounded-full" />
                             <div class="flex flex-col px-4 justify-start items-start">
                                 <div class="font-medium">
@@ -476,7 +476,7 @@
                                     <abbr title="<%#DataBinder.Eval(Container.DataItem, "commentDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "commentDate", "{0:d MMMM yyyy}") %></abbr>
                                 </div>
                             </div>
-                        </a>
+                        <%--</asp:LinkButton>--%>
                     </div>
 
                     <%--Delete comment btn--%>
@@ -559,7 +559,7 @@
                             <div class="flex flex-row justify-between items-center border-b-2 pb-2">
                                 <%--User detail--%>
                                 <div class="mr-auto">
-                                    <a href="#" class="flex flex-row hover:underline transition ease-in-out duration-300">
+                                    <%--<asp:LinkButton ID="replyProfile_btn" runat="server" CssClass="flex flex-row" OnCommand="replyProfile_btn_Command" CommandArgument='<%#Eval("userID") %>'>--%>
                                         <asp:Image ID="reply_user_img" runat="server" ImageUrl='<%#Eval("profilePicture").ToString().Length > 0 ? Eval("profilePicture") : "~/ProfileImages/Default.png" %>' CssClass="w-12 h-12 rounded-full" />
                                         <div class="flex flex-col px-4 justify-start items-start">
                                             <div class="font-medium">
@@ -570,7 +570,7 @@
                                                 <abbr title="<%#DataBinder.Eval(Container.DataItem, "replyDate", "{0:dddd, dd/MM/yyyy h:mm:ss tt}") %>" style="text-decoration: none;"><%#DataBinder.Eval(Container.DataItem, "replyDate", "{0:d MMMM yyyy}") %></abbr>
                                             </div>
                                         </div>
-                                    </a>
+                                    <%--</asp:LinkButton>--%>
                                 </div>
 
                                 <%--Delete reply btn--%>

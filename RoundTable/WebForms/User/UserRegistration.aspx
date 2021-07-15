@@ -81,7 +81,8 @@
                         <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Password</label>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator></div>
-                        <%--<div class="absolute"><asp:RegularExpressionValidator ID="revPassword" runat="server" ErrorMessage="Contains at least 10 characters." ControlToValidate="txtPassword" ForeColor="Red" ValidationExpression="^(?=.{10,})$"></asp:RegularExpressionValidator></div>--%>
+                        <%--<div class="absolute"><asp:Label ID="lblPasswordValidation" runat="server" Text="" ForeColor="Red"></asp:Label></div>--%>
+                        <div class="absolute"><asp:RegularExpressionValidator ID="revPassword" runat="server" ErrorMessage="Must between 6 to 20 characters." ControlToValidate="txtPassword" ForeColor="Red" ValidationExpression="^.{4,20}$"></asp:RegularExpressionValidator></div>
                     </div>
                     <div class="mb-12 relative">
                         <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>

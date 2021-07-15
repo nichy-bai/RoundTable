@@ -87,7 +87,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    cursor: default
+    cursor: default;
+    text-overflow: ellipsis; /*need to remove if no use*/
 }
 
 .ui-menu {

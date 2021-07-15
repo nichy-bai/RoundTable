@@ -218,8 +218,45 @@ namespace RoundTable.WebForms.Discussion
             {
                 Response.Redirect("../User/UserProfile.aspx");
             }
-
         }
+
+        //protected void commentProfile_btn_Command(object sender, CommandEventArgs e)
+        //{
+        //    foreach (RepeaterItem item in Repeater1.Items)
+        //    {
+        //        Label username_lbl = (Label)item.FindControl("username_hidden_lbl") as Label;
+
+        //        string viewCommentUserID = username_lbl.Text;
+        //        if (viewCommentUserID != Session["UserID"].ToString())
+        //        {
+        //            Response.Redirect("../User/ViewProfile.aspx?userid=" + viewCommentUserID);
+        //        }
+        //        else
+        //        {
+        //            Response.Redirect("../User/UserProfile.aspx");
+        //        }
+        //    }
+        //}
+
+        //protected void replyProfile_btn_Command(object sender, CommandEventArgs e)
+        //{
+        //    Repeater r2 = (Repeater)e.Item.FindControl("Repeater2");
+        //    foreach (RepeaterItem item in r2.Items)
+        //    {
+        //        Label replyUsername_lbl = (Label)item.FindControl("reply_username_hidden_lbl");
+
+        //        string viewCommentUserID = replyUsername_lbl.Text;
+        //        if (viewCommentUserID != Session["UserID"].ToString())
+        //        {
+        //            Response.Redirect("../User/ViewProfile.aspx?userid=" + viewCommentUserID);
+        //        }
+        //        else
+        //        {
+        //            Response.Redirect("../User/UserProfile.aspx");
+        //        }
+        //    }
+
+        //}
 
         protected void GenerateLikeID()
         {

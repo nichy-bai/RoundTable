@@ -135,7 +135,7 @@
                 <asp:Button ID="Button2" runat="server" Text="Social Sciences" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button2_Click"/>
             </div>
             <div class="mr-4 my-2">
-                <asp:Button ID="Button3" runat="server" Text="Natural Science" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button3_Click"/>
+                <asp:Button ID="Button3" runat="server" Text="Natural Sciences" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button3_Click"/>
             </div>
             <div class="mr-4 my-2">
                 <asp:Button ID="Button4" runat="server" Text="Mathematics" CssClass="cursor-pointer text-indigo-600 bg-white hover:bg-indigo-600 hover:text-white border-2 border-indigo-600 transition ease-in-out duration-300 shadow-md px-2 py-0.5 inline-block rounded" OnClick="Button4_Click"/>

@@ -20,6 +20,17 @@ namespace RoundTable.WebForms
             if (Session["UserID"] != null)
             {
                 userID = Session["UserID"].ToString();
+                linkBtnLogin.Visible = false;
+                linkBtnLogin2.Visible = false;
+                post_user_img.Visible = true;
+                post_user_img_2.Visible = true;
+            }
+            else
+            {
+                linkBtnLogin.Visible = true;
+                linkBtnLogin2.Visible = true;
+                post_user_img.Visible = false;
+                post_user_img_2.Visible = false;
             }
 
             string path = HttpContext.Current.Request.Url.AbsolutePath;
@@ -61,6 +72,16 @@ namespace RoundTable.WebForms
             }
 
             con.Close();
+        }
+
+        protected void linkBtnLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../User/UserLogin.aspx");
+        }
+
+        protected void linkBtnLogin2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../User/UserLogin.aspx");
         }
 
         protected void post_btn_Command(object sender, CommandEventArgs e)

@@ -87,6 +87,15 @@ namespace RoundTable.WebForms
         protected global::System.Web.UI.WebControls.Panel nav_profile_btn;
 
         /// <summary>
+        /// linkBtnLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkBtnLogin;
+
+        /// <summary>
         /// post_user_img control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace RoundTable.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image post_user_img;
+
+        /// <summary>
+        /// linkBtnLogin2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkBtnLogin2;
 
         /// <summary>
         /// post_user_img_2 control.

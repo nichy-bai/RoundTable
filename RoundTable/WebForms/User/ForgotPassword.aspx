@@ -70,8 +70,9 @@
                         <div class="mb-8 relative">
                             <asp:TextBox ID="txtNewPassword" runat="server" type="password" CssClass="input border border-gray-400 appearance-none rounded-lg px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                             <label for="txtNewPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">New Password</label>
-                            <div class="absolute">
-                                <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtNewPassword" ForeColor="Red"></asp:RequiredFieldValidator>
+                            <div class="">
+                                <div class="absolute"><asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtNewPassword" ForeColor="Red"></asp:RequiredFieldValidator></div>
+                                <div class="absolute"><asp:RegularExpressionValidator ID="revPassword" runat="server" ErrorMessage="Must between 6 to 20 characters." ControlToValidate="txtNewPassword" ForeColor="Red" ValidationExpression="^.{6,20}$"></asp:RegularExpressionValidator></div>
                             </div>
                         </div>
                         <div class="mb-8 relative">

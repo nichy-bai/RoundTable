@@ -191,8 +191,8 @@ namespace RoundTable.WebForms.User
                 con.Close();
             }
 
-
-            Response.Redirect("~/WebForms/User/UserProfile.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Profile Successfully Updated!');window.location ='UserProfile.aspx';", true);
+            //Response.Redirect("~/WebForms/User/UserProfile.aspx");
         }
 
         //protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)

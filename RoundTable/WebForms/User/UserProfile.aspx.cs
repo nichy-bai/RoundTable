@@ -148,14 +148,28 @@ namespace RoundTable.WebForms.User
             SqlCommand cmdEditProfile = new SqlCommand(updateProfile, con);
 
             //string UploadPhoto = "~/ProfileImages/" + FileUpload.FileName.ToString();
+
+            if (ddlGender.SelectedItem.Text == "[Select Gender]")
+            {
+                ddlGender.Items.Insert(0, "-");
+                ddlGender.SelectedValue = "-";
+            }
+
             if (FileUpload.HasFile)
             {
                 string UploadImg = "~/ProfileImages/" + FileUpload.FileName.ToString();
+                if (String.IsNullOrEmpty(txtDOB.Text))
+                {
+                    cmdEditProfile.Parameters.AddWithValue("@newDOB", DBNull.Value);
+                }
+                else
+                {
+                    cmdEditProfile.Parameters.AddWithValue("@newDOB", txtDOB.Text);
+                }
                 FileUpload.SaveAs(Server.MapPath("~/ProfileImages/" + FileUpload.FileName));
                 cmdEditProfile.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
                 cmdEditProfile.Parameters.AddWithValue("@newName", txtName.Text);
                 cmdEditProfile.Parameters.AddWithValue("@newGender", ddlGender.SelectedValue);
-                cmdEditProfile.Parameters.AddWithValue("@newDOB", txtDOB.Text);
                 cmdEditProfile.Parameters.AddWithValue("@newEmail", txtEmail.Text);
                 cmdEditProfile.Parameters.AddWithValue("@ProfilePicture", UploadImg);
                 cmdEditProfile.Parameters.AddWithValue("@Desc", txtProfileDesc.Text);
@@ -179,10 +193,17 @@ namespace RoundTable.WebForms.User
                 }
                 con.Close();
 
+                if (String.IsNullOrEmpty(txtDOB.Text))
+                {
+                    cmdEditProfile.Parameters.AddWithValue("@newDOB", DBNull.Value);
+                }
+                else
+                {
+                    cmdEditProfile.Parameters.AddWithValue("@newDOB", txtDOB.Text);
+                }
                 cmdEditProfile.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
                 cmdEditProfile.Parameters.AddWithValue("@newName", txtName.Text);
                 cmdEditProfile.Parameters.AddWithValue("@newGender", ddlGender.SelectedValue);
-                cmdEditProfile.Parameters.AddWithValue("@newDOB", txtDOB.Text);
                 cmdEditProfile.Parameters.AddWithValue("@newEmail", txtEmail.Text);
                 cmdEditProfile.Parameters.AddWithValue("@ProfilePicture", profilePicture.ImageUrl);
                 cmdEditProfile.Parameters.AddWithValue("@Desc", txtProfileDesc.Text);

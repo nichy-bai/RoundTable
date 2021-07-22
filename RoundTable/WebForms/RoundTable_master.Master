@@ -147,8 +147,8 @@
 
                 <div class="mt-auto mb-6">
                     <div id="darkMode"></div>
-                    <div class="mb-3" id="notification">
-                        <asp:Panel ID="nav_notification_btn" runat="server" Visible="false">
+                    <div class="mb-3 flex justify-center" id="notification">
+                        <asp:Panel ID="nav_notification_btn" runat="server">
                             <!--Notification-->
                             <a href="#" title="Notifications" class="flex flex-col items-center px-8 py-2 h-12 w-12 hover:bg-gray-100 hover:shadow rounded-lg transition ease-out duration-500 focus:outline-none">
                                 <svg
@@ -236,7 +236,7 @@
                     <div class="flex flex-row items-center justify-center absolute right-4">
                         <!--Notification-->
                         <div class="mx-2 h-8">
-                            <a href="#" title="Notification" class="hidden">
+                            <a href="#" title="Notification">
                                 <svg
                                     class="w-8 h-8"
                                     fill="none"

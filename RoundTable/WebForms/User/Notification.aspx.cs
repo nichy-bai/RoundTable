@@ -40,6 +40,12 @@ namespace RoundTable.WebForms.User
             //p2.Visible = true;
             //p3.CssClass = p3.CssClass.Replace("md:flex-row", "md:flex-col");
         }
+        protected void postBody_btn_Command(object sender, CommandEventArgs e)
+        {
+            string postID = e.CommandArgument.ToString();
+            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
+            Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
+        }
 
         protected void delete_notification_btn_Command(object sender, CommandEventArgs e)
         {

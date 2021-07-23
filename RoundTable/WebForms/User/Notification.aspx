@@ -18,14 +18,15 @@
         
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
             <ItemTemplate>
-                <div class="flex flex-row justify-between items-center py-4 border-b-2">
-                    <div class="flex justify-start items-center">
-                        <asp:Image ID="post_user_img" runat="server" ImageUrl='<%#Eval("profilePicture") %>' CssClass="w-12 h-12 rounded-full" />
-                        <asp:Label ID="notificationContent" runat="server" Text='<%#Eval("notificationContent") %>' CssClass="ml-5"></asp:Label>
-                    </div>
-                    <div class="flex justify-end items-center">
-                        <asp:Label ID="notification_DateTime" runat="server" Text='<%#Eval("notificationDate") %>' CssClass="mr-5"></asp:Label>
-                        <asp:LinkButton ID="delete_notification_btn" runat="server" ToolTip="Remove Notification" CssClass="text-gray-500 hover:text-indigo-600 transition ease-in-out duration-300" CommandArgument='<%#Eval("ID") %>' OnCommand="delete_notification_btn_Command" OnClientClick="return confirm('Are you sure to remove this notification?')">
+                <asp:LinkButton ID="postBody_btn" runat="server" CssClass="" OnCommand="postBody_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
+                    <div class="flex flex-row justify-between items-center py-4 border-b-2">
+                        <div class="flex justify-start items-center">
+                            <asp:Image ID="post_user_img" runat="server" ImageUrl='<%#Eval("profilePicture") %>' CssClass="w-12 h-12 rounded-full" />
+                            <asp:Label ID="notificationContent" runat="server" Text='<%#Eval("notificationContent") %>' CssClass="ml-5"></asp:Label>
+                        </div>
+                        <div class="flex justify-end items-center">
+                            <asp:Label ID="notification_DateTime" runat="server" Text='<%#Eval("notificationDate") %>' CssClass="mr-5"></asp:Label>
+                            <asp:LinkButton ID="delete_notification_btn" runat="server" ToolTip="Remove Notification" CssClass="text-gray-500 hover:text-indigo-600 transition ease-in-out duration-300" CommandArgument='<%#Eval("ID") %>' OnCommand="delete_notification_btn_Command" OnClientClick="return confirm('Are you sure to remove this notification?')">
                             <svg
                                 class="w-6 h-6"
                                 fill="none"
@@ -39,15 +40,15 @@
                                     d="M6 18L18 6M6 6l12 12">
                                 </path>
                             </svg>
-                        </asp:LinkButton>
+                            </asp:LinkButton>
+                        </div>
                     </div>
-                </div>
-
+                </asp:LinkButton>
             </ItemTemplate>
         </asp:Repeater>
-        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT TOP(20) Notification.ID, Notification.userID, Notification.notificationContent, Notification.notificationDate, Notification.postUserID, [User].profilePicture FROM Notification INNER JOIN [User] ON Notification.userID = [User].userID AND Notification.userID = [User].userID WHERE (Notification.postUserID = @postUserID)">
+        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT TOP (20) Notification.ID, Notification.userID, Notification.notificationContent, Notification.notificationDate, Notification.ownerUserID, [User].profilePicture, Notification.postID FROM Notification INNER JOIN [User] ON Notification.userID = [User].userID AND Notification.userID = [User].userID WHERE (Notification.ownerUserID = @ownerUserID) ORDER BY Notification.ID DESC">
             <SelectParameters>
-                <asp:SessionParameter SessionField="UserID" Name="postUserID" Type="String"></asp:SessionParameter>
+                <asp:SessionParameter SessionField="UserID" Name="ownerUserID"></asp:SessionParameter>
             </SelectParameters>
         </asp:SqlDataSource>
     </div>

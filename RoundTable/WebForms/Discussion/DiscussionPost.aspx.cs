@@ -668,12 +668,13 @@ namespace RoundTable.WebForms.Discussion
                 {
                     string content = Session["UserID"].ToString() + " has commented on your post.";
 
-                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
+                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate, ownerUserID, postID) VALUES (@UserID, @Content, @ContentDate , @OwnerUserID, @PostID)", con);
 
                     insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
                     insertNotification.Parameters.AddWithValue("@Content", content);
                     insertNotification.Parameters.AddWithValue("@ContentDate", commentDate);
-                    insertNotification.Parameters.AddWithValue("@PostUserID", userID_lbl.Text);
+                    insertNotification.Parameters.AddWithValue("@OwnerUserID", userID_lbl.Text);
+                    insertNotification.Parameters.AddWithValue("@PostID", postID);
                     con.Open();
                     insertNotification.ExecuteNonQuery();
                     con.Close();
@@ -801,12 +802,13 @@ namespace RoundTable.WebForms.Discussion
                 {
                     string content = Session["UserID"].ToString() + " has replied to your comment.";
 
-                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
+                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate, ownerUserID, postID) VALUES (@UserID, @Content, @ContentDate , @OwnerUserID, @PostID)", con);
 
                     insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
                     insertNotification.Parameters.AddWithValue("@Content", content);
                     insertNotification.Parameters.AddWithValue("@ContentDate", replyDate);
-                    insertNotification.Parameters.AddWithValue("@PostUserID", userCommentID);
+                    insertNotification.Parameters.AddWithValue("@OwnerUserID", userCommentID);
+                    insertNotification.Parameters.AddWithValue("@PostID", postID);
                     con.Open();
                     insertNotification.ExecuteNonQuery();
                     con.Close();
@@ -861,12 +863,13 @@ namespace RoundTable.WebForms.Discussion
                 {
                     string content = Session["UserID"].ToString() + " has liked your post.";
 
-                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
+                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate, ownerUserID, postID) VALUES (@UserID, @Content, @ContentDate , @OwnerUserID, @PostID)", con);
 
                     insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
                     insertNotification.Parameters.AddWithValue("@Content", content);
                     insertNotification.Parameters.AddWithValue("@ContentDate", likeDate);
-                    insertNotification.Parameters.AddWithValue("@PostUserID", userID_lbl.Text);
+                    insertNotification.Parameters.AddWithValue("@OwnerUserID", userID_lbl.Text);
+                    insertNotification.Parameters.AddWithValue("@PostID", postID);
                     con.Open();
                     insertNotification.ExecuteNonQuery();
                     con.Close();

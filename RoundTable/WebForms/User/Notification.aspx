@@ -20,7 +20,7 @@
             <ItemTemplate>
                 <div class="flex flex-row justify-between items-center py-4 border-b-2">
                     <div class="flex justify-start items-center">
-                        <asp:Image ID="post_user_img" runat="server" ImageUrl="~/ProfileImages/Default.png" CssClass="w-12 h-12 rounded-full" />
+                        <asp:Image ID="post_user_img" runat="server" ImageUrl='<%#Eval("profilePicture") %>' CssClass="w-12 h-12 rounded-full" />
                         <asp:Label ID="notificationContent" runat="server" Text='<%#Eval("notificationContent") %>' CssClass="ml-5"></asp:Label>
                     </div>
                     <div class="flex justify-end items-center">
@@ -45,7 +45,7 @@
 
             </ItemTemplate>
         </asp:Repeater>
-        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT * FROM [Notification] WHERE ([postUserID] = @postUserID)">
+        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT Notification.ID, Notification.userID, Notification.notificationContent, Notification.notificationDate, Notification.postUserID, [User].profilePicture FROM Notification INNER JOIN [User] ON Notification.userID = [User].userID AND Notification.userID = [User].userID WHERE (Notification.postUserID = @postUserID)">
             <SelectParameters>
                 <asp:SessionParameter SessionField="UserID" Name="postUserID" Type="String"></asp:SessionParameter>
             </SelectParameters>

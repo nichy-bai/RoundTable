@@ -22,6 +22,7 @@ namespace RoundTable.WebForms.User
                 Response.Redirect("/WebForms/LoginError.aspx");
             }
 
+            Repeater1.DataBind();
             if (Repeater1.Items.Count == 0)
             {
                 noPost_lbl.Visible = true;

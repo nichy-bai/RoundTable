@@ -105,6 +105,24 @@ namespace RoundTable.WebForms
         protected global::System.Web.UI.WebControls.Image post_user_img;
 
         /// <summary>
+        /// mobile_notification_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel mobile_notification_btn;
+
+        /// <summary>
+        /// mobile_profile_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel mobile_profile_btn;
+
+        /// <summary>
         /// linkBtnLogin2 control.
         /// </summary>
         /// <remarks>

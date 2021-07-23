@@ -235,8 +235,8 @@
                     </div>
                     <div class="flex flex-row items-center justify-center absolute right-4">
                         <!--Notification-->
-                        <div class="mx-2 h-8">
-                            <a href="../User/Notification.aspx" title="Notification">
+                        <asp:Panel ID="mobile_notification_btn" runat="server">
+                            <a href="../User/Notification.aspx" title="Notification" class="mx-2 h-8">
                                 <svg
                                     class="w-8 h-8"
                                     fill="none"
@@ -251,9 +251,9 @@
                                     </path>
                                 </svg>
                             </a>
-                        </div>
+                        </asp:Panel>
                         <!--User Profile-->
-                        <div class="ml-4">
+                        <asp:Panel ID="mobile_profile_btn" runat="server" CssClass="border-4 border-transparent ml-4">
                             <asp:LinkButton ID="linkBtnLogin2" runat="server" ToolTip="Login" OnClick="linkBtnLogin2_Click" CssClass="w-auto flex flex-row justify-center items-center p-3 bg-gray-700 rounded-lg text-gray-100 hover:shadow-md hover:bg-indigo-500 ease-in-out duration-300" >
                                 <svg
                                     class="w-6 h-6"
@@ -273,7 +273,7 @@
                             <a href="../User/UserProfile.aspx" title="Notifications">
                                 <asp:Image ID="post_user_img_2" runat="server" ImageUrl="~/ProfileImages/Default.png" CssClass="w-12 h-12 rounded-full" />
                             </a>
-                        </div>
+                        </asp:Panel>
                     </div>
                 </div>
                 <!--Black Bar-->

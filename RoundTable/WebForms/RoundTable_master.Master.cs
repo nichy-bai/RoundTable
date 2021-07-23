@@ -58,10 +58,12 @@ namespace RoundTable.WebForms
             else if (path.Contains("User/Notification"))
             {
                 nav_notification_btn.Attributes.Add("Class", "text-indigo-600");
+                mobile_notification_btn.Attributes.Add("Class", "text-indigo-600");
             }
             else if (path.Contains("User/"))
             {
                 nav_profile_btn.CssClass = nav_profile_btn.CssClass.Replace("border-transparent", "border-indigo-500");
+                mobile_profile_btn.CssClass = mobile_profile_btn.CssClass.Replace("border-transparent", "border-indigo-500 rounded-full");
             }
 
             SqlCommand cmd = new SqlCommand("SELECT profilePicture FROM [User] WHERE userID='" + userID + "'", con);

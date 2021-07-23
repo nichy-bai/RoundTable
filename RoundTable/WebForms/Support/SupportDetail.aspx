@@ -195,16 +195,6 @@
                         <p>This is our <a href="Privacy.aspx" class="text-indigo-500 hover:underline" target="_blank">Privacy policy</a> and <a href="Terms.aspx" class="text-indigo-500 hover:underline" target="_blank">Terms of Service</a>.</p>
                         <br />
                     </section>
-
-                    <section id="faq-5" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">Participate In A Discussion</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
-                        <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                        <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
-                        <br />
-                    </section>
                 </section>
                 <hr />
                 <section id="tip">
@@ -318,36 +308,6 @@
                         <p>You can also give developers <a href="Feedback.aspx" class="text-indigo-500 hover:underline" target="_blank">feedback</a> about the chatbot’s conversation experience so that they can further improve the chatbot.</p>
                         <br />
                     </section>
-
-                    <section id="tip-3" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">Create an Account</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
-                        <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                        <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
-                        <br />
-                    </section>
-
-                    <section id="tip-4" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">Start A Discussion</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
-                        <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                        <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
-                        <br />
-                    </section>
-
-                    <section id="tip-5" class="md:mt-10">
-                        <h3 class="py-5 md:py-10 font-medium text-2xl">Participate In A Discussion</h3>
-                        <p>This Agreement shall begin on the date hereof. Our Terms and Conditions were created with the help of the Terms And Conditions Generator and the Privacy Policy Generator.</p>
-                        <br />
-                        <p>Parts of this website offer an opportunity for users to post and exchange opinions and information in certain areas of the website. RoundTable does not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views and opinions of RoundTable,its agents and/or affiliates. Comments reflect the views and opinions of the person who post their views and opinions. To the extent permitted by applicable laws, RoundTable shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.</p>
-                        <br />
-                        <p>RoundTable reserves the right to monitor all Comments and to remove any Comments which can be considered inappropriate, offensive or causes breach of these Terms and Conditions.</p>
-                        <br />
-                    </section>
                 </section>
             </div>
             <%--Table of Content--%>
@@ -369,16 +329,12 @@
                             <li class="pl-4"><a href="#faq-2">Markdown Format</a></li>
                             <li class="pl-4"><a href="#faq-3">Customize Homepage</a></li>
                             <li class="pl-4"><a href="#faq-4">Privacy Policy and Terms</a></li>
-                            <li class="pl-4"><a href="#faq-5">Participate In A Discussion</a></li>
                         </ul>
                     </li>
                     <li class="mt-2"><a href="#tip">Tips & Tricks</a>
                         <ul>
                             <li class="pl-4"><a href="#tip-1">Rich Text Editor Shortcuts</a></li>
                             <li class="pl-4"><a href="#tip-2">RoundTable Chatbot</a></li>
-                            <li class="pl-4"><a href="#tip-3">Create an Account</a></li>
-                            <li class="pl-4"><a href="#tip-4">Start A Discussion</a></li>
-                            <li class="pl-4"><a href="#tip-5">Participate In A Discussion</a></li>
                         </ul>
                     </li>
                 </ol>

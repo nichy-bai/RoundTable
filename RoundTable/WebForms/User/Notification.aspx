@@ -5,7 +5,7 @@
         <div class="relative px-0 flex flex-row flex-grow">
             <div class="flex flex-col justify-center">
                 <span class="block text-4xl font-bold mb-2 font-title text-gray-700">Notifications</span>
-                <span class="block opacity-80">All your notifications</span>
+                <span class="block opacity-80">View recent activity in posts or comments in one place</span>
             </div>
         </div>
     </header>
@@ -15,10 +15,9 @@
     <div runat="server" id="notifications_div"
         class="mt-0 m-5 p-5 px-6 bg-white rounded-lg flex flex-col shadow-md h-auto transition ease-in-out duration-1000">
 
-        
         <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
             <ItemTemplate>
-                <asp:LinkButton ID="postBody_btn" runat="server" CssClass="" OnCommand="postBody_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
+                <asp:LinkButton ID="postBody_btn" runat="server" CssClass="hover:text-indigo-600 transition ease-in-out duration-300" OnCommand="postBody_btn_Command" CommandArgument='<%#Eval("postID") %>' OnClientClick="window.document.forms[0].target='_blank';">
                     <div class="flex flex-row justify-between items-center py-4 border-b-2">
                         <div class="flex justify-start items-center">
                             <asp:Image ID="post_user_img" runat="server" ImageUrl='<%#Eval("profilePicture") %>' CssClass="w-12 h-12 rounded-full" />

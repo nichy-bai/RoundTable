@@ -55,6 +55,10 @@ namespace RoundTable.WebForms
             {
                 nav_support_btn.Attributes.Add("Class", "text-indigo-600");
             }
+            else if (path.Contains("User/Notification"))
+            {
+                nav_notification_btn.Attributes.Add("Class", "text-indigo-600");
+            }
             else if (path.Contains("User/"))
             {
                 nav_profile_btn.CssClass = nav_profile_btn.CssClass.Replace("border-transparent", "border-indigo-500");

@@ -83,7 +83,7 @@
                         </div>
                         <div class="flex flex-col h-96 overflow-auto">
                             <div>
-                                <asp:Label ID="noPost_lbl" runat="server" CssClass="flex justify-center items-center text-gray-400 text-center mt-10 mb-14" Text="No activities yet." Visible="false"></asp:Label>
+                                <asp:Label ID="noPost_lbl" runat="server" CssClass="flex justify-center items-center text-gray-400 text-center mt-10 mb-14" Text="No activities yet" Visible="false"></asp:Label>
                             </div>
                             <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
                                 <ItemTemplate>

@@ -60,21 +60,21 @@
                     </div>
                     
                     <div class="mb-8 relative">
-                        <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                        <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600" ValidationGroup="LoginValidation"></asp:TextBox>
                         <label for="txtUserID" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Username</label>
                         <div class="absolute"><asp:Label ID="lblLoginStatus" runat="server" Text="" ForeColor="Red" CssClass="mb-2"></asp:Label></div>
-                        <div class="absolute"><asp:RequiredFieldValidator ID="rfvUserID" runat="server" ErrorMessage="Username is required." ControlToValidate="txtUserID" ForeColor="Red"></asp:RequiredFieldValidator></div>
+                        <div class="absolute"><asp:RequiredFieldValidator ID="rfvUserID" runat="server" ErrorMessage="Username is required." ControlToValidate="txtUserID" ForeColor="Red" ValidationGroup="LoginValidation"></asp:RequiredFieldValidator></div>
                         <div class="absolute"><asp:RegularExpressionValidator ID="revUserID" runat="server" ErrorMessage="Between 3 to 12 characters." ControlToValidate="txtUserID" ForeColor="Red" ValidationExpression="(\s|.){3,12}"></asp:RegularExpressionValidator></div>
                     </div>
                     <div class="mb-6 relative">
-                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600" ValidationGroup="LoginValidation"></asp:TextBox>
                         <label for="txtPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Password</label>
-                        <div class="absolute"><asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator></div>
+                        <div class="absolute"><asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtPassword" ForeColor="Red" ValidationGroup="LoginValidation"></asp:RequiredFieldValidator></div>
                     </div>
                     <div class="mb-4 relative">
                         <asp:LinkButton ID="btnForgotPassword" runat="server" CssClass="hover:underline text-sm" OnClick="btnForgotPassword_Click" Text="Forgot Password?"></asp:LinkButton>
                     </div>
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="login-btn font-bold py-3 px-6 rounded-lg" OnClick="btnLogin_Click" />
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="login-btn font-bold py-3 px-6 rounded-lg" OnClick="btnLogin_Click" ValidationGroup="LoginValidation"/>
                     <div class="flex justify-center border-t border-gray-400 mt-8 pt-5">
                         New to RoundTable?<span><a href="UserRegistration.aspx" style="text-decoration: none" class="ml-1 font-bold hover:text-indigo-600 transition ease-in-out duration-300">Sign Up</a></span>
                     </div>

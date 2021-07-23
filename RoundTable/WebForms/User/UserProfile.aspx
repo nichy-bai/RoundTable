@@ -155,10 +155,10 @@
                                     Name
                                 </div>
                                 <div class="w-4/5">
-                                    <asp:TextBox ID="txtName" runat="server" placeholder="Name" ToolTip="Name" CssClass="w-full p-2 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
-                                    <div class="absolute"><asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Name is required." ControlToValidate="txtName" ForeColor="Red"></asp:RequiredFieldValidator></div>
-                                    <div class=""><asp:RegularExpressionValidator ID="revNameChar" runat="server" ErrorMessage="Name cannot contain numbers or special characters." ControlToValidate="txtName" ForeColor="Red" ValidationExpression="([a-z]|[A-Z]|[ ])*"></asp:RegularExpressionValidator></div>
-                                    <div class=""><asp:RegularExpressionValidator ID="revName" runat="server" ErrorMessage="Name maximum length is 26 characters." ControlToValidate="txtName" ForeColor="Red" ValidationExpression="(\s|.){0,26}"></asp:RegularExpressionValidator></div>
+                                    <asp:TextBox ID="txtName" runat="server" placeholder="Name" ToolTip="Name" CssClass="w-full p-2 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300" ValidationGroup="ProfileValidation"></asp:TextBox>
+                                    <div class="absolute"><asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Name is required." ControlToValidate="txtName" ForeColor="Red" ValidationGroup="ProfileValidation"></asp:RequiredFieldValidator></div>
+                                    <div class=""><asp:RegularExpressionValidator ID="revNameChar" runat="server" ErrorMessage="Name cannot contain numbers or special characters." ControlToValidate="txtName" ForeColor="Red" ValidationExpression="([a-z]|[A-Z]|[ ])*" ValidationGroup="ProfileValidation"></asp:RegularExpressionValidator></div>
+                                    <div class=""><asp:RegularExpressionValidator ID="revName" runat="server" ErrorMessage="Name maximum length is 26 characters." ControlToValidate="txtName" ForeColor="Red" ValidationExpression="(\s|.){0,26}" ValidationGroup="ProfileValidation"></asp:RegularExpressionValidator></div>
                                 </div>
                             </div>
                             <div class="flex ml-10 mt-0 justify-between space-x-3">
@@ -198,8 +198,8 @@
                                     D.O.B
                                 </div>
                                 <div class="w-4/5">
-                                    <asp:TextBox ID="txtDOB" runat="server" placeholder="Date Of Birth" TextMode="Date" ToolTip="Date Of Birth" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
-                                    <div class="absolute"><asp:RangeValidator ID="DateRangeValidator" runat="server" ControlToValidate="txtDOB" ForeColor="red" ErrorMessage="DOB cannot greater than today's date" Type="Date"></asp:RangeValidator></div>
+                                    <asp:TextBox ID="txtDOB" runat="server" placeholder="Date Of Birth" TextMode="Date" ToolTip="Date Of Birth" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" ValidationGroup="ProfileValidation"></asp:TextBox>
+                                    <div class="absolute"><asp:RangeValidator ID="DateRangeValidator" runat="server" ControlToValidate="txtDOB" ForeColor="red" ErrorMessage="DOB cannot greater than today's date" Type="Date" ValidationGroup="ProfileValidation"></asp:RangeValidator></div>
                                 </div>
                             </div>
                             <div class="flex ml-10 mt-12 justify-between space-x-3">
@@ -207,9 +207,9 @@
                                     Email
                                 </div>
                                 <div class="w-4/5">
-                                    <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" TextMode="Email" ToolTip="Email" CssClass="w-full p-2 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
-                                    <div class="absolute"><asp:RequiredFieldValidator ID="rfvEmail" runat="server" ErrorMessage="Email is required." ControlToValidate="txtEmail" ForeColor="Red"></asp:RequiredFieldValidator></div>
-                                    <div class="absolute"><asp:RegularExpressionValidator ID="revEmail" runat="server" ErrorMessage="Invalid email. Please enter email as name@email.com" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"></asp:RegularExpressionValidator></div>
+                                    <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" TextMode="Email" ToolTip="Email" CssClass="w-full p-2 border-2 rounded-lg cursor-text hover:bg-gray-100 transition ease-in-out duration-300" ValidationGroup="ProfileValidation"></asp:TextBox>
+                                    <div class="absolute"><asp:RequiredFieldValidator ID="rfvEmail" runat="server" ErrorMessage="Email is required." ControlToValidate="txtEmail" ForeColor="Red" ValidationGroup="ProfileValidation"></asp:RequiredFieldValidator></div>
+                                    <div class="absolute"><asp:RegularExpressionValidator ID="revEmail" runat="server" ErrorMessage="Invalid email. Please enter email as name@email.com" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" ValidationGroup="ProfileValidation"></asp:RegularExpressionValidator></div>
                                 </div>
                             </div>
                             <div class="flex text-xl ml-10 mt-6 font-bold justify-between">

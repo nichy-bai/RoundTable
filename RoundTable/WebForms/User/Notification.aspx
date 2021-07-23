@@ -45,7 +45,7 @@
 
             </ItemTemplate>
         </asp:Repeater>
-        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT Notification.ID, Notification.userID, Notification.notificationContent, Notification.notificationDate, Notification.postUserID, [User].profilePicture FROM Notification INNER JOIN [User] ON Notification.userID = [User].userID AND Notification.userID = [User].userID WHERE (Notification.postUserID = @postUserID)">
+        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:ConnectionString %>' SelectCommand="SELECT TOP(20) Notification.ID, Notification.userID, Notification.notificationContent, Notification.notificationDate, Notification.postUserID, [User].profilePicture FROM Notification INNER JOIN [User] ON Notification.userID = [User].userID AND Notification.userID = [User].userID WHERE (Notification.postUserID = @postUserID)">
             <SelectParameters>
                 <asp:SessionParameter SessionField="UserID" Name="postUserID" Type="String"></asp:SessionParameter>
             </SelectParameters>

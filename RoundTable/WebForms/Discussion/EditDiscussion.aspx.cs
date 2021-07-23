@@ -172,7 +172,14 @@ namespace RoundTable.WebForms.Discussion
                 postContent = filter.CensorString(postContent);
                 string editDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
 
-                SqlCommand cmd3 = new SqlCommand("UPDATE Post SET postTitle='" + postTitle + "', postContent='" + postContent + "', topicID='" + topicID + "', tagID='" + tagID + "', editDate='" + editDate + "' WHERE postID='" + postID + "'", con);
+                string updateCmd = "UPDATE Post SET postTitle=@postTitle, postContent=@postContent, topicID=@topicID, tagID=@tagID, editDate=@editDate WHERE postID=@postID";
+                SqlCommand cmd3 = new SqlCommand(updateCmd, con);
+                cmd3.Parameters.AddWithValue("@postTitle", postTitle);
+                cmd3.Parameters.AddWithValue("@postContent", postContent);
+                cmd3.Parameters.AddWithValue("@topicID", topicID);
+                cmd3.Parameters.AddWithValue("@tagID", tagID);
+                cmd3.Parameters.AddWithValue("@editDate", editDate);
+                cmd3.Parameters.AddWithValue("@postID", postID);
                 con.Open();
                 cmd3.ExecuteNonQuery();
                 con.Close();

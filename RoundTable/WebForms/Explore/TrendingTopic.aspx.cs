@@ -37,6 +37,16 @@ namespace RoundTable.WebForms.Explore
                         sda.Fill(dt);
                         Repeater1.DataSource = dt;
                         Repeater1.DataBind();
+
+                        if (Repeater1.Items.Count == 0)
+                        {
+                            noPost_lbl.Visible = true;
+                        }
+                        else
+                        {
+                            noPost_lbl.Visible = false;
+                        }
+
                     }
                 }
             }

@@ -13,6 +13,7 @@
             </div>
         </div>
     </header>
+    <asp:Label ID="noPost_lbl" runat="server" Text="No discussion post yet" Visible="false" CssClass="flex justify-center items-center text-gray-700 font-medium text-lg my-10"></asp:Label>
 
     <asp:Repeater ID="Repeater1" runat="server">
         <ItemTemplate>

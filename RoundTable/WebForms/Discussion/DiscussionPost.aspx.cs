@@ -663,19 +663,22 @@ namespace RoundTable.WebForms.Discussion
                 cmd.ExecuteNonQuery();
                 con.Close();
 
-                string content = Session["UserID"].ToString() + " has commented on your post.";
 
-                SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
+                if(userID_lbl.Text != Session["UserID"].ToString())
+                {
+                    string content = Session["UserID"].ToString() + " has commented on your post.";
 
-                insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-                insertNotification.Parameters.AddWithValue("@Content", content);
-                insertNotification.Parameters.AddWithValue("@ContentDate", commentDate);
-                insertNotification.Parameters.AddWithValue("@PostUserID", userID_lbl.Text);
-                con.Open();
-                insertNotification.ExecuteNonQuery();
-                con.Close();
+                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
 
-
+                    insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+                    insertNotification.Parameters.AddWithValue("@Content", content);
+                    insertNotification.Parameters.AddWithValue("@ContentDate", commentDate);
+                    insertNotification.Parameters.AddWithValue("@PostUserID", userID_lbl.Text);
+                    con.Open();
+                    insertNotification.ExecuteNonQuery();
+                    con.Close();
+                }
+                
                 comment_txt.Text = "";
 
                 Response.Redirect(Request.RawUrl);
@@ -792,18 +795,23 @@ namespace RoundTable.WebForms.Discussion
                 string userCommentID = selectCommentID.ExecuteScalar().ToString();
                 con.Close();
 
-                string content = Session["UserID"].ToString() + " has replied to your comment.";
+                
                
-                SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
+                if(userCommentID != Session["UserID"].ToString())
+                {
+                    string content = Session["UserID"].ToString() + " has replied to your comment.";
 
-                insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-                insertNotification.Parameters.AddWithValue("@Content", content);
-                insertNotification.Parameters.AddWithValue("@ContentDate", replyDate);
-                insertNotification.Parameters.AddWithValue("@PostUserID", userCommentID);
-                con.Open();
-                insertNotification.ExecuteNonQuery();
-                con.Close();
+                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
 
+                    insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+                    insertNotification.Parameters.AddWithValue("@Content", content);
+                    insertNotification.Parameters.AddWithValue("@ContentDate", replyDate);
+                    insertNotification.Parameters.AddWithValue("@PostUserID", userCommentID);
+                    con.Open();
+                    insertNotification.ExecuteNonQuery();
+                    con.Close();
+                }
+                
                 Response.Redirect(Request.RawUrl);
             }
             else
@@ -849,17 +857,22 @@ namespace RoundTable.WebForms.Discussion
                 insert.ExecuteNonQuery();
                 con.Close();
 
-                string content = Session["UserID"].ToString() + " has liked your post.";
+                if (userID_lbl.Text != Session["UserID"].ToString())
+                {
+                    string content = Session["UserID"].ToString() + " has liked your post.";
 
-                SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
+                    SqlCommand insertNotification = new SqlCommand("INSERT INTO Notification(userID, notificationContent, notificationDate ,postUserID) VALUES (@UserID, @Content, @ContentDate , @PostUserID)", con);
+
+                    insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
+                    insertNotification.Parameters.AddWithValue("@Content", content);
+                    insertNotification.Parameters.AddWithValue("@ContentDate", likeDate);
+                    insertNotification.Parameters.AddWithValue("@PostUserID", userID_lbl.Text);
+                    con.Open();
+                    insertNotification.ExecuteNonQuery();
+                    con.Close();
+                }
+
                 
-                insertNotification.Parameters.AddWithValue("@UserID", Session["UserID"].ToString());
-                insertNotification.Parameters.AddWithValue("@Content", content);
-                insertNotification.Parameters.AddWithValue("@ContentDate", likeDate);
-                insertNotification.Parameters.AddWithValue("@PostUserID", userID_lbl.Text);
-                con.Open();
-                insertNotification.ExecuteNonQuery();
-                con.Close();
 
                 react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
 

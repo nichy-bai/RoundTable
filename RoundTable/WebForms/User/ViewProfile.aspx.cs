@@ -16,7 +16,21 @@ namespace RoundTable.WebForms.User
         {
             viewUserID = Request.QueryString["userid"];
 
-            if (viewUserID != null)
+            con.Open();
+            SqlCommand status = new SqlCommand("Select * from [User] where userID = @currUserID ", con);
+            status.Parameters.AddWithValue("@currUserID", viewUserID);
+            bool userStatus;
+            if (status.ExecuteScalar() != null)
+            {
+                userStatus = true;
+            }
+            else
+            {
+                userStatus = false;
+            }
+            con.Close();
+
+            if (userStatus && viewUserID != null)
             {
                 string getTopicPosted = "Select Count(*) from [Post] where userID = @currUserID";
                 SqlCommand cmdTopic = new SqlCommand(getTopicPosted, con);
@@ -63,6 +77,7 @@ namespace RoundTable.WebForms.User
 
                     imgProfilePic.ImageUrl = rdr["profilePicture"].ToString();
                     lblName.Text = rdr["name"].ToString();
+
                     lblEmail.Text = rdr["emailAddress"].ToString();
                     lblProfileDesc.Text = rdr["profileDesc"].ToString();
 
@@ -85,7 +100,7 @@ namespace RoundTable.WebForms.User
             }
             else
             {
-                Response.Redirect("/WebForms/LoginError.aspx");
+                Response.Redirect("/WebForms/Error.aspx");
                 //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
         }

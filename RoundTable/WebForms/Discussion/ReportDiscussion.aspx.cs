@@ -24,7 +24,15 @@ namespace RoundTable.WebForms.Discussion
 
                 con.Open();
                 SqlCommand status = new SqlCommand("SELECT postStatus FROM Post WHERE postID='" + postID + "'", con);
-                bool postStatus = (bool)status.ExecuteScalar();
+                bool postStatus;
+                if (status.ExecuteScalar() != null)
+                {
+                    postStatus = true;
+                }
+                else
+                {
+                    postStatus = false;
+                }
                 con.Close();
 
                 if (postStatus)

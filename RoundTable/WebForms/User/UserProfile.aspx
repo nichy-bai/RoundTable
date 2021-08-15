@@ -199,7 +199,7 @@
                                 </div>
                                 <div class="w-4/5">
                                     <asp:TextBox ID="txtDOB" runat="server" placeholder="Date Of Birth" TextMode="Date" ToolTip="Date Of Birth" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300" ValidationGroup="ProfileValidation"></asp:TextBox>
-                                    <div class="absolute"><asp:RangeValidator ID="DateRangeValidator" runat="server" ControlToValidate="txtDOB" ForeColor="red" ErrorMessage="DOB cannot greater than today's date" Type="Date" ValidationGroup="ProfileValidation"></asp:RangeValidator></div>
+                                    <div class="absolute"><asp:RangeValidator ID="DateRangeValidator" runat="server" ControlToValidate="txtDOB" ForeColor="red" ErrorMessage="DOB cannot greater than today's date." Type="Date" ValidationGroup="ProfileValidation"></asp:RangeValidator></div>
                                 </div>
                             </div>
                             <div class="flex ml-10 mt-12 justify-between space-x-3">

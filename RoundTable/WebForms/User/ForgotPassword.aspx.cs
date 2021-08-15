@@ -69,13 +69,7 @@ namespace RoundTable.WebForms.User
             }
             else if (dtrUser.HasRows == false)
             {
-                con.Close();
-                System.Text.StringBuilder javaScript = new System.Text.StringBuilder();
-                string scriptKey = "ErrorMessage";
-
-                javaScript.Append("var userConfirmation = window.confirm('" + "Username does not exist." + "');\n");
-
-                ClientScript.RegisterStartupScript(this.GetType(), scriptKey, javaScript.ToString(), true);
+                lblGetCode.Text = "Username does not exist.";
             }
 
 

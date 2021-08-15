@@ -37,10 +37,7 @@ namespace RoundTable
                 SqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    //keywords.Add(rdr["postTitle"].ToString());
                     keywords.Add(rdr["topicName"].ToString());
-                    //keywords.Add(rdr["postTitle"].ToString());
-                    //keywords.Add(rdr["userID"].ToString());
                 }
                 con.Close();
 
@@ -55,9 +52,6 @@ namespace RoundTable
                 SqlDataReader rdrUser = cmdUser.ExecuteReader();
                 while (rdrUser.Read())
                 {
-                    //keywords.Add(rdr["postTitle"].ToString());
-                    //keywords.Add(rdr["topicName"].ToString());
-                    //keywords.Add(rdr["postTitle"].ToString());
                     keywords.Add(rdrUser["userID"].ToString());
                 }
                 con.Close();

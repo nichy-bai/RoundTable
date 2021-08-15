@@ -24,30 +24,37 @@ namespace RoundTable.WebForms.Discussion
                 postID = "DP" + Request.QueryString["p"];
 
                 con.Open();
-                SqlCommand valid = new SqlCommand("SELECT userID FROM Post WHERE postID='" + postID + "'", con);
-                string postUserID = null;
-                object obj = valid.ExecuteScalar();
-
-                if(obj != null && DBNull.Value != obj)
+                SqlCommand status = new SqlCommand("SELECT postStatus FROM Post WHERE postID='" + postID + "'", con);
+                bool postStatus;
+                if (status.ExecuteScalar() != null)
                 {
-                    postUserID = valid.ExecuteScalar().ToString();
+                    postStatus = true;
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
-                        "alert('Error! Invalid post!'); window.location='" +
-                        Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                    postStatus = false;
                 }
-
-                con.Close();
-
-                con.Open();
-                SqlCommand status = new SqlCommand("SELECT postStatus FROM Post WHERE postID='" + postID + "'", con);
-                bool postStatus = (bool)status.ExecuteScalar();
                 con.Close();
 
                 if (postStatus)
                 {
+                    con.Open();
+                    SqlCommand valid = new SqlCommand("SELECT userID FROM Post WHERE postID='" + postID + "'", con);
+                    string postUserID = null;
+                    object obj = valid.ExecuteScalar();
+
+                    if (obj != null && DBNull.Value != obj)
+                    {
+                        postUserID = valid.ExecuteScalar().ToString();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "redirect",
+                            "alert('Error! Invalid post!'); window.location='" +
+                            Request.ApplicationPath + "../WebForms/Discussion/Homepage.aspx';", true);
+                    }
+                    con.Close();
+
                     if (postUserID != null)
                     {
                         if (postUserID == userID)

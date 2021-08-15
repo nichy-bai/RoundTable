@@ -16,6 +16,16 @@ namespace RoundTable.WebForms.Explore
         string topicID;
         protected void Page_Load(object sender, EventArgs e)
         {
+            con.Open();
+            SqlCommand status = new SqlCommand("SELECT * FROM Topic WHERE topicID='TP" + Request.QueryString["topic"] + "'", con);
+            if (status.ExecuteScalar() == null)
+            {
+                Response.Redirect("/WebForms/Error.aspx");
+            }
+            con.Close();
+
+
+
             topicID = "TP" + Request.QueryString["topic"];
 
             if (!this.IsPostBack)

@@ -31,7 +31,15 @@ namespace RoundTable.WebForms.Discussion
 
                 con.Open();
                 SqlCommand status = new SqlCommand("SELECT postStatus FROM Post WHERE postID='" + postID + "'", con);
-                bool postStatus = (bool)status.ExecuteScalar();
+                bool postStatus;
+                if(status.ExecuteScalar() != null)
+                {
+                    postStatus = true;
+                }
+                else
+                {
+                    postStatus = false;
+                }
                 con.Close();
 
                 if (postStatus)
@@ -679,7 +687,7 @@ namespace RoundTable.WebForms.Discussion
                     insertNotification.ExecuteNonQuery();
                     con.Close();
                 }
-                
+
                 comment_txt.Text = "";
 
                 Response.Redirect(Request.RawUrl);
@@ -796,8 +804,8 @@ namespace RoundTable.WebForms.Discussion
                 string userCommentID = selectCommentID.ExecuteScalar().ToString();
                 con.Close();
 
-                
-               
+
+
                 if(userCommentID != Session["UserID"].ToString())
                 {
                     string content = Session["UserID"].ToString() + " has replied to your comment.";
@@ -813,7 +821,7 @@ namespace RoundTable.WebForms.Discussion
                     insertNotification.ExecuteNonQuery();
                     con.Close();
                 }
-                
+
                 Response.Redirect(Request.RawUrl);
             }
             else
@@ -875,7 +883,7 @@ namespace RoundTable.WebForms.Discussion
                     con.Close();
                 }
 
-                
+
 
                 react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
 

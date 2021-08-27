@@ -93,13 +93,13 @@
                         <a href="SupportDetail.aspx#tip-1" class="text-indigo-700 hover:text-indigo-600 hover:underline">Rich Text Editor Shortcuts</a>
                     </div>
                     <div class="my-2">
-                        <a href="SupportDetail.aspx#faq-2" class="text-indigo-700 hover:text-indigo-600 hover:underline">RoundTable Chatbot</a>
+                        <a href="SupportDetail.aspx#tip-2" class="text-indigo-700 hover:text-indigo-600 hover:underline">RoundTable Chatbot</a>
                     </div>
                     <div class="my-2">
-                        <a href="SupportDetail.aspx#faq-3" class="text-indigo-700 hover:text-indigo-600 hover:underline">Create Discussion Post</a>
+                        <a href="SupportDetail.aspx#tip-3" class="text-indigo-700 hover:text-indigo-600 hover:underline"></a>
                     </div>
                     <div class="my-2">
-                        <a href="SupportDetail.aspx#faq-4" class="text-indigo-700 hover:text-indigo-600 hover:underline">Bug Reports and Feature Requests</a>
+                        <a href="SupportDetail.aspx#tip-4" class="text-indigo-700 hover:text-indigo-600 hover:underline"></a>
                     </div>
                 </div>
             </div>

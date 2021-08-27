@@ -16,7 +16,6 @@ namespace RoundTable.WebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //to be modified
             if (Session["UserID"] != null)
             {
                 userID = Session["UserID"].ToString();
@@ -93,7 +92,6 @@ namespace RoundTable.WebForms
         protected void post_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();
-            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
             Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 

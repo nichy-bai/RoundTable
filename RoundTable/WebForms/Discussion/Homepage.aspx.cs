@@ -251,13 +251,11 @@ namespace RoundTable.WebForms.Discussion
             if(Session["UserID"] != null)
             {
                 string postID = e.CommandArgument.ToString();
-                //Response.Redirect("DiscussionPost.aspx?p=" + postID);
                 Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
             }
             else
             {
                 Response.Redirect("/WebForms/LoginError.aspx");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
         }
 

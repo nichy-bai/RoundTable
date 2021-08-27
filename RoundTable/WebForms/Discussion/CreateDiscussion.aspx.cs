@@ -36,7 +36,6 @@ namespace RoundTable.WebForms.Discussion
             else
             {
                 Response.Redirect("/WebForms/LoginError.aspx");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
         }
 

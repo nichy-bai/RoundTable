@@ -209,7 +209,6 @@ namespace RoundTable.WebForms.Discussion
             else
             {
                 Response.Redirect("/WebForms/LoginError.aspx");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
 
         }
@@ -227,44 +226,6 @@ namespace RoundTable.WebForms.Discussion
                 Response.Redirect("../User/UserProfile.aspx");
             }
         }
-
-        //protected void commentProfile_btn_Command(object sender, CommandEventArgs e)
-        //{
-        //    foreach (RepeaterItem item in Repeater1.Items)
-        //    {
-        //        Label username_lbl = (Label)item.FindControl("username_hidden_lbl") as Label;
-
-        //        string viewCommentUserID = username_lbl.Text;
-        //        if (viewCommentUserID != Session["UserID"].ToString())
-        //        {
-        //            Response.Redirect("../User/ViewProfile.aspx?userid=" + viewCommentUserID);
-        //        }
-        //        else
-        //        {
-        //            Response.Redirect("../User/UserProfile.aspx");
-        //        }
-        //    }
-        //}
-
-        //protected void replyProfile_btn_Command(object sender, CommandEventArgs e)
-        //{
-        //    Repeater r2 = (Repeater)e.Item.FindControl("Repeater2");
-        //    foreach (RepeaterItem item in r2.Items)
-        //    {
-        //        Label replyUsername_lbl = (Label)item.FindControl("reply_username_hidden_lbl");
-
-        //        string viewCommentUserID = replyUsername_lbl.Text;
-        //        if (viewCommentUserID != Session["UserID"].ToString())
-        //        {
-        //            Response.Redirect("../User/ViewProfile.aspx?userid=" + viewCommentUserID);
-        //        }
-        //        else
-        //        {
-        //            Response.Redirect("../User/UserProfile.aspx");
-        //        }
-        //    }
-
-        //}
 
         protected void GenerateLikeID()
         {
@@ -487,15 +448,11 @@ namespace RoundTable.WebForms.Discussion
 
         protected void threedot_dropdown_btn_2_Click(object sender, EventArgs e)
         {
-            //Edit Post
-
             Response.Redirect("../Discussion/EditDiscussion.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 
         protected void threedot_dropdown_btn_3_Click(object sender, EventArgs e)
         {
-            //Delete Post
-
             bool postStatus = false;
 
             SqlCommand update = new SqlCommand("UPDATE Post SET postStatus='" + postStatus + "' WHERE postID='" + postID + "'" + "AND userID='" + userID + "'", con);
@@ -510,8 +467,6 @@ namespace RoundTable.WebForms.Discussion
 
         protected void threedot_dropdown_btn_4_Click(object sender, EventArgs e)
         {
-            //Report Post
-
             Response.Redirect("../Discussion/ReportDiscussion.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 
@@ -654,8 +609,6 @@ namespace RoundTable.WebForms.Discussion
             commentContent = filter.CensorString(commentContent);
             string commentDate = System.DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
             bool commentStatus = true;
-
-            //To be modified
             string userID = Session["UserID"].ToString();
 
             if (!String.IsNullOrEmpty(comment_txt.Text))
@@ -883,12 +836,7 @@ namespace RoundTable.WebForms.Discussion
                     con.Close();
                 }
 
-
-
                 react_like_btn.ForeColor = System.Drawing.ColorTranslator.FromHtml(hex);
-
-                //Response.Write("<script>alert('Liked')</script>");
-
                 Response.Redirect(Request.RawUrl);
             }
             else
@@ -1001,6 +949,5 @@ namespace RoundTable.WebForms.Discussion
             count_down_panel.Visible = false;
             count_equal_panel.Visible = false;
         }
-
     }
 }

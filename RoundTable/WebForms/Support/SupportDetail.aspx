@@ -152,7 +152,33 @@
                         <h3 class="py-5 md:py-10 font-medium text-2xl">Search For Discussions</h3>
                         <p>You can search for discussion posts throughout the entire database of RoundTable.</p>
                         <br />
-                        <p>Moreover, you can also filter the search results</p>
+                        <p>Moreover, you can also filter the search results by using the tags or by using the sort by feature in the search page.</p>
+                        <br />
+                    </section>
+                    <section id="start-7" class="md:mt-10">
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">Post Recommendations</h3>
+                        <p>There is a random post recommending feature in RoundTable. However, you will only able to access it after you have logged in to your RoundTable account. If you have not registered yet, please click <a href="../User/UserRegistration.aspx" class="text-indigo-500 hover:underline" target="_blank">here</a> to register.</p>
+                        <br />
+                         <p>Here is how to acquire post recommendations on RoundTable:</p>
+                        <div class="flex flex-col">
+                            <div class="flex flex-row flex-nowrap pl-5 mb-2">
+                                <div class="select-none mr-2">1.</div>
+                                <div>Log in to your RoundTable account. If you have not registered yet, please click <a href="../User/UserRegistration.aspx" class="text-indigo-500 hover:underline" target="_blank">here</a> to register.</div>
+                            </div>
+                            <div class="flex flex-row flex-nowrap pl-5 mb-2">
+                                <div class="select-none mr-2">2.</div>
+                                <div>Click on 🌐 Explore at the side menu.</div>
+                            </div>
+                            <div class="flex flex-row flex-nowrap pl-5 mb-2">
+                                <div class="select-none mr-2">3.</div>
+                                <div>You will be able to see a <span class="font-bold">Posts You Might Like...</span> section in the Explore page. This is where you will be able to acquire recommendations from RoundTable.</div>
+                            </div>
+                        </div>
+                        <br />
+                    </section>
+                    <section id="start-8" class="md:mt-10">
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">Edit Profile</h3>
+                        <p>You can edit your profile by clicking on your profile icon at the side menu or click <a href="../User/UserRegistration.aspx" class="text-indigo-500 hover:underline" target="_blank">here</a>. Information such as Name, Gender,D.O.B, Email Profile Photo and Profile Description are customisable.</p>
                         <br />
                     </section>
                 </section>
@@ -193,6 +219,14 @@
                     <section id="faq-4" class="md:mt-10">
                         <h3 class="py-5 md:py-10 font-medium text-2xl">Where Can I Find RoundTable's Privacy Policy and Terms of Service?</h3>
                         <p>This is our <a href="Privacy.aspx" class="text-indigo-500 hover:underline" target="_blank">Privacy policy</a> and <a href="Terms.aspx" class="text-indigo-500 hover:underline" target="_blank">Terms of Service</a>.</p>
+                        <br />
+                    </section>
+
+                    <section id="faq-5" class="md:mt-10">
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">How Can I Know Who Has Commented on My Post?</h3>
+                        <p>There is a 🔔 <a href="Notification.aspx" class="text-indigo-500 hover:underline" target="_blank">Notification</a> page which is located at the side menu on top of the profile icon.</p>
+                        <br />
+                        <p>You can access your notifications at the Notification page and navigate to the discussion post and check out who has commented on your post.</p>
                         <br />
                     </section>
                 </section>
@@ -308,6 +342,14 @@
                         <p>You can also give developers <a href="Feedback.aspx" class="text-indigo-500 hover:underline" target="_blank">feedback</a> about the chatbot’s conversation experience so that they can further improve the chatbot.</p>
                         <br />
                     </section>
+
+                    <section id="tip-3" class="md:mt-10">
+                        <h3 class="py-5 md:py-10 font-medium text-2xl">Voice Search Feature</h3>
+                        <p>Other than typing search, RoundTable also provides a voice search feature in the search page as well. With this voice search feature, you can input text into the search bar by using your own voice.</p>
+                        <br />
+                        <p>All you need to do is click on the 🎤 microphone icon and speak. After completing the recording, just simply hit the <span class="keyboard">Enter</span> key and the results will be returned according to the inputted text.</p>
+                        <br />
+                    </section>
                 </section>
             </div>
             <%--Table of Content--%>
@@ -321,6 +363,8 @@
                             <li class="pl-4"><a href="#start-4">Start A Discussion</a></li>
                             <li class="pl-4"><a href="#start-5">Participate In A Discussion</a></li>
                             <li class="pl-4"><a href="#start-6">Search For Discussions</a></li>
+                            <li class="pl-4"><a href="#start-7">Post Recommendations</a></li>
+                            <li class="pl-4"><a href="#start-8">Edit Profile</a></li>
                         </ul>
                     </li>
                     <li class="mt-2"><a href="#faq">FAQs</a>
@@ -329,12 +373,14 @@
                             <li class="pl-4"><a href="#faq-2">Markdown Format</a></li>
                             <li class="pl-4"><a href="#faq-3">Customize Homepage</a></li>
                             <li class="pl-4"><a href="#faq-4">Privacy Policy and Terms</a></li>
+                            <li class="pl-4"><a href="#faq-5">Notifications</a></li>
                         </ul>
                     </li>
                     <li class="mt-2"><a href="#tip">Tips & Tricks</a>
                         <ul>
                             <li class="pl-4"><a href="#tip-1">Rich Text Editor Shortcuts</a></li>
                             <li class="pl-4"><a href="#tip-2">RoundTable Chatbot</a></li>
+                            <li class="pl-4"><a href="#tip-3">Voice Search Feature</a></li>
                         </ul>
                     </li>
                 </ol>

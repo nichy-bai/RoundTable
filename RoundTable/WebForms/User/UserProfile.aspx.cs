@@ -13,8 +13,6 @@ namespace RoundTable.WebForms.User
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Panel p1 = (Panel)Master.FindControl("master_aside_panel");
-            //p1.Style.Add("display", "none");
             if (Session["UserID"] != null)
             {
                 DateRangeValidator.MinimumValue = DateTime.Now.AddYears(-100).ToShortDateString();
@@ -89,7 +87,6 @@ namespace RoundTable.WebForms.User
             else
             {
                 Response.Redirect("/WebForms/LoginError.aspx");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
             MultiViewProfile.ActiveViewIndex = 0;
         }
@@ -97,7 +94,6 @@ namespace RoundTable.WebForms.User
         protected void post_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();
-            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
             Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
         protected void btnEditProfile_Click(object sender, EventArgs e)
@@ -137,7 +133,6 @@ namespace RoundTable.WebForms.User
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            //MultiViewProfile.ActiveViewIndex = 0;
             Response.Redirect("~/WebForms/User/UserProfile.aspx");
         }
 
@@ -147,7 +142,6 @@ namespace RoundTable.WebForms.User
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
             SqlCommand cmdEditProfile = new SqlCommand(updateProfile, con);
 
-            //string UploadPhoto = "~/ProfileImages/" + FileUpload.FileName.ToString();
 
             if (ddlGender.SelectedItem.Text == "[Select Gender]")
             {
@@ -213,20 +207,9 @@ namespace RoundTable.WebForms.User
             }
 
             ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Profile Successfully Updated!');window.location ='UserProfile.aspx';", true);
-            //Response.Redirect("~/WebForms/User/UserProfile.aspx");
+           
         }
 
-        //protected void Repeater1_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        //{
-        //    if (Repeater1.Items.Count < 1)
-        //    {
-        //        if (e.Item.ItemType == ListItemType.Footer)
-        //        {
-        //            Label lblFooter = (Label)e.Item.FindControl("noPost_lbl");
-        //            lblFooter.Visible = true;
-        //        }
-        //    }
-        //}
 
         protected void btnLogout_Click(object sender, EventArgs e)
         {

@@ -83,7 +83,6 @@
                         <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input border border-gray-400 appearance-none rounded-lg w-full px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
                         <label for="txtPassword" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Password</label>
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvPassword" runat="server" ErrorMessage="Password is required." ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator></div>
-                        <%--<div class="absolute"><asp:Label ID="lblPasswordValidation" runat="server" Text="" ForeColor="Red"></asp:Label></div>--%>
                         <div class="absolute"><asp:RegularExpressionValidator ID="revPassword" runat="server" ErrorMessage="Must between 6 to 20 characters." ControlToValidate="txtPassword" ForeColor="Red" ValidationExpression="^.{6,20}$"></asp:RegularExpressionValidator></div>
                     </div>
                     <div class="mb-12 relative">
@@ -92,18 +91,7 @@
                         <div class="absolute"><asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ErrorMessage="Confirm Password is required." ControlToValidate="txtConfirmPassword" ForeColor="Red"></asp:RequiredFieldValidator></div>
                         <div class="absolute"><asp:CompareValidator ID="cvPassword" runat="server" ErrorMessage="Password not matched." ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword" ForeColor="Red"></asp:CompareValidator></div>
                     </div>
-                    <%--<div class="mb-4 relative">
-                        <asp:TextBox ID="txtDOB" runat="server" TextMode="Date" CssClass="input border border-gray-400 appearance-none rounded w-full px-3 pt-6 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>
-                        <label for="txtDOB" class="label absolute mb-0 -mt-2 pt-4 pl-3 leading-tighter text-gray-400 text-base mt-2 cursor-text">Date Of Birth</label>
-                    </div>
-                    <div class="mb-4 relative">
-                        <div class="text-gray-400 text-base">Gender</div>
-                        <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Vertical" RepeatLayout="Flow" CssClass="">
-                            <asp:ListItem Value="M">Male</asp:ListItem>
-                            <asp:ListItem Value="F">Female</asp:ListItem>
-                            <asp:ListItem Value="-">Prefer not to say</asp:ListItem>
-                        </asp:RadioButtonList>
-                    </div>--%>
+                   
                     <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="login-btn font-bold py-3 px-6 rounded-lg" OnClick="btnSignUp_Click" />
                     <div class="flex justify-center border-t border-gray-400 mt-4 pt-2">
                         Already on RoundTable?<span><a href="UserLogin.aspx" style="text-decoration:none" class="ml-1 font-bold hover:text-indigo-600 transition ease-in-out duration-300">Login</a></span>

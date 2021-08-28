@@ -12,11 +12,10 @@ namespace RoundTable.WebForms.Explore
     public partial class Explore : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\RoundTableDB.mdf;Integrated Security=True");
-        //string topicID;
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //topicID = "TP" + Request.QueryString["p"];
             if (!this.IsPostBack)
             {
                 if(Session["UserID"] != null)
@@ -36,13 +35,11 @@ namespace RoundTable.WebForms.Explore
             if (Session["UserID"] != null)
             {
                 string postID = e.CommandArgument.ToString();
-                //Response.Redirect("DiscussionPost.aspx?p=" + postID);
                 Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
             }
             else
             {
                 Response.Redirect("/WebForms/LoginError.aspx");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
         }
 
@@ -66,13 +63,7 @@ namespace RoundTable.WebForms.Explore
         {
             using (con)
             {
-                //RMB ADD SELECT statement here
-
-                //myRepeater.DataSource = myCollection
-                //    .OrderBy(x => rand.Next())
-                //    .Take(4);
-                //myRepeater.DataBind();
-
+                
                 var rand = new Random();
 
                 string userID = Session["UserID"].ToString();

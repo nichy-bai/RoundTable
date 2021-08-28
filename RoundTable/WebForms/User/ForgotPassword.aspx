@@ -58,7 +58,6 @@
                         </a>
                         <span class="ml-2">Forgot Password</span>
                     </div>
-                    <%--<asp:Label ID="lblLoginStatus" runat="server" Text="" CssClass=" text-red-600 mb-2"></asp:Label>--%>
                     <div class="flex flex-col">
                         <div class="mb-8 relative">
                             <asp:TextBox ID="txtUserID" runat="server" CssClass="input border border-gray-400 appearance-none rounded-lg px-3 py-3 pt-5 pb-2 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"></asp:TextBox>

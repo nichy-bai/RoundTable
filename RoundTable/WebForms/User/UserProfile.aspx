@@ -35,14 +35,10 @@
                             <div class="flex flex-row justify-center">
                                 <div>
                                     <asp:Image ID="imgProfilePic" runat="server" class="profile-pic" />
-                                    <%--<asp:ImageButton ID="profilePic" runat="server" CssClass="img-raised profileimg" ImageUrl="" data-toggle="modal" data-target="#modalForm" OnClientClick="return false;" BorderStyle="None" />--%>
                                 </div>
                             </div>
                         </div>
                         <div class="flex flex-row flex-wrap justify-center sm:justify-between">
-                                <%--<div class="left-0 absolute sm:static">
-                                    <asp:Label ID="lblName" runat="server" Text="" CssClass="absolute text-3xl ml-10 font-bold break-words sm:break-normal"></asp:Label>
-                                </div>--%>
                                 <div class="md:right-0 md:top-0 bottom-0 right-1 w-full md:w-auto absolute">
                                     <asp:Button ID="btnEditProfile" runat="server" Text="Edit" OnClick="btnEditProfile_Click" CssClass="editProfile-btn font-bold <%--font-bold px-6 py-2 border-2 rounded border-black--%>" />
                                 </div>
@@ -64,7 +60,6 @@
                             </div>
                             <div class="m-2">
                                 <asp:Label ID="lblProfileDesc" runat="server" Text="" CssClass="text-lg text-gray-700 font-normal w-full break-normal break-all"></asp:Label>
-                                <%--<asp:TextBox ID="txtProfileViewDesc" Text="" Enabled="false" runat="server" BorderStyle="None" BackColor="Transparent" ReadOnly="true" CssClass="w-full break-all"></asp:TextBox>--%>
                             </div>
                         </div>
                     </div>
@@ -147,9 +142,6 @@
                             </div>
                         </div>
                         <div class="flex flex-col flex-1">
-                            <%--<div class="flex text-xl ml-10 mt-10 font-bold">Topic Posted
-                    <asp:Label ID="lblTopicPosted1" runat="server" Text="" CssClass="ml-5 text-lg font-medium"></asp:Label>
-                         </div>--%>
                             <div class="flex ml-10 justify-between space-x-3">
                                 <div class="text-xl font-bold w-1/5">
                                     Name
@@ -170,24 +162,13 @@
                                     <asp:Image ID="uploadImg" runat="server" CssClass="border-2" />
                                 </div>
                             </div>
-                            <%--<div>
-                                 <asp:Button ID="btnUpload" runat="server" Text="Upload Photo" CssClass="cursor-pointer inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-400 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150 ml-2" OnClick="btnUpload_Click"/>
-                             </div>--%>
-                            <%--<div class="flex ml-10 justify-between space-x-6">
-                             <div class="text-xl font-bold w-1/5">
-                                 Profile Picture
-                             </div>
-                             <div class="w-4/5">
-                                 <asp:TextBox ID="TextBox1" runat="server" placeholder="Name" ToolTip="Name" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300"></asp:TextBox>
-                             </div>
-                         </div>--%>
                             <div class="flex ml-10 mt-3 justify-between space-x-3">
                                 <div class="text-xl font-bold w-1/5">
                                     Gender
                                 </div>
                                 <div class="w-4/5">
                                     <asp:DropDownList ID="ddlGender" runat="server" ToolTip="Gender" CssClass="w-full p-2 border-2 rounded-lg cursor-pointer hover:bg-gray-100 transition ease-in-out duration-300">
-                                        <%--<asp:ListItem Value="-">Select Gender</asp:ListItem>--%>
+                                        
                                         <asp:ListItem Value="M">Male</asp:ListItem>
                                         <asp:ListItem Value="F">Female</asp:ListItem>
                                     </asp:DropDownList>

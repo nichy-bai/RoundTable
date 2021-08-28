@@ -17,8 +17,6 @@
         <div class="flex flex-row flex-wrap justify-evenly">
             <asp:Repeater ID="Repeater4" runat="server">
                 <ItemTemplate>
-                    <%--<div
-                        class="mt-0 m-5 bg-gray-100 rounded-lg flex flex-row flex-wrap shadow-md h-auto transition ease-in-out duration-1000">--%>
                     <div class="border-0 rounded-lg transition ease-in-out duration-300 px-2 py-1 mx-2 my-2 h-40 bg-gradient-to-r from-indigo-600 via-indigo-400 to-indigo-300 hover:shadow-xl">
                         <asp:LinkButton ID="post_btn" runat="server" CssClass="" OnCommand="post_btn_Command" CommandArgument='<%#Eval("postID") %>'>
                             <%--Discussion title--%>
@@ -60,29 +58,10 @@
                     Today's Top 3 Trending Topics
                 </div>
             </div>
-            <%--<div class="animate-pulse">
-                <asp:LinkButton ID="trendingTopic_btn" runat="server" OnCommand="trendingTopic_btn_Command" CssClass="hover:text-indigo-600">
-                    <svg
-                        class="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M13 5l7 7-7 7M5 5l7 7-7 7">
-                        </path>
-                    </svg>
-                </asp:LinkButton>
-            </div>--%>
         </div>
         <div class="flex flex-row flex-wrap justify-evenly items-center">
             <asp:Repeater ID="Repeater2" runat="server" DataSourceID="SqlDataSource2">
                 <ItemTemplate>
-                    <%--<div
-                    class="mt-0 m-5 bg-white rounded-lg flex flex-row shadow-md h-auto transition ease-in-out duration-1000">--%>
                     <asp:LinkButton ID="topic_btn" runat="server" CssClass="" OnCommand="topic_btn_Command" CommandArgument='<%#Eval("topicID") %>'>
                              <div class="flex flex-row justify-center items-center px-2 py-1 mx-2 text-gray-700 hover:text-indigo-600 text-md md:text-2xl border-2 border-transparent hover:border-indigo-600 rounded-lg transition ease-in-out duration-300">
                                  <div class="mr-1 md:text-xl">#</div>
@@ -91,7 +70,6 @@
                                 </div>
                              </div>
                     </asp:LinkButton>
-                    <%--</div>--%>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
@@ -109,7 +87,6 @@
                     class="mt-0 m-5 border-2 border-indigo-600 bg-indigo-600 hover:bg-white text-white hover:text-indigo-600 rounded-lg flex flex-row flex-wrap justify-center items-center shadow h-auto transition ease-in-out duration-300 w-full md:w-1/4 hover:shadow-lg cursor-pointer">
                     <asp:LinkButton ID="topic_btn" runat="server" CssClass="" OnCommand="topic_btn_Command" CommandArgument='<%#Eval("topicID") %>'>
                              <div class="flex flex-wrap flex-row justify-center items-center text-md md:text-base my-2">
-                                 <%--<div class="mr-1">#</div>--%>
                                 <div>
                                     <%#Eval("topicName") %>
                                 </div>

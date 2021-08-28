@@ -34,9 +34,7 @@ namespace RoundTable.WebForms.User
                 cmdSaveUser.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
                 cmdSaveUser.Parameters.AddWithValue("@UserPassword", encryptedPassword);
                 cmdSaveUser.Parameters.AddWithValue("@ProfilePicture", defaultPicture);
-                //cmdSaveUser.Parameters.AddWithValue("@ProfileDesc", null);
                 cmdSaveUser.Parameters.AddWithValue("@Gender", "-");
-                //cmdSaveUser.Parameters.AddWithValue("@DOB", null);
                 con.Open();
                 cmdSaveUser.ExecuteNonQuery();
                 con.Close();

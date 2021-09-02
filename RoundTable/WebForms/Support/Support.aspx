@@ -67,6 +67,15 @@
                     <div class="my-2">
                         <a href="SupportDetail.aspx#start-5" class="text-indigo-700 hover:text-indigo-600 hover:underline">Participate In A Discussion</a>
                     </div>
+                    <div class="my-2">
+                        <a href="SupportDetail.aspx#start-6" class="text-indigo-700 hover:text-indigo-600 hover:underline">Search For Discussions</a>
+                    </div>
+                    <div class="my-2">
+                        <a href="SupportDetail.aspx#start-7" class="text-indigo-700 hover:text-indigo-600 hover:underline">Post Recommendations</a>
+                    </div>
+                    <div class="my-2">
+                        <a href="SupportDetail.aspx#start-8" class="text-indigo-700 hover:text-indigo-600 hover:underline">Edit Profile</a>
+                    </div>
                 </div>
             </div>
             <div class="flex flex-col my-5">
@@ -84,6 +93,9 @@
                     <div class="my-2">
                         <a href="SupportDetail.aspx#faq-4" class="text-indigo-700 hover:text-indigo-600 hover:underline">Privacy Policy and Terms</a>
                     </div>
+                    <div class="my-2">
+                        <a href="SupportDetail.aspx#faq-5" class="text-indigo-700 hover:text-indigo-600 hover:underline">Notifications</a>
+                    </div>
                 </div>
             </div>
             <div class="flex flex-col my-5">
@@ -96,11 +108,9 @@
                         <a href="SupportDetail.aspx#tip-2" class="text-indigo-700 hover:text-indigo-600 hover:underline">RoundTable Chatbot</a>
                     </div>
                     <div class="my-2">
-                        <a href="SupportDetail.aspx#tip-3" class="text-indigo-700 hover:text-indigo-600 hover:underline"></a>
+                        <a href="SupportDetail.aspx#tip-3" class="text-indigo-700 hover:text-indigo-600 hover:underline">Voice Search Feature</a>
                     </div>
-                    <div class="my-2">
-                        <a href="SupportDetail.aspx#tip-4" class="text-indigo-700 hover:text-indigo-600 hover:underline"></a>
-                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -101,14 +101,12 @@ namespace RoundTable.WebForms.User
             else
             {
                 Response.Redirect("/WebForms/Error.aspx");
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You must log in as a customer to access this feature.');window.location ='../User/UserLogin.aspx';", true);
             }
         }
 
         protected void post_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();
-            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
             Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
     }

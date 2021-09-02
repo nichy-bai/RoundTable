@@ -18,17 +18,11 @@
                 <div class="flex flex-row justify-center">
                     <div>
                         <asp:Image ID="imgProfilePic" runat="server" class="profile-pic" />
-                        <%--<asp:ImageButton ID="profilePic" runat="server" CssClass="img-raised profileimg" ImageUrl="" data-toggle="modal" data-target="#modalForm" OnClientClick="return false;" BorderStyle="None" />--%>
                     </div>
                 </div>
             </div>
             <div class="flex flex-row flex-wrap justify-center sm:justify-between">
-                <%--<div class="left-0 absolute sm:static">
-                                    <asp:Label ID="lblName" runat="server" Text="" CssClass="absolute text-3xl ml-10 font-bold break-words sm:break-normal"></asp:Label>
-                                </div>--%>
-                <%--<div class="md:right-0 md:top-0 bottom-0 right-1 w-full md:w-auto absolute">
-                    <asp:Button ID="btnEditProfile" runat="server" Text="Edit" OnClick="btnEditProfile_Click" CssClass="editProfile-btn font-bold font-bold px-6 py-2 border-2 rounded border-black" />
-                </div>--%>
+                
             </div>
             <div class="flex flex-col flex-1 text-gray-800 w-full">
                 <div class="flex flex-wrap break-all sm:break-normal justify-center md:justify-start border-b-2">
@@ -47,7 +41,7 @@
                 </div>
                 <div class="m-2">
                     <asp:Label ID="lblProfileDesc" runat="server" Text="" CssClass="text-lg text-gray-700 font-normal w-full break-normal break-all"></asp:Label>
-                    <%--<asp:TextBox ID="txtProfileViewDesc" Text="" Enabled="false" runat="server" BorderStyle="None" BackColor="Transparent" ReadOnly="true" CssClass="w-full break-all"></asp:TextBox>--%>
+                    
                 </div>
             </div>
         </div>

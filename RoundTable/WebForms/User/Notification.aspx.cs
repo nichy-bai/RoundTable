@@ -33,17 +33,10 @@ namespace RoundTable.WebForms.User
                 noPost_lbl.Visible = false;
                 notifications_div.Visible = true;
             }
-            //Panel p1 = (Panel)Master.FindControl("master_aside_panel");
-            //Panel p2 = (Panel)Master.FindControl("bottom_aside_panel");
-            //Panel p3 = (Panel)Master.FindControl("whole_body_panel");
-            //p1.Visible = false;
-            //p2.Visible = true;
-            //p3.CssClass = p3.CssClass.Replace("md:flex-row", "md:flex-col");
         }
         protected void postBody_btn_Command(object sender, CommandEventArgs e)
         {
             string postID = e.CommandArgument.ToString();
-            //Response.Redirect("DiscussionPost.aspx?p=" + postID);
             Response.Redirect("../Discussion/DiscussionPost.aspx?p=" + postID.Substring(2, postID.Length - 2));
         }
 

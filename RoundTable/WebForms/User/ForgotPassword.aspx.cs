@@ -95,26 +95,12 @@ namespace RoundTable.WebForms.User
                 con.Close();
 
                 verificationCode = "";
-                //System.Text.StringBuilder javaScript = new System.Text.StringBuilder();
-                //string scriptKey = "SuccessMessage";
-                //javaScript.Append("var userConfirmation = window.confirm('" + "Password successfully updated!" + "');\n");
-                //javaScript.Append("window.location='login.aspx';");
-
-                //ClientScript.RegisterStartupScript(this.GetType(), scriptKey, javaScript.ToString(), true);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Password successfully updated!');window.location ='UserLogin.aspx';", true);
 
             }
             else
             {
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Invalid verification code.');window.location ='UserLogin.aspx';", true);
                 Response.Write("<script> alert('Invalid verification code.') </script>");
-
-                //System.Text.StringBuilder javaScript = new System.Text.StringBuilder();
-                //string scriptKey = "ErrorMessage";
-
-                //javaScript.Append("var userConfirmation = window.confirm('" + "Invalid verification code." + "');\n");
-
-                //ClientScript.RegisterStartupScript(this.GetType(), scriptKey, javaScript.ToString(), true);
             }
         }
 
